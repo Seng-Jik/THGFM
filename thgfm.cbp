@@ -12,7 +12,6 @@
 				<Option object_output="bin/Debug/obj/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
@@ -40,6 +39,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add directory="$(#sdl2.include)/SDL2" />
 			<Add directory="include" />
 		</Compiler>
@@ -47,6 +47,7 @@
 			<Add library="mingw32" />
 			<Add library="SDL2main" />
 			<Add library="SDL2_image" />
+			<Add library="SDL2_test" />
 			<Add library="SDL2.dll" />
 			<Add library="user32" />
 			<Add library="gdi32" />
@@ -57,32 +58,33 @@
 		<ExtraCommands>
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
+		<Unit filename="include/BulletMgr.h" />
+		<Unit filename="include/CollWorld.h" />
+		<Unit filename="include/EffectMgr.h" />
+		<Unit filename="include/EnePartten.h" />
+		<Unit filename="include/EnemyParttenAPI.h" />
 		<Unit filename="include/KeyMapAct.h" />
-		<Unit filename="include/Snow.h" />
-		<Unit filename="include/Snow/Activity.h" />
-		<Unit filename="include/Snow/Bundle.h" />
-		<Unit filename="include/Snow/CSVEditor.h" />
-		<Unit filename="include/Snow/CSVReader.h" />
-		<Unit filename="include/Snow/Control.h" />
-		<Unit filename="include/Snow/Debug.h" />
-		<Unit filename="include/Snow/Font.h" />
-		<Unit filename="include/Snow/Globals.h" />
-		<Unit filename="include/Snow/Misc.h" />
-		<Unit filename="include/Snow/OS.h" />
-		<Unit filename="include/Snow/RenderTarget.h" />
-		<Unit filename="include/Snow/ResFile.h" />
-		<Unit filename="include/Snow/ResVal.h" />
-		<Unit filename="include/Snow/RndPtr.h" />
-		<Unit filename="include/Snow/SDLbase.h" />
-		<Unit filename="include/Snow/Sound.h" />
-		<Unit filename="include/Snow/Sprite.h" />
-		<Unit filename="include/Snow/Surface.h" />
-		<Unit filename="include/Snow/TCPNet.h" />
-		<Unit filename="include/Snow/Thread.h" />
-		<Unit filename="include/Snow/Timer.h" />
-		<Unit filename="include/Snow/UDPNet.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/PlayerBullet.h" />
+		<Unit filename="include/ShotParttenAPI.h" />
+		<Unit filename="include/StageMgr.h" />
+		<Unit filename="include/StdParttenAPI.h" />
+		<Unit filename="include/Tools.h" />
+		<Unit filename="include/WSTGame.h" />
+		<Unit filename="src/BulletMgr.cpp" />
+		<Unit filename="src/CollWorld.cpp" />
+		<Unit filename="src/EffectMgr.cpp" />
+		<Unit filename="src/EnePartten/EnePartten_Demo.cpp" />
 		<Unit filename="src/KeyMapAct.cpp" />
 		<Unit filename="src/Main.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/PlayerBullet.cpp" />
+		<Unit filename="src/ShtPartten/ShtPartten_Demo.cpp" />
+		<Unit filename="src/StageMgr.cpp" />
+		<Unit filename="src/Tools.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/WSTGame.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
