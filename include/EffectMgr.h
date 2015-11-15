@@ -2,19 +2,19 @@
 #define EFFECTMGR_H
 #include <list>
 #include "Snow.h"
-class EffectMgr
+class EffectMgr //用来管理和游戏内容完全无关的小特效
 {
     public:
         EffectMgr();
         static void Init();
-        void Install(int num,int x,int y);
+        void Install(int style,int x,int y);
         void OnDraw();
         void OnNext();
         void Reset();
         ~EffectMgr();
     protected:
     private:
-        struct EffectStyle{
+        static struct EffectStyle{
             SDL_Texture** tex;
             int texCount;
             int frameWait;
@@ -22,8 +22,9 @@ class EffectMgr
         struct Eff{
             int style,cnt;
             int x,y;
-        };
-        std::list<Eff> m_effs;
+        }m_effs[32];
 };
+
+extern EffectMgr effMgr;
 
 #endif // EFFECTMGR_H

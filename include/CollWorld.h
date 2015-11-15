@@ -4,11 +4,11 @@ using namespace std;
 class CollWorld{
 private:
     struct CollRect{
-        int x,y,w = 4,h = 4;
+        double x,y,w = 4,h = 4;
         bool enable = false;
     };
     struct CollCircle{
-        int x,y,r;
+        double x,y,r;
         bool enable = false;
     };
     CollRect m_player[2];
@@ -21,15 +21,15 @@ private:
     int m_enemyBulletSearchTop = 0;
 
     inline bool coll_r2c(const CollRect& r,const CollCircle& c){
-        int x1 = r.x - c.r;
-        int y1 = r.y - c.r;
-        int x2 = r.x + r.w + c.r;
-        int y2 = r.y + r.h + c.r;
+        double x1 = r.x - c.r;
+        double y1 = r.y - c.r;
+        double x2 = r.x + r.w + c.r;
+        double y2 = r.y + r.h + c.r;
         return c.x > x1 && c.x < x2 && c.y > y1 && c.y < y2;
     }
 
 public:
-    inline void SetPlayer(int p,bool enable,int x = 0,int y = 0)  //设置玩家，判定点为矩形
+    inline void SetPlayer(int p,bool enable,double x = 0,double y = 0)  //设置玩家，判定点为矩形
     {
         m_player[p].enable = enable;
         m_player[p].x = x;
@@ -37,7 +37,7 @@ public:
     }
 
     void SetEnemyBuffurSize(int n);
-    inline void SetEnemy(int num,bool enable,int x = 0,int y = 0,int r = 0)   //设置敌人，判定点为圆形
+    inline void SetEnemy(int num,bool enable,double x = 0,double y = 0,double r = 0)   //设置敌人，判定点为圆形
     {
         m_enemys[num].enable = enable;
         m_enemys[num].x = x;
@@ -51,7 +51,7 @@ public:
     inline void SetEnemySearchTop(int top)    //设置敌人搜索顶部
     {m_enemySearchTop = top;}
 
-    inline void SetEnemyBullet(int num,bool enable,int x=0,int y=0,int r=0) //设置敌人子弹，判定点为圆形
+    inline void SetEnemyBullet(int num,bool enable,double x=0,double y=0,double r=0) //设置敌人子弹，判定点为圆形
     {
         m_enemyBullets[num].enable = enable;
         m_enemyBullets[num].x = x;

@@ -1,13 +1,18 @@
 #include "WSTGame.h"
 #include "BulletMgr.h"
 #include "CollWorld.h"
+#include "EffectMgr.h"
+#include "CSVWRollBgp.h"
 
 WSTGame::WSTGame()
 {
+    background.LoadCSV("Demo2","bg.csv");
+    background.SetSpeed(8.0);
     player[0].SetPlayerImage(1);
     stage.LoadCSV("Demo2");
     //m_p2.SetPlayerImage(0);
     player[0].Birth();
+
 }
 
 WSTGame::~WSTGame()
@@ -17,6 +22,8 @@ WSTGame::~WSTGame()
 
 void WSTGame::OnDraw()
 {
+    background.OnDraw();
+    effMgr.OnDraw();
     player[0].OnDraw();
     bulletMgr.OnDraw();
     stage.OnDraw();
@@ -28,10 +35,12 @@ void WSTGame::OnDraw()
 
 void WSTGame::OnNext()
 {
+    background.OnNext();
     player[0].OnNext();
     //m_p2.OnNext();
     stage.OnNext();
     bulletMgr.OnNext();
+    effMgr.OnNext();
 }
 
 void WSTGame::OnEvent(int p, Key k, bool b)

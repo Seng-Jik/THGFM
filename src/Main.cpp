@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Tools.h"
 #include "BulletMgr.h"
+#include "EffectMgr.h"
 using namespace std;
 using namespace Snow;
 
@@ -15,6 +16,7 @@ int main(int argc,char** argv){
     Player::Init();
     StageMgr::Init();
     BulletMgr::Init();
+    EffectMgr::Init();
     Run(new WSTGame);
 
     return 0;

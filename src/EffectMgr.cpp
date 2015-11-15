@@ -1,10 +1,16 @@
 #include "EffectMgr.h"
 #include "Tools.h"
+#include "Snow.h"
+using namespace Snow;
 using namespace std;
+
+EffectMgr effMgr;
+
+EffectMgr::EffectStyle EffectMgr::m_effStyles[1];
 
 EffectMgr::EffectMgr()
 {
-    //ctor
+    Reset();
 }
 
 EffectMgr::~EffectMgr()
@@ -13,38 +19,60 @@ EffectMgr::~EffectMgr()
 }
 void EffectMgr::Init()
 {
-    m_effStyles[0].frameWait =5;
+    m_effStyles[0].frameWait =4;
     m_effStyles[0].tex = new SDL_Texture* [4];
     m_effStyles[0].tex[0]=LoadPic("Effect/boom1.png");
     m_effStyles[0].tex[1]=LoadPic("Effect/boom2.png");
     m_effStyles[0].tex[2]=LoadPic("Effect/boom3.png");
     m_effStyles[0].tex[3]=LoadPic("Effect/boom4.png");
-    m_effStyles.texCount = 4;
+    FOR_EACH(i,0,4){
+        SDL_SetTextureAlphaMod(m_effStyles[0].tex[i],160);
+    }
+    m_effStyles[0].texCount = 4;
 }
 
-void EffectMgr::Install(int num, int x, int y)
+void EffectMgr::Install(int style, int x, int y)
 {
-    m_effs.push_back( {num,0,x,y});
+    for(int i = 0;i <32;++i){
+        if(m_effs[i].cnt == -1){
+            m_effs[i].cnt = 0;
+            m_effs[i].x = x;
+            m_effs[i].y = y;
+            m_effs[i].style = style;
+            break;
+        }
+    }
 }
 
 void EffectMgr::OnDraw()
 {
-    FOR_EACH(p,m_effs.begin(),m_effs.end()){
-        int w,h;
-        SDL_QueryTexture(m_effStyles[p->style].tex[p->cnt%m_effStyles[p->style].frameWait],nullptr,nullptr,&w,&h);
-        SDL_Rect dst = {x-w/2,y-h/w,w,h};
-        SDL_RenderCopy(pRnd,m_effStyles[p->style].tex[p->cnt%m_effStyles[p->style].frameWait,nullptr,&dst);
+    for(int i = 0;i < 32;++i)
+        if(m_effs[i].cnt != -1){
+            int w,h;
+            int texNum = m_effs[i].cnt / m_effStyles[m_effs[i].style].frameWait;
+            if(texNum >= m_effStyles[m_effs[i].style].texCount) texNum = m_effStyles[m_effs[i].style].texCount -1;
+            SDL_QueryTexture(m_effStyles[m_effs[i].style].tex[texNum],nullptr,nullptr,&w,&h);
+            SDL_Rect dst = {
+                m_effs[i].x - w/2,
+                m_effs[i].y - h/2,
+                w,h
+            };
+            SDL_RenderCopy(pRnd,m_effStyles[m_effs[i].style].tex[texNum],nullptr,&dst);
     }
 }
 
 void EffectMgr::OnNext()
 {
-    FOR_EACH(p,m_effs.begin(),m_effs.end()){
-        p->cnt++;
+    for(int i = 0;i < 32;++i)
+        if(m_effs[i].cnt != -1){
+            ++m_effs[i].cnt;
+            if(m_effs[i].cnt>=m_effStyles[m_effs[i].style].frameWait*m_effStyles[m_effs[i].style].texCount)
+                m_effs[i].cnt = -1;
     }
 }
-
+#include <cstring>
 void EffectMgr::Reset()
 {
-    m_effs.clear();
+    for(int i = 0;i < 32;++i)
+        m_effs[i].cnt = -1;
 }

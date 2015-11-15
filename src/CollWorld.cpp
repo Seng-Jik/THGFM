@@ -94,14 +94,17 @@ void CollWorld::Update_Player_EnemyBullet()
     }
 }
 
-#include <iostream>
-using namespace std;
+#include "EffectMgr.h"
 void CollWorld::OnPlayerEnemy(int player, int enemy)
 {
+    effMgr.Install(0,::player[player].GetX(),::player[player].GetY());
     ::player[player].Birth();
+    //SDL_assert(false);
 }
 
 void CollWorld::OnPlayerEnemyBullet(int player, int eb)
 {
+    effMgr.Install(0,::player[player].GetX(),::player[player].GetY());
     ::player[player].Birth();
+    //SDL_assert(false);
 }

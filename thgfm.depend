@@ -113,7 +113,7 @@
 	<stdlib.h>
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
 1436254864 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_platform.h
@@ -382,12 +382,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1376156543 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+1376156544 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1376156503 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
+1376156504 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
 	<stdint.h>
 	"SDL.h"
 	"SDL_endian.h"
@@ -411,49 +411,49 @@
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
+1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
 	"SDL.h"
 	"SDL_test_images.h"
 	"begin_code.h"
@@ -549,13 +549,14 @@
 	<iostream>
 	<string>
 
-1446620582 source:e:\tou-hou-gu-feng-meng\src\main.cpp
+1447316496 source:e:\tou-hou-gu-feng-meng\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
 	<iostream>
 	"Tools.h"
 	"BulletMgr.h"
+	"EffectMgr.h"
 
 1446369472 e:\tou-hou-gu-feng-meng\include\snow.h
 	"Snow/Activity.h"
@@ -1108,11 +1109,11 @@
 	"Player.h"
 	"StageMgr.h"
 
-1446638498 e:\tou-hou-gu-feng-meng\include\player.h
+1447316340 e:\tou-hou-gu-feng-meng\include\player.h
 	"Snow.h"
 	"KeyMapAct.h"
 
-1446720355 source:e:\tou-hou-gu-feng-meng\src\player.cpp
+1446880134 source:e:\tou-hou-gu-feng-meng\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
@@ -1121,15 +1122,17 @@
 	"Snow.h"
 	<string>
 
-1446723470 source:e:\tou-hou-gu-feng-meng\src\wstgame.cpp
+1447334898 source:e:\tou-hou-gu-feng-meng\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"
+	"EffectMgr.h"
+	"CSVWRollBgp.h"
 
-1446538062 source:e:\tou-hou-gu-feng-meng\src\tools.cpp
+1447317836 source:e:\tou-hou-gu-feng-meng\src\tools.cpp
 	"Tools.h"
 
-1446722174 source:e:\tou-hou-gu-feng-meng\src\stagemgr.cpp
+1446722176 source:e:\tou-hou-gu-feng-meng\src\stagemgr.cpp
 	"StageMgr.h"
 	"Snow.h"
 	"Tools.h"
@@ -1139,7 +1142,7 @@
 	"ShotParttenAPI.h"
 	"CollWorld.h"
 
-1446721748 e:\tou-hou-gu-feng-meng\include\stagemgr.h
+1446721750 e:\tou-hou-gu-feng-meng\include\stagemgr.h
 	<string>
 	<vector>
 	<forward_list>
@@ -1156,41 +1159,42 @@
 1446599430 e:\tou-hou-gu-feng-meng\include\enemyparttenapi.h
 	"StageMgr.h"
 
-1446724336 source:e:\tou-hou-gu-feng-meng\src\shtpartten\shtpartten_demo.cpp
+1447318838 source:e:\tou-hou-gu-feng-meng\src\shtpartten\shtpartten_demo.cpp
 	"ShotParttenAPI.h"
 	"StdParttenAPI.h"
 	<iostream>
 	<cstdlib>
 
-1446721250 e:\tou-hou-gu-feng-meng\include\shotparttenapi.h
+1446721252 e:\tou-hou-gu-feng-meng\include\shotparttenapi.h
 	"StageMgr.h"
 	"BulletMgr.h"
 	"Snow/Debug.h"
 
-1446723987 source:e:\tou-hou-gu-feng-meng\src\bulletmgr.cpp
+1446770206 source:e:\tou-hou-gu-feng-meng\src\bulletmgr.cpp
 	"BulletMgr.h"
 	"Tools.h"
 	<cmath>
 	"CollWorld.h"
 
-1446723838 e:\tou-hou-gu-feng-meng\include\bulletmgr.h
+1446770290 e:\tou-hou-gu-feng-meng\include\bulletmgr.h
 	<queue>
 	"Snow.h"
 
-1446684214 e:\tou-hou-gu-feng-meng\include\stdparttenapi.h
+1446684216 e:\tou-hou-gu-feng-meng\include\stdparttenapi.h
 	"StageMgr.h"
 	"Player.h"
 	<cmath>
 	"Tools.h"
 
-1446722977 e:\tou-hou-gu-feng-meng\include\collworld.h
+1447317234 e:\tou-hou-gu-feng-meng\include\collworld.h
 	<iostream>
 
-1446709577 source:e:\tou-hou-gu-feng-meng\src\collworld.cpp
+1447317484 source:e:\tou-hou-gu-feng-meng\src\collworld.cpp
 	"CollWorld.h"
 	<mem.h>
 	"Snow.h"
-	<iostream>
+	"Player.h"
+	"EffectMgr.h"
 
 1446770206 source:i:\tou-hou-gu-feng-meng\src\bulletmgr.cpp
 	"BulletMgr.h"
@@ -3126,4 +3130,294 @@
 	"PlayerBullet.h"
 
 1446881096 k:\tou-hou-gu-feng-meng\include\playerbullet.h
+
+1446877812 source:e:\tou-hou-gu-feng-meng\src\playerbullet.cpp
+	"PlayerBullet.h"
+
+1446881096 e:\tou-hou-gu-feng-meng\include\playerbullet.h
+
+1447317966 source:e:\tou-hou-gu-feng-meng\src\effectmgr.cpp
+	"EffectMgr.h"
+	"Tools.h"
+	"Snow.h"
+	<cstring>
+
+1447316168 e:\tou-hou-gu-feng-meng\include\effectmgr.h
+	<list>
+	"Snow.h"
+
+1446770206 source:f:\tou-hou-gu-feng-meng\src\bulletmgr.cpp
+	"BulletMgr.h"
+	"Tools.h"
+	<cmath>
+	"CollWorld.h"
+
+1446770290 f:\tou-hou-gu-feng-meng\include\bulletmgr.h
+	<queue>
+	"Snow.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow.h
+	"Snow/Activity.h"
+	"Snow/Bundle.h"
+	"Snow/Control.h"
+	"Snow/ResFile.h"
+	"Snow/Font.h"
+	"Snow/Globals.h"
+	"Snow/Misc.h"
+	"Snow/Sound.h"
+	"Snow/Sprite.h"
+	"Snow/Thread.h"
+	"Snow/Timer.h"
+	"Snow/ResVal.h"
+	"Snow/RndPtr.h"
+	"Snow/TCPNet.h"
+	"Snow/UDPNet.h"
+	"Snow/CSVEditor.h"
+	"Snow/CSVReader.h"
+	"Snow/RenderTarget.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\activity.h
+	<forward_list>
+	"SDLbase.h"
+	"Globals.h"
+	"RndPtr.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\sdlbase.h
+	"OS.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_mixer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_net.h>
+	<SDL2/SDL_test.h>
+	<SDL.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_net.h>
+	<SDL_test.h>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\os.h
+	<windows.h>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\globals.h
+	"SDLbase.h"
+	<vector>
+	<string>
+	"Sound.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\sound.h
+	"SDLbase.h"
+	<map>
+	"ResFile.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\resfile.h
+	"SDLBase.h"
+	<vector>
+	<string>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\rndptr.h
+	"SDLbase.h"
+	<string>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\bundle.h
+	"Globals.h"
+	<fstream>
+	"mem.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\control.h
+	"SDLbase.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\font.h
+	"SDLbase.h"
+	<string>
+	"ResFile.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\misc.h
+	<fstream>
+	"SDLbase.h"
+	"ResFile.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\sprite.h
+	"Globals.h"
+	"ResFile.h"
+	"Surface.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\surface.h
+	"ResFile.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\thread.h
+	"SDLbase.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\timer.h
+	"SDLbase.h"
+	"Globals.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\resval.h
+	<map>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\tcpnet.h
+	"SDLBase.h"
+	<string>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\udpnet.h
+	<string>
+	"SDLbase.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\csveditor.h
+	<iostream>
+	<fstream>
+	<string>
+	<map>
+	<vector>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\csvreader.h
+	"ResFile.h"
+	<string>
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\rendertarget.h
+	"Thread.h"
+
+1446596026 f:\tou-hou-gu-feng-meng\include\tools.h
+	"Snow.h"
+	<string>
+
+1447317234 f:\tou-hou-gu-feng-meng\include\collworld.h
+	<iostream>
+
+1447317484 source:f:\tou-hou-gu-feng-meng\src\collworld.cpp
+	"CollWorld.h"
+	<mem.h>
+	"Snow.h"
+	"Player.h"
+	"EffectMgr.h"
+
+1447316340 f:\tou-hou-gu-feng-meng\include\player.h
+	"Snow.h"
+	"KeyMapAct.h"
+
+1446534874 f:\tou-hou-gu-feng-meng\include\keymapact.h
+	"Snow/Activity.h"
+
+1447316168 f:\tou-hou-gu-feng-meng\include\effectmgr.h
+	<list>
+	"Snow.h"
+
+1447317966 source:f:\tou-hou-gu-feng-meng\src\effectmgr.cpp
+	"EffectMgr.h"
+	"Tools.h"
+	"Snow.h"
+	<cstring>
+
+1446626114 source:f:\tou-hou-gu-feng-meng\src\enepartten\enepartten_demo.cpp
+	"EnemyParttenAPI.h"
+	"EnePartten.h"
+	"StdParttenAPI.h"
+
+1446599430 f:\tou-hou-gu-feng-meng\include\enemyparttenapi.h
+	"StageMgr.h"
+
+1446721750 f:\tou-hou-gu-feng-meng\include\stagemgr.h
+	<string>
+	<vector>
+	<forward_list>
+	"Snow.h"
+
+1446600602 f:\tou-hou-gu-feng-meng\include\enepartten.h
+	"StageMgr.h"
+
+1446684216 f:\tou-hou-gu-feng-meng\include\stdparttenapi.h
+	"StageMgr.h"
+	"Player.h"
+	<cmath>
+	"Tools.h"
+
+1446596246 source:f:\tou-hou-gu-feng-meng\src\keymapact.cpp
+	"KeyMapAct.h"
+	"Snow/ResVal.h"
+	"Snow/Debug.h"
+	"Tools.h"
+
+1446369472 f:\tou-hou-gu-feng-meng\include\snow\debug.h
+	<iostream>
+	<string>
+
+1447316496 source:f:\tou-hou-gu-feng-meng\src\main.cpp
+	"Snow.h"
+	"KeyMapAct.h"
+	"WSTGame.h"
+	<iostream>
+	"Tools.h"
+	"BulletMgr.h"
+	"EffectMgr.h"
+
+1446626258 f:\tou-hou-gu-feng-meng\include\wstgame.h
+	"KeyMapAct.h"
+	"Player.h"
+	"StageMgr.h"
+
+1446880134 source:f:\tou-hou-gu-feng-meng\src\player.cpp
+	"Player.h"
+	"Tools.h"
+	"CollWorld.h"
+
+1446877812 source:f:\tou-hou-gu-feng-meng\src\playerbullet.cpp
+	"PlayerBullet.h"
+
+1446881096 f:\tou-hou-gu-feng-meng\include\playerbullet.h
+
+1447318838 source:f:\tou-hou-gu-feng-meng\src\shtpartten\shtpartten_demo.cpp
+	"ShotParttenAPI.h"
+	"StdParttenAPI.h"
+	<iostream>
+	<cstdlib>
+
+1446721252 f:\tou-hou-gu-feng-meng\include\shotparttenapi.h
+	"StageMgr.h"
+	"BulletMgr.h"
+	"Snow/Debug.h"
+
+1446722176 source:f:\tou-hou-gu-feng-meng\src\stagemgr.cpp
+	"StageMgr.h"
+	"Snow.h"
+	"Tools.h"
+	<cmath>
+	"Snow/Debug.h"
+	"EnePartten.h"
+	"ShotParttenAPI.h"
+	"CollWorld.h"
+
+1447317836 source:f:\tou-hou-gu-feng-meng\src\tools.cpp
+	"Tools.h"
+
+1446123390 source:f:\tou-hou-gu-feng-meng\src\wstgame.cpp
+	"WSTGame.h"
+	"BulletMgr.h"
+	"CollWorld.h"
+	"EffectMgr.h"
+
+1446123322 source:f:\tou-hou-gu-feng-meng\src\csvwrollbgp.cpp
+	"CSVWRollBgp.h"
+	"Tools.h"
+
+1446123222 f:\tou-hou-gu-feng-meng\include\csvwrollbgp.h
+	"Snow.h"
+	"Background.h"
+	<vector>
+	<queue>
+
+1446123222 f:\tou-hou-gu-feng-meng\include\background.h
+
+1447335080 source:e:\tou-hou-gu-feng-meng\src\csvwrollbgp.cpp
+	"CSVWRollBgp.h"
+	"Tools.h"
+	<iostream>
+
+1447335158 e:\tou-hou-gu-feng-meng\include\csvwrollbgp.h
+	"Snow.h"
+	"Background.h"
+	<vector>
+	<queue>
+
+1446123222 e:\tou-hou-gu-feng-meng\include\background.h
 

@@ -11,7 +11,7 @@ void SD000(Shot* s,int enemy){
         ShtCreateBlt(s,800+rand()%200,rand()%576,EneGetPlrAngle(0,enemy),3,5,0);
     }
     FOR_EACH(p,s->bullets.begin(),s->bullets.end()){
-        //BltSpd(*p) += 0.02;
+        //BltSpd(*p) -= 0.002;
         bulletMgr[*p].render_angle-=1;
         //BltAngle(*p) = EneGetPlrAngle(0,enemy);
     }
@@ -27,6 +27,7 @@ void SD001(Shot* s,int enemy){
     }
     FOR_EACH(p,s->bullets.begin(),s->bullets.end()){
         if(BltSpd(*p) >= 5) BltSpd(*p) += 0.1;
+        //BltSpd(*p) -= 0.002;
         bulletMgr[*p].render_angle+=1;
         //BltAngle(*p) = EneGetPlrAngle(0,enemy);
     }
