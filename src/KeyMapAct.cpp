@@ -10,8 +10,6 @@ Key KeyMapAct::m_k [2] [32];
 KeyMapAct::KeyMapAct()
 {
     SetLogicScreenSize(WIDTH,HEIGHT);
-    LoadConfig();
-    RefreshGamePadList();
 }
 
 void KeyMapAct::LoadConfig()
@@ -48,6 +46,39 @@ void KeyMapAct::OnEvent(const SDL_Event& e)
         if(k != T_NONE) OnEvent(0,k,false);
     }
 
+    else if(e.type == SDL_JOYAXISMOTION){
+        int& oldValue = m_axis[e.jaxis.which][e.jaxis.axis];
+
+        if(e.jaxis.axis == 1){  //竖直方向
+            cout<<"H"<<e.jaxis.value<<endl;
+
+            if(oldValue < 0 && e.jaxis.value >=0) OnEvent(e.jaxis.which,T_UP,false);
+            if(oldValue <=0 && e.jaxis.value > 0) OnEvent(e.jaxis.which,T_DOWN,true);
+
+            if(oldValue > 0 && e.jaxis.value<=0) OnEvent(e.jaxis.which,T_DOWN,false);
+            if(oldValue >= 0 && e.jaxis.value <0) OnEvent(e.jaxis.which,T_UP,true);
+            oldValue = e.jaxis.value;
+        }
+
+        else if(e.jaxis.axis == 0){  //水平方向
+            cout<<"H"<<e.jaxis.value<<endl;
+
+            if(oldValue < 0 && e.jaxis.value >=0) OnEvent(e.jaxis.which,T_LEFT,false);
+            if(oldValue <=0 && e.jaxis.value > 0) OnEvent(e.jaxis.which,T_RIGHT,true);
+
+            if(oldValue > 0 && e.jaxis.value<=0) OnEvent(e.jaxis.which,T_RIGHT,false);
+            if(oldValue >= 0 && e.jaxis.value <0) OnEvent(e.jaxis.which,T_LEFT,true);
+            oldValue = e.jaxis.value;
+        }
+
+    }else if(e.type == SDL_JOYBUTTONDOWN){
+        Key k = m_k[e.jbutton.which] [e.jbutton.button];
+        if(k != T_NONE) OnEvent(int(e.jbutton.which),k,true);
+    }else if(e.type == SDL_JOYBUTTONUP){
+        Key k = m_k[e.jbutton.which] [e.jbutton.button];
+        if(k != T_NONE) OnEvent(int(e.jbutton.which),k,false);
+    }
+
 }
 
 Key KeyMapAct::kb2k(SDL_Keycode c)
@@ -77,13 +108,14 @@ Key KeyMapAct::kb2k(SDL_Keycode c)
         return T_NONE;
     }
 }
-
-void KeyMapAct::RefreshGamePadList()
+int KeyMapAct::m_axis [2][2];
+void KeyMapAct::Init()
 {
-
+    for(int i = 0;i < SDL_NumJoysticks();++i)
+        SDL_JoystickOpen(i);
+    LoadConfig();
+    for(int i = 0;i<2;++i)
+        for(int j = 0;j<2;++j)
+            m_axis[i][j] = 0;
 }
 
-int KeyMapAct::GetLinkedGamePadCount()
-{
-    return SDL_NumJoysticks();
-}

@@ -1,12 +1,11 @@
 #include "CSVWRollBgp.h"
 #include "Tools.h"
+#include "Snow/Debug.h"
 
 using namespace std;
 using namespace Snow;
 
 CSVWRollBgp background;
-
-#include <iostream>
 
 void CSVWRollBgp::LoadCSV(const std::string& stage,const std::string& bgcsv)
 {
@@ -21,9 +20,8 @@ void CSVWRollBgp::LoadCSV(const std::string& stage,const std::string& bgcsv)
         string path;
         csv.PopStr(path);
         if(path[0] == '#' || path.empty()) continue;
-        else if(path == "START") break;
+        else if(path == "START") {break;}
         sbg.tex = LoadPic(stgPath + path);
-        cout<<"Load "<<stgPath + path<<endl;
 
         csv.PopFloat(sbg.depth);
 

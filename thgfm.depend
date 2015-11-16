@@ -1,10 +1,14 @@
 # depslib dependency file v1.0
-1446367001 source:f:\thgfm\src\main.cpp
+1447660125 source:f:\thgfm\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
+	"WSTGame.h"
 	<iostream>
+	"Tools.h"
+	"BulletMgr.h"
+	"EffectMgr.h"
 
-1444315067 f:\thgfm\include\snow.h
+1446369472 f:\thgfm\include\snow.h
 	"Snow/Activity.h"
 	"Snow/Bundle.h"
 	"Snow/Control.h"
@@ -24,13 +28,13 @@
 	"Snow/CSVReader.h"
 	"Snow/RenderTarget.h"
 
-1444315067 f:\thgfm\include\snow\activity.h
+1446369472 f:\thgfm\include\snow\activity.h
 	<forward_list>
 	"SDLbase.h"
 	"Globals.h"
 	"RndPtr.h"
 
-1444315067 f:\thgfm\include\snow\sdlbase.h
+1446369472 f:\thgfm\include\snow\sdlbase.h
 	"OS.h"
 	<SDL2/SDL.h>
 	<SDL2/SDL_mixer.h>
@@ -45,7 +49,7 @@
 	<SDL_net.h>
 	<SDL_test.h>
 
-1444315067 f:\thgfm\include\snow\os.h
+1446369472 f:\thgfm\include\snow\os.h
 	<windows.h>
 
 1436254864 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl.h
@@ -113,7 +117,7 @@
 	<stdlib.h>
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
 1436254864 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_platform.h
@@ -382,12 +386,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1376156544 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+1376156543 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1376156504 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
+1376156503 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
 	<stdint.h>
 	"SDL.h"
 	"SDL_endian.h"
@@ -411,141 +415,142 @@
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
 	"SDL.h"
 	"SDL_test_images.h"
 	"begin_code.h"
 	"close_code.h"
 
-1444315067 f:\thgfm\include\snow\globals.h
+1446369472 f:\thgfm\include\snow\globals.h
 	"SDLbase.h"
 	<vector>
 	<string>
 	"Sound.h"
 
-1444315067 f:\thgfm\include\snow\sound.h
+1446369472 f:\thgfm\include\snow\sound.h
 	"SDLbase.h"
 	<map>
 	"ResFile.h"
 
-1444315067 f:\thgfm\include\snow\resfile.h
+1446369472 f:\thgfm\include\snow\resfile.h
 	"SDLBase.h"
 	<vector>
 	<string>
 
-1444315067 f:\thgfm\include\snow\rndptr.h
+1446369472 f:\thgfm\include\snow\rndptr.h
 	"SDLbase.h"
 	<string>
 
-1444315067 f:\thgfm\include\snow\bundle.h
+1446369472 f:\thgfm\include\snow\bundle.h
 	"Globals.h"
 	<fstream>
 	"mem.h"
 
-1444315067 f:\thgfm\include\snow\control.h
+1446369472 f:\thgfm\include\snow\control.h
 	"SDLbase.h"
 
-1444315067 f:\thgfm\include\snow\font.h
+1446369472 f:\thgfm\include\snow\font.h
 	"SDLbase.h"
 	<string>
 	"ResFile.h"
 
-1444315067 f:\thgfm\include\snow\misc.h
+1446369472 f:\thgfm\include\snow\misc.h
 	<fstream>
 	"SDLbase.h"
 	"ResFile.h"
 
-1444315067 f:\thgfm\include\snow\sprite.h
+1446369472 f:\thgfm\include\snow\sprite.h
 	"Globals.h"
 	"ResFile.h"
 	"Surface.h"
 
-1444315067 f:\thgfm\include\snow\surface.h
+1446369472 f:\thgfm\include\snow\surface.h
 	"ResFile.h"
 
-1444315067 f:\thgfm\include\snow\thread.h
+1446369472 f:\thgfm\include\snow\thread.h
 	"SDLbase.h"
 
-1444315067 f:\thgfm\include\snow\timer.h
+1446369472 f:\thgfm\include\snow\timer.h
 	"SDLbase.h"
 	"Globals.h"
 
-1444315067 f:\thgfm\include\snow\resval.h
+1446369472 f:\thgfm\include\snow\resval.h
 	<map>
 
-1444315067 f:\thgfm\include\snow\tcpnet.h
+1446369472 f:\thgfm\include\snow\tcpnet.h
 	"SDLBase.h"
 	<string>
 
-1444315067 f:\thgfm\include\snow\udpnet.h
+1446369472 f:\thgfm\include\snow\udpnet.h
 	<string>
 	"SDLbase.h"
 
-1444315067 f:\thgfm\include\snow\csveditor.h
+1446369472 f:\thgfm\include\snow\csveditor.h
 	<iostream>
 	<fstream>
 	<string>
 	<map>
 	<vector>
 
-1444315067 f:\thgfm\include\snow\csvreader.h
+1446369472 f:\thgfm\include\snow\csvreader.h
 	"ResFile.h"
 	<string>
 
-1444315067 f:\thgfm\include\snow\rendertarget.h
+1446369472 f:\thgfm\include\snow\rendertarget.h
 	"Thread.h"
 
-1446368761 source:f:\thgfm\src\keymapact.cpp
+1447660771 source:f:\thgfm\src\keymapact.cpp
 	"KeyMapAct.h"
 	"Snow/ResVal.h"
 	"Snow/Debug.h"
+	"Tools.h"
 
-1446368146 f:\thgfm\include\keymapact.h
+1447660090 f:\thgfm\include\keymapact.h
 	"Snow/Activity.h"
 
-1444315067 f:\thgfm\include\snow\debug.h
+1446369472 f:\thgfm\include\snow\debug.h
 	<iostream>
 	<string>
 
@@ -3420,4 +3425,124 @@
 	<queue>
 
 1446123222 e:\tou-hou-gu-feng-meng\include\background.h
+
+1446770206 source:f:\thgfm\src\bulletmgr.cpp
+	"BulletMgr.h"
+	"Tools.h"
+	<cmath>
+	"CollWorld.h"
+
+1446770290 f:\thgfm\include\bulletmgr.h
+	<queue>
+	"Snow.h"
+
+1446596026 f:\thgfm\include\tools.h
+	"Snow.h"
+	<string>
+
+1447317234 f:\thgfm\include\collworld.h
+	<iostream>
+
+1447317484 source:f:\thgfm\src\collworld.cpp
+	"CollWorld.h"
+	<mem.h>
+	"Snow.h"
+	"Player.h"
+	"EffectMgr.h"
+
+1447316340 f:\thgfm\include\player.h
+	"Snow.h"
+	"KeyMapAct.h"
+
+1447316168 f:\thgfm\include\effectmgr.h
+	<list>
+	"Snow.h"
+
+1447317966 source:f:\thgfm\src\effectmgr.cpp
+	"EffectMgr.h"
+	"Tools.h"
+	"Snow.h"
+	<cstring>
+
+1446626114 source:f:\thgfm\src\enepartten\enepartten_demo.cpp
+	"EnemyParttenAPI.h"
+	"EnePartten.h"
+	"StdParttenAPI.h"
+
+1446599430 f:\thgfm\include\enemyparttenapi.h
+	"StageMgr.h"
+
+1446721750 f:\thgfm\include\stagemgr.h
+	<string>
+	<vector>
+	<forward_list>
+	"Snow.h"
+
+1446600602 f:\thgfm\include\enepartten.h
+	"StageMgr.h"
+
+1446684216 f:\thgfm\include\stdparttenapi.h
+	"StageMgr.h"
+	"Player.h"
+	<cmath>
+	"Tools.h"
+
+1446626258 f:\thgfm\include\wstgame.h
+	"KeyMapAct.h"
+	"Player.h"
+	"StageMgr.h"
+
+1446880134 source:f:\thgfm\src\player.cpp
+	"Player.h"
+	"Tools.h"
+	"CollWorld.h"
+
+1446877812 source:f:\thgfm\src\playerbullet.cpp
+	"PlayerBullet.h"
+
+1446881096 f:\thgfm\include\playerbullet.h
+
+1447318838 source:f:\thgfm\src\shtpartten\shtpartten_demo.cpp
+	"ShotParttenAPI.h"
+	"StdParttenAPI.h"
+	<iostream>
+	<cstdlib>
+
+1446721252 f:\thgfm\include\shotparttenapi.h
+	"StageMgr.h"
+	"BulletMgr.h"
+	"Snow/Debug.h"
+
+1446722176 source:f:\thgfm\src\stagemgr.cpp
+	"StageMgr.h"
+	"Snow.h"
+	"Tools.h"
+	<cmath>
+	"Snow/Debug.h"
+	"EnePartten.h"
+	"ShotParttenAPI.h"
+	"CollWorld.h"
+
+1447317836 source:f:\thgfm\src\tools.cpp
+	"Tools.h"
+
+1447335184 source:f:\thgfm\src\wstgame.cpp
+	"WSTGame.h"
+	"BulletMgr.h"
+	"CollWorld.h"
+	"EffectMgr.h"
+	"CSVWRollBgp.h"
+
+1447335160 f:\thgfm\include\csvwrollbgp.h
+	"Snow.h"
+	"Background.h"
+	<vector>
+	<queue>
+
+1446123222 f:\thgfm\include\background.h
+
+1447658891 source:f:\thgfm\src\csvwrollbgp.cpp
+	"CSVWRollBgp.h"
+	"Tools.h"
+	"Snow/Debug.h"
 

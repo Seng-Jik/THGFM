@@ -13,6 +13,7 @@ int main(int argc,char** argv){
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
     pRnd.Create("东方谷丰梦",false,WIDTH,HEIGHT);
 
+    KeyMapAct::Init();
     Player::Init();
     StageMgr::Init();
     BulletMgr::Init();
