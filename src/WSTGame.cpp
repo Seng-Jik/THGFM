@@ -3,13 +3,12 @@
 #include "CollWorld.h"
 #include "EffectMgr.h"
 #include "CSVWRollBgp.h"
+#include "Tools.h"
 
 WSTGame::WSTGame()
 {
-    background.LoadCSV("Demo2","bg.csv");
-    background.SetSpeed(8.0);
+    LoadStage("Demo2",LV_N);
     player[0].SetPlayerImage(1);
-    stage.LoadCSV("Demo2");
     //m_p2.SetPlayerImage(0);
     player[0].Birth();
 

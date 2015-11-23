@@ -31,7 +31,7 @@ StageMgr::~StageMgr()
 void StageMgr::LoadCSV(const std::string& stage)
 {
     CSVReader csv;
-    csv.LoadCSV("Stage/"+stage+"/stage.csv");
+    csv.LoadCSV(stage);
 
     Enemy* last = nullptr;
     do{

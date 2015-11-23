@@ -1,24 +1,25 @@
-#ifndef PLAYERBULLET_H
-#define PLAYERBULLET_H
+#pragma once
+#include "Snow.h"
 
+class PlayerBullet{
+	public:
+	void Add(double x,double y,double power,int style);
+	void OnNext();
+	void OnDraw();
+	void Clear();
+	void Kill(int num);
+	private:
+	inline void setBullet(int num,double x,double y,double power,int style);
 
-class PlayerBullet
-{
-    public:
-        PlayerBullet();
-        void OnDraw();
-        void OnNext();
-        void Start();
-        void Stop();
-        void SetY(int y);
-        void SetMovePara(bool);
+	int m_searchTop = 0;
+	struct PlayerBulletObj{
+		int style=-1;    //-1 == DEATH
+		double x,y,pow;
+	}m_bullets[512];
 
-        ~PlayerBullet();
-    protected:
-    private:
-        struct Bullet{
-            int x,y,w;
-        };
+	struct PlayerBulletStyle{
+		SDL_Texture* tex;
+		int w,h;
+	}m_bulletStyles[2];
+
 };
-
-#endif // PLAYERBULLET_H

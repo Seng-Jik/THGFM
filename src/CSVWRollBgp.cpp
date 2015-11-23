@@ -60,7 +60,32 @@ void CSVWRollBgp::LoadCSV(const std::string& stage,const std::string& bgcsv)
 void CSVWRollBgp::OnNext()
 {
     ++m_cnt;
+
+    /* Speed Cmd Proc */
+    if(m_spdLostTime > 0){
+        m_spd += (m_spdTrg-m_spd) / m_spdLostTime;
+        --m_spdLostTime;
+    }
+
     FOR_EACH(p,m_bgs.begin(),m_bgs.end()){
+        /* Alpha Cmd Proc */
+        if(p -> alphaLostTime > 0){
+            p -> alpha += (p -> alphaTrg-p -> alpha) / p -> alphaLostTime;
+            --p -> alphaLostTime;
+        }
+        /* Depth Cmd Proc */
+        if(p -> depthLostTime > 0){
+            p -> depth += (p -> depthTrg-p -> depth) / p -> depthLostTime;
+            --p -> depthLostTime;
+        }
+
+        /* Y Cmd Proc */
+        if(p -> yLostTime > 0){
+            p -> y += (p -> yTrg-p -> y) / p -> yLostTime;
+            --p -> yLostTime;
+        }
+
+        /* Normal Proc */
         SDL_SetTextureAlphaMod(p->tex,p->alpha);
         p->r1x -= (1-p->depth)*m_spd;
         p->r2x -= (1-p->depth)*m_spd;
@@ -68,6 +93,28 @@ void CSVWRollBgp::OnNext()
             p->r2x = p->r1x;
             p->r1x = p->w;
         }
+    }
+
+    while(m_cmds.top().begTime == m_cnt && !m_cmds.empty()){
+        switch(m_cmds.top().type){
+        case 'A':
+            m_bgs[m_cmds.top().bgNum].alphaTrg = m_cmds.top().trgVal;
+            m_bgs[m_cmds.top().bgNum].alphaLostTime = m_cmds.top().lenTime;
+            break;
+        case 'D':
+            m_bgs[m_cmds.top().bgNum].depthTrg = m_cmds.top().trgVal;
+            m_bgs[m_cmds.top().bgNum].depthLostTime = m_cmds.top().lenTime;
+            break;
+        case 'Y':
+            m_bgs[m_cmds.top().bgNum].yTrg = m_cmds.top().trgVal;
+            m_bgs[m_cmds.top().bgNum].yLostTime = m_cmds.top().lenTime;
+            break;
+        case 'S':
+            m_spdTrg = m_cmds.top().trgVal;
+            m_spdLostTime = m_cmds.top().lenTime;
+            break;
+        }
+        m_cmds.pop();
     }
 }
 

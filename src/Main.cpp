@@ -11,7 +11,7 @@ using namespace Snow;
 int main(int argc,char** argv){
     Init();
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
-    pRnd.Create("东方谷丰梦",false,WIDTH,HEIGHT);
+    pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
 
     KeyMapAct::Init();
     Player::Init();

@@ -71,6 +71,7 @@
 		<Unit filename="include/PlayerBullet.h" />
 		<Unit filename="include/ShotParttenAPI.h" />
 		<Unit filename="include/StageMgr.h" />
+		<Unit filename="include/StageTitle.h" />
 		<Unit filename="include/StdParttenAPI.h" />
 		<Unit filename="include/Tools.h" />
 		<Unit filename="include/WSTGame.h" />
@@ -85,6 +86,7 @@
 		<Unit filename="src/PlayerBullet.cpp" />
 		<Unit filename="src/ShtPartten/ShtPartten_Demo.cpp" />
 		<Unit filename="src/StageMgr.cpp" />
+		<Unit filename="src/StageTitle.cpp" />
 		<Unit filename="src/Tools.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
