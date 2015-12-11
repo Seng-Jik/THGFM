@@ -1,5 +1,6 @@
 #include "Snow.h"
 #include "KeyMapAct.h"
+
 class Player
 {
     private:
@@ -11,9 +12,11 @@ class Player
         double m_x = 0,m_y = 0;
         SDL_Rect m_r = {0,0,80,95};
         int m_cnt = 0;
-        bool m_k [5] = {false};
+        bool m_k [8] = {false};
         int m_playerNum = 0;
         int m_playerImageNum = 0;
+        int m_playerBulletStyle = 0;
+        int m_powerMode = 3;
 
 
     public:

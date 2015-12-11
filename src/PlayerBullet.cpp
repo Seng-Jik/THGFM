@@ -1,14 +1,30 @@
 #include "PlayerBullet.h"
 #include "Tools.h"
+#include "CollWorld.h"
 
 using namespace Snow;
 
+PlayerBullet playerBulletMgr;
+PlayerBullet::PlayerBulletStyle PlayerBullet::m_bulletStyles[2];
+
+void PlayerBullet::Init()
+{
+    m_bulletStyles[0].tex = LoadPic("PlayerBullet/0.png");
+    m_bulletStyles[0].w = 27;
+    m_bulletStyles[0].h = 15;
+}
+
+
 inline void PlayerBullet::setBullet(int num,double x,double y,double power,int style){
-	m_bullets[num].x=x;
+	//Sync CollWorld
+    if(m_bullets[num].style != -1)
+        collWorld.SetPlayerBullet(num,true,x,x,y,m_bulletStyles[m_bullets[num].style].w,m_bulletStyles[m_bullets[num].style].h,m_searchTop);
+
+    //Set Bullet
+    m_bullets[num].x=x;
 	m_bullets[num].y=y;
 	m_bullets[num].pow=power;
 	m_bullets[num].style=style;
-	//todo:Sync CollWorld
 }
 
 void PlayerBullet::Add(double x,double y,double power,int style){
@@ -23,17 +39,21 @@ void PlayerBullet::Add(double x,double y,double power,int style){
 
 void PlayerBullet::Kill(int num){
 	m_bullets[num].style=-1;
-	//Sync CollWorld
 
 	while(m_bullets[m_searchTop-1].style == -1)
 	    --m_searchTop;
+
+    //Sync CollWorld
+    collWorld.SetPlayerBullet(num,false,0,0,0,0,0,m_searchTop);
 }
 
 void PlayerBullet::Clear(){
-	for(int i=0;i<m_searchTop;++i)
+	for(int i=0;i<m_searchTop;++i){
 	    m_bullets[i].style=-1;
+	    collWorld.SetPlayerBullet(i,false,0,0,0,0,0,0);
+	}
 	m_searchTop=-1;
-	//Clear Player Bullets CollWorld
+
 }
 
 void PlayerBullet::OnDraw(){
@@ -57,8 +77,10 @@ void PlayerBullet::OnNext(){
 			const PlayerBulletStyle& style = m_bulletStyles[bul.style];
 
 			//子弹运行
-			bul.x += 5;
-			//todo:Sync Playet Bullet CollWorld
+			bul.x += 45;
+
+			//Sync Playet Bullet CollWorld
+			collWorld.SetPlayerBullet(i,true,bul.x,bul.x-50,m_bulletStyles[bul.style].w,bul.y,m_bulletStyles[bul.style].h,m_searchTop);
 			//碰撞世界的判定方法：
 			/*
 			每次同步时：
@@ -76,5 +98,6 @@ void PlayerBullet::OnNext(){
 				Kill(i);
 			}
 		}
+		collWorld.Update_Enemy_PlayerBullet();
 
 }

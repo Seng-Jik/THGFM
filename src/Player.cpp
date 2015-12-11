@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "Tools.h"
 #include "CollWorld.h"
+#include "PlayerBullet.h"
+
 using namespace Snow;
 
 SDL_Texture* Player::m_images [2][5];
@@ -64,6 +66,7 @@ void Player::OnNext()
     ) spd /= 1.4142135623730950488016887242097;
 
     if(m_live==LIVING){
+        //Player Move
         if(m_k[0]) m_y -= spd;
         if(m_k[1]) m_y += spd;
         if(m_k[2]) m_x -= spd;
@@ -73,6 +76,28 @@ void Player::OnNext()
 
         if(m_y<45) m_y = 45;
         else if(m_y >= HEIGHT-45) m_y = HEIGHT-45;
+
+        //Player Bullet
+        if(m_k[5] && m_cnt%3 == 0){
+            switch(m_powerMode){
+            case 0:
+                playerBulletMgr.Add(m_x+40,m_y,1,m_playerBulletStyle);
+                break;
+            case 1:
+                playerBulletMgr.Add(m_x+40,m_y-12,0.6,m_playerBulletStyle);
+                playerBulletMgr.Add(m_x+40,m_y+12,0.6,m_playerBulletStyle);
+                break;
+            case 2:
+                playerBulletMgr.Add(m_x+40,m_y-12,0.7,m_playerBulletStyle);
+                playerBulletMgr.Add(m_x+40,m_y+12,0.7,m_playerBulletStyle);
+                break;
+            default:
+                playerBulletMgr.Add(m_x+40,m_y-32,0.4,m_playerBulletStyle);
+                playerBulletMgr.Add(m_x+40,m_y-12,0.4,m_playerBulletStyle);
+                playerBulletMgr.Add(m_x+40,m_y+12,0.4,m_playerBulletStyle);
+                playerBulletMgr.Add(m_x+40,m_y+32,0.4,m_playerBulletStyle);
+            }
+        }
     }
 
     if(m_live == Player::BIRTHING){
@@ -97,6 +122,7 @@ void Player::OnEvent(Key k, bool b)
     else if(k == T_LEFT) m_k[2] = b;
     else if(k == T_RIGHT) m_k[3] = b;
     else if(k == T_SLOW) m_k[4] = b;
+    else if(k == T_SHOT) m_k[5] = b;
 }
 
 void Player::Invincible(int frame)
@@ -114,5 +140,5 @@ void Player::Birth()
 {
     m_live = Player::BIRTHING;
     m_birthTimer=0;
-    Invincible(300);
+    Invincible(60);
 }

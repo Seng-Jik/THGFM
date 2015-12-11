@@ -11,6 +11,7 @@ class EffectMgr //用来管理和游戏内容完全无关的小特效
         void OnDraw();
         void OnNext();
         void Reset();
+        void Kill(int n);
         ~EffectMgr();
     protected:
     private:
@@ -20,9 +21,10 @@ class EffectMgr //用来管理和游戏内容完全无关的小特效
             int frameWait;
         }m_effStyles[1];
         struct Eff{
-            int style,cnt;
+            int style = -1,cnt;
             int x,y;
-        }m_effs[32];
+        }m_effs[1024];
+        int m_searchTop = 0;
 };
 
 extern EffectMgr effMgr;

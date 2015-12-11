@@ -3,6 +3,7 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="thgfm" />
+		<Option makefile="MAKEFILE" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -60,6 +61,7 @@
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="include/Background.h" />
+		<Unit filename="include/Boss.h" />
 		<Unit filename="include/BulletMgr.h" />
 		<Unit filename="include/CSVWRollBgp.h" />
 		<Unit filename="include/CollWorld.h" />
@@ -75,6 +77,7 @@
 		<Unit filename="include/StdParttenAPI.h" />
 		<Unit filename="include/Tools.h" />
 		<Unit filename="include/WSTGame.h" />
+		<Unit filename="src/Boss.cpp" />
 		<Unit filename="src/BulletMgr.cpp" />
 		<Unit filename="src/CSVWRollBgp.cpp" />
 		<Unit filename="src/CollWorld.cpp" />

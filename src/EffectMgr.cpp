@@ -1,6 +1,7 @@
 #include "EffectMgr.h"
 #include "Tools.h"
 #include "Snow.h"
+#include "Snow/Debug.h"
 using namespace Snow;
 using namespace std;
 
@@ -33,12 +34,17 @@ void EffectMgr::Init()
 
 void EffectMgr::Install(int style, int x, int y)
 {
-    for(int i = 0;i <32;++i){
-        if(m_effs[i].cnt == -1){
+    for(int i = 0;i <1024;++i){
+        if(m_effs[i].style == -1){
             m_effs[i].cnt = 0;
             m_effs[i].x = x;
             m_effs[i].y = y;
             m_effs[i].style = style;
+
+            if(i >= m_searchTop-1){
+                m_searchTop = i + 1;
+            }
+
             break;
         }
     }
@@ -46,8 +52,8 @@ void EffectMgr::Install(int style, int x, int y)
 
 void EffectMgr::OnDraw()
 {
-    for(int i = 0;i < 32;++i)
-        if(m_effs[i].cnt != -1){
+    for(int i = 0;i < m_searchTop;++i)
+        if(m_effs[i].style != -1){
             int w,h;
             int texNum = m_effs[i].cnt / m_effStyles[m_effs[i].style].frameWait;
             if(texNum >= m_effStyles[m_effs[i].style].texCount) texNum = m_effStyles[m_effs[i].style].texCount -1;
@@ -59,20 +65,30 @@ void EffectMgr::OnDraw()
             };
             SDL_RenderCopy(pRnd,m_effStyles[m_effs[i].style].tex[texNum],nullptr,&dst);
     }
+    //PNT(m_searchTop);
 }
 
 void EffectMgr::OnNext()
 {
-    for(int i = 0;i < 32;++i)
-        if(m_effs[i].cnt != -1){
+    for(int i = 0;i < m_searchTop;++i)
+        if(m_effs[i].style != -1){
             ++m_effs[i].cnt;
-            if(m_effs[i].cnt>=m_effStyles[m_effs[i].style].frameWait*m_effStyles[m_effs[i].style].texCount)
-                m_effs[i].cnt = -1;
+            if(m_effs[i].cnt>=m_effStyles[m_effs[i].style].frameWait*m_effStyles[m_effs[i].style].texCount){
+                Kill(i);
+            }
     }
 }
-#include <cstring>
+
 void EffectMgr::Reset()
 {
-    for(int i = 0;i < 32;++i)
-        m_effs[i].cnt = -1;
+    for(int i = 0;i < 1024;++i)
+        m_effs[i].style = -1;
+    m_searchTop = 0;
+}
+
+void EffectMgr::Kill(int n)
+{
+    m_effs[n].style = -1;
+    while(m_effs[m_searchTop-1].style == -1)
+        --m_searchTop;
 }

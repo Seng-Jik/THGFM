@@ -2,6 +2,7 @@
 #define BULLETMGR_H
 #include <queue>
 #include "Snow.h"
+#include "StageMgr.h"
 struct Bullet{
     bool live;  //Éú´æ
     int style;  //·ç¸ñ
@@ -11,6 +12,9 @@ struct Bullet{
     Uint8 alpha = 0;
     bool alpha_living = false;
     double render_angle = 0;
+
+    Shot* link;
+    int linkNum;
 };
 class BulletMgr
 {
@@ -33,6 +37,7 @@ class BulletMgr
         int Alloc();
         void Kill(int n);
         Bullet& operator [] (int n){return m_blts[n];}
+        inline int GetSearchTop(){return m_searchTop;}
         ~BulletMgr();
     protected:
 

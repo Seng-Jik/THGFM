@@ -1,6 +1,7 @@
 #include "Tools.h"
 #include "CSVWRollBgp.h"
 #include "StageMgr.h"
+#include "StageTitle.h"
 using namespace Snow;
 using namespace std;
 SDL_Texture* LoadPic(const std::string& f)
@@ -9,6 +10,7 @@ SDL_Texture* LoadPic(const std::string& f)
     r.Load(f);
     auto p = IMG_LoadTexture_RW(pRnd,r,r.Size());
     SDL_SetTextureBlendMode(p,SDL_BLENDMODE_BLEND);
+    SDL_assert(p != nullptr);
     return p;
 }
 
@@ -36,4 +38,7 @@ void LoadStage(const std::string& stageName, Level l)
     case LV_EX:
         stage.LoadCSV(path+stgConfig.Str("EXSTG"));break;
     }
+
+    //Load Stage Title
+    stageTitle.Set(stgConfig.Int("TITLE_BEG"),stgConfig.Int("TITLE_END"),path + stgConfig.Str("TITLE_IMG"));
 }

@@ -3546,15 +3546,16 @@
 	"Tools.h"
 	"Snow/Debug.h"
 
-1446770206 source:d:\thgfm\src\bulletmgr.cpp
+1449648934 source:d:\thgfm\src\bulletmgr.cpp
 	"BulletMgr.h"
 	"Tools.h"
 	<cmath>
 	"CollWorld.h"
 
-1446770290 d:\thgfm\include\bulletmgr.h
+1449648026 d:\thgfm\include\bulletmgr.h
 	<queue>
 	"Snow.h"
+	"StageMgr.h"
 
 1446369472 d:\thgfm\include\snow.h
 	"Snow/Activity.h"
@@ -4093,24 +4094,27 @@
 	"Snow.h"
 	<string>
 
-1447317234 d:\thgfm\include\collworld.h
+1449301462 d:\thgfm\include\collworld.h
 	<iostream>
 
-1447317484 source:d:\thgfm\src\collworld.cpp
+1449301334 source:d:\thgfm\src\collworld.cpp
 	"CollWorld.h"
 	<mem.h>
 	"Snow.h"
 	"Player.h"
+	"StageMgr.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
 	"EffectMgr.h"
 
-1447316340 d:\thgfm\include\player.h
+1448780084 d:\thgfm\include\player.h
 	"Snow.h"
 	"KeyMapAct.h"
 
 1447660092 d:\thgfm\include\keymapact.h
 	"Snow/Activity.h"
 
-1447316168 d:\thgfm\include\effectmgr.h
+1449648220 d:\thgfm\include\effectmgr.h
 	<list>
 	"Snow.h"
 
@@ -4131,11 +4135,11 @@
 	<iostream>
 	<string>
 
-1447317966 source:d:\thgfm\src\effectmgr.cpp
+1449655478 source:d:\thgfm\src\effectmgr.cpp
 	"EffectMgr.h"
 	"Tools.h"
 	"Snow.h"
-	<cstring>
+	"Snow/Debug.h"
 
 1446626114 source:d:\thgfm\src\enepartten\enepartten_demo.cpp
 	"EnemyParttenAPI.h"
@@ -4145,10 +4149,12 @@
 1446599430 d:\thgfm\include\enemyparttenapi.h
 	"StageMgr.h"
 
-1446721750 d:\thgfm\include\stagemgr.h
+1449657572 d:\thgfm\include\stagemgr.h
 	<string>
 	<vector>
+	<queue>
 	<forward_list>
+	"Boss.h"
 	"Snow.h"
 
 1446600602 d:\thgfm\include\enepartten.h
@@ -4166,7 +4172,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1447831682 source:d:\thgfm\src\main.cpp
+1448778814 source:d:\thgfm\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4174,34 +4180,39 @@
 	"Tools.h"
 	"BulletMgr.h"
 	"EffectMgr.h"
+	"PlayerBullet.h"
 
 1446626258 d:\thgfm\include\wstgame.h
 	"KeyMapAct.h"
 	"Player.h"
 	"StageMgr.h"
 
-1446880134 source:d:\thgfm\src\player.cpp
+1449026022 source:d:\thgfm\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
-
-1446877812 source:d:\thgfm\src\playerbullet.cpp
 	"PlayerBullet.h"
 
-1447831082 d:\thgfm\include\playerbullet.h
+1449301740 source:d:\thgfm\src\playerbullet.cpp
+	"PlayerBullet.h"
+	"Tools.h"
+	"CollWorld.h"
 
-1447833070 source:d:\thgfm\src\shtpartten\shtpartten_demo.cpp
+1449015340 d:\thgfm\include\playerbullet.h
+	"Snow.h"
+
+1449649272 source:d:\thgfm\src\shtpartten\shtpartten_demo.cpp
 	"ShotParttenAPI.h"
 	"StdParttenAPI.h"
 	<iostream>
 	<cstdlib>
 
-1446721252 d:\thgfm\include\shotparttenapi.h
+1449657526 d:\thgfm\include\shotparttenapi.h
 	"StageMgr.h"
 	"BulletMgr.h"
 	"Snow/Debug.h"
 
-1447832672 source:d:\thgfm\src\stagemgr.cpp
+1449657744 source:d:\thgfm\src\stagemgr.cpp
 	"StageMgr.h"
 	"Snow.h"
 	"Tools.h"
@@ -4210,21 +4221,27 @@
 	"EnePartten.h"
 	"ShotParttenAPI.h"
 	"CollWorld.h"
+	"StageTitle.h"
+	"Boss.h"
+	"EffectMgr.h"
 
-1447832856 source:d:\thgfm\src\tools.cpp
+1449305302 source:d:\thgfm\src\tools.cpp
 	"Tools.h"
 	"CSVWRollBgp.h"
 	"StageMgr.h"
+	"StageTitle.h"
 
-1447832992 source:d:\thgfm\src\wstgame.cpp
+1449657408 source:d:\thgfm\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"
 	"EffectMgr.h"
 	"CSVWRollBgp.h"
 	"Tools.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
 
-1446770206 source:i:\thgfm\src\bulletmgr.cpp
+1448778720 source:i:\thgfm\src\bulletmgr.cpp
 	"BulletMgr.h"
 	"Tools.h"
 	<cmath>
@@ -4360,17 +4377,20 @@
 	"Snow.h"
 	<string>
 
-1447317234 i:\thgfm\include\collworld.h
+1449024010 i:\thgfm\include\collworld.h
 	<iostream>
 
-1447317484 source:i:\thgfm\src\collworld.cpp
+1449133018 source:i:\thgfm\src\collworld.cpp
 	"CollWorld.h"
 	<mem.h>
 	"Snow.h"
 	"Player.h"
+	"StageMgr.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
 	"EffectMgr.h"
 
-1447316340 i:\thgfm\include\player.h
+1448780084 i:\thgfm\include\player.h
 	"Snow.h"
 	"KeyMapAct.h"
 
@@ -4412,7 +4432,7 @@
 1446599430 i:\thgfm\include\enemyparttenapi.h
 	"StageMgr.h"
 
-1446721750 i:\thgfm\include\stagemgr.h
+1449133334 i:\thgfm\include\stagemgr.h
 	<string>
 	<vector>
 	<forward_list>
@@ -4433,7 +4453,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1447831682 source:i:\thgfm\src\main.cpp
+1448778814 source:i:\thgfm\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4441,16 +4461,18 @@
 	"Tools.h"
 	"BulletMgr.h"
 	"EffectMgr.h"
+	"PlayerBullet.h"
 
 1446626258 i:\thgfm\include\wstgame.h
 	"KeyMapAct.h"
 	"Player.h"
 	"StageMgr.h"
 
-1446880134 source:i:\thgfm\src\player.cpp
+1449026022 source:i:\thgfm\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
+	"PlayerBullet.h"
 
 1447833070 source:i:\thgfm\src\shtpartten\shtpartten_demo.cpp
 	"ShotParttenAPI.h"
@@ -4458,12 +4480,12 @@
 	<iostream>
 	<cstdlib>
 
-1446721252 i:\thgfm\include\shotparttenapi.h
+1449126718 i:\thgfm\include\shotparttenapi.h
 	"StageMgr.h"
 	"BulletMgr.h"
 	"Snow/Debug.h"
 
-1447832672 source:i:\thgfm\src\stagemgr.cpp
+1449129292 source:i:\thgfm\src\stagemgr.cpp
 	"StageMgr.h"
 	"Snow.h"
 	"Tools.h"
@@ -4472,6 +4494,7 @@
 	"EnePartten.h"
 	"ShotParttenAPI.h"
 	"CollWorld.h"
+	"EffectMgr.h"
 
 1447832856 source:i:\thgfm\src\tools.cpp
 	"Tools.h"
@@ -4484,11 +4507,748 @@
 1448284780 i:\thgfm\include\stagetitle.h
 	"Snow.h"
 
-1448285008 source:i:\thgfm\src\wstgame.cpp
+1449021984 source:i:\thgfm\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"
 	"EffectMgr.h"
 	"CSVWRollBgp.h"
 	"Tools.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
+
+1449553648 source:d:\thgfm\src\stagetitle.cpp
+	"StageTitle.h"
+	"Tools.h"
+	"Snow/Debug.h"
+
+1449304792 d:\thgfm\include\stagetitle.h
+	"Snow.h"
+
+1449648934 source:c:\thgfm\src\bulletmgr.cpp
+	"BulletMgr.h"
+	"Tools.h"
+	<cmath>
+	"CollWorld.h"
+
+1449648026 c:\thgfm\include\bulletmgr.h
+	<queue>
+	"Snow.h"
+	"StageMgr.h"
+
+1446369472 c:\thgfm\include\snow.h
+	"Snow/Activity.h"
+	"Snow/Bundle.h"
+	"Snow/Control.h"
+	"Snow/ResFile.h"
+	"Snow/Font.h"
+	"Snow/Globals.h"
+	"Snow/Misc.h"
+	"Snow/Sound.h"
+	"Snow/Sprite.h"
+	"Snow/Thread.h"
+	"Snow/Timer.h"
+	"Snow/ResVal.h"
+	"Snow/RndPtr.h"
+	"Snow/TCPNet.h"
+	"Snow/UDPNet.h"
+	"Snow/CSVEditor.h"
+	"Snow/CSVReader.h"
+	"Snow/RenderTarget.h"
+
+1446369472 c:\thgfm\include\snow\activity.h
+	<forward_list>
+	"SDLbase.h"
+	"Globals.h"
+	"RndPtr.h"
+
+1446369472 c:\thgfm\include\snow\sdlbase.h
+	"OS.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_mixer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_net.h>
+	<SDL2/SDL_test.h>
+	<SDL.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_net.h>
+	<SDL_test.h>
+
+1446369472 c:\thgfm\include\snow\os.h
+	<windows.h>
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\begin_code.h
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\close_code.h
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376156426 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376156342 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376156544 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376156504 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
+	<stdint.h>
+	"SDL.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254864 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test.h
+	"SDL.h"
+	"SDL_test_common.h"
+	"SDL_test_font.h"
+	"SDL_test_random.h"
+	"SDL_test_fuzzer.h"
+	"SDL_test_crc32.h"
+	"SDL_test_md5.h"
+	"SDL_test_log.h"
+	"SDL_test_assert.h"
+	"SDL_test_harness.h"
+	"SDL_test_images.h"
+	"SDL_test_compare.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1436254866 c:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
+	"SDL.h"
+	"SDL_test_images.h"
+	"begin_code.h"
+	"close_code.h"
+
+1446369472 c:\thgfm\include\snow\globals.h
+	"SDLbase.h"
+	<vector>
+	<string>
+	"Sound.h"
+
+1446369472 c:\thgfm\include\snow\sound.h
+	"SDLbase.h"
+	<map>
+	"ResFile.h"
+
+1446369472 c:\thgfm\include\snow\resfile.h
+	"SDLBase.h"
+	<vector>
+	<string>
+
+1446369472 c:\thgfm\include\snow\rndptr.h
+	"SDLbase.h"
+	<string>
+
+1446369472 c:\thgfm\include\snow\bundle.h
+	"Globals.h"
+	<fstream>
+	"mem.h"
+
+1446369472 c:\thgfm\include\snow\control.h
+	"SDLbase.h"
+
+1446369472 c:\thgfm\include\snow\font.h
+	"SDLbase.h"
+	<string>
+	"ResFile.h"
+
+1446369472 c:\thgfm\include\snow\misc.h
+	<fstream>
+	"SDLbase.h"
+	"ResFile.h"
+
+1446369472 c:\thgfm\include\snow\sprite.h
+	"Globals.h"
+	"ResFile.h"
+	"Surface.h"
+
+1446369472 c:\thgfm\include\snow\surface.h
+	"ResFile.h"
+
+1446369472 c:\thgfm\include\snow\thread.h
+	"SDLbase.h"
+
+1446369472 c:\thgfm\include\snow\timer.h
+	"SDLbase.h"
+	"Globals.h"
+
+1446369472 c:\thgfm\include\snow\resval.h
+	<map>
+
+1446369472 c:\thgfm\include\snow\tcpnet.h
+	"SDLBase.h"
+	<string>
+
+1446369472 c:\thgfm\include\snow\udpnet.h
+	<string>
+	"SDLbase.h"
+
+1446369472 c:\thgfm\include\snow\csveditor.h
+	<iostream>
+	<fstream>
+	<string>
+	<map>
+	<vector>
+
+1446369472 c:\thgfm\include\snow\csvreader.h
+	"ResFile.h"
+	<string>
+
+1446369472 c:\thgfm\include\snow\rendertarget.h
+	"Thread.h"
+
+1447832304 c:\thgfm\include\tools.h
+	"Snow.h"
+	<string>
+
+1449301462 c:\thgfm\include\collworld.h
+	<iostream>
+
+1449301334 source:c:\thgfm\src\collworld.cpp
+	"CollWorld.h"
+	<mem.h>
+	"Snow.h"
+	"Player.h"
+	"StageMgr.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
+	"EffectMgr.h"
+
+1448780084 c:\thgfm\include\player.h
+	"Snow.h"
+	"KeyMapAct.h"
+
+1447660092 c:\thgfm\include\keymapact.h
+	"Snow/Activity.h"
+
+1449630716 c:\thgfm\include\stagemgr.h
+	<string>
+	<vector>
+	<queue>
+	<forward_list>
+	"Snow.h"
+
+1449015340 c:\thgfm\include\playerbullet.h
+	"Snow.h"
+
+1449648220 c:\thgfm\include\effectmgr.h
+	<list>
+	"Snow.h"
+
+1447814846 source:c:\thgfm\src\csvwrollbgp.cpp
+	"CSVWRollBgp.h"
+	"Tools.h"
+	"Snow/Debug.h"
+
+1447805190 c:\thgfm\include\csvwrollbgp.h
+	"Snow.h"
+	"Background.h"
+	<vector>
+	<queue>
+
+1446123222 c:\thgfm\include\background.h
+
+1446369472 c:\thgfm\include\snow\debug.h
+	<iostream>
+	<string>
+
+1449648308 source:c:\thgfm\src\effectmgr.cpp
+	"EffectMgr.h"
+	"Tools.h"
+	"Snow.h"
+	"Snow/Debug.h"
+
+1446626114 source:c:\thgfm\src\enepartten\enepartten_demo.cpp
+	"EnemyParttenAPI.h"
+	"EnePartten.h"
+	"StdParttenAPI.h"
+
+1446599430 c:\thgfm\include\enemyparttenapi.h
+	"StageMgr.h"
+
+1446600602 c:\thgfm\include\enepartten.h
+	"StageMgr.h"
+
+1446684216 c:\thgfm\include\stdparttenapi.h
+	"StageMgr.h"
+	"Player.h"
+	<cmath>
+	"Tools.h"
+
+1447660772 source:c:\thgfm\src\keymapact.cpp
+	"KeyMapAct.h"
+	"Snow/ResVal.h"
+	"Snow/Debug.h"
+	"Tools.h"
+
+1448778814 source:c:\thgfm\src\main.cpp
+	"Snow.h"
+	"KeyMapAct.h"
+	"WSTGame.h"
+	<iostream>
+	"Tools.h"
+	"BulletMgr.h"
+	"EffectMgr.h"
+	"PlayerBullet.h"
+
+1446626258 c:\thgfm\include\wstgame.h
+	"KeyMapAct.h"
+	"Player.h"
+	"StageMgr.h"
+
+1449026022 source:c:\thgfm\src\player.cpp
+	"Player.h"
+	"Tools.h"
+	"CollWorld.h"
+	"PlayerBullet.h"
+
+1449301740 source:c:\thgfm\src\playerbullet.cpp
+	"PlayerBullet.h"
+	"Tools.h"
+	"CollWorld.h"
+
+1449649222 source:c:\thgfm\src\shtpartten\shtpartten_demo.cpp
+	"ShotParttenAPI.h"
+	"StdParttenAPI.h"
+	<iostream>
+	<cstdlib>
+
+1449302348 c:\thgfm\include\shotparttenapi.h
+	"StageMgr.h"
+	"BulletMgr.h"
+	"Snow/Debug.h"
+
+1449648172 source:c:\thgfm\src\stagemgr.cpp
+	"StageMgr.h"
+	"Snow.h"
+	"Tools.h"
+	<cmath>
+	"Snow/Debug.h"
+	"EnePartten.h"
+	"ShotParttenAPI.h"
+	"CollWorld.h"
+	"StageTitle.h"
+	"EffectMgr.h"
+
+1449553648 source:c:\thgfm\src\stagetitle.cpp
+	"StageTitle.h"
+	"Tools.h"
+	"Snow/Debug.h"
+
+1449304792 c:\thgfm\include\stagetitle.h
+	"Snow.h"
+
+1449305302 source:c:\thgfm\src\tools.cpp
+	"Tools.h"
+	"CSVWRollBgp.h"
+	"StageMgr.h"
+	"StageTitle.h"
+
+1449304932 source:c:\thgfm\src\wstgame.cpp
+	"WSTGame.h"
+	"BulletMgr.h"
+	"CollWorld.h"
+	"EffectMgr.h"
+	"CSVWRollBgp.h"
+	"Tools.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
+
+1449015340 i:\thgfm\include\playerbullet.h
+	"Snow.h"
+
+1449022654 source:i:\thgfm\src\playerbullet.cpp
+	"PlayerBullet.h"
+	"Tools.h"
+	"CollWorld.h"
+
+1449563410 source:d:\thgfm\src\baseboss.cpp
+	"BaseBoss.h"
+
+1449655372 d:\thgfm\include\baseboss.h
+	<string>
+
+1449563410 source:c:\thgfm\src\baseboss.cpp
+	"BaseBoss.h"
+
+1449648536 c:\thgfm\include\baseboss.h
+
+1449657384 source:d:\thgfm\src\boss.cpp
+	"Boss.h"
+	"Snow/Debug.h"
+
+1449656938 d:\thgfm\include\boss.h
+	<string>
 

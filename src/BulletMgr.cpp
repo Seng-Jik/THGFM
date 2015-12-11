@@ -38,7 +38,7 @@ void BulletMgr::OnNext()
             m_blts[i].y -= m_blts[i].spd * sin(m_blts[i].angle);
             ++m_blts[i].cnt;
             collWorld.SetEnemyBullet(i,true,m_blts[i].x,m_blts[i].y,m_bulletStyle[m_blts[i].style].coll_r);
-            if(m_blts[i].minLiveTime < m_blts[i].cnt && (
+            if(m_blts[i].minLiveTime <= m_blts[i].cnt && (
                m_blts[i].x > WIDTH+ m_bulletStyle[m_blts[i].style].r||
                m_blts[i].x < -m_bulletStyle[m_blts[i].style].r ||
                m_blts[i].y > HEIGHT+ m_bulletStyle[m_blts[i].style].r||
@@ -60,7 +60,7 @@ void BulletMgr::OnDraw()
                                 int(2*m_bulletStyle[m_blts[i].style].r)
             };
             SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
-            SDL_Point poi = {m_bulletStyle[m_blts[i].style].r,m_bulletStyle[m_blts[i].style].r};
+            SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].r),int(m_bulletStyle[m_blts[i].style].r)};
             SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].render_angle,&poi,SDL_FLIP_NONE);
         }
     }
@@ -94,10 +94,12 @@ int BulletMgr::Alloc()
 
 void BulletMgr::Kill(int n)
 {
+    if(m_blts[n].link -> live == Shot::LIVE) m_blts[n].link -> bullets[m_blts[n].linkNum] = -1;
     m_blts[n].live = false;
     m_freeList.push(699-n);
     while(!m_blts[m_searchTop - 1].live)
         --m_searchTop;
+
     collWorld.SetEnemyBullet(n,false);
     collWorld.SetEnemyBulletSearchTop(m_searchTop);
 }

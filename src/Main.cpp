@@ -5,6 +5,8 @@
 #include "Tools.h"
 #include "BulletMgr.h"
 #include "EffectMgr.h"
+#include "PlayerBullet.h"
+
 using namespace std;
 using namespace Snow;
 
@@ -15,6 +17,7 @@ int main(int argc,char** argv){
 
     KeyMapAct::Init();
     Player::Init();
+    PlayerBullet::Init();
     StageMgr::Init();
     BulletMgr::Init();
     EffectMgr::Init();

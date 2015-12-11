@@ -4,10 +4,11 @@ typedef void(*ShotPartten)(Shot*,int);
 extern ShotPartten shotPartten [];
 
 #define ShtBullets(s) s -> bullets
+#define ShtEnd(s) s -> live = Shot::STOPLIVE
 #define ShtArgs(s) s -> parttenArgs
 
 inline int ShtCnt(Shot* s){return s -> cnt;}
-inline void ShtStop(Shot* s){s -> live = Shot::STOPSHOOT;}
+inline void ShtStop(Shot* s){s -> live = Shot::STOPLIVE;}
 
 #define BltAngle(b) bulletMgr[b].angle
 #define BltSpd(b) bulletMgr[b].spd
@@ -24,6 +25,8 @@ static inline int ShtCreateBlt(Shot* s,double x,double y,double angle,double spd
         bulletMgr[n].spd = spd;
         bulletMgr[n].minLiveTime = minLiveTime;
         bulletMgr[n].style = style;
+        bulletMgr[n].link = s;
+        bulletMgr[n].linkNum = s ->bullets.size();
         s -> bullets.push_back(n);
         return n;
     }else return -1;

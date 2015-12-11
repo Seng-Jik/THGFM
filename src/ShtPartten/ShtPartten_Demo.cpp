@@ -4,11 +4,11 @@
 #include <cstdlib>
 using namespace std;
 void SD000(Shot* s,int enemy){
-    if(ShtCnt(s)%2 == 1 && ShtCnt(s) <= 3200){
+    if(ShtCnt(s)%2== 1){// && ShtCnt(s) <= 3200){
         double x,y;
         EneGetPos(enemy,x,y);
         //ShtCreateBlt(s,x,y,EneGetPlrAngle(0,enemy),0.1,30,0);
-        ShtCreateBlt(s,800+rand()%200,rand()%576,EneGetPlrAngle(0,enemy),3,5,0);
+        ShtCreateBlt(s,800+rand()%200,rand()%576,EneGetPlrAngle(0,enemy),1,5,0);
     }
     FOR_EACH(p,s->bullets.begin(),s->bullets.end()){
         BltSpd(*p) -= 0.001;
@@ -19,11 +19,11 @@ void SD000(Shot* s,int enemy){
 }
 
 void SD001(Shot* s,int enemy){
-    if(ShtCnt(s) >= 60) ShtStop(s);
-    if(ShtCnt(s)%5 == 1){
+    //if(ShtCnt(s) >= 60) ShtStop(s);
+    if(ShtCnt(s)%2 == 1){
         double x,y;
         EneGetPos(enemy,x,y);
-        ShtCreateBlt(s,x,y,EneGetPlrAngle(0,enemy),3,3,0);
+        ShtCreateBlt(s,x,y,EneGetPlrAngle(0,enemy),1,3,0);
         //ShtCreateBlt(s,800+rand()%200,rand()%576,EneGetPlrAngle(0,enemy),0.1,30,0);
     }
     FOR_EACH(p,s->bullets.begin(),s->bullets.end()){

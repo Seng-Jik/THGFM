@@ -4,6 +4,8 @@
 #include "EffectMgr.h"
 #include "CSVWRollBgp.h"
 #include "Tools.h"
+#include "PlayerBullet.h"
+#include "Snow/Debug.h"
 
 WSTGame::WSTGame()
 {
@@ -23,23 +25,33 @@ void WSTGame::OnDraw()
 {
     background.OnDraw();
     effMgr.OnDraw();
+    playerBulletMgr.OnDraw();
     player[0].OnDraw();
     bulletMgr.OnDraw();
     stage.OnDraw();
+    //collWorld.Debug_DrawPlayerBullet();
     //m_p2.OnDraw();
     //collWorld.Debug_DrawEnemy();
     //collWorld.Debug_DrawEnemyBullet();
     //collWorld.Debug_DrawPlayer();
+
 }
 
 void WSTGame::OnNext()
 {
     background.OnNext();
+    //PNT("BEGIN PLAYER BULLET");
+    playerBulletMgr.OnNext();
+    //PNT("END PLAYER BULLET");
     player[0].OnNext();
     //m_p2.OnNext();
+    //PNT("BEGIN STAGE");
     stage.OnNext();
+    //PNT("END STAGE");
+
     bulletMgr.OnNext();
     effMgr.OnNext();
+
 }
 
 void WSTGame::OnEvent(int p, Key k, bool b)
