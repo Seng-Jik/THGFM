@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1447660125 source:f:\thgfm\src\main.cpp
+1448778814 source:f:\thgfm\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -7,6 +7,7 @@
 	"Tools.h"
 	"BulletMgr.h"
 	"EffectMgr.h"
+	"PlayerBullet.h"
 
 1446369472 f:\thgfm\include\snow.h
 	"Snow/Activity.h"
@@ -541,13 +542,13 @@
 1446369472 f:\thgfm\include\snow\rendertarget.h
 	"Thread.h"
 
-1447660771 source:f:\thgfm\src\keymapact.cpp
+1447660772 source:f:\thgfm\src\keymapact.cpp
 	"KeyMapAct.h"
 	"Snow/ResVal.h"
 	"Snow/Debug.h"
 	"Tools.h"
 
-1447660090 f:\thgfm\include\keymapact.h
+1447660092 f:\thgfm\include\keymapact.h
 	"Snow/Activity.h"
 
 1446369472 f:\thgfm\include\snow\debug.h
@@ -3426,43 +3427,49 @@
 
 1446123222 e:\tou-hou-gu-feng-meng\include\background.h
 
-1446770206 source:f:\thgfm\src\bulletmgr.cpp
+1449913042 source:f:\thgfm\src\bulletmgr.cpp
 	"BulletMgr.h"
 	"Tools.h"
 	<cmath>
 	"CollWorld.h"
 
-1446770290 f:\thgfm\include\bulletmgr.h
+1449648026 f:\thgfm\include\bulletmgr.h
 	<queue>
 	"Snow.h"
+	"StageMgr.h"
 
-1446596026 f:\thgfm\include\tools.h
+1447832304 f:\thgfm\include\tools.h
 	"Snow.h"
 	<string>
 
-1447317234 f:\thgfm\include\collworld.h
+1449914777 f:\thgfm\include\collworld.h
 	<iostream>
+	"Snow.h"
 
-1447317484 source:f:\thgfm\src\collworld.cpp
+1449918615 source:f:\thgfm\src\collworld.cpp
 	"CollWorld.h"
 	<mem.h>
 	"Snow.h"
 	"Player.h"
+	"StageMgr.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
+	<ctime>
 	"EffectMgr.h"
 
-1447316340 f:\thgfm\include\player.h
+1448780084 f:\thgfm\include\player.h
 	"Snow.h"
 	"KeyMapAct.h"
 
-1447316168 f:\thgfm\include\effectmgr.h
+1449648220 f:\thgfm\include\effectmgr.h
 	<list>
 	"Snow.h"
 
-1447317966 source:f:\thgfm\src\effectmgr.cpp
+1449728368 source:f:\thgfm\src\effectmgr.cpp
 	"EffectMgr.h"
 	"Tools.h"
 	"Snow.h"
-	<cstring>
+	"Snow/Debug.h"
 
 1446626114 source:f:\thgfm\src\enepartten\enepartten_demo.cpp
 	"EnemyParttenAPI.h"
@@ -3472,10 +3479,12 @@
 1446599430 f:\thgfm\include\enemyparttenapi.h
 	"StageMgr.h"
 
-1446721750 f:\thgfm\include\stagemgr.h
+1449657572 f:\thgfm\include\stagemgr.h
 	<string>
 	<vector>
+	<queue>
 	<forward_list>
+	"Boss.h"
 	"Snow.h"
 
 1446600602 f:\thgfm\include\enepartten.h
@@ -3492,28 +3501,32 @@
 	"Player.h"
 	"StageMgr.h"
 
-1446880134 source:f:\thgfm\src\player.cpp
+1449026022 source:f:\thgfm\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
-
-1446877812 source:f:\thgfm\src\playerbullet.cpp
 	"PlayerBullet.h"
 
-1446881096 f:\thgfm\include\playerbullet.h
+1449914949 source:f:\thgfm\src\playerbullet.cpp
+	"PlayerBullet.h"
+	"Tools.h"
+	"CollWorld.h"
 
-1447318838 source:f:\thgfm\src\shtpartten\shtpartten_demo.cpp
+1449015340 f:\thgfm\include\playerbullet.h
+	"Snow.h"
+
+1449649272 source:f:\thgfm\src\shtpartten\shtpartten_demo.cpp
 	"ShotParttenAPI.h"
 	"StdParttenAPI.h"
 	<iostream>
 	<cstdlib>
 
-1446721252 f:\thgfm\include\shotparttenapi.h
+1449657526 f:\thgfm\include\shotparttenapi.h
 	"StageMgr.h"
 	"BulletMgr.h"
 	"Snow/Debug.h"
 
-1446722176 source:f:\thgfm\src\stagemgr.cpp
+1449914959 source:f:\thgfm\src\stagemgr.cpp
 	"StageMgr.h"
 	"Snow.h"
 	"Tools.h"
@@ -3522,18 +3535,27 @@
 	"EnePartten.h"
 	"ShotParttenAPI.h"
 	"CollWorld.h"
+	"StageTitle.h"
+	"Boss.h"
+	"EffectMgr.h"
 
-1447317836 source:f:\thgfm\src\tools.cpp
+1449305302 source:f:\thgfm\src\tools.cpp
 	"Tools.h"
+	"CSVWRollBgp.h"
+	"StageMgr.h"
+	"StageTitle.h"
 
-1447335184 source:f:\thgfm\src\wstgame.cpp
+1449913112 source:f:\thgfm\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"
 	"EffectMgr.h"
 	"CSVWRollBgp.h"
+	"Tools.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
 
-1447335160 f:\thgfm\include\csvwrollbgp.h
+1447805190 f:\thgfm\include\csvwrollbgp.h
 	"Snow.h"
 	"Background.h"
 	<vector>
@@ -3541,7 +3563,7 @@
 
 1446123222 f:\thgfm\include\background.h
 
-1447658891 source:f:\thgfm\src\csvwrollbgp.cpp
+1447814846 source:f:\thgfm\src\csvwrollbgp.cpp
 	"CSVWRollBgp.h"
 	"Tools.h"
 	"Snow/Debug.h"
@@ -5251,4 +5273,19 @@
 
 1449656938 d:\thgfm\include\boss.h
 	<string>
+
+1449656938 f:\thgfm\include\boss.h
+	<string>
+
+1449657384 source:f:\thgfm\src\boss.cpp
+	"Boss.h"
+	"Snow/Debug.h"
+
+1449553648 source:f:\thgfm\src\stagetitle.cpp
+	"StageTitle.h"
+	"Tools.h"
+	"Snow/Debug.h"
+
+1449304792 f:\thgfm\include\stagetitle.h
+	"Snow.h"
 

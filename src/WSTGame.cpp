@@ -29,9 +29,9 @@ void WSTGame::OnDraw()
     player[0].OnDraw();
     bulletMgr.OnDraw();
     stage.OnDraw();
-    //collWorld.Debug_DrawPlayerBullet();
+    collWorld.Debug_DrawPlayerBullet();
     //m_p2.OnDraw();
-    //collWorld.Debug_DrawEnemy();
+    collWorld.Debug_DrawEnemy();
     //collWorld.Debug_DrawEnemyBullet();
     //collWorld.Debug_DrawPlayer();
 
@@ -52,6 +52,9 @@ void WSTGame::OnNext()
     bulletMgr.OnNext();
     effMgr.OnNext();
 
+    collWorld.Update_Player_Enemy();
+    collWorld.Update_Player_EnemyBullet();
+    collWorld.Update_Enemy_PlayerBullet();
 }
 
 void WSTGame::OnEvent(int p, Key k, bool b)

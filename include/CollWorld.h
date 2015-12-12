@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Snow.h"
 using namespace std;
 class CollWorld{
 private:
@@ -24,6 +25,9 @@ private:
     CollRect m_playerBullets [512];
     int m_playerBulletSearchTop = 0;
 
+    //Enemy_PlayerBullet 方框剪裁优化
+    SDL_Rect m_enemy_playerBullet_opmRect;
+
     inline bool coll_r2c(const CollRect& r,const CollCircle& c){
         double x1 = r.x - c.r;
         double y1 = r.y - c.r;
@@ -40,6 +44,17 @@ private:
     }
 
 public:
+
+    inline void SetPlayerBulletYRect(int top,int bottom){
+        m_enemy_playerBullet_opmRect.y = top;
+        m_enemy_playerBullet_opmRect.h = bottom - top;
+    }
+
+    inline void SetEnemyXRect(int left,int right){
+        m_enemy_playerBullet_opmRect.x = left;
+        m_enemy_playerBullet_opmRect.w = right - left;
+    }
+
     inline void SetPlayer(int p,bool enable,double x = 0,double y = 0)  //设置玩家，判定点为矩形
     {
         m_player[p].enable = enable;

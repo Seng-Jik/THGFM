@@ -9,6 +9,10 @@ using namespace Snow;
 
 CollWorld collWorld;
 
+inline static bool CInRect(const SDL_Rect& r,int x,int y){
+    return x>=r.x && x<=r.x+r.w && y>=r.y && y<=r.y+r.h;
+}
+
 void CollWorld::SetEnemyBuffurSize(int n)
 {
     delete [] m_enemys;
@@ -37,7 +41,7 @@ void CollWorld::ClearEnemyBullet()
 void CollWorld::Debug_DrawEnemy()
 {
     for(int i = m_enemySearchBotton;i < m_enemySearchTop;++i){
-        if(m_enemys[i].enable){
+        if(m_enemys[i].enable && CInRect(m_enemy_playerBullet_opmRect,m_enemys[i].x,m_enemys[i].y)){
             SDL_SetRenderDrawColor(pRnd,0,255,255,92);
             SDL_Rect r = {int(m_enemys[i].x - m_enemys[i].r),
                                 int(m_enemys[i].y - m_enemys[i].r),
@@ -96,6 +100,8 @@ void CollWorld::Update_Player_Enemy()
     }
 }
 
+#include "Snow/Debug.h"
+#include <ctime>
 void CollWorld::Update_Player_EnemyBullet()
 {
     for(int player = 0;player < 2;++player){
@@ -108,21 +114,39 @@ void CollWorld::Update_Player_EnemyBullet()
     }
 }
 
-#include "Snow/Debug.h"
 void CollWorld::Update_Enemy_PlayerBullet()
 {
-    for(int playerBulletNum = 0;playerBulletNum < m_playerBulletSearchTop;++playerBulletNum)
-        for(int enemyNum = m_enemySearchBotton;enemyNum < m_enemySearchTop;++enemyNum){
-            if(m_enemys[enemyNum].enable && m_playerBullets[playerBulletNum].enable){
-                if(coll_r2c(m_playerBullets[playerBulletNum],m_enemys[enemyNum])){
-                    stage.KillEnemy(enemyNum,playerBulletMgr.GetPower(playerBulletNum));
-                    playerBulletMgr.Kill(playerBulletNum);
-                    //PNT("CollWorld::Enemy_PlayerBullet:"<<enemyNum<<"  "<<playerBulletNum);
+    static int bulletNeedTest[1500];
+    int bulletNTSize = -1;
+
+    for(int enemyNum = m_enemySearchBotton;enemyNum < m_enemySearchTop;++enemyNum){
+        if(InRect(m_enemy_playerBullet_opmRect,m_enemys[enemyNum].x,m_enemys[enemyNum].y) && m_enemys[enemyNum].enable){
+            if(bulletNTSize == -1){
+                bulletNTSize = 0;
+                for(int playerBulletNum = 0;playerBulletNum < m_playerBulletSearchTop;++playerBulletNum){
+                    if(m_playerBullets[playerBulletNum].enable &&
+                        InRect(m_enemy_playerBullet_opmRect,m_playerBullets[playerBulletNum].x,m_playerBullets[playerBulletNum].y)
+                        ){
+                            bulletNeedTest[bulletNTSize++] = playerBulletNum;
+                            if(coll_r2c(m_playerBullets[playerBulletNum],m_enemys[enemyNum])){
+                                stage.KillEnemy(enemyNum,playerBulletMgr.GetPower(playerBulletNum));
+                                playerBulletMgr.Kill(playerBulletNum);
+                                //PNT("CollWorld::Enemy_PlayerBullet:"<<enemyNum<<"  "<<playerBulletNum);
+                            }
+                        }
                 }
-                //PNT("CollWorld:"<<m_enemySearchBotton<<" "<<m_enemySearchTop);
+            }else{
+                for(int playerBulletNum = 0;playerBulletNum < bulletNTSize;++playerBulletNum){
+                    if(coll_r2c(m_playerBullets[bulletNeedTest[playerBulletNum]],m_enemys[enemyNum])){
+                        stage.KillEnemy(enemyNum,playerBulletMgr.GetPower(bulletNeedTest[playerBulletNum]));
+                        playerBulletMgr.Kill(bulletNeedTest[playerBulletNum]);
+                    }
+                }
             }
+        }
     }
 
+    //PNT("RECT"<<m_enemy_playerBullet_opmRect.x<<" "<<m_enemy_playerBullet_opmRect.y<<" "<<m_enemy_playerBullet_opmRect.w<<" "<<m_enemy_playerBullet_opmRect.h);
 }
 
 void CollWorld::Debug_DrawPlayerBullet()
@@ -130,7 +154,7 @@ void CollWorld::Debug_DrawPlayerBullet()
     SDL_SetRenderDrawColor(pRnd,255,0,0,128);
     for(int i = 0;i < 512;++i){
         CollRect& c = m_playerBullets[i];
-        if(c.enable){
+        if(c.enable && CInRect(m_enemy_playerBullet_opmRect,c.x,c.y)){
             SDL_Rect r = {
                 int(c.x),
                 int(c.y),
@@ -140,6 +164,7 @@ void CollWorld::Debug_DrawPlayerBullet()
             SDL_RenderFillRect(pRnd,&r);
         }
     }
+    SDL_RenderDrawRect(pRnd,&m_enemy_playerBullet_opmRect);
 }
 
 

@@ -71,6 +71,8 @@ void PlayerBullet::OnDraw(){
 }
 
 void PlayerBullet::OnNext(){
+    int bestTop = HEIGHT;
+    int bestBottom = 0;
 	for(int i=0;i<m_searchTop;++i)
 		if(m_bullets[i].style != -1){
 			PlayerBulletObj& bul = m_bullets[i];
@@ -96,8 +98,11 @@ void PlayerBullet::OnNext(){
 				//子弹超出屏幕判定
 				//仅适用于向右直线运动的子弹
 				Kill(i);
+			}else{
+                if(bul.y - m_bulletStyles[bul.style].h < bestTop) bestTop = bul.y - m_bulletStyles[bul.style].h;
+                if(bul.y + 2*m_bulletStyles[bul.style].h > bestBottom) bestBottom = bul.y + 2*m_bulletStyles[bul.style].h;
 			}
 		}
-		collWorld.Update_Enemy_PlayerBullet();
+        collWorld.SetPlayerBulletYRect(bestTop,bestBottom);
 
 }

@@ -152,7 +152,7 @@ void StageMgr::OnNext()
         }
     }
 
-
+    int bestLeft = WIDTH,bestRight = 0;
     for(int enemyNum = m_enemySearchBottom;enemyNum < m_enemySearchTop;++enemyNum){
         Enemy& enemy = *m_enemys[enemyNum];
         if(enemy.live == Enemy::LIVE){
@@ -180,10 +180,14 @@ void StageMgr::OnNext()
                enemy.cnt >= 180){
                     KillEnemy(&enemy);
                     //PNT(i<<"Killed By Screen.");
+            }else{
+                //同步碰撞刚体
+                collWorld.SetEnemy(enemy.num,enemy.live == Enemy::LIVE,enemy.x,enemy.y,m_eStyles[enemy.style].r);
+                if(enemy.x - m_eStyles[enemy.style].r - 16 < bestLeft) bestLeft = enemy.x - m_eStyles[enemy.style].r - 16;
+                if(enemy.x + m_eStyles[enemy.style].r + 16 > bestRight) bestRight = enemy.x + m_eStyles[enemy.style].r + 16;
             }
 
-            //同步碰撞刚体
-            collWorld.SetEnemy(enemy.num,enemy.live == Enemy::LIVE,enemy.x,enemy.y,m_eStyles[enemy.style].r);
+
         }
 
         //射击处理
@@ -244,8 +248,8 @@ void StageMgr::OnNext()
 
     }
 
+    collWorld.SetEnemyXRect(bestLeft,bestRight);
     collWorld.SetEnemySearchTop(m_enemySearchTop,m_enemySearchBottom);
-    collWorld.Update_Enemy_PlayerBullet();
     ++m_cnt;
 
     //logc<<"beg"<<endl;

@@ -47,7 +47,6 @@ void BulletMgr::OnNext()
                 Kill(i);
         }
     }
-    collWorld.Update_Player_EnemyBullet();
 }
 
 void BulletMgr::OnDraw()
