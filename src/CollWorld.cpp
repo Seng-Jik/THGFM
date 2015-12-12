@@ -164,7 +164,8 @@ void CollWorld::Debug_DrawPlayerBullet()
             SDL_RenderFillRect(pRnd,&r);
         }
     }
-    SDL_RenderDrawRect(pRnd,&m_enemy_playerBullet_opmRect);
+    SDL_SetRenderDrawColor(pRnd,255,0,0,96);
+    SDL_RenderFillRect(pRnd,&m_enemy_playerBullet_opmRect);
 }
 
 
