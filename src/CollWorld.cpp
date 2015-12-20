@@ -100,8 +100,6 @@ void CollWorld::Update_Player_Enemy()
     }
 }
 
-#include "Snow/Debug.h"
-#include <ctime>
 void CollWorld::Update_Player_EnemyBullet()
 {
     for(int player = 0;player < 2;++player){
@@ -113,6 +111,7 @@ void CollWorld::Update_Player_EnemyBullet()
                 }
     }
 }
+
 
 void CollWorld::Update_Enemy_PlayerBullet()
 {
@@ -137,15 +136,15 @@ void CollWorld::Update_Enemy_PlayerBullet()
                 }
             }else{
                 for(int playerBulletNum = 0;playerBulletNum < bulletNTSize;++playerBulletNum){
-                    if(coll_r2c(m_playerBullets[bulletNeedTest[playerBulletNum]],m_enemys[enemyNum])){
-                        stage.KillEnemy(enemyNum,playerBulletMgr.GetPower(bulletNeedTest[playerBulletNum]));
-                        playerBulletMgr.Kill(bulletNeedTest[playerBulletNum]);
-                    }
+                    if(m_playerBullets[bulletNeedTest[playerBulletNum]].enable && m_enemys[enemyNum].enable)
+                        if(coll_r2c(m_playerBullets[bulletNeedTest[playerBulletNum]],m_enemys[enemyNum])){
+                            stage.KillEnemy(enemyNum,playerBulletMgr.GetPower(bulletNeedTest[playerBulletNum]));
+                            playerBulletMgr.Kill(bulletNeedTest[playerBulletNum]);
+                        }
                 }
             }
         }
     }
-
     //PNT("RECT"<<m_enemy_playerBullet_opmRect.x<<" "<<m_enemy_playerBullet_opmRect.y<<" "<<m_enemy_playerBullet_opmRect.w<<" "<<m_enemy_playerBullet_opmRect.h);
 }
 

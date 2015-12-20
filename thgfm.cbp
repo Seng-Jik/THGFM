@@ -44,6 +44,7 @@
 			<Add option="-std=c++11" />
 			<Add directory="$(#sdl2.include)/SDL2" />
 			<Add directory="include" />
+			<Add directory="include/lua" />
 		</Compiler>
 		<Linker>
 			<Add library="mingw32" />
@@ -55,6 +56,7 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="dxguid" />
+			<Add library="lib/liblua.a" />
 			<Add directory="$(#sdl2.lib)" />
 		</Linker>
 		<ExtraCommands>
