@@ -9,21 +9,28 @@
 #include "StageTitle.h"
 #include "Boss.h"
 #include "EffectMgr.h"
+#include "Beater.h"
+#include "SeMgr.h"
+#include "ItemMgr.h"
+#include "BossConversation.h"
+
 using namespace Snow;
 
 StageMgr stage;
 
 StageMgr::EnemyStyle StageMgr::m_eStyles [1];
+int StageMgr::m_cnt = 0;
 
 void StageMgr::Init()
 {
     m_eStyles[0].tex = LoadPic("Enemy/e0.png");
+    //bossConversation->SetFPSCnt(&m_cnt);
 }
 
 
 StageMgr::StageMgr()
 {
-    //ctor
+    beater.SetCntPtr(&m_cnt);
 }
 
 StageMgr::~StageMgr()
@@ -31,7 +38,7 @@ StageMgr::~StageMgr()
     //dtor
 }
 
-void StageMgr::LoadCSV(const std::string& stage)
+void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath)
 {
     CSVReader csv;
     csv.LoadCSV(stage);
@@ -54,9 +61,12 @@ void StageMgr::LoadCSV(const std::string& stage)
             csv.PopInt(e -> style);
             e -> num = m_enemys.size();
 
+            csv.PopInt(e -> items[SCORE]);
+            csv.PopInt(e -> items[POWER]);
             double args;
             while(csv.PopFloat(args))
                 e->parttenArgs.push_back(args);
+
             m_enemys.push_back(e);
             last = e;
         }else if(firstPop[0] == 'S'){
@@ -77,7 +87,7 @@ void StageMgr::LoadCSV(const std::string& stage)
             csv.PopInt(pBoss -> birthTime);
             string bossRV;
             csv.PopStr(bossRV);
-            pBoss -> LoadRV(bossRV);
+            pBoss -> LoadRV(basePath + bossRV,basePath,&m_cnt);
             m_bosses.push(pBoss);
         }
     }while(csv.NextLine());
@@ -111,7 +121,7 @@ void StageMgr::OnNext()
         stageTitle.OnNext();
 
 
-    //²úÉú¼´½«³öÉúµÄµĞÈË
+    //äº§ç”Ÿå³å°†å‡ºç”Ÿçš„æ•Œäºº
     for(int i = m_enemySearchTop;i < (int)m_enemys.size();++i){
         if(m_cnt == m_enemys[i]->birth){
             m_enemySearchTop=i+1;
@@ -122,7 +132,7 @@ void StageMgr::OnNext()
     }
     //PNT(m_enemySearchBottom<<" "<<m_enemySearchTop);
 
-    //C Ö¸Áî´¦Àí
+    //C æŒ‡ä»¤å¤„ç†
     if(!m_clearScreenTime.empty())
         if(m_cnt == m_clearScreenTime.front()){
             m_clearScreenTime.pop();
@@ -138,7 +148,7 @@ void StageMgr::OnNext()
             bulletMgr.Clear();
         }
 
-    //Boss ´¦Àí
+    //Boss å¤„ç†
     if(!m_bosses.empty()){
         if(m_bosses.front() -> birthTime == m_cnt)
             m_bosses.front() -> OnBirth();
@@ -157,22 +167,25 @@ void StageMgr::OnNext()
         Enemy& enemy = *m_enemys[enemyNum];
         if(enemy.live == Enemy::LIVE){
 
-            //Èç¹ûÉúÃüÖµÎª0ÔòÉ±ËÀ
+            //å¦‚æœç”Ÿå‘½å€¼ä¸º0åˆ™æ€æ­»
             if(enemy.hp <= 0){
                 KillEnemy(&enemy);
                 effMgr.Install(0,enemy.x,enemy.y);
+                itemMgr.AddItem(SCORE,10,enemy.x,enemy.y,enemy.items[SCORE]);
+                itemMgr.AddItem(POWER,15,enemy.x,enemy.y,enemy.items[POWER]);
+                se.Play(DEMOSE);
             }
 
-            //Ó¦ÓÃ Partten
+            //åº”ç”¨ Partten
             if(enemy.partten != -1)
                 enemyPartten[enemy.partten](&enemy,enemyNum);
             ++enemy.cnt;
 
-            //×ø±êÔËËã
+            //åæ ‡è¿ç®—
             enemy.y -= enemy.spd * sin(enemy.angle);
             enemy.x -= enemy.spd * cos(enemy.angle);
 
-            //Èç¹û³¬³öÆÁÄ»ÔòÉ±ËÀ
+            //å¦‚æœè¶…å‡ºå±å¹•åˆ™æ€æ­»
             if((enemy.x < -2*m_eStyles[enemy.style].r ||
                 enemy.x > WIDTH + m_eStyles[enemy.style].r||
                 enemy.y > HEIGHT + m_eStyles[enemy.style].r||
@@ -181,7 +194,7 @@ void StageMgr::OnNext()
                     KillEnemy(&enemy);
                     //PNT(i<<"Killed By Screen.");
             }else{
-                //Í¬²½Åö×²¸ÕÌå
+                //åŒæ­¥ç¢°æ’åˆšä½“
                 collWorld.SetEnemy(enemy.num,enemy.live == Enemy::LIVE,enemy.x,enemy.y,m_eStyles[enemy.style].r);
                 if(enemy.x - m_eStyles[enemy.style].r - 16 < bestLeft) bestLeft = enemy.x - m_eStyles[enemy.style].r - 16;
                 if(enemy.x + m_eStyles[enemy.style].r + 16 > bestRight) bestRight = enemy.x + m_eStyles[enemy.style].r + 16;
@@ -190,24 +203,26 @@ void StageMgr::OnNext()
 
         }
 
-        //Éä»÷´¦Àí
+        //å°„å‡»å¤„ç†
         bool allShotDied = true;
         if(enemy.live == Enemy::LIVE || enemy.live == Enemy::STOPLIVE){
             for(auto p = enemy.shots.begin();p != enemy.shots.end();++p){
                 Shot& shot = **p;
 
-                //²úÉú¼´½«³öÉúµÄÉä»÷
+                //äº§ç”Ÿå³å°†å‡ºç”Ÿçš„å°„å‡»
                 if(shot.live == Shot::NOBIRTH && shot.birth == m_cnt && enemy.live == Enemy::LIVE) {
                     shot.live = Shot::LIVE;
                     shot.cnt = 0;
                 }
-                //Ïú»ÙÒÑ¾­¿ÕÁËµÄÉä»÷
+                //é”€æ¯å·²ç»ç©ºäº†çš„å°„å‡»
                 else if((shot.live == Shot::LIVE && shot.cnt >= 300) || shot.live == Shot::STOPLIVE || shot.live == Shot::STOPSHOOT){
-                    //×Óµ¯²ÛÊÇ·ñÒÑ¾­¿Õµô
+                    //å­å¼¹æ§½æ˜¯å¦å·²ç»ç©ºæ‰
                     bool noBullet = true;
                     for(auto pBullet = shot.bullets.begin();pBullet != shot.bullets.end();++pBullet){
-                        if(*pBullet != -1) noBullet = false;
-                        break;
+                        if(*pBullet != -1){
+                            noBullet = false;
+                            break;
+                        }
                     }
                     if(noBullet){
                         shot.live = Shot::DEATH;
@@ -219,7 +234,7 @@ void StageMgr::OnNext()
                 if(shot.live == Shot::LIVE || shot.live == Shot::STOPLIVE || shot.live == Shot::STOPSHOOT) allShotDied = false;
 
                 if(shot.live == Shot::LIVE || shot.live == Shot::STOPSHOOT){
-                    //Ó¦ÓÃ Partten
+                    //åº”ç”¨ Partten
                     (*shotPartten[shot.partten])(&shot,enemy.num);
                     ++shot.cnt;
                 }
@@ -228,14 +243,14 @@ void StageMgr::OnNext()
 
         }
 
-        //µ±µĞÈËÉä»÷È«²¿ËÀÍöÇÒµĞÈËÒÑ¾­Í£Ö¹»î¶¯Ê±£¬³¹µ×Ïú»ÙµĞÈË
+        //å½“æ•Œäººå°„å‡»å…¨éƒ¨æ­»äº¡ä¸”æ•Œäººå·²ç»åœæ­¢æ´»åŠ¨æ—¶ï¼Œå½»åº•é”€æ¯æ•Œäºº
         if(allShotDied && enemy.live == Enemy::STOPLIVE){
             FOR_EACH(p,enemy.shots.begin(),enemy.shots.end())
                 delete *p;
             enemy.live = Enemy::DEATH;
             enemy.shots.clear();
             //PNT(enemy.num<<" Was Died");
-            //Ì½Ë÷ËÑË÷ÏÂÏŞ£¨ËÀÍöÉÏÏŞ£©
+            //æ¢ç´¢æœç´¢ä¸‹é™ï¼ˆæ­»äº¡ä¸Šé™ï¼‰
             while(m_enemys[m_enemySearchBottom]->live == Enemy::DEATH){
                 ++m_enemySearchBottom;
                 if(m_enemySearchBottom > m_enemySearchTop -1) {
@@ -278,7 +293,7 @@ void StageMgr::OnNext()
                 shot.cnt = 0;
             }
             if(shot.live == Shot::NOBIRTH) continue;
-            //TODO:Éä»÷Ä£Ê½´¦Àí
+            //TODO:å°„å‡»æ¨¡å¼å¤„ç†
             if((shot.live == Shot::LIVE || shot.live == Shot::STOPLIVE) && shot.partten != -1)
                 (*shotPartten[shot.partten])(&shot,i);
 
@@ -294,7 +309,7 @@ void StageMgr::OnNext()
                 continue;
             }
 
-            //TODO:µĞÈËÄ£Ê½
+            //TODO:æ•Œäººæ¨¡å¼
             if(m_enemys[i] -> partten != -1)
                 enemyPartten[m_enemys[i] -> partten](m_enemys[i],i);
 
@@ -351,7 +366,7 @@ void StageMgr::OnDraw()
         SDL_RenderCopy(pRnd,m_eStyles[m_enemys[i]->style].tex,nullptr,&r);
     }
 
-    //Boss ´¦Àí
+    //Boss å¤„ç†
     if(!m_bosses.empty()){
         if(m_cnt >= m_bosses.front() -> birthTime){
             m_bosses.front() -> OnDraw();
@@ -364,9 +379,20 @@ void StageMgr::OnDraw()
 
 void StageMgr::KillEnemy(Enemy* e)
 {
-    e -> live = Enemy::STOPLIVE;
-    FOR_EACH(p,e->shots.begin(),e->shots.end())
-        (*p) -> live = Shot::STOPSHOOT;
-    collWorld.SetEnemy(e->num,false,0,0,0);
-
+    if(e == nullptr){
+        for(int i = m_enemySearchBottom;i < m_enemySearchTop;++i){
+            if(m_enemys[i] -> live == Enemy::LIVE){
+                effMgr.Install(0,m_enemys[i]->x,m_enemys[i]->y);
+                KillEnemy(m_enemys[i]);
+            }
+        }
+        for(int i = 0;i < bulletMgr.GetSearchTop();++i){
+            if(bulletMgr[i].live) effMgr.Install(0,bulletMgr[i].x,bulletMgr[i].y);
+        }
+    }else{
+        e -> live = Enemy::STOPLIVE;
+        FOR_EACH(p,e->shots.begin(),e->shots.end())
+            (*p) -> live = Shot::STOPSHOOT;
+        collWorld.SetEnemy(e->num,false,0,0,0);
+    }
 }

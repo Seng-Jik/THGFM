@@ -29,7 +29,7 @@ class CSVWRollBgp : public Background
                 return s.begTime > s.lenTime;
             }
         };
-        std::priority_queue <SingleCmd> m_cmds;
+        std::queue <SingleCmd> m_cmds;
         int m_cnt;
 
         double m_spd;double m_spdTrg;int m_spdLostTime = 0;

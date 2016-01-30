@@ -36,6 +36,7 @@ void CSVWRollBgp::LoadCSV(const std::string& stage,const std::string& bgcsv)
         sbg.r2x = -sbg.w;
 
         m_bgs.push_back(sbg);
+
     }while(csv.NextLine());
 
     SingleCmd sc;
@@ -50,6 +51,7 @@ void CSVWRollBgp::LoadCSV(const std::string& stage,const std::string& bgcsv)
         csv.PopInt(sc.bgNum);
         csv.PopFloat(sc.trgVal);
         m_cmds.push(sc);
+        PNT("WRollBgp::LoadCSV:"<<"CMD "<<sc.type<<sc.begTime);
     }
 
     m_cnt = 0;
@@ -91,27 +93,28 @@ void CSVWRollBgp::OnNext()
         p->r2x -= (1-p->depth)*m_spd;
         if(p->r1x+p->w <= WIDTH){
             p->r2x = p->r1x;
-            p->r1x = p->w;
+            p->r1x = p->w+p->r2x;
         }
     }
 
-    while(m_cmds.top().begTime == m_cnt && !m_cmds.empty()){
-        switch(m_cmds.top().type){
+    while(m_cmds.front().begTime == m_cnt && !m_cmds.empty()){
+        PNT("WRollBgp:"<<m_cmds.front().type<<m_cnt);
+        switch(m_cmds.front().type){
         case 'A':
-            m_bgs[m_cmds.top().bgNum].alphaTrg = m_cmds.top().trgVal;
-            m_bgs[m_cmds.top().bgNum].alphaLostTime = m_cmds.top().lenTime;
+            m_bgs[m_cmds.front().bgNum].alphaTrg = m_cmds.front().trgVal;
+            m_bgs[m_cmds.front().bgNum].alphaLostTime = m_cmds.front().lenTime;
             break;
         case 'D':
-            m_bgs[m_cmds.top().bgNum].depthTrg = m_cmds.top().trgVal;
-            m_bgs[m_cmds.top().bgNum].depthLostTime = m_cmds.top().lenTime;
+            m_bgs[m_cmds.front().bgNum].depthTrg = m_cmds.front().trgVal;
+            m_bgs[m_cmds.front().bgNum].depthLostTime = m_cmds.front().lenTime;
             break;
         case 'Y':
-            m_bgs[m_cmds.top().bgNum].yTrg = m_cmds.top().trgVal;
-            m_bgs[m_cmds.top().bgNum].yLostTime = m_cmds.top().lenTime;
+            m_bgs[m_cmds.front().bgNum].yTrg = m_cmds.front().trgVal;
+            m_bgs[m_cmds.front().bgNum].yLostTime = m_cmds.front().lenTime;
             break;
         case 'S':
-            m_spdTrg = m_cmds.top().trgVal;
-            m_spdLostTime = m_cmds.top().lenTime;
+            m_spdTrg = m_cmds.front().trgVal;
+            m_spdLostTime = m_cmds.front().lenTime;
             break;
         }
         m_cmds.pop();

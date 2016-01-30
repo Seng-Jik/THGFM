@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <cmath>
 #include "Tools.h"
+#include "Beater.h"
 
 #define StdGetAngle(x1,y1,x2,y2) atan2(y1-y2,x1-x2);
 

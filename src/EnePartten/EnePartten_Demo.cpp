@@ -9,8 +9,8 @@ void ED000(Enemy* e,int n){
         EneSpd(e) -= 0.2;
     }
     if(EneCnt(e) == 100) EneSpd(e) = 0;
-    if(EneCnt(e) >= 200 && EneCnt(e) <= 260)
-        EneSpd(e) += 0.2;
+    //if(EneCnt(e) >= 200 && EneCnt(e) <= 260)
+       // EneSpd(e) += 0.2;
 }
 
 EnemyPartten enemyPartten[]= {

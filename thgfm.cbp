@@ -56,46 +56,71 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="dxguid" />
-			<Add library="lib/liblua.a" />
+			<Add library="SDL2_Mixer" />
+			<Add library="SDL2_ttf" />
 			<Add directory="$(#sdl2.lib)" />
 		</Linker>
 		<ExtraCommands>
 			<Add after="XCOPY $(#sdl2)\bin\*.dll $(TARGET_OUTPUT_DIR) /D /Y" />
 		</ExtraCommands>
 		<Unit filename="include/Background.h" />
+		<Unit filename="include/Beater.h" />
+		<Unit filename="include/BgmMgr.h" />
 		<Unit filename="include/Boss.h" />
+		<Unit filename="include/BossConversation.h" />
 		<Unit filename="include/BulletMgr.h" />
 		<Unit filename="include/CSVWRollBgp.h" />
+		<Unit filename="include/CharData.h" />
 		<Unit filename="include/CollWorld.h" />
 		<Unit filename="include/EffectMgr.h" />
 		<Unit filename="include/EnePartten.h" />
 		<Unit filename="include/EnemyParttenAPI.h" />
+		<Unit filename="include/GameUI.h" />
+		<Unit filename="include/ItemMgr.h" />
 		<Unit filename="include/KeyMapAct.h" />
+		<Unit filename="include/PauseActivity.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/PlayerBullet.h" />
+		<Unit filename="include/SeMgr.h" />
 		<Unit filename="include/ShotParttenAPI.h" />
 		<Unit filename="include/StageMgr.h" />
 		<Unit filename="include/StageTitle.h" />
 		<Unit filename="include/StdParttenAPI.h" />
+		<Unit filename="include/TextBox.h" />
 		<Unit filename="include/Tools.h" />
 		<Unit filename="include/WSTGame.h" />
+		<Unit filename="include/str2wstr.h" />
+		<Unit filename="src/Beater.cpp" />
+		<Unit filename="src/BgmMgr.cpp" />
 		<Unit filename="src/Boss.cpp" />
+		<Unit filename="src/BossConversation.cpp" />
+		<Unit filename="src/BossConversationChar.cpp" />
 		<Unit filename="src/BulletMgr.cpp" />
 		<Unit filename="src/CSVWRollBgp.cpp" />
+		<Unit filename="src/CharData.cpp" />
 		<Unit filename="src/CollWorld.cpp" />
 		<Unit filename="src/EffectMgr.cpp" />
 		<Unit filename="src/EnePartten/EnePartten_Demo.cpp" />
+		<Unit filename="src/GameUI.cpp" />
+		<Unit filename="src/ItemMgr.cpp" />
 		<Unit filename="src/KeyMapAct.cpp" />
 		<Unit filename="src/Main.cpp" />
+		<Unit filename="src/MathFunc.cpp" />
+		<Unit filename="src/PauseActivity.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/PlayerBullet.cpp" />
+		<Unit filename="src/SCBackground/Demo.cpp" />
+		<Unit filename="src/SCPartten/Demo.cpp" />
+		<Unit filename="src/SeMgr.cpp" />
 		<Unit filename="src/ShtPartten/ShtPartten_Demo.cpp" />
 		<Unit filename="src/StageMgr.cpp" />
 		<Unit filename="src/StageTitle.cpp" />
+		<Unit filename="src/TextBox.cpp" />
 		<Unit filename="src/Tools.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/WSTGame.cpp" />
+		<Unit filename="src/str2wstr.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

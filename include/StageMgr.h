@@ -28,12 +28,14 @@ struct Enemy{
     std::vector<Shot*> shots;    //射击
     int style;  //敌人图像编号
     std::vector<double> parttenArgs;
+
+    int items[2];   //爆出的道具
 };
 
 class StageMgr
 {
     private:
-        int m_cnt = 0;
+        static int m_cnt;
         std::vector<Enemy*> m_enemys;
         int m_enemySearchTop = 0;
         int m_enemySearchBottom = 0;
@@ -53,7 +55,7 @@ class StageMgr
         static void Init();
 
         StageMgr();
-        void LoadCSV(const std::string&);
+        void LoadCSV(const std::string&,const std::string& basePath);
         void Clear();
         void OnNext();
         void OnDraw();
@@ -62,7 +64,12 @@ class StageMgr
             m_enemys[num]->hp -= hp;
         }
 
-        Enemy* GetEnemy(int n){return m_enemys[n];}
+        inline Enemy* GetEnemy(int n){return m_enemys[n];}
+        inline Boss* GetBoss(){
+            if(m_bosses.empty()) return nullptr;
+            else if(m_bosses.front()->Live() && m_bosses.front()->birthTime <= m_cnt) return m_bosses.front();
+            else return nullptr;
+        }
 
         ~StageMgr();
     protected:

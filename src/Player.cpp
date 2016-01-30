@@ -2,6 +2,12 @@
 #include "Tools.h"
 #include "CollWorld.h"
 #include "PlayerBullet.h"
+#include "ItemMgr.h"
+#include "CharData.h"
+#include "GameUI.h"
+#include "BulletMgr.h"
+#include "EffectMgr.h"
+#include "StageMgr.h"
 
 using namespace Snow;
 
@@ -35,15 +41,21 @@ Player::~Player()
 void Player::SetPlayerImage(int n)
 {
     m_playerImageNum = n;
+    if(n == 1) m_charData = &marisa;
+    else if(n == 0) m_charData = &reimu;
+    m_playerBulletStyle = n;
 }
 
 void Player::SetPlayer(int n){
     m_playerNum = n;
 }
 
-
+#include "Snow/Debug.h"
 void Player::OnDraw()
 {
+    if(m_booming){
+        m_charData->BoomOnDraw();
+    }
     if(m_invin%2==0 && m_live != Player::DEAD)
         SDL_RenderCopy(pRnd,m_images[m_playerImageNum] [(m_cnt/5)%5],nullptr,&m_r);
     if(m_k[4]){
@@ -56,7 +68,27 @@ void Player::OnDraw()
 void Player::OnNext()
 {
     ++m_cnt;
-    double spd = 7;
+    if(m_deathVS){
+        m_deathVS--;
+        if(!m_deathVS){
+            m_x = m_y = -200;
+            m_live = DEAD;
+            gameUI.OnPlayerBeKilled();
+            itemMgr.AddItem(POWER,10,m_x,m_y,5);
+            itemMgr.AddItem(SCORE,10,m_x,m_y,5);
+            if(gameUI.GetLife() == 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
+            effMgr.Install(0,m_x,m_y);
+            stage.KillEnemy(nullptr);
+            bulletMgr.Clear();
+        }
+    }
+    double spd = 9;
+    if(m_booming){
+        m_booming = m_charData->BoomOnNext(this);
+        if(!m_booming)
+            collWorld.ClearBoom();
+        collWorld.Update_Boom();
+    }
 
     if(m_k[4]) spd = 3;
     if((m_k[0] && m_k[2]) ||
@@ -64,6 +96,7 @@ void Player::OnNext()
        (m_k[1] && m_k[2]) ||
        (m_k[1] && m_k[3])
     ) spd /= 1.4142135623730950488016887242097;
+    if(m_booming) spd *= 0.1;
 
     if(m_live==LIVING){
         //Player Move
@@ -78,7 +111,7 @@ void Player::OnNext()
         else if(m_y >= HEIGHT-45) m_y = HEIGHT-45;
 
         //Player Bullet
-        if(m_k[5] && m_cnt%3 == 0){
+        if(m_k[5] && m_cnt%3 == 0 && !m_booming){
             switch(m_powerMode){
             case 0:
                 playerBulletMgr.Add(m_x+40,m_y,1,m_playerBulletStyle);
@@ -106,12 +139,22 @@ void Player::OnNext()
         if(m_birthTimer==50) m_live = Player::LIVING;
     }
 
-    if(m_invin==0) collWorld.SetPlayer(m_playerNum,true,m_x-2,m_y-2);
+    if(m_invin<=0) collWorld.SetPlayer(m_playerNum,true,m_x-2,m_y-2);
 
     m_r.x = m_x - m_r.w/2;
     m_r.y = m_y - m_r.h/2;
 
-    if(m_invin!=0) --m_invin;
+    if(m_invin>0) --m_invin;
+
+    /* Item Get Border */
+    if(m_x >= 1000) itemMgr.GetAll(m_playerNum);
+}
+
+void Player::AddPower(double power)
+{
+    m_powerValue += power;
+    m_powerMode = int(m_powerValue);
+    if(m_powerMode > 3) m_powerMode = 3;
 }
 
 
@@ -123,6 +166,18 @@ void Player::OnEvent(Key k, bool b)
     else if(k == T_RIGHT) m_k[3] = b;
     else if(k == T_SLOW) m_k[4] = b;
     else if(k == T_SHOT) m_k[5] = b;
+    else if(k == T_BOOM && b && !m_booming && (m_live == LIVING || m_live == DEATHVS)){
+        if(!gameUI.CanUseBomb()) return;
+        gameUI.OnUseBomb();
+        if(m_deathVS){
+            m_live = Player::LIVING;
+            m_deathVS = 0;
+        }
+        m_charData->BoomReset(this);
+        m_booming = true;
+        Invincible(390);
+        itemMgr.GetAll(m_playerNum);
+    }
 }
 
 void Player::Invincible(int frame)
@@ -133,7 +188,9 @@ void Player::Invincible(int frame)
 
 void Player::Kill()
 {
-    m_live = Player::DEAD;
+    if(m_live != LIVING) return;
+    m_live = Player::DEATHVS;
+    m_deathVS = 10;
 }
 
 void Player::Birth()
@@ -141,4 +198,9 @@ void Player::Birth()
     m_live = Player::BIRTHING;
     m_birthTimer=0;
     Invincible(60);
+}
+
+void Player::ClearKey(){
+    for(int i = 0;i < 8;++i)
+        m_k[i] = false;
 }
