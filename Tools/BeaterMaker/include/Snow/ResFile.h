@@ -7,8 +7,13 @@ namespace Snow{
 
 class ResFileReader{    //你可以用它定义自己的文件包
 public:
+<<<<<<< HEAD
     virtual char* GetFile(const std::string&,Uint32& size) = 0;
     //加载文件，传入文件名，路径分割符为Linux格式，文件名全大写。
+=======
+    virtual char* GetFile(const std::string&,Uint32& size) = 0;
+    //加载文件，传入文件名，路径分割符为Linux格式，文件名全大写。
+>>>>>>> 720c0b59a97be74f02a7c85da646f3f62bece3a5
     //返回缓存区指针和大小。
 };
 
