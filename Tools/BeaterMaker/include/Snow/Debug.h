@@ -27,8 +27,4 @@ public:
 #define DBGCLASS_SETDBGINFO(s,t)
 #define DBGCLASS_PNTDBGINFO(s)
 
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> 720c0b59a97be74f02a7c85da646f3f62bece3a5

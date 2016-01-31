@@ -3,7 +3,6 @@
 #include "CollWorld.h"
 
 using namespace Snow;
-<<<<<<< HEAD
 
 PlayerBullet playerBulletMgr;
 PlayerBullet::PlayerBulletStyle PlayerBullet::m_bulletStyles[2];
@@ -18,22 +17,6 @@ void PlayerBullet::Init()
     m_bulletStyles[1].h = 15;
 }
 
-=======
-
-PlayerBullet playerBulletMgr;
-PlayerBullet::PlayerBulletStyle PlayerBullet::m_bulletStyles[2];
-
-void PlayerBullet::Init()
-{
-    m_bulletStyles[1].tex = LoadPic("Player/Marisa/bullet.png");
-    m_bulletStyles[0].tex = LoadPic("Player/Reimu/bullet.png");
-    m_bulletStyles[0].w = 27;
-    m_bulletStyles[0].h = 15;
-    m_bulletStyles[1].w = 46;
-    m_bulletStyles[1].h = 15;
-}
-
->>>>>>> 720c0b59a97be74f02a7c85da646f3f62bece3a5
 
 inline void PlayerBullet::setBullet(int num,double x,double y,double power,int style){
 	//Sync CollWorld

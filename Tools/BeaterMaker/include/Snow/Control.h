@@ -6,11 +6,7 @@
 
 /* 控件基类介绍 */
 /*
-<<<<<<< HEAD
 * 使用Activity的RegControl注册控件到活动中，在活动处理事件之前会要求每个注册的Control处理事件。
-=======
-* 使用Activity的RegControl注册控件到活动中，在活动处理事件之前会要求每个注册的Control处理事件。
->>>>>>> 720c0b59a97be74f02a7c85da646f3f62bece3a5
 * 控件可以截断事件和向活动发送事件以提高封装性。
 */
 namespace Snow{
