@@ -16,7 +16,7 @@ WSTGame* wstg;
 WSTGame::WSTGame()
 {
     LoadStage("Stage1",LV_N);
-    player[0].SetPlayerImage(1);
+    player[0].SetPlayerImage(0);
     //m_p2.SetPlayerImage(0);
     player[0].Birth();
     gameUI.SetLifeAndBomb(3,3);
@@ -83,10 +83,10 @@ void WSTGame::OnDraw()
     //collWorld.Debug_DrawPlayer();
 
     /* Beater Sync Debug */
-    /*if(beater.IsBeatFrame()){
+    if(beater.IsBeatFrame()){
         SDL_SetRenderDrawColor(Snow::pRnd,255,0,0,255);
         Snow::pRnd.Clear();
-    }**/
+    }
     gameUI.OnDraw();
 }
 

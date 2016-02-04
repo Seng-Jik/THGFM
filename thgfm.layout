@@ -1,79 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src\WSTGame.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\StageTitle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="406" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="src\Beater.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="314" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="src\str2wstr.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="476" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\BgmMgr.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="539" topLine="16" />
-		</Cursor>
-	</File>
-	<File name="src\Boss.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4015" topLine="115" />
-		</Cursor>
-	</File>
-	<File name="src\BossConversation.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5176" topLine="161" />
-		</Cursor>
-	</File>
-	<File name="src\BossConversationChar.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="163" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\BulletMgr.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7997" topLine="196" />
-		</Cursor>
-	</File>
-	<File name="src\CSVWRollBgp.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1056" topLine="22" />
-		</Cursor>
-	</File>
-	<File name="src\CharData.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="397" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\CollWorld.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10073" topLine="268" />
-		</Cursor>
-	</File>
-	<File name="src\EnePartten\EnePartten_Demo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="432" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\Beater.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="236" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="src\GameUI.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1486" topLine="56" />
-		</Cursor>
-	</File>
-	<File name="include\BgmMgr.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="72" topLine="0" />
+			<Cursor1 position="280" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\ItemMgr.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
@@ -81,14 +11,29 @@
 			<Cursor1 position="2694" topLine="45" />
 		</Cursor>
 	</File>
-	<File name="include\Boss.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\StdParttenAPI.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1787" topLine="31" />
+			<Cursor1 position="634" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\KeyMapAct.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\WSTGame.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1636" topLine="17" />
+			<Cursor1 position="2345" topLine="87" />
+		</Cursor>
+	</File>
+	<File name="src\BgmMgr.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="539" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="include\Beater.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="549" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="src\CSVWRollBgp.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1056" topLine="22" />
 		</Cursor>
 	</File>
 	<File name="include\BossConversation.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -96,19 +41,29 @@
 			<Cursor1 position="1571" topLine="42" />
 		</Cursor>
 	</File>
-	<File name="src\Main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\EnePartten\EnePartten_Demo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="786" topLine="8" />
+			<Cursor1 position="432" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include\BulletMgr.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\SCBackground\Demo.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1183" topLine="18" />
+			<Cursor1 position="163" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\MathFunc.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\BgmMgr.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="280" topLine="0" />
+			<Cursor1 position="72" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Boss.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4015" topLine="115" />
+		</Cursor>
+	</File>
+	<File name="src\StageTitle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="69" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="include\CSVWRollBgp.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -121,119 +76,9 @@
 			<Cursor1 position="987" topLine="1" />
 		</Cursor>
 	</File>
-	<File name="include\CharData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\str2wstr.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="663" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="src\Player.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1665" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="include\CollWorld.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1504" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="include\PlayerBullet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="345" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\PlayerBullet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="445" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\EffectMgr.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="147" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\SeMgr.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="384" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\SCBackground\Demo.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="163" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\ShotParttenAPI.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="164" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="src\SCPartten\Demo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="194" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\StageMgr.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1918" topLine="48" />
-		</Cursor>
-	</File>
-	<File name="src\SeMgr.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="461" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\GameUI.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="681" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="include\StageTitle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="280" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\ShtPartten\ShtPartten_Demo.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1386" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="include\ItemMgr.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1046" topLine="17" />
-		</Cursor>
-	</File>
-	<File name="include\StdParttenAPI.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="634" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\StageMgr.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3452" topLine="108" />
-		</Cursor>
-	</File>
-	<File name="include\KeyMapAct.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="118" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\TextBox.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="100" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\StageTitle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="69" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\PauseActivity.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="438" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\Tools.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="153" topLine="0" />
+			<Cursor1 position="33" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\TextBox.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -241,24 +86,179 @@
 			<Cursor1 position="517" topLine="21" />
 		</Cursor>
 	</File>
+	<File name="include\CollWorld.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1504" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="src\ShtPartten\ShtPartten_Demo.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1386" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="src\BossConversation.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5176" topLine="161" />
+		</Cursor>
+	</File>
+	<File name="src\KeyMapAct.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1636" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="include\EffectMgr.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="147" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Player.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1665" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="src\BossConversationChar.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="163" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Tools.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="293" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\BulletMgr.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7997" topLine="196" />
+		</Cursor>
+	</File>
+	<File name="src\Main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="786" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="include\Boss.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1787" topLine="31" />
+		</Cursor>
+	</File>
+	<File name="include\TextBox.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="100" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\MathFunc.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="280" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Beater.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="747" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\SCPartten\Demo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="194" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\ItemMgr.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1046" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="src\CharData.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="397" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Tools.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1550" topLine="31" />
+		</Cursor>
+	</File>
+	<File name="include\CharData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="663" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="include\KeyMapAct.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="118" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\PauseActivity.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="438" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\PlayerBullet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="445" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\PlayerBullet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="345" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\str2wstr.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="476" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\GameUI.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="681" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="src\StageMgr.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3452" topLine="108" />
+		</Cursor>
+	</File>
+	<File name="include\SeMgr.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="384" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="include\Player.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1326" topLine="24" />
 		</Cursor>
 	</File>
+	<File name="include\ShotParttenAPI.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="164" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="include\StageMgr.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1918" topLine="48" />
+		</Cursor>
+	</File>
+	<File name="src\GameUI.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1486" topLine="56" />
+		</Cursor>
+	</File>
+	<File name="include\BulletMgr.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1183" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="src\SeMgr.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="461" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\CollWorld.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10073" topLine="268" />
+		</Cursor>
+	</File>
 	<File name="include\WSTGame.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="359" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\Tools.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="458" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\str2wstr.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="33" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

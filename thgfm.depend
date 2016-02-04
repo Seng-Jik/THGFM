@@ -2562,7 +2562,7 @@
 	<stdlib.h>
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
 1436254864 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_platform.h
@@ -2831,12 +2831,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1376156544 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+1376156543 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1376156504 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
+1376156503 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_net.h
 	<stdint.h>
 	"SDL.h"
 	"SDL_endian.h"
@@ -2860,49 +2860,49 @@
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_common.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_font.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_random.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_fuzzer.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_crc32.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_md5.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_log.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_assert.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_harness.h
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_images.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1436254866 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
+1436254865 f:\codeblocks\sdk\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_test_compare.h
 	"SDL.h"
 	"SDL_test_images.h"
 	"begin_code.h"
@@ -4188,4 +4188,470 @@
 1453434420 d:\thgfm\include\gameui.h
 	"Snow.h"
 	<string>
+
+1454588348 source:f:\thgfm\tou-hou-gu-feng-meng\src\beater.cpp
+	"Beater.h"
+	"Snow.h"
+
+1454588190 f:\thgfm\tou-hou-gu-feng-meng\include\beater.h
+	<queue>
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow.h
+	"Snow/Activity.h"
+	"Snow/Bundle.h"
+	"Snow/Control.h"
+	"Snow/ResFile.h"
+	"Snow/Font.h"
+	"Snow/Globals.h"
+	"Snow/Misc.h"
+	"Snow/Sound.h"
+	"Snow/Sprite.h"
+	"Snow/Thread.h"
+	"Snow/Timer.h"
+	"Snow/ResVal.h"
+	"Snow/RndPtr.h"
+	"Snow/TCPNet.h"
+	"Snow/UDPNet.h"
+	"Snow/CSVEditor.h"
+	"Snow/CSVReader.h"
+	"Snow/RenderTarget.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\activity.h
+	<forward_list>
+	"SDLbase.h"
+	"Globals.h"
+	"RndPtr.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\sdlbase.h
+	"OS.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_mixer.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_net.h>
+	<SDL2/SDL_test.h>
+	<SDL.h>
+	<SDL_mixer.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_net.h>
+	<SDL_test.h>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\os.h
+	<windows.h>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\globals.h
+	"SDLbase.h"
+	<vector>
+	<string>
+	"Sound.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\sound.h
+	"SDLbase.h"
+	<map>
+	"ResFile.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\resfile.h
+	"SDLBase.h"
+	<vector>
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\rndptr.h
+	"SDLbase.h"
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\bundle.h
+	"Globals.h"
+	<fstream>
+	"mem.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\control.h
+	"SDLbase.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\font.h
+	"SDLbase.h"
+	<string>
+	"ResFile.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\misc.h
+	<fstream>
+	"SDLbase.h"
+	"ResFile.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\sprite.h
+	"Globals.h"
+	"ResFile.h"
+	"Surface.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\surface.h
+	"ResFile.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\thread.h
+	"SDLbase.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\timer.h
+	"SDLbase.h"
+	"Globals.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\resval.h
+	<map>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\tcpnet.h
+	"SDLBase.h"
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\udpnet.h
+	<string>
+	"SDLbase.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\csveditor.h
+	<iostream>
+	<fstream>
+	<string>
+	<map>
+	<vector>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\csvreader.h
+	"ResFile.h"
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\rendertarget.h
+	"Thread.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bgmmgr.cpp
+	"BgmMgr.h"
+	"Snow/Debug.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\bgmmgr.h
+	<string>
+	"Snow.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\debug.h
+	<iostream>
+	<string>
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
+	"Boss.h"
+	"Snow/Debug.h"
+	"Tools.h"
+	"BossConversation.h"
+	"ShotParttenAPI.h"
+	<cmath>
+	"ItemMgr.h"
+	"CollWorld.h"
+	"GameUI.h"
+	"Player.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\boss.h
+	<string>
+	"Snow.h"
+	<queue>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\tools.h
+	"Snow.h"
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\bossconversation.h
+	"KeyMapAct.h"
+	"TextBox.h"
+	<queue>
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\keymapact.h
+	"Snow/Activity.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\textbox.h
+	<string>
+	<vector>
+	<list>
+	"Snow.h"
+	"str2wstr.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\str2wstr.h
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\shotparttenapi.h
+	"StageMgr.h"
+	"BulletMgr.h"
+	"Snow/Debug.h"
+	"Boss.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\stagemgr.h
+	<string>
+	<vector>
+	<queue>
+	<forward_list>
+	"Boss.h"
+	"Snow.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\bulletmgr.h
+	<queue>
+	"Snow.h"
+	"StageMgr.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\itemmgr.h
+	<queue>
+	"Snow.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\collworld.h
+	<iostream>
+	"Snow.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\gameui.h
+	"Snow.h"
+	<string>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\player.h
+	"Snow.h"
+	"KeyMapAct.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bossconversation.cpp
+	"BossConversation.h"
+	"WSTGame.h"
+	"str2wstr.h"
+	"MathFunc.h"
+	"Player.h"
+	"Snow/Debug.h"
+	<cctype>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\wstgame.h
+	"KeyMapAct.h"
+	"Player.h"
+	"StageMgr.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\mathfunc.h
+	"Snow.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bossconversationchar.cpp
+	"BossConversation.h"
+	"Tools.h"
+	"MathFunc.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bulletmgr.cpp
+	"BulletMgr.h"
+	"Tools.h"
+	<cmath>
+	"CollWorld.h"
+	<cmath>
+	"Snow/Debug.h"
+	"Snow/Debug.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\chardata.cpp
+	"CharData.h"
+	"MathFunc.h"
+	"Tools.h"
+	"WSTGame.h"
+	"CollWorld.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\chardata.h
+	"Snow.h"
+	"Player.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\collworld.cpp
+	"BulletMgr.h"
+	"CollWorld.h"
+	<mem.h>
+	"Snow.h"
+	"Player.h"
+	"StageMgr.h"
+	"PlayerBullet.h"
+	"PointInXRect.h"
+	"Snow/Debug.h"
+	"EffectMgr.h"
+	"GameUI.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\playerbullet.h
+	"Snow.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\pointinxrect.h
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\effectmgr.h
+	<list>
+	"Snow.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\csvwrollbgp.cpp
+	"CSVWRollBgp.h"
+	"Tools.h"
+	"Snow/Debug.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\csvwrollbgp.h
+	"Snow.h"
+	"Background.h"
+	<vector>
+	<queue>
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\background.h
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\effectmgr.cpp
+	"EffectMgr.h"
+	"Tools.h"
+	"Snow.h"
+	"Snow/Debug.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\enepartten\enepartten_demo.cpp
+	"EnemyParttenAPI.h"
+	"EnePartten.h"
+	"StdParttenAPI.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\enemyparttenapi.h
+	"StageMgr.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\enepartten.h
+	"StageMgr.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\stdparttenapi.h
+	"StageMgr.h"
+	"Player.h"
+	<cmath>
+	"Tools.h"
+	"Beater.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
+	"GameUI.h"
+	"Tools.h"
+	"WSTGame.h"
+	"str2wstr.h"
+	<cmath>
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\itemmgr.cpp
+	"ItemMgr.h"
+	"Tools.h"
+	"Snow.h"
+	"Player.h"
+	<cmath>
+	"GameUI.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\keymapact.cpp
+	"KeyMapAct.h"
+	"Snow/ResVal.h"
+	"Snow/Debug.h"
+	"Tools.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
+	"Snow.h"
+	"KeyMapAct.h"
+	"WSTGame.h"
+	<iostream>
+	"Tools.h"
+	"BulletMgr.h"
+	"EffectMgr.h"
+	"PlayerBullet.h"
+	"SeMgr.h"
+	"PauseActivity.h"
+	"ItemMgr.h"
+	"BossConversation.h"
+	"CharData.h"
+	"GameUI.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\semgr.h
+	"Snow.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\pauseactivity.h
+	"KeyMapAct.h"
+	"Snow.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\mathfunc.cpp
+	"MathFunc.h"
+	<math.h>
+	<mem.h>
+	<string.h>
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\pauseactivity.cpp
+	"PauseActivity.h"
+	"WSTGame.h"
+	"Tools.h"
+	"Player.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
+	"Player.h"
+	"Tools.h"
+	"CollWorld.h"
+	"PlayerBullet.h"
+	"ItemMgr.h"
+	"CharData.h"
+	"GameUI.h"
+	"BulletMgr.h"
+	"EffectMgr.h"
+	"StageMgr.h"
+	"Snow/Debug.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\playerbullet.cpp
+	"PlayerBullet.h"
+	"Tools.h"
+	"CollWorld.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\scbackground\demo.cpp
+	"Snow.h"
+	"Snow/Debug.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\scpartten\demo.cpp
+	"StdParttenAPI.h"
+	"ShotParttenAPI.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\semgr.cpp
+	"SeMgr.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\shtpartten\shtpartten_demo.cpp
+	"ShotParttenAPI.h"
+	"StdParttenAPI.h"
+	<iostream>
+	<cstdlib>
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\stagemgr.cpp
+	"StageMgr.h"
+	"Snow.h"
+	"Tools.h"
+	<cmath>
+	"Snow/Debug.h"
+	"EnePartten.h"
+	"ShotParttenAPI.h"
+	"CollWorld.h"
+	"StageTitle.h"
+	"Boss.h"
+	"EffectMgr.h"
+	"Beater.h"
+	"SeMgr.h"
+	"ItemMgr.h"
+	"BossConversation.h"
+
+1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\stagetitle.h
+	"Snow.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\stagetitle.cpp
+	"StageTitle.h"
+	"Tools.h"
+	"Snow/Debug.h"
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\str2wstr.cpp
+	"str2wstr.h"
+	<mem.h>
+
+1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\textbox.cpp
+	"TextBox.h"
+	"MathFunc.h"
+
+1454588023 source:f:\thgfm\tou-hou-gu-feng-meng\src\tools.cpp
+	"Tools.h"
+	"CSVWRollBgp.h"
+	"StageMgr.h"
+	"StageTitle.h"
+	"Snow/Debug.h"
+	"Beater.h"
+	"BgmMgr.h"
+
+1454588358 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
+	"WSTGame.h"
+	"BulletMgr.h"
+	"CollWorld.h"
+	"EffectMgr.h"
+	"CSVWRollBgp.h"
+	"Tools.h"
+	"PlayerBullet.h"
+	"Snow/Debug.h"
+	"Beater.h"
+	"BgmMgr.h"
+	"PauseActivity.h"
+	"ItemMgr.h"
+	"GameUI.h"
 

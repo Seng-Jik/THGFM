@@ -9,12 +9,13 @@ class Beater
         void SetCntPtr(int* mainCnt);
 
         void OnNext();
-        void LoadBeats(const std::string&);
-        void Clear();
+        void SetBeater(int bpm);
     protected:
     private:
         int* m_pCnt;
-        std::queue<int> m_beats;
+        //std::queue<int> m_beats;
+        double m_idenFps;
+        double m_nextFps;
         bool m_isBeat;
         int m_beatNum;
 
