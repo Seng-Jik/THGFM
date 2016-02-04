@@ -9,7 +9,7 @@ class Beater
         void SetCntPtr(int* mainCnt);
 
         void OnNext();
-        void SetBeater(int bpm);
+        void SetBeater(double bpm);
     protected:
     private:
         int* m_pCnt;

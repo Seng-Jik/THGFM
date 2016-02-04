@@ -13,7 +13,8 @@ class BgmMgr
         void Resume();
     protected:
     private:
-        Mix_Music* m_bgmMus;
+        //Mix_Music* m_bgmMus;
+        Mix_Chunk* m_bgmMus;
         int m_loops;
 };
 

@@ -8,20 +8,20 @@ void SeMgr::Init()
 
 void SeMgr::Play(SeName n)
 {
-    Mix_PlayChannel(n,m_se[n],0);
+    Mix_PlayChannel(n+1,m_se[n],0);
 }
 
 void SeMgr::Pause()
 {
     for(int i = 0;i < 20;++i){
-        if(Mix_Playing(i) && m_se[i] != nullptr) Mix_Pause(i);
+        if(Mix_Playing(i+1) && m_se[i] != nullptr) Mix_Pause(i+1);
     }
 }
 
 void SeMgr::Resume()
 {
     for(int i = 0;i < 20;++i){
-        if(Mix_Paused(i) && m_se[i] != nullptr) Mix_Resume(i);
+        if(Mix_Paused(i+1) && m_se[i] != nullptr) Mix_Resume(i+1);
     }
 }
 

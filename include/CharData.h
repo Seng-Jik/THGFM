@@ -8,6 +8,7 @@ class CharData
         virtual bool BoomOnNext(Player*)=0;
         virtual void BoomOnDraw()=0;
         virtual void BoomReset(Player*)=0;
+        virtual void BulletInstaller(double power,int cnt,double x,double y) = 0;
     protected:
     private:
 };
@@ -23,6 +24,7 @@ class Marisa:public CharData{
         virtual bool BoomOnNext(Player*);
         virtual void BoomOnDraw();
         virtual void BoomReset(Player*);
+        virtual void BulletInstaller(double power,int cnt,double x,double y);
 };
 extern Marisa marisa;
 
@@ -34,11 +36,13 @@ class Reimu:public CharData{
         SDL_Rect m_wr[2];
         SDL_Rect m_hr[2];
         float m_mask;
+        float m_spd;
     public:
         void Init();
         virtual bool BoomOnNext(Player*);
         virtual void BoomOnDraw();
         virtual void BoomReset(Player*);
+        virtual void BulletInstaller(double power,int cnt,double x,double y);
 };
 extern Reimu reimu;
 

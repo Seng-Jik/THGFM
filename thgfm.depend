@@ -4189,11 +4189,11 @@
 	"Snow.h"
 	<string>
 
-1454588348 source:f:\thgfm\tou-hou-gu-feng-meng\src\beater.cpp
+1454591358 source:f:\thgfm\tou-hou-gu-feng-meng\src\beater.cpp
 	"Beater.h"
 	"Snow.h"
 
-1454588190 f:\thgfm\tou-hou-gu-feng-meng\include\beater.h
+1454591358 f:\thgfm\tou-hou-gu-feng-meng\include\beater.h
 	<queue>
 	<string>
 
@@ -4319,11 +4319,11 @@
 1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\snow\rendertarget.h
 	"Thread.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bgmmgr.cpp
+1454592900 source:f:\thgfm\tou-hou-gu-feng-meng\src\bgmmgr.cpp
 	"BgmMgr.h"
 	"Snow/Debug.h"
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\bgmmgr.h
+1454590758 f:\thgfm\tou-hou-gu-feng-meng\include\bgmmgr.h
 	<string>
 	"Snow.h"
 
@@ -4402,7 +4402,7 @@
 	"Snow.h"
 	<string>
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\player.h
+1454594255 f:\thgfm\tou-hou-gu-feng-meng\include\player.h
 	"Snow.h"
 	"KeyMapAct.h"
 
@@ -4437,14 +4437,16 @@
 	"Snow/Debug.h"
 	"Snow/Debug.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\chardata.cpp
+1454594521 source:f:\thgfm\tou-hou-gu-feng-meng\src\chardata.cpp
 	"CharData.h"
 	"MathFunc.h"
 	"Tools.h"
 	"WSTGame.h"
 	"CollWorld.h"
+	"PlayerBullet.h"
+	<iostream>
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\chardata.h
+1454594408 f:\thgfm\tou-hou-gu-feng-meng\include\chardata.h
 	"Snow.h"
 	"Player.h"
 
@@ -4557,13 +4559,13 @@
 	<mem.h>
 	<string.h>
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\pauseactivity.cpp
+1454591712 source:f:\thgfm\tou-hou-gu-feng-meng\src\pauseactivity.cpp
 	"PauseActivity.h"
 	"WSTGame.h"
 	"Tools.h"
 	"Player.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
+1454594450 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
@@ -4589,7 +4591,7 @@
 	"StdParttenAPI.h"
 	"ShotParttenAPI.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\semgr.cpp
+1454593085 source:f:\thgfm\tou-hou-gu-feng-meng\src\semgr.cpp
 	"SeMgr.h"
 
 1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\shtpartten\shtpartten_demo.cpp
@@ -4631,7 +4633,7 @@
 	"TextBox.h"
 	"MathFunc.h"
 
-1454588023 source:f:\thgfm\tou-hou-gu-feng-meng\src\tools.cpp
+1454591368 source:f:\thgfm\tou-hou-gu-feng-meng\src\tools.cpp
 	"Tools.h"
 	"CSVWRollBgp.h"
 	"StageMgr.h"
@@ -4640,7 +4642,7 @@
 	"Beater.h"
 	"BgmMgr.h"
 
-1454588358 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
+1454594500 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"

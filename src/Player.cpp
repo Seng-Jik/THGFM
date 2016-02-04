@@ -43,7 +43,6 @@ void Player::SetPlayerImage(int n)
     m_playerImageNum = n;
     if(n == 1) m_charData = &marisa;
     else if(n == 0) m_charData = &reimu;
-    m_playerBulletStyle = n;
 }
 
 void Player::SetPlayer(int n){
@@ -111,25 +110,8 @@ void Player::OnNext()
         else if(m_y >= HEIGHT-45) m_y = HEIGHT-45;
 
         //Player Bullet
-        if(m_k[5] && m_cnt%3 == 0 && !m_booming){
-            switch(m_powerMode){
-            case 0:
-                playerBulletMgr.Add(m_x+40,m_y,1,m_playerBulletStyle);
-                break;
-            case 1:
-                playerBulletMgr.Add(m_x+40,m_y-12,0.6,m_playerBulletStyle);
-                playerBulletMgr.Add(m_x+40,m_y+12,0.6,m_playerBulletStyle);
-                break;
-            case 2:
-                playerBulletMgr.Add(m_x+40,m_y-12,0.7,m_playerBulletStyle);
-                playerBulletMgr.Add(m_x+40,m_y+12,0.7,m_playerBulletStyle);
-                break;
-            default:
-                playerBulletMgr.Add(m_x+40,m_y-32,0.4,m_playerBulletStyle);
-                playerBulletMgr.Add(m_x+40,m_y-12,0.4,m_playerBulletStyle);
-                playerBulletMgr.Add(m_x+40,m_y+12,0.4,m_playerBulletStyle);
-                playerBulletMgr.Add(m_x+40,m_y+32,0.4,m_playerBulletStyle);
-            }
+        if(m_k[5] && !m_booming){
+            m_charData ->BulletInstaller(m_powerValue,m_cnt,m_x,m_y);
         }
     }
 
@@ -153,8 +135,6 @@ void Player::OnNext()
 void Player::AddPower(double power)
 {
     m_powerValue += power;
-    m_powerMode = int(m_powerValue);
-    if(m_powerMode > 3) m_powerMode = 3;
 }
 
 

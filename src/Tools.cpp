@@ -49,5 +49,5 @@ void LoadStage(const std::string& stageName, Level l)
     //BGM
     //beater.LoadBeats(path + stgConfig.Str("BGM_BEAT"));
     bgm.LoadMusic(path + stgConfig.Str("BGM_FILE"),stgConfig.Int("BGM_LOOPS"));
-    beater.SetBeater(stgConfig.Int("BGM_BPM"));
+    beater.SetBeater(stgConfig.Float("BGM_BPM"));
 }

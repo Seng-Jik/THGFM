@@ -17,8 +17,6 @@ class Player
         bool m_k [8] = {false};
         int m_playerNum = 0;
         int m_playerImageNum = 0;
-        int m_playerBulletStyle = 0;
-        int m_powerMode = 0;
         double m_powerValue = 0;
 
         bool m_booming = false;

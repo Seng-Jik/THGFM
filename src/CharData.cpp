@@ -3,6 +3,7 @@
 #include "Tools.h"
 #include "WSTGame.h"
 #include "CollWorld.h"
+#include "PlayerBullet.h"
 Marisa marisa;
 void Marisa::Init()
 {
@@ -55,6 +56,13 @@ void Marisa::BoomReset(Player*)
     m_tmr.Reset();
     wstg->GrpShake(330);
 }
+#include <iostream>
+void Marisa::BulletInstaller(double power,int cnt,double x,double y)
+{
+    //TODO
+    std::cout<<"marisa";
+}
+
 
 Reimu reimu;
 void Reimu::Init()
@@ -68,14 +76,11 @@ void Reimu::Init()
         m_hr[i].h = 720;
     }
     m_mask = 0;
+    m_spd = 16;
 }
 
 bool Reimu::BoomOnNext(Player* p)
 {
-    m_wr[1].y+=3;
-    m_wr[0].y-=3;
-    m_hr[0].x-=3;
-    m_hr[1].x+=3;
     if(m_tmr.GetTimer() < 60){
         float per = ACGCross::ArcFunc(float(m_tmr.GetTimer()) / 60);
         SDL_SetTextureAlphaMod(m_reimu_h,192*per);
@@ -83,18 +88,29 @@ bool Reimu::BoomOnNext(Player* p)
         m_mask = per;
         if(per == -1) m_mask = 1;
     }
-    if(m_tmr.GetTimer() == 60){
+    else if(m_tmr.GetTimer() == 60){
         m_mask = 1;
         SDL_SetTextureAlphaMod(m_reimu_h,192);
         SDL_SetTextureAlphaMod(m_reimu_w,192);
-    }else if(m_tmr.GetTimer()>=300){
-        float per = ACGCross::ArcFunc(float(m_tmr.GetTimer()-300) / 90);
+    }else if(m_tmr.GetTimer()>=90){
+        float per = ACGCross::ArcFunc(float(m_tmr.GetTimer()-90) / 60);
         SDL_SetTextureAlphaMod(m_reimu_h,192-192*per);
         SDL_SetTextureAlphaMod(m_reimu_w,192-192*per);
         m_mask = 1- per;
         if(per == -1) m_mask = 0;
+        m_wr[1].y+=m_spd;
+        m_wr[0].y-=m_spd;
+        m_hr[0].x-=m_spd;
+        m_hr[1].x+=m_spd;
+        m_spd -= 0.25;
+    }else{
+        m_wr[1].y+=m_spd;
+        m_wr[0].y-=m_spd;
+        m_hr[0].x-=m_spd;
+        m_hr[1].x+=m_spd;
+        m_spd -= 0.125;
     }
-    if(m_tmr.GetTimer()>=390) return false;
+    if(m_tmr.GetTimer()>=150) return false;
     collWorld.SetBoom(true,0,m_wr[0].x,m_wr[0].y,m_wr[0].w,m_wr[0].h);
     collWorld.SetBoom(true,1,m_wr[1].x,m_wr[1].y,m_wr[1].w,m_wr[1].h);
     collWorld.SetBoom(true,2,m_hr[0].x,m_hr[0].y,m_hr[0].w,m_hr[0].h);
@@ -116,7 +132,7 @@ void Reimu::BoomOnDraw()
 void Reimu::BoomReset(Player* p)
 {
     m_tmr.Reset();
-    wstg->GrpShake(370);
+    wstg->GrpShake(210);
 
     double x,y;
     p -> GetPos(x,y);
@@ -125,5 +141,30 @@ void Reimu::BoomReset(Player* p)
         m_wr[i].y = y-100;
         m_hr[i].x = x-100;
         m_hr[i].y = 0;
+    }
+}
+
+void Reimu::BulletInstaller(double power,int cnt,double x,double y)
+{
+    if(cnt%3 == 0){
+        int powerMode = int(power);
+        switch(powerMode){
+        case 0:
+            playerBulletMgr.Add(x+40,y,1,0);
+            break;
+        case 1:
+            playerBulletMgr.Add(x+40,y-12,0.6,0);
+            playerBulletMgr.Add(x+40,y+12,0.6,0);
+            break;
+        case 2:
+            playerBulletMgr.Add(x+40,y-12,0.7,0);
+            playerBulletMgr.Add(x+40,y+12,0.7,0);
+            break;
+        default:
+            playerBulletMgr.Add(x+40,y-32,0.4,0);
+            playerBulletMgr.Add(x+40,y-12,0.4,0);
+            playerBulletMgr.Add(x+40,y+12,0.4,0);
+            playerBulletMgr.Add(x+40,y+32,0.4,0);
+        }
     }
 }
