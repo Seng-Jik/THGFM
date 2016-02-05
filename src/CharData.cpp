@@ -76,7 +76,6 @@ void Reimu::Init()
         m_hr[i].h = 720;
     }
     m_mask = 0;
-    m_spd = 16;
 }
 
 bool Reimu::BoomOnNext(Player* p)
@@ -98,17 +97,19 @@ bool Reimu::BoomOnNext(Player* p)
         SDL_SetTextureAlphaMod(m_reimu_w,192-192*per);
         m_mask = 1- per;
         if(per == -1) m_mask = 0;
-        m_wr[1].y+=m_spd;
-        m_wr[0].y-=m_spd;
+        m_wr[1].y+=m_spd/2;
+        m_wr[0].y-=m_spd/2;
         m_hr[0].x-=m_spd;
         m_hr[1].x+=m_spd;
-        m_spd -= 0.25;
+        m_spd -= 0.8;
+        if(m_spd <= 0.3) m_spd = 0.3;
     }else{
-        m_wr[1].y+=m_spd;
-        m_wr[0].y-=m_spd;
+        m_wr[1].y+=m_spd/2;
+        m_wr[0].y-=m_spd/2;
         m_hr[0].x-=m_spd;
         m_hr[1].x+=m_spd;
-        m_spd -= 0.125;
+        m_spd -= 0.8;
+        if(m_spd <= 0.3) m_spd = 0.3;
     }
     if(m_tmr.GetTimer()>=150) return false;
     collWorld.SetBoom(true,0,m_wr[0].x,m_wr[0].y,m_wr[0].w,m_wr[0].h);
@@ -133,6 +134,7 @@ void Reimu::BoomReset(Player* p)
 {
     m_tmr.Reset();
     wstg->GrpShake(210);
+    m_spd = 32;
 
     double x,y;
     p -> GetPos(x,y);
@@ -150,7 +152,8 @@ void Reimu::BulletInstaller(double power,int cnt,double x,double y)
         int powerMode = int(power);
         switch(powerMode){
         case 0:
-            playerBulletMgr.Add(x+40,y,1,0);
+            playerBulletMgr.Add(x+40,y-12,0.5,0);
+            playerBulletMgr.Add(x+40,y+12,0.5,0);
             break;
         case 1:
             playerBulletMgr.Add(x+40,y-12,0.6,0);
