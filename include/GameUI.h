@@ -1,7 +1,17 @@
 #ifndef GAMEUI_H
 #define GAMEUI_H
 #include "Snow.h"
+#include "MathFunc.h"
 #include <string>
+#include "Tools.h"
+
+//SC means SpellCard, A means alpha
+const Uint8 SC_A = 0;
+const int SC_TIME = 30;
+extern int sc_x;
+const int SC_Y = HEIGHT/2-16;
+const int END_X = WIDTH - 64;
+const int END_Y = 56;
 
 class GameUI
 {
@@ -11,6 +21,7 @@ class GameUI
         SDL_Texture* m_bomb;
         int m_life;
         int m_bombNum;
+        int m_scNameTime;
         int m_rebirth = 0;
 
         //Boss State Show
@@ -25,9 +36,12 @@ class GameUI
         Snow::Font m_font;
         bool m_scName_animation;
         bool m_scName_show;
+        bool m_scName_downAnimation;
 
         SDL_Texture* m_spellCardStar;
         float m_scHP,m_showSCHP;   //实际HP和用于平滑显示的HP
+
+        void doScDownAnimation();   //执行符卡名下降动画
     public:
         void Init();
         void OnDraw();
@@ -50,6 +64,9 @@ class GameUI
         inline void ShowHPLine(){m_bossHPLineShow = true;};
         inline void HideHPLine(){m_bossHPLineShow = false;};
         void SetSpellCard(const std::string& scName);   //显示符卡名称时
+        inline void KillSpellCard(){
+            m_scName_show = false;
+        }
         inline void UpdateSCHP(double hp){  //更新符卡剩余生命值
             m_scHP = hp;
         };

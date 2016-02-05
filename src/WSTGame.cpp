@@ -16,7 +16,7 @@ WSTGame* wstg;
 WSTGame::WSTGame()
 {
     LoadStage("Stage1",LV_N);
-    player[0].SetPlayerImage(1);
+    player[0].SetPlayerImage(0);
     //m_p2.SetPlayerImage(0);
     player[0].Birth();
     gameUI.SetLifeAndBomb(3,3);

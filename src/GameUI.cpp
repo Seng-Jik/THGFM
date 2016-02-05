@@ -19,7 +19,7 @@ void GameUI::Init()
     m_spellCardStar = LoadPic("GameUI/SpellCardStar.png");
     m_scName_animation = m_scName_show = false;
 
-    m_font.Open("FangZhengHei.ttf");
+    m_font.Open("FangZhengHei.ttf",48);
     m_bossHPLineAlpha = 0;
     SDL_SetTextureBlendMode(m_bossHPLine,SDL_BLENDMODE_BLEND);
     SDL_SetTextureBlendMode(m_bossHPLineShell,SDL_BLENDMODE_BLEND);
@@ -52,9 +52,8 @@ void GameUI::OnDraw()
     }
 
     /* SpellCard Name */
-    if(m_scName_animation){
-        if(m_scName_tmr.GetTimer() <= 20);
-    }
+    if(m_scName_show)
+        m_scName.OnDraw();
 
     /* Boss ÑªÌõ */
     SDL_SetTextureAlphaMod(m_bossHPLine,255*m_bossHPLineAlpha);
@@ -86,10 +85,48 @@ void GameUI::OnNext()
         }
     }
 
+    if(m_scName_animation)
+    {
+        //use the flames as timer
+        //tmp_y is useless
+        //int tmp_x, tmp_y;
+        int tmp_y;
+        //a means alpha
+        float tmp_a;
+        //m_scName.GetPos(tmp_x, tmp_y);
+        //if(tmp_x <= END_X)
+        //{
+            //calculate and apply
+        if(!m_scName_downAnimation){
+            if(m_scNameTime++ < 60)
+            {
+                float per = ACGCross::ArcFunc(m_scNameTime / 30.0f);
+                if(per == -1) per = 1;
+                tmp_a =  per * (255 - SC_A) + SC_A;
+                //tmp_x = ACGCross::ArcFunc(m_scNameTime / (float)SC_TIME) * (END_X - sc_x) + sc_x;
+                //tmp_y = ACGCross::ArcFunc(m_scNameTime / (float)SC_TIME) * (END_Y - SC_Y) + SC_Y;
+                //m_scName.SetPos(sc_x , tmp_y);
+                m_scName.SetAlpha(Uint8(tmp_a));
+            }
+            else{
+                doScDownAnimation();
+            }
+        }else{
+            if(m_scNameTime++ < SC_TIME-1){
+                tmp_y = ACGCross::ArcFunc(m_scNameTime / (float)SC_TIME) * (END_Y - SC_Y) + SC_Y;
+                m_scName.SetPos(sc_x , tmp_y);
+            }
+            else
+            m_scName_animation = false;
+        }
+        //}
+        //animation finished
+    }
+
     if(m_bossHPLineShow){
         if(m_bossHPLineAlpha < 1){
             m_bossHPLineAlpha += 0.05;
-            if(m_bossHPLineAlpha>0.99)
+            if(m_bossHPLineAlpha > 0.99)
                 m_bossHPLineAlpha = 1;
         }
     }else{
@@ -136,16 +173,31 @@ void GameUI::CloseBoss()
     m_bossOpened = false;
 }
 
+int sc_x;
 void GameUI::SetSpellCard(const std::string& scName)
 {
     if(scName.empty()){
         m_scName.Clear();
         m_scName_show = false;
     }else{
+        //load the name of Spellcard and Initilize the value
+        int h;
         m_scName.Load(m_font,StringToWString(scName),true);
-        m_scName.SetAlpha(0);
-        m_scName_tmr.Reset();
-        m_scName_animation = true;
+        m_scName.GetSize(sc_x,h);
+        sc_x = WIDTH - sc_x;
+        m_scName.SetAlpha(SC_A);
         m_scName_show = true;
+        m_scNameTime = 0;
+        m_scName_animation = true;
+        m_scName_downAnimation = false;
+        m_scName.SetPos(sc_x, SC_Y);
     }
+
+}
+
+void GameUI::doScDownAnimation()
+{
+    m_scName_tmr.Reset();
+    m_scName_downAnimation = true;
+    m_scNameTime = 0;
 }

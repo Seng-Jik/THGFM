@@ -107,6 +107,8 @@ void Boss::OnNext()
         m_firsShow = false;
     }
 
+
+
     //µ±·û¿¨ËÀÍöºó
     if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || *m_cnt >= m_spellCards.front().endTime) && m_collEnable){
         if(m_bouns && m_spellCards.front().isSpellCard){
@@ -114,6 +116,7 @@ void Boss::OnNext()
             else itemMgr.AddItem(BOMB,10,m_x,m_y,1);
             itemMgr.AddItem(SCORE,15,m_x,m_y,20);
             itemMgr.AddItem(POWER,15,m_x,m_y,10);
+            gameUI.KillSpellCard();
         }
         m_cnt_begin = -1;
         bulletMgr.Clear();
@@ -129,7 +132,11 @@ void Boss::OnNext()
             gameUI.HideHPLine();
             PNT("Boss End");
         }else{
-            if(m_spellCards.front().isSpellCard) m_spellCardNum--;
+            if(m_spellCards.front().isSpellCard)
+            {
+                m_spellCardNum--;
+                gameUI.SetSpellCard(m_spellCards.front().title);
+            }
             m_fullHP = m_spellCards.front().hp;
             if(m_fullHP > 0) gameUI.ShowHPLine();
             else gameUI.HideHPLine();
@@ -146,6 +153,7 @@ void Boss::OnConersationFinished()
 {
     m_collEnable = true;
     m_cnt_begin = -1;
+    gameUI.SetSpellCard(m_spellCards.front().title);
 }
 
 typedef void(*SCBg)(int cnt);

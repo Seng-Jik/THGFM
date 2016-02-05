@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Snow.h"
+//#include "MathFunc.h"
 #include <queue>
 class Boss
 {
