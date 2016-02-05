@@ -70,11 +70,11 @@ void Player::OnNext()
     if(m_deathVS){
         m_deathVS--;
         if(!m_deathVS){
+            itemMgr.AddItem(POWER,10,m_x,m_y,5);
+            itemMgr.AddItem(SCORE,10,m_x,m_y,5);
             m_x = m_y = -200;
             m_live = DEAD;
             gameUI.OnPlayerBeKilled();
-            itemMgr.AddItem(POWER,10,m_x,m_y,5);
-            itemMgr.AddItem(SCORE,10,m_x,m_y,5);
             if(gameUI.GetLife() == 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
             effMgr.Install(0,m_x,m_y);
             stage.KillEnemy(nullptr);

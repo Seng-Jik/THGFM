@@ -6,11 +6,11 @@
 #include "Tools.h"
 
 //SC means SpellCard, A means alpha
-const Uint8 SC_A = 0;
+const Uint8 SC_A = 128;
 const int SC_TIME = 30;
 extern int sc_x;
 const int SC_Y = HEIGHT/2-16;
-const int END_X = WIDTH - 64;
+const int END_X = WIDTH - 128;
 const int END_Y = 56;
 
 class GameUI

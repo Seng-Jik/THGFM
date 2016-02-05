@@ -4398,7 +4398,7 @@
 	<iostream>
 	"Snow.h"
 
-1454684700 f:\thgfm\tou-hou-gu-feng-meng\include\gameui.h
+1454686661 f:\thgfm\tou-hou-gu-feng-meng\include\gameui.h
 	"Snow.h"
 	"MathFunc.h"
 	<string>
@@ -4511,7 +4511,7 @@
 	"Tools.h"
 	"Beater.h"
 
-1454684540 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
+1454686699 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
 	"GameUI.h"
 	"Tools.h"
 	"WSTGame.h"

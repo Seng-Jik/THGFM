@@ -102,7 +102,7 @@ void GameUI::OnNext()
             {
                 float per = ACGCross::ArcFunc(m_scNameTime / 30.0f);
                 if(per == -1) per = 1;
-                tmp_a =  per * (255 - SC_A) + SC_A;
+                tmp_a =  per *SC_A;
                 //tmp_x = ACGCross::ArcFunc(m_scNameTime / (float)SC_TIME) * (END_X - sc_x) + sc_x;
                 //tmp_y = ACGCross::ArcFunc(m_scNameTime / (float)SC_TIME) * (END_Y - SC_Y) + SC_Y;
                 //m_scName.SetPos(sc_x , tmp_y);
@@ -184,8 +184,8 @@ void GameUI::SetSpellCard(const std::string& scName)
         int h;
         m_scName.Load(m_font,StringToWString(scName),true);
         m_scName.GetSize(sc_x,h);
-        sc_x = WIDTH - sc_x;
-        m_scName.SetAlpha(SC_A);
+        sc_x = WIDTH - sc_x-34;
+        m_scName.SetAlpha(0);
         m_scName_show = true;
         m_scNameTime = 0;
         m_scName_animation = true;
