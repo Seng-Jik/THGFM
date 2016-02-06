@@ -4532,7 +4532,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
+1454754116 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4547,6 +4547,8 @@
 	"BossConversation.h"
 	"CharData.h"
 	"GameUI.h"
+	"ACGCross_Logo.h"
+	"Snow/Debug.h"
 
 1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\semgr.h
 	"Snow.h"
@@ -4567,7 +4569,7 @@
 	"Tools.h"
 	"Player.h"
 
-1454594450 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
+1454689503 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
@@ -4644,7 +4646,7 @@
 	"Beater.h"
 	"BgmMgr.h"
 
-1454681880 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
+1454754172 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"
@@ -4658,4 +4660,13 @@
 	"PauseActivity.h"
 	"ItemMgr.h"
 	"GameUI.h"
+	"ACGCross_Logo.h"
+
+1454753999 source:f:\thgfm\tou-hou-gu-feng-meng\src\acgcross_logo.cpp
+	"ACGCross_Logo.h"
+	"Snow/Debug.h"
+
+1454751102 f:\thgfm\tou-hou-gu-feng-meng\include\acgcross_logo.h
+	"Snow.h"
+	"MathFunc.h"
 

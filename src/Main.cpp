@@ -12,16 +12,16 @@
 #include "BossConversation.h"
 #include "CharData.h"
 #include "GameUI.h"
+#include "ACGCross_Logo.h"
+#include "Snow/Debug.h"
 using namespace std;
 using namespace Snow;
 
-int main(int argc,char** argv){
-    Init();
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
-    pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
+ACGCross::Logo* acgclogo;
+Snow::Mutex initMutex;
 
-    KeyMapAct::Init();
-    Player::Init();
+void _initThread(THREAD_ID){
+    initMutex.Lock();
     PlayerBullet::Init();
     BulletMgr::Init();
     EffectMgr::Init();
@@ -30,11 +30,33 @@ int main(int argc,char** argv){
     pause = new PauseActivity;
     bossConversation = new BossConversation;
     wstg = new WSTGame;
+    acgclogo -> SetGoto(*wstg);
     StageMgr::Init();
     marisa.Init();
     reimu.Init();
     gameUI.Init();
-    Run(wstg);
+    initMutex.Unlock();
+    PNT("INIT END");
+}
+static Snow::Thread initThread(&_initThread);
 
+int main(int argc,char** argv){
+    Init();
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
+    SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
+    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
+    pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
+
+    KeyMapAct::Init();
+    Player::Init();
+
+    acgclogo = new ACGCross::Logo;
+    #ifndef _DEBUG
+    acgclogo ->SetInitThread(&initThread);
+    Run(acgclogo);
+    #else
+    _initThread(nullptr);
+    Run(wstg);
+    #endif
     return 0;
 }

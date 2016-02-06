@@ -11,8 +11,11 @@
 #include "PauseActivity.h"
 #include "ItemMgr.h"
 #include "GameUI.h"
+#include "ACGCross_Logo.h"
 WSTGame* wstg;
 
+/* test */
+extern ACGCross::Logo* acgclogo;
 WSTGame::WSTGame()
 {
     LoadStage("Stage1",LV_N);
@@ -133,6 +136,7 @@ void WSTGame::OnResume(){
 }
 
 void WSTGame::OnInit(){
+    /* test */delete acgclogo;
     m_pGameGraphic = SDL_CreateTexture(Snow::pRnd,SDL_PIXELFORMAT_ARGB8888,SDL_TEXTUREACCESS_TARGET,WIDTH,HEIGHT);
 }
 
