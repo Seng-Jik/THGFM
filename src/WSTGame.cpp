@@ -18,7 +18,7 @@ WSTGame* wstg;
 extern ACGCross::Logo* acgclogo;
 WSTGame::WSTGame()
 {
-    LoadStage("Stage1",LV_N);
+
     player[0].SetPlayerImage(0);
     //m_p2.SetPlayerImage(0);
     player[0].Birth();

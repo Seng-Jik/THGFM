@@ -91,6 +91,7 @@ void Boss::OnDraw()
 
 void Boss::OnNext()
 {
+
     gameUI.UpdateSCHP(m_spellCards.front().hp/m_fullHP);
     if(m_invi){
         m_invi = player[0].Booming();
@@ -99,14 +100,12 @@ void Boss::OnNext()
         m_cnt_begin = *m_cnt;
     m_x -= m_spd * cos(m_angle);
     m_y -= m_spd * sin(m_angle);
-    PNT("BOSS MOVE STATE0:"<<m_firsShow<<" "<<m_spd<<" "<<m_aspd);
     m_spd += m_aspd;
     if(!m_invi) collWorld.SetBossEnemy(m_collEnable,m_x+m_images_w/2,m_y+m_images_h/2,m_images_h/2);
     if(m_firsShow && m_spd <= 0){
         m_aspd = m_spd = 0;
         m_firsShow = false;
     }
-    PNT("BOSS MOVE STATE1:"<<m_firsShow<<" "<<m_spd<<" "<<m_aspd);
     if(m_firsShow) return;
 
 
@@ -147,7 +146,9 @@ void Boss::OnNext()
         }
         PNT("Spell Card End");
     }
-    else if(m_collEnable) (scPartten[m_spellCards.front().scPartten])(this,*m_cnt-m_cnt_begin,*m_cnt,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
+    else if(m_collEnable){
+        (scPartten[m_spellCards.front().scPartten])(this,*m_cnt-m_cnt_begin,*m_cnt,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
+    }
 }
 
 void Boss::OnConersationFinished()

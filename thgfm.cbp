@@ -30,11 +30,10 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-O1" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
 					<Add library="lib/libSnow.a" />
 				</Linker>
 			</Target>
@@ -89,6 +88,7 @@
 		<Unit filename="include/StdParttenAPI.h" />
 		<Unit filename="include/TextBox.h" />
 		<Unit filename="include/Tools.h" />
+		<Unit filename="include/TouHouGameLogo.h" />
 		<Unit filename="include/WSTGame.h" />
 		<Unit filename="include/str2wstr.h" />
 		<Unit filename="src/ACGCross_Logo.cpp" />
@@ -121,6 +121,7 @@
 		<Unit filename="src/Tools.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/TouHouGameLogo.cpp" />
 		<Unit filename="src/WSTGame.cpp" />
 		<Unit filename="src/str2wstr.cpp" />
 		<Extensions>

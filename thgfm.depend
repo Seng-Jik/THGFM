@@ -4331,7 +4331,7 @@
 	<iostream>
 	<string>
 
-1455010122 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
+1455027517 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
 	"Boss.h"
 	"Snow/Debug.h"
 	"Tools.h"
@@ -4511,12 +4511,13 @@
 	"Tools.h"
 	"Beater.h"
 
-1454686699 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
+1455027653 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
 	"GameUI.h"
 	"Tools.h"
 	"WSTGame.h"
 	"str2wstr.h"
 	<cmath>
+	"Snow/Debug.h"
 
 1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\itemmgr.cpp
 	"ItemMgr.h"
@@ -4532,7 +4533,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1454754116 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
+1455028098 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4604,7 +4605,7 @@
 	<iostream>
 	<cstdlib>
 
-1455007753 source:f:\thgfm\tou-hou-gu-feng-meng\src\stagemgr.cpp
+1455026862 source:f:\thgfm\tou-hou-gu-feng-meng\src\stagemgr.cpp
 	"StageMgr.h"
 	"Snow.h"
 	"Tools.h"
@@ -4646,7 +4647,7 @@
 	"Beater.h"
 	"BgmMgr.h"
 
-1455007677 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
+1455026677 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"
@@ -4669,4 +4670,10 @@
 1454751102 f:\thgfm\tou-hou-gu-feng-meng\include\acgcross_logo.h
 	"Snow.h"
 	"MathFunc.h"
+
+1455025067 source:f:\thgfm\tou-hou-gu-feng-meng\src\touhougamelogo.cpp
+	"TouHouGameLogo.h"
+
+1455025067 f:\thgfm\tou-hou-gu-feng-meng\include\touhougamelogo.h
+	<Snow/Activity.h>
 

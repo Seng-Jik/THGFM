@@ -112,6 +112,8 @@ void StageMgr::Clear()
     while(!m_bosses.empty()) {delete m_bosses.front();m_bosses.pop();}
 
     collWorld.ClearEnemy();
+    collWorld.ClearBoom();
+    collWorld.ClearEnemyBullet();
 
 }
 

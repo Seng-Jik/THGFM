@@ -16,12 +16,27 @@
 #include "Snow/Debug.h"
 using namespace std;
 using namespace Snow;
-
 ACGCross::Logo* acgclogo;
 Snow::Mutex initMutex;
 
 void _initThread(THREAD_ID){
     initMutex.Lock();
+    LoadStage("Stage1",LV_N);
+    initMutex.Unlock();
+    PNT("INIT END");
+}
+static Snow::Thread initThread(&_initThread);
+
+int main(int argc,char** argv){
+    Init();
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
+    SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
+    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
+    pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
+
+    acgclogo = new ACGCross::Logo;
+    KeyMapAct::Init();
+    Player::Init();
     PlayerBullet::Init();
     BulletMgr::Init();
     EffectMgr::Init();
@@ -35,23 +50,8 @@ void _initThread(THREAD_ID){
     marisa.Init();
     reimu.Init();
     gameUI.Init();
-    initMutex.Unlock();
-    PNT("INIT END");
-}
-static Snow::Thread initThread(&_initThread);
 
-int main(int argc,char** argv){
-    Init();
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
-    SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
-    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
-    pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
-
-    KeyMapAct::Init();
-    Player::Init();
-
-    acgclogo = new ACGCross::Logo;
-    #ifndef _DEBUG
+    #ifdef _DEBUG
     acgclogo ->SetInitThread(&initThread);
     Run(acgclogo);
     #else
