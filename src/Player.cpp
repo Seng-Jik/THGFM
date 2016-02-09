@@ -56,7 +56,7 @@ void Player::OnDraw()
         m_charData->BoomOnDraw();
     }
     if(m_invin%2==0 && m_live != Player::DEAD)
-        SDL_RenderCopy(pRnd,m_images[m_playerImageNum] [(m_cnt/5)%5],nullptr,&m_r);
+        SDL_RenderCopy(pRnd,m_images[m_playerImageNum] [(m_cnt/7)%5],nullptr,&m_r);
     if(m_k[4]){
         SDL_Rect pdRec = {int(m_x)-3,int(m_y)-3,6,6};
         SDL_SetRenderDrawColor(pRnd,255,255,255,255);

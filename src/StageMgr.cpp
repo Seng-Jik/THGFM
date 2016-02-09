@@ -375,6 +375,11 @@ void StageMgr::OnDraw()
 
     if(m_cnt >= stageTitle.GetBeginTime() && m_cnt <= stageTitle.GetEndTime())
         stageTitle.OnDraw();
+
+    SDL_SetRenderDrawColor(Snow::pRnd,255,0,0,255);
+    char frameStr [16];
+    itoa(m_cnt,frameStr,10);
+    SDLTest_DrawString(Snow::pRnd,WIDTH-200,HEIGHT-16,frameStr);
 }
 
 void StageMgr::KillEnemy(Enemy* e)

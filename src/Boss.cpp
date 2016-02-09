@@ -76,7 +76,6 @@ void Boss::OnBirth()
     //启动时启动对话系统
     if(!m_conversation.empty()){
         Call(bossConversation);
-        m_conversation.clear();
     }
     gameUI.OpenBoss();
     gameUI.UpdateSCHP(1.0);
@@ -100,13 +99,15 @@ void Boss::OnNext()
         m_cnt_begin = *m_cnt;
     m_x -= m_spd * cos(m_angle);
     m_y -= m_spd * sin(m_angle);
-    if(!m_invi) collWorld.SetBossEnemy(m_collEnable,m_x+m_images_w/2,m_y+m_images_h/2,m_images_h/2);
+    PNT("BOSS MOVE STATE0:"<<m_firsShow<<" "<<m_spd<<" "<<m_aspd);
     m_spd += m_aspd;
+    if(!m_invi) collWorld.SetBossEnemy(m_collEnable,m_x+m_images_w/2,m_y+m_images_h/2,m_images_h/2);
     if(m_firsShow && m_spd <= 0){
         m_aspd = m_spd = 0;
         m_firsShow = false;
     }
-
+    PNT("BOSS MOVE STATE1:"<<m_firsShow<<" "<<m_spd<<" "<<m_aspd);
+    if(m_firsShow) return;
 
 
     //当符卡死亡后
@@ -154,6 +155,7 @@ void Boss::OnConersationFinished()
     m_collEnable = true;
     m_cnt_begin = -1;
     gameUI.SetSpellCard(m_spellCards.front().title);
+    m_conversation.clear();
 }
 
 typedef void(*SCBg)(int cnt);

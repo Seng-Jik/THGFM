@@ -1,9 +1,9 @@
 #---------------------------- 基本参数
 #BOSS是否为道中Boss
-INT MIDWAY_BOSS = 0
+INT MIDWAY_BOSS = 1
 
 #对话脚本
-STR CONVERSATION = "Boss/BOSSCon.txt"
+STR CONVERSATION = ""
 
 #---------------------------- BGM参数
 #BOSS BGM
@@ -25,4 +25,4 @@ STR IMG_FILE_8 = ""
 STR IMG_FILE_9 = ""
 
 #---------------------------- 符卡列表CSV配置
-STR SC_CSV = "Boss/SpellCards.csv"
+STR SC_CSV = "ZBoss/SpellCards.csv"
