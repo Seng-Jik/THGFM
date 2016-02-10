@@ -23,7 +23,13 @@ int StageMgr::m_cnt = 0;
 
 void StageMgr::Init()
 {
-    m_eStyles[0].tex = LoadPic("Enemy/e0.png");
+    m_eStyles[0].tex[0] = LoadPic("Enemy/e0/1.png");
+    m_eStyles[0].tex[1] = LoadPic("Enemy/e0/2.png");
+    m_eStyles[0].tex[2] = LoadPic("Enemy/e0/3.png");
+    m_eStyles[0].tex[3] = LoadPic("Enemy/e0/4.png");
+    m_eStyles[0].tex[4] = LoadPic("Enemy/e0/5.png");
+    m_eStyles[0].texCount = 5;
+    m_eStyles[0].r = 32;
     //bossConversation->SetFPSCnt(&m_cnt);
 }
 
@@ -50,6 +56,8 @@ void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath)
         if(firstPop[0] == '#') continue;
         else if(firstPop[0] == 'E'){
             auto e = new Enemy;
+            e -> texNum = 0;
+            e -> flipMode = SDL_FLIP_NONE;
             csv.PopInt(e -> birth);
             csv.PopFloat(e -> x);
             csv.PopFloat(e -> y);
@@ -140,12 +148,13 @@ void StageMgr::OnNext()
             m_clearScreenTime.pop();
             for(int i = m_enemySearchBottom;i < m_enemySearchTop;++i){
                 if(m_enemys[i] -> live == Enemy::LIVE){
-                    effMgr.Install(0,m_enemys[i]->x,m_enemys[i]->y);
+                    effMgr.InstallFrameAnimation(0,m_enemys[i]->x,m_enemys[i]->y);
                     KillEnemy(m_enemys[i]);
                 }
             }
             for(int i = 0;i < bulletMgr.GetSearchTop();++i){
-                if(bulletMgr[i].live) effMgr.Install(0,bulletMgr[i].x,bulletMgr[i].y);
+                if(bulletMgr[i].live) //effMgr.InstallFrameAnimation(0,bulletMgr[i].x,bulletMgr[i].y);
+                    bulletMgr.KillBulletAndInstallEffect(i);
             }
             bulletMgr.Clear();
         }
@@ -172,7 +181,7 @@ void StageMgr::OnNext()
             //如果生命值为0则杀死
             if(enemy.hp <= 0){
                 KillEnemy(&enemy);
-                effMgr.Install(0,enemy.x,enemy.y);
+                effMgr.InstallFrameAnimation(0,enemy.x,enemy.y);
                 itemMgr.AddItem(SCORE,10,enemy.x,enemy.y,enemy.items[SCORE]);
                 itemMgr.AddItem(POWER,15,enemy.x,enemy.y,enemy.items[POWER]);
                 se.Play(DEMOSE);
@@ -184,8 +193,14 @@ void StageMgr::OnNext()
             ++enemy.cnt;
 
             //坐标运算
+            int xSpd = enemy.spd * cos(enemy.angle);
             enemy.y -= enemy.spd * sin(enemy.angle);
-            enemy.x -= enemy.spd * cos(enemy.angle);
+            enemy.x -= xSpd;
+            if(xSpd>=0) enemy.flipMode = SDL_FLIP_NONE;
+            else enemy.flipMode = SDL_FLIP_HORIZONTAL;
+
+            //动画处理
+            enemy.texNum = enemy.cnt /6 % m_eStyles[enemy.style].texCount;
 
             //如果超出屏幕则杀死
             if((enemy.x < -2*m_eStyles[enemy.style].r ||
@@ -365,7 +380,7 @@ void StageMgr::OnDraw()
                              int(2*m_eStyles[m_enemys[i]->style].r),
                              int(2*m_eStyles[m_enemys[i]->style].r)
         };
-        SDL_RenderCopy(pRnd,m_eStyles[m_enemys[i]->style].tex,nullptr,&r);
+        SDL_RenderCopyEx(pRnd,m_eStyles[m_enemys[i]->style].tex[m_enemys[i]->texNum],nullptr,&r,0,nullptr,m_enemys[i]->flipMode);
     }
 
     //Boss 处理
@@ -387,14 +402,14 @@ void StageMgr::OnDraw()
 void StageMgr::KillEnemy(Enemy* e)
 {
     if(e == nullptr){
+        for(int i = 0;i < bulletMgr.GetSearchTop();++i){
+            if(bulletMgr[i].live) bulletMgr.KillBulletAndInstallEffect(i);
+        }
         for(int i = m_enemySearchBottom;i < m_enemySearchTop;++i){
             if(m_enemys[i] -> live == Enemy::LIVE){
-                effMgr.Install(0,m_enemys[i]->x,m_enemys[i]->y);
+                effMgr.InstallFrameAnimation(0,m_enemys[i]->x,m_enemys[i]->y);
                 KillEnemy(m_enemys[i]);
             }
-        }
-        for(int i = 0;i < bulletMgr.GetSearchTop();++i){
-            if(bulletMgr[i].live) effMgr.Install(0,bulletMgr[i].x,bulletMgr[i].y);
         }
     }else{
         e -> live = Enemy::STOPLIVE;

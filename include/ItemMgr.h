@@ -23,6 +23,7 @@ class ItemMgr
         void Kill(int num);
     protected:
     private:
+        static SDL_Texture* m_upCorner;
         struct Item{
             bool live = false;
             ItemType type;

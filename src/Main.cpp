@@ -33,7 +33,6 @@ int main(int argc,char** argv){
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
     pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
-    SDL_ShowCursor(0);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
     KeyMapAct::Init();
@@ -52,7 +51,8 @@ int main(int argc,char** argv){
     reimu.Init();
     gameUI.Init();
 
-    #ifdef _DEBUG
+    #ifndef _DEBUG
+    SDL_ShowCursor(0);
     acgclogo ->SetInitThread(&initThread);
     Run(acgclogo);
     #else

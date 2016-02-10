@@ -7,6 +7,7 @@ using namespace Snow;
 
 ItemMgr itemMgr;
 SDL_Texture* ItemMgr::m_imgs[5];
+SDL_Texture* ItemMgr::m_upCorner;
 void ItemMgr::Init()
 {
     m_imgs[POWER] = LoadPic("Item/Power.png");
@@ -14,6 +15,7 @@ void ItemMgr::Init()
     m_imgs[LIFE1UP] = LoadPic("Item/Life.png");
     m_imgs[SCORE] = LoadPic("Item/Score.png");
     m_imgs[BOMB] = LoadPic("Item/Bomb.png");
+    m_upCorner = LoadPic("Item/UpCorner.png");
 }
 
 void ItemMgr::OnDraw()
@@ -21,7 +23,14 @@ void ItemMgr::OnDraw()
     for(int i = 0;i < m_searchTop;++i){
         if(m_items[i].live){
             SDL_Rect r = {(int)m_items[i].x,(int)m_items[i].y,IMG_WIDTH,IMG_WIDTH};
-            SDL_RenderCopy(pRnd,m_imgs[m_items[i].type],nullptr,&r);
+            SDL_QueryTexture(m_imgs[m_items[i].type],nullptr,nullptr,&r.w,&r.h);
+            if(m_items[i].y<-r.h){
+                r.x += r.w/2 - 11;
+                r.w = 22;r.h = 11;r.y = 4;
+                SDL_RenderCopy(pRnd,m_upCorner,nullptr,&r);
+            }else{
+                SDL_RenderCopy(pRnd,m_imgs[m_items[i].type],nullptr,&r);
+            }
         }
     }
 }
@@ -41,7 +50,7 @@ void ItemMgr::OnNext()
                 if(m_items[i].boomSpdX-0.1>0.9) m_items[i].boomSpdX -= 0.1;
                 if(m_items[i].boom <= 0) m_items[i].state = Item::DOWNING;
 
-                if(m_items[i].y >= HEIGHT) Kill(i);
+                if(m_items[i].y >= HEIGHT || m_items[i].x < 16) Kill(i);
 
                 /* 收取开始 */
                 for(int p = 0;p < 2;++p){

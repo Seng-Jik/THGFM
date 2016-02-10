@@ -20,6 +20,8 @@ struct Enemy{
     int cnt;
     int birth; //出生时间
     int num;
+    int texNum; //当前使用的图像编号
+    SDL_RendererFlip flipMode;  //翻脸模式，自动判断是向前还是向后移动并自动翻转
     enum{NOBIRTH,LIVE,STOPLIVE,DEATH}live = NOBIRTH;
     double angle;   //角度
     double x,y,spd; //x,y,速度,判定半径
@@ -41,7 +43,7 @@ class StageMgr
         int m_enemySearchBottom = 0;
 
         struct EnemyStyle{
-            SDL_Texture* tex;
+            SDL_Texture* tex[16];
             int texCount = 1;
             double r = 16;
         };

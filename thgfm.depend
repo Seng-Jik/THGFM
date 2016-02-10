@@ -4377,7 +4377,7 @@
 	"Snow/Debug.h"
 	"Boss.h"
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\stagemgr.h
+1455111698 f:\thgfm\tou-hou-gu-feng-meng\include\stagemgr.h
 	<string>
 	<vector>
 	<queue>
@@ -4385,12 +4385,12 @@
 	"Boss.h"
 	"Snow.h"
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\bulletmgr.h
+1455110166 f:\thgfm\tou-hou-gu-feng-meng\include\bulletmgr.h
 	<queue>
 	"Snow.h"
 	"StageMgr.h"
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\itemmgr.h
+1455110443 f:\thgfm\tou-hou-gu-feng-meng\include\itemmgr.h
 	<queue>
 	"Snow.h"
 
@@ -4430,7 +4430,7 @@
 	"Tools.h"
 	"MathFunc.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bulletmgr.cpp
+1455109175 source:f:\thgfm\tou-hou-gu-feng-meng\src\bulletmgr.cpp
 	"BulletMgr.h"
 	"Tools.h"
 	<cmath>
@@ -4438,6 +4438,7 @@
 	<cmath>
 	"Snow/Debug.h"
 	"Snow/Debug.h"
+	"EffectMgr.h"
 
 1454678749 source:f:\thgfm\tou-hou-gu-feng-meng\src\chardata.cpp
 	"CharData.h"
@@ -4470,7 +4471,7 @@
 
 1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\pointinxrect.h
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\effectmgr.h
+1455104311 f:\thgfm\tou-hou-gu-feng-meng\include\effectmgr.h
 	<list>
 	"Snow.h"
 
@@ -4487,7 +4488,7 @@
 
 1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\background.h
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\effectmgr.cpp
+1455109460 source:f:\thgfm\tou-hou-gu-feng-meng\src\effectmgr.cpp
 	"EffectMgr.h"
 	"Tools.h"
 	"Snow.h"
@@ -4519,7 +4520,7 @@
 	<cmath>
 	"Snow/Debug.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\itemmgr.cpp
+1455110831 source:f:\thgfm\tou-hou-gu-feng-meng\src\itemmgr.cpp
 	"ItemMgr.h"
 	"Tools.h"
 	"Snow.h"
@@ -4533,7 +4534,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1455075982 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
+1455106013 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4571,7 +4572,7 @@
 	"Tools.h"
 	"Player.h"
 
-1455007872 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
+1455105768 source:f:\thgfm\tou-hou-gu-feng-meng\src\player.cpp
 	"Player.h"
 	"Tools.h"
 	"CollWorld.h"
@@ -4606,7 +4607,7 @@
 	<iostream>
 	<cstdlib>
 
-1455026862 source:f:\thgfm\tou-hou-gu-feng-meng\src\stagemgr.cpp
+1455111908 source:f:\thgfm\tou-hou-gu-feng-meng\src\stagemgr.cpp
 	"StageMgr.h"
 	"Snow.h"
 	"Tools.h"

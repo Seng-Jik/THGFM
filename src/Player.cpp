@@ -76,9 +76,9 @@ void Player::OnNext()
             m_live = DEAD;
             gameUI.OnPlayerBeKilled();
             if(gameUI.GetLife() == 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
-            effMgr.Install(0,m_x,m_y);
+            effMgr.InstallFrameAnimation(0,m_x,m_y);
             stage.KillEnemy(nullptr);
-            bulletMgr.Clear();
+            //bulletMgr.Clear();
         }
     }
     double spd = 9;

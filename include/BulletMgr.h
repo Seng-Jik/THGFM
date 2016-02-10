@@ -53,6 +53,7 @@ class BulletMgr
         void Clear();
         int Alloc(double x,double y,int style);
         void Kill(int n);
+        void KillBulletAndInstallEffect(int n);
         Bullet& operator [] (int n){return m_blts[n];}
         inline int GetSearchTop(){return m_searchTop;}
         ~BulletMgr();

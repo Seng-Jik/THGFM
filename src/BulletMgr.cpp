@@ -226,3 +226,30 @@ void BulletMgr::Kill(int n)
 
     collWorld.SetEnemyBulletSearchTop(m_searchTop);
 }
+
+#include "EffectMgr.h"
+void BulletMgr::KillBulletAndInstallEffect(int n)
+{
+    int i = n;
+    if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT){
+            SDL_Rect r = {int(m_blts[i].x-m_blts[i].self_w/2),
+                                int(m_blts[i].y-m_blts[i].self_h/2),
+                                int(m_blts[i].self_w),
+                                int(m_blts[i].self_h)
+            };
+            SDL_Point roll_poi = {m_blts[i].self_roll_center_x,m_blts[i].self_roll_center_y};
+            SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
+            effMgr.InstallZoomOutAnimation(m_bulletStyle[m_blts[n].style].tex,r,true,roll_poi,m_blts[i].self_angle* 180/M_PI);
+    }
+    else if(m_blts[i].live && m_bulletStyle[m_blts[i].style].shape == BulletStyle::CIRCLE){
+        SDL_Rect r = {int(m_blts[i].x - m_bulletStyle[m_blts[i].style].circle.r),
+                            int(m_blts[i].y - m_bulletStyle[m_blts[i].style].circle.r),
+                            int(2*m_bulletStyle[m_blts[i].style].circle.r),
+                            int(2*m_bulletStyle[m_blts[i].style].circle.r)
+        };
+        SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
+        SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].circle.r),int(m_bulletStyle[m_blts[i].style].circle.r)};
+        effMgr.InstallZoomOutAnimation(m_bulletStyle[m_blts[n].style].tex,r,true,poi,m_blts[i].self_angle* 180/M_PI);
+    }
+    Kill(n);
+}
