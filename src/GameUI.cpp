@@ -4,6 +4,7 @@
 #include "str2wstr.h"
 #include <cmath>
 #include "Snow/Debug.h"
+
 GameUI gameUI;
 
 void GameUI::Init()

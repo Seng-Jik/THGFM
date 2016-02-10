@@ -14,9 +14,9 @@
 #include "GameUI.h"
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
+#include "TouHouGameLogo.h"
 using namespace std;
 using namespace Snow;
-ACGCross::Logo* acgclogo;
 Snow::Mutex initMutex;
 
 void _initThread(THREAD_ID){
@@ -33,8 +33,9 @@ int main(int argc,char** argv){
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
     pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
+    SDL_ShowCursor(0);
 
-    acgclogo = new ACGCross::Logo;
+    ACGCross::Logo* acgclogo = new ACGCross::Logo;
     KeyMapAct::Init();
     Player::Init();
     PlayerBullet::Init();
@@ -45,7 +46,7 @@ int main(int argc,char** argv){
     pause = new PauseActivity;
     bossConversation = new BossConversation;
     wstg = new WSTGame;
-    acgclogo -> SetGoto(*wstg);
+    acgclogo -> SetGoto(*new TouHouGameLogo);
     StageMgr::Init();
     marisa.Init();
     reimu.Init();

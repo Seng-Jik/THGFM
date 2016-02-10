@@ -64,6 +64,7 @@ void Logo::OnHide()
     m_yzsz_zi.Clear();
     m_yzsz_eng.Clear();
     m_effect.Clear();*/
+    delete this;
 }
 
 extern Snow::Mutex initMutex;
