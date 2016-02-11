@@ -4331,7 +4331,7 @@
 	<iostream>
 	<string>
 
-1455027517 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
+1455174829 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
 	"Boss.h"
 	"Snow/Debug.h"
 	"Tools.h"
@@ -4343,16 +4343,17 @@
 	"GameUI.h"
 	"Player.h"
 
-1455009987 f:\thgfm\tou-hou-gu-feng-meng\include\boss.h
+1455174607 f:\thgfm\tou-hou-gu-feng-meng\include\boss.h
 	<string>
 	"Snow.h"
 	<queue>
+	"BossConversation.h"
 
 1454682566 f:\thgfm\tou-hou-gu-feng-meng\include\tools.h
 	"Snow.h"
 	<string>
 
-1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\bossconversation.h
+1455174688 f:\thgfm\tou-hou-gu-feng-meng\include\bossconversation.h
 	"KeyMapAct.h"
 	"TextBox.h"
 	<queue>
@@ -4377,7 +4378,7 @@
 	"Snow/Debug.h"
 	"Boss.h"
 
-1455111698 f:\thgfm\tou-hou-gu-feng-meng\include\stagemgr.h
+1455174489 f:\thgfm\tou-hou-gu-feng-meng\include\stagemgr.h
 	<string>
 	<vector>
 	<queue>
@@ -4408,7 +4409,7 @@
 	"Snow.h"
 	"KeyMapAct.h"
 
-1454480159 source:f:\thgfm\tou-hou-gu-feng-meng\src\bossconversation.cpp
+1455174694 source:f:\thgfm\tou-hou-gu-feng-meng\src\bossconversation.cpp
 	"BossConversation.h"
 	"WSTGame.h"
 	"str2wstr.h"
@@ -4534,7 +4535,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1455106013 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
+1455174700 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4649,7 +4650,7 @@
 	"Beater.h"
 	"BgmMgr.h"
 
-1455070653 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
+1455174489 source:f:\thgfm\tou-hou-gu-feng-meng\src\wstgame.cpp
 	"WSTGame.h"
 	"BulletMgr.h"
 	"CollWorld.h"

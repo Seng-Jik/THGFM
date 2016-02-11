@@ -64,18 +64,22 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
     }while(csv.NextLine());
     if(!m_conversation.empty()){
         m_collEnable = false;
-        bossConversation ->LoadConversation(m_conversation,m_basePath);
-    }else m_collEnable = true;
+        m_bossConversation = new BossConversation;
+        m_bossConversation ->LoadConversation(m_conversation,m_basePath);
+        m_bossConversation ->SetPtrs(m_cnt,this);
+    }else{
+        m_collEnable = true;
+        m_bossConversation = nullptr;
+    }
 }
 
 void Boss::OnBirth()
 {
     m_cnt_begin = -1;
     collWorld.SetBossObj(this);
-    bossConversation ->SetPtrs(m_cnt,this);
     //启动时启动对话系统
-    if(!m_conversation.empty()){
-        Call(bossConversation);
+    if(m_bossConversation){
+        Call(m_bossConversation);
     }
     gameUI.OpenBoss();
     gameUI.UpdateSCHP(1.0);

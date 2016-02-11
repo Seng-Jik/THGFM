@@ -91,6 +91,6 @@ class BossConversation : public KeyMapAct
         BossConChar m_left,m_right;
 };
 
-extern BossConversation* bossConversation;
+//extern BossConversation* bossConversation;
 
 #endif // BOSSCONVERSATION_H

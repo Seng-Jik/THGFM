@@ -7,7 +7,7 @@
 #define WINDOW_YOFFSET 50
 using namespace Snow;
 
-BossConversation* bossConversation;
+//BossConversation* bossConversation;
 void BossConversation::OnInit()
 {
     m_text.Init();

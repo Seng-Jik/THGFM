@@ -5,6 +5,7 @@
 #include "Snow.h"
 //#include "MathFunc.h"
 #include <queue>
+#include "BossConversation.h"
 class Boss
 {
     friend int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int minLiveTime,int style);
@@ -13,6 +14,7 @@ class Boss
         int* m_cnt;  //帧计数器
         bool m_bouns;   //是否应当奖励
         bool m_invi;    //Boss是否无敌
+        BossConversation* m_bossConversation;   //Boss对话活动
 
         bool m_live = true;    //存活标志
         bool m_collEnable;

@@ -43,7 +43,7 @@ int main(int argc,char** argv){
     SeMgr::Init();
     ItemMgr::Init();
     pause = new PauseActivity;
-    bossConversation = new BossConversation;
+    //bossConversation = new BossConversation;
     wstg = new WSTGame;
     acgclogo -> SetGoto(*new TouHouGameLogo);
     StageMgr::Init();
