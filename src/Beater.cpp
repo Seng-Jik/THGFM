@@ -17,7 +17,7 @@ void Beater::OnNext()
         m_nextFps += m_idenFps;
         ++m_beatNum;
     }
-    PNT("BEATER:"<<*m_pCnt<<" "<<(int)m_nextFps);
+    //PNT("BEATER:"<<*m_pCnt<<" "<<(int)m_nextFps);
 }
 
 /*void Beater::LoadBeats(const std::string& f)

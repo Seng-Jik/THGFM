@@ -165,7 +165,7 @@ void Boss::OnNext()
         PNT("Spell Card End");
     }
     else if(m_collEnable){
-        (scPartten[m_spellCards.front().scPartten])(this,*m_mainCnt-m_cnt_begin,*m_mainCnt,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
+        (scPartten[m_spellCards.front().scPartten])(this,m_cnt,*m_mainCnt - m_cnt_begin,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
     }
 }
 
