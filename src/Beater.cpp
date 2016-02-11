@@ -43,7 +43,7 @@ void Beater::SetBeater(double bpm)
 
 void Beater::ChangeBpm(double bpm)
 {
-    m_nextFps -= m_idenFps;
+    m_nextFps = *m_pCnt;
     m_idenFps = 60/(bpm/60);
     m_nextFps += m_idenFps;
     m_beatNum = 0;

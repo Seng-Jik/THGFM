@@ -11,7 +11,8 @@ class Boss
     friend int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int minLiveTime,int style);
     friend class BulletMgr;
     private:
-        int* m_mainCnt;  //帧计数器
+        int* m_mainCnt;  //全局帧计数器
+        int m_cnt;  //独立帧计数器
         bool m_bouns;   //是否应当奖励
         bool m_invi;    //Boss是否无敌
         BossConversation* m_bossConversation;   //Boss对话活动

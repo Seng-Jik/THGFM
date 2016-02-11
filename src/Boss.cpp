@@ -11,6 +11,7 @@
 using namespace Snow;
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 {
+    m_cnt = 0;
     m_spellCardNum = 0;
     m_mainCnt = cnt;
     m_bouns = true;
@@ -108,7 +109,7 @@ void Boss::OnDraw()
 
 void Boss::OnNext()
 {
-
+    ++m_cnt;
     gameUI.UpdateSCHP(m_spellCards.front().hp/m_fullHP);
     if(m_invi){
         m_invi = player[0].Booming();
@@ -127,7 +128,7 @@ void Boss::OnNext()
 
 
     //µ±·û¿¨ËÀÍöºó
-    if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || *m_mainCnt >= m_spellCards.front().endTime) && m_collEnable){
+    if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || m_cnt >= m_spellCards.front().endTime) && m_collEnable){
         if(m_bouns && m_spellCards.front().isSpellCard){
             if(rand()%10 <= 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
             else itemMgr.AddItem(BOMB,10,m_x,m_y,1);
