@@ -15,6 +15,7 @@
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
+#include "SCClock.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -50,6 +51,7 @@ int main(int argc,char** argv){
     marisa.Init();
     reimu.Init();
     gameUI.Init();
+    scClock.Init();
 
     #ifndef _DEBUG
     SDL_ShowCursor(0);

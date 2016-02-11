@@ -4189,7 +4189,7 @@
 	"Snow.h"
 	<string>
 
-1455190763 source:f:\thgfm\tou-hou-gu-feng-meng\src\beater.cpp
+1455194600 source:f:\thgfm\tou-hou-gu-feng-meng\src\beater.cpp
 	"Beater.h"
 	"Snow.h"
 	"Snow/Debug.h"
@@ -4332,7 +4332,7 @@
 	<iostream>
 	<string>
 
-1455193393 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
+1455197180 source:f:\thgfm\tou-hou-gu-feng-meng\src\boss.cpp
 	"Boss.h"
 	"Snow/Debug.h"
 	"Tools.h"
@@ -4343,6 +4343,7 @@
 	"CollWorld.h"
 	"GameUI.h"
 	"Player.h"
+	"SCClock.h"
 
 1455191267 f:\thgfm\tou-hou-gu-feng-meng\include\boss.h
 	<string>
@@ -4516,13 +4517,14 @@
 	"Tools.h"
 	"Beater.h"
 
-1455179409 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
+1455196185 source:f:\thgfm\tou-hou-gu-feng-meng\src\gameui.cpp
 	"GameUI.h"
 	"Tools.h"
 	"WSTGame.h"
 	"str2wstr.h"
 	<cmath>
 	"Snow/Debug.h"
+	"SCClock.h"
 
 1455110831 source:f:\thgfm\tou-hou-gu-feng-meng\src\itemmgr.cpp
 	"ItemMgr.h"
@@ -4538,7 +4540,7 @@
 	"Snow/Debug.h"
 	"Tools.h"
 
-1455174700 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
+1455195552 source:f:\thgfm\tou-hou-gu-feng-meng\src\main.cpp
 	"Snow.h"
 	"KeyMapAct.h"
 	"WSTGame.h"
@@ -4556,6 +4558,7 @@
 	"ACGCross_Logo.h"
 	"Snow/Debug.h"
 	"TouHouGameLogo.h"
+	"SCClock.h"
 
 1454480157 f:\thgfm\tou-hou-gu-feng-meng\include\semgr.h
 	"Snow.h"
@@ -4683,4 +4686,15 @@
 
 1455073226 f:\thgfm\tou-hou-gu-feng-meng\include\touhougamelogo.h
 	<Snow.h>
+
+1455196888 f:\thgfm\tou-hou-gu-feng-meng\include\scclock.h
+	"Snow.h"
+	"MathFunc.h"
+	"Tools.h"
+	"Snow/Debug.h"
+	<string>
+
+1455197114 source:f:\thgfm\tou-hou-gu-feng-meng\src\scclock.cpp
+	"SCClock.h"
+	"Tools.h"
 

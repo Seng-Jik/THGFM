@@ -4,6 +4,7 @@
 #include "str2wstr.h"
 #include <cmath>
 #include "Snow/Debug.h"
+#include "SCClock.h"
 
 GameUI gameUI;
 
@@ -64,10 +65,13 @@ void GameUI::OnDraw()
     SDL_RenderCopy(Snow::pRnd,m_bossHPLineShell,nullptr,&rs);
     rs.w = int(639*m_showSCHP);
     SDL_RenderCopy(Snow::pRnd,m_bossHPLine,nullptr,&rs);
+
+    scClock.OnDraw();
 }
 
 void GameUI::OnNext()
 {
+    scClock.OnNext();
     if(m_rebirth){
         m_rebirth --;
         if(!m_rebirth){

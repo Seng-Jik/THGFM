@@ -8,6 +8,7 @@
 #include "CollWorld.h"
 #include "GameUI.h"
 #include "Player.h"
+#include "SCClock.h"
 using namespace Snow;
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 {
@@ -125,6 +126,7 @@ void Boss::OnNext()
         m_firsShow = false;
     }
     if(m_firsShow) return;
+    scClock.SetTime(m_spellCards.front().endTime - m_cnt);
 
 
     //µ±·û¿¨ËÀÍöºó
@@ -148,6 +150,7 @@ void Boss::OnNext()
             m_live = false;
             gameUI.CloseBoss();
             gameUI.HideHPLine();
+            scClock.Hide();
             PNT("Boss End");
         }else{
             if(m_spellCards.front().isSpellCard)
@@ -175,6 +178,8 @@ void Boss::OnConersationFinished()
     m_cnt_begin = -1;
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
+    scClock.Reset();
+    scClock.Show();
 }
 
 typedef void(*SCBg)(int cnt);
