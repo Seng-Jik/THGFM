@@ -1,5 +1,6 @@
 #include "Beater.h"
 #include "Snow.h"
+#include "Snow/Debug.h"
 using namespace Snow;
 
 Beater beater;
@@ -16,6 +17,7 @@ void Beater::OnNext()
         m_nextFps += m_idenFps;
         ++m_beatNum;
     }
+    PNT("BEATER:"<<*m_pCnt<<" "<<(int)m_nextFps);
 }
 
 /*void Beater::LoadBeats(const std::string& f)

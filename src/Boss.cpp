@@ -70,9 +70,10 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
             ResFile rf;
             rf.Load(basePath + r.Str("BGM_SND"));
             bgm = Mix_LoadWAV_RW(rf,rf.Size());
-            bpm = -1;
+            bpm = r.Float("BGM_BPM");
         }else{
             bgm = nullptr;
+            bpm = 1;
         }
 
         m_collEnable = false;
