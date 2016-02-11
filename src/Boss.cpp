@@ -95,7 +95,7 @@ void Boss::OnBirth()
     //启动时启动对话系统
     if(m_bossConversation){
         Call(m_bossConversation);
-    }
+    }else OnConersationFinished();
     gameUI.OpenBoss();
     gameUI.UpdateSCHP(1.0);
     m_fullHP = m_spellCards.front().hp;
@@ -115,8 +115,9 @@ void Boss::OnNext()
     if(m_invi){
         m_invi = player[0].Booming();
     }
-    if(m_cnt_begin == -1)
+    if(m_cnt_begin == -1){
         m_cnt_begin = *m_mainCnt;
+    }
     m_x -= m_spd * cos(m_angle);
     m_y -= m_spd * sin(m_angle);
     m_spd += m_aspd;
@@ -124,6 +125,7 @@ void Boss::OnNext()
     if(m_firsShow && m_spd <= 0){
         m_aspd = m_spd = 0;
         m_firsShow = false;
+        scClock.Show();
     }
     if(m_firsShow) return;
     scClock.SetTime(m_spellCards.front().endTime - m_cnt);
@@ -178,8 +180,6 @@ void Boss::OnConersationFinished()
     m_cnt_begin = -1;
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
-    scClock.Reset();
-    scClock.Show();
 }
 
 typedef void(*SCBg)(int cnt);

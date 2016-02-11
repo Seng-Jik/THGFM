@@ -16,6 +16,7 @@ class Boss
         bool m_bouns;   //是否应当奖励
         bool m_invi;    //Boss是否无敌
         BossConversation* m_bossConversation;   //Boss对话活动
+        float m_hpAttackMul = 1;    //攻击倍率
 
         bool m_live = true;    //存活标志
         bool m_collEnable;
@@ -52,7 +53,7 @@ class Boss
         void OnNext();
         void OnConersationFinished();
         inline bool Live(){return m_live;};
-        inline void KillHP(double hp){m_spellCards.front().hp-=hp;}
+        inline void KillHP(double hp){m_spellCards.front().hp-=m_hpAttackMul*hp;}
         inline bool IsInvi(){return m_invi;}
         inline int GetSpellCardNum(){return m_spellCardNum;}    //取符卡剩余数
         int birthTime;

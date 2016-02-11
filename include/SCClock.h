@@ -12,23 +12,34 @@ written by MaikazeSekai
 
 class ScClock{
 public:
-    void Reset();
     void Init();
     void Show();
     void Hide();
     void SetTime(int i_frame);
-    void SetAlpha(float i_a);
     void OnNext();
     void OnDraw();
 
 private:
     //the picture of color is the last
-    SDL_Texture* m_tex[11];
+    void reset();
+    void setAlpha(Uint8 alpha);
+    SDL_Texture* m_tex[2][11];
     SDL_Rect m_rect[5];
-    int m_sec_0, m_sec_1, m_msec_0, m_msec_1, m_animetime;
-    float m_alpha;
-    bool m_show, m_x, m_y, m_move, m_init;
-    const int COLON = 10;
+    int m_sec_0, m_sec_1, m_msec_0, m_msec_1;
+
+    bool m_visible = false;
+
+    //Animation
+    enum{
+        SHOWING_S1, //½×¶Î1
+        SHOWING_S2, //½×¶Î2
+        HIDING,
+        NONE
+    }m_anime = NONE;
+    Snow::FrameTimer m_animeTmr;
+
+public:
+    inline bool GetVisible(){return m_visible;}
 };
 
 extern ScClock scClock;
