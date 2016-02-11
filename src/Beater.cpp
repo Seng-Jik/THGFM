@@ -39,6 +39,15 @@ void Beater::SetBeater(double bpm)
     m_isBeat = false;
 }
 
+void Beater::ChangeBpm(double bpm)
+{
+    m_nextFps -= m_idenFps;
+    m_idenFps = 60/(bpm/60);
+    m_nextFps += m_idenFps;
+    m_beatNum = 0;
+}
+
+
 /*void Beater::Clear()
 {
     while(!m_beats.empty()) m_beats.pop();

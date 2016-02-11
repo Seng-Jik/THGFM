@@ -12,7 +12,7 @@ using namespace Snow;
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 {
     m_spellCardNum = 0;
-    m_cnt = cnt;
+    m_mainCnt = cnt;
     m_bouns = true;
     PNT("Boss::LoadRV:"<<s);
     m_invi = false;
@@ -78,7 +78,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
         m_collEnable = false;
         m_bossConversation = new BossConversation;
         m_bossConversation ->LoadConversation(m_conversation,m_basePath,bgm,bpm);
-        m_bossConversation ->SetPtrs(m_cnt,this);
+        m_bossConversation ->SetPtrs(m_mainCnt,this);
     }else{
         m_collEnable = true;
         m_bossConversation = nullptr;
@@ -113,7 +113,7 @@ void Boss::OnNext()
         m_invi = player[0].Booming();
     }
     if(m_cnt_begin == -1)
-        m_cnt_begin = *m_cnt;
+        m_cnt_begin = *m_mainCnt;
     m_x -= m_spd * cos(m_angle);
     m_y -= m_spd * sin(m_angle);
     m_spd += m_aspd;
@@ -126,7 +126,7 @@ void Boss::OnNext()
 
 
     //µ±·û¿¨ËÀÍöºó
-    if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || *m_cnt >= m_spellCards.front().endTime) && m_collEnable){
+    if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || *m_mainCnt >= m_spellCards.front().endTime) && m_collEnable){
         if(m_bouns && m_spellCards.front().isSpellCard){
             if(rand()%10 <= 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
             else itemMgr.AddItem(BOMB,10,m_x,m_y,1);
@@ -163,7 +163,7 @@ void Boss::OnNext()
         PNT("Spell Card End");
     }
     else if(m_collEnable){
-        (scPartten[m_spellCards.front().scPartten])(this,*m_cnt-m_cnt_begin,*m_cnt,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
+        (scPartten[m_spellCards.front().scPartten])(this,*m_mainCnt-m_cnt_begin,*m_mainCnt,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
     }
 }
 
@@ -181,7 +181,7 @@ void Boss::OnSCBGDraw()
 {
     if(!m_collEnable || m_spellCards.empty()) return;
     if(m_live && m_spellCards.front().bgPartten != -1){
-        (*scbgs[m_spellCards.front().bgPartten])(*m_cnt-m_cnt_begin);
+        (*scbgs[m_spellCards.front().bgPartten])(*m_mainCnt-m_cnt_begin);
     }
 }
 

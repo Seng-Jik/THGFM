@@ -69,7 +69,7 @@ bool BossConversation::parseLine()
                 else if(arg[0] == 'r') {m_right.UnAct();}
             }else if(cmd == "bom"){
                 bgm.UseMusic(m_bgm,1);
-                beater.SetBeater(m_bgmBpm);
+                beater.ChangeBpm(m_bgmBpm);
                 bgm.Play();
             }else if(cmd == "stp"){
                 bgm.Stop(atoi(arg.c_str()));
