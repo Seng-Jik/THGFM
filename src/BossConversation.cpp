@@ -3,6 +3,8 @@
 #include "str2wstr.h"
 #include "MathFunc.h"
 #include "Player.h"
+#include "BgmMgr.h"
+#include "Beater.h"
 
 #define WINDOW_YOFFSET 50
 using namespace Snow;
@@ -65,6 +67,12 @@ bool BossConversation::parseLine()
             else if(cmd == "lhu"){
                 if(arg[0] == 'l') {m_left.UnAct();}
                 else if(arg[0] == 'r') {m_right.UnAct();}
+            }else if(cmd == "bom"){
+                bgm.UseMusic(m_bgm,1);
+                beater.SetBeater(m_bgmBpm);
+                bgm.Play();
+            }else if(cmd == "stp"){
+                bgm.Stop(atoi(arg.c_str()));
             }
         }
         m_conversations.pop();
@@ -75,8 +83,11 @@ bool BossConversation::parseLine()
     return true;
 }
 
-void BossConversation::LoadConversation(const std::string& s,const std::string& basePath)
+void BossConversation::LoadConversation(const std::string& s,const std::string& basePath,Mix_Chunk* bgm,double bgmBpm)
 {
+    m_bgm = bgm;
+    m_bgmBpm = bgmBpm;
+
     m_basePath = basePath;
     while(!m_conversations.empty()) m_conversations.pop();
     ResFile rf;
@@ -189,5 +200,6 @@ void BossConversation::OnHide()
 {
     /* TODO:½ö1P */
     if(m_shotPressed[0]) player[0].OnEvent(T_SHOT,true);
+    delete this;
 }
 

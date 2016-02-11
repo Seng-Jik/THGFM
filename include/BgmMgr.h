@@ -6,6 +6,7 @@ class BgmMgr
 {
     public:
         void LoadMusic(const std::string&,int loops);
+        void UseMusic(Mix_Chunk*,int loops);
         void Play();
         void Clear();
         void Stop(int ms);

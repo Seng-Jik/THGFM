@@ -20,9 +20,19 @@ void BgmMgr::LoadMusic(const std::string& s,int loops)
 
 }
 
+void BgmMgr::UseMusic(Mix_Chunk* mix,int loops)
+{
+    Clear();
+    m_bgmMus = mix;
+    SDL_assert(mix != nullptr);
+    m_loops = loops;
+}
+
+
 void BgmMgr::Clear()
 {
     //Mix_FreeMusic(m_bgmMus);
+    Mix_HaltChannel(0);
     Mix_FreeChunk(m_bgmMus);
     m_bgmMus = nullptr;
 }

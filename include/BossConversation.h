@@ -62,9 +62,12 @@ class BossConversation : public KeyMapAct
         void OnHide();
         void OnNext();
         void OnEvent(int,Key,bool);
-        void LoadConversation(const std::string& s,const std::string& basePath);
+        void LoadConversation(const std::string& s,const std::string& basePath,Mix_Chunk* bgm,double bgmBpm);
     protected:
     private:
+        Mix_Chunk* m_bgm;
+        double m_bgmBpm;
+
         ACGCross::Galgame::TextBox m_text;
         std::string m_basePath;
         std::queue<std::string> m_conversations;

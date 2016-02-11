@@ -63,9 +63,21 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
         m_spellCards.push(sc);
     }while(csv.NextLine());
     if(!m_conversation.empty()){
+        //Load Bgm
+        Mix_Chunk* bgm;
+        double bpm;
+        if(!r.Str("BGM_SND").empty()){
+            ResFile rf;
+            rf.Load(basePath + r.Str("BGM_SND"));
+            bgm = Mix_LoadWAV_RW(rf,rf.Size());
+            bpm = -1;
+        }else{
+            bgm = nullptr;
+        }
+
         m_collEnable = false;
         m_bossConversation = new BossConversation;
-        m_bossConversation ->LoadConversation(m_conversation,m_basePath);
+        m_bossConversation ->LoadConversation(m_conversation,m_basePath,bgm,bpm);
         m_bossConversation ->SetPtrs(m_cnt,this);
     }else{
         m_collEnable = true;

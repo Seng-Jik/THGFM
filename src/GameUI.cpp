@@ -178,31 +178,22 @@ void GameUI::CloseBoss()
 int sc_x;
 void GameUI::SetSpellCard(const std::string& scName)
 {
-    PNT("DBG BEG");
     if(scName.empty()){
-        PNT("DBG PNT 0");
         m_scName.Clear();
-        PNT("DBG PNT 1");
         m_scName_show = false;
     }else{
         //load the name of Spellcard and Initilize the value
         int h;
-        PNT("DBG PNT 2");
         m_scName.Load(m_font,StringToWString(scName),true);
-        PNT("DBG PNT 3");
         m_scName.GetSize(sc_x,h);
         sc_x = WIDTH - sc_x-34;
-        PNT("DBG PNT 4");
         m_scName.SetAlpha(0);
-        PNT("DBG PNT 5");
         m_scName_show = true;
         m_scNameTime = 0;
         m_scName_animation = true;
         m_scName_downAnimation = false;
         m_scName.SetPos(sc_x, SC_Y);
-        PNT("DBG PNT 6");
     }
-    PNT("DBG END");
 }
 
 void GameUI::doScDownAnimation()
