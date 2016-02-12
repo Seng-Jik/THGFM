@@ -47,7 +47,7 @@ class StageMgr
             int texCount = 1;
             double r = 16;
         };
-        static EnemyStyle m_eStyles [1];
+        static EnemyStyle m_eStyles [128];
 
         std::queue<int> m_clearScreenTime;
 

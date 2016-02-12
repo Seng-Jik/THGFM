@@ -59,11 +59,28 @@ void BulletMgr::loadXRectBulletStyle(int i, const std::string& s, int w, int h)
 }
 
 
-BulletMgr::BulletStyle BulletMgr::m_bulletStyle[10];
+BulletMgr::BulletStyle BulletMgr::m_bulletStyle[64];
 void BulletMgr::Init()
 {
-    loadCircleBulletStyle(0,"Bullet/s1.png",8,6);
-    loadXRectBulletStyle(1,"Bullet/s0.png",500,39);
+    Snow::CSVReader csv;
+    csv.LoadCSV("Bullet/styles.csv");
+    std::string shape,file;
+    int num = 0;
+    csv.NextLine();
+    do{
+        double r1,r2;
+        csv.PopStr(shape);
+        csv.PopStr(file);
+        file = "Bullet/" + file;
+        csv.PopFloat(r1);
+        csv.PopFloat(r2);
+        if(shape[0] == 'C'){
+            loadCircleBulletStyle(num,file.c_str(),r1,r2);
+        }else if(shape[0] == 'R'){
+            loadXRectBulletStyle(num,file.c_str(),r1,r2);
+        }
+        ++num;
+    }while(csv.NextLine());
 }
 
 

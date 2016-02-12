@@ -18,18 +18,24 @@ using namespace Snow;
 
 StageMgr stage;
 
-StageMgr::EnemyStyle StageMgr::m_eStyles [1];
+StageMgr::EnemyStyle StageMgr::m_eStyles [128];
 int StageMgr::m_cnt = 0;
 
 void StageMgr::Init()
 {
-    m_eStyles[0].tex[0] = LoadPic("Enemy/e0/1.png");
-    m_eStyles[0].tex[1] = LoadPic("Enemy/e0/2.png");
-    m_eStyles[0].tex[2] = LoadPic("Enemy/e0/3.png");
-    m_eStyles[0].tex[3] = LoadPic("Enemy/e0/4.png");
-    m_eStyles[0].tex[4] = LoadPic("Enemy/e0/5.png");
-    m_eStyles[0].texCount = 5;
-    m_eStyles[0].r = 32;
+    Snow::CSVReader csv;
+    csv.LoadCSV("Enemy/styles.csv");
+    int num = 0;
+    csv.NextLine();
+    do{
+        PNT("TEST NUM:"<<num);
+        csv.PopInt(m_eStyles[num].texCount);
+        csv.PopFloat(m_eStyles[num].r);
+        for(int i = 0;i < m_eStyles[num].texCount;++i){
+            m_eStyles[num].tex[i] = LoadPic("Enemy/e"+std::to_string(num)+"/"+std::to_string(i+1)+".png");
+        }
+        ++num;
+    }while(csv.NextLine());
     //bossConversation->SetFPSCnt(&m_cnt);
 }
 

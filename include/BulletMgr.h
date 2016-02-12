@@ -39,7 +39,7 @@ class BulletMgr
             };
 
         };
-        static BulletStyle m_bulletStyle[10];
+        static BulletStyle m_bulletStyle[64];
         int m_searchTop = 0;
 
         void enableXRectBullet(int bltNum);
