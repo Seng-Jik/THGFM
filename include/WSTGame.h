@@ -19,6 +19,8 @@ class WSTGame : public KeyMapAct
         ~WSTGame();
     protected:
     private:
+        bool m_dbg_doubleSpeed = false;
+
         SDL_Texture* m_pGameGraphic;
         int m_shkTmr = 0;
 };

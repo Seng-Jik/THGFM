@@ -16,7 +16,8 @@ class Boss
         bool m_bouns;   //是否应当奖励
         bool m_invi;    //Boss是否无敌
         BossConversation* m_bossConversation;   //Boss对话活动
-        float m_hpAttackMul = 1;    //攻击倍率
+        float m_hpAttackMul = 1;    //攻击倍率(实际)
+        float m_hpAttackMulTarget = 1;  //攻击倍率(目标变换值)
 
         bool m_live = true;    //存活标志
         bool m_collEnable;

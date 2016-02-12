@@ -111,6 +111,22 @@ void Boss::OnDraw()
 void Boss::OnNext()
 {
     ++m_cnt;
+
+    //¹¥»÷±¶ÂÊ±ä»»
+    if(m_hpAttackMulTarget > 8) m_hpAttackMulTarget = 8;
+    else if(m_hpAttackMulTarget < 0.125) m_hpAttackMulTarget = 0.125;
+
+    if(m_hpAttackMulTarget > m_hpAttackMul){
+        if(m_hpAttackMulTarget - m_hpAttackMul < 0.1)
+            m_hpAttackMul = m_hpAttackMulTarget;
+        else m_hpAttackMul += 0.1;
+    }else if(m_hpAttackMulTarget < m_hpAttackMul){
+        if(m_hpAttackMul -m_hpAttackMulTarget < 0.1)
+            m_hpAttackMul = m_hpAttackMulTarget;
+        else m_hpAttackMul -= 0.1;
+    }
+    m_hpAttackMulTarget = 8;
+
     gameUI.UpdateSCHP(m_spellCards.front().hp/m_fullHP);
     if(m_invi){
         m_invi = player[0].Booming();

@@ -8,7 +8,9 @@ enum Key{
     T_PAUSE,
     T_ENTER,
     T_ESC,
-    T_NONE
+    T_NONE,
+    T_DBG_DOUBLE_SPEED,
+    T_DBG_INVIC
 };
 
 class KeyMapAct : public Snow::Activity

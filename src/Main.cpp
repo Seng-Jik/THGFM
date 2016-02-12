@@ -33,6 +33,7 @@ int main(int argc,char** argv){
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
+    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D11_DEBUG,"0");
     pRnd.Create("东方谷丰梦",FALSE,WIDTH,HEIGHT);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;

@@ -158,6 +158,9 @@ void Player::OnEvent(Key k, bool b)
         Invincible(390);
         itemMgr.GetAll(m_playerNum);
     }
+    else if(k == T_DBG_INVIC){
+        Invincible(999999999);
+    }
 }
 
 void Player::Invincible(int frame)

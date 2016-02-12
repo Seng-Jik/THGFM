@@ -111,6 +111,30 @@ void WSTGame::OnNext()
     collWorld.Update_Player_EnemyBullet();
     collWorld.Update_Enemy_PlayerBullet();
     gameUI.OnNext();
+
+    if(m_dbg_doubleSpeed)
+    for(int i = 0;i < 2;++i)
+    {
+        beater.OnNext();
+        background.OnNext();
+        //PNT("BEGIN PLAYER BULLET");
+        playerBulletMgr.OnNext();
+        //PNT("END PLAYER BULLET");
+        player[0].OnNext();
+        //m_p2.OnNext();
+        //PNT("BEGIN STAGE");
+        stage.OnNext();
+        itemMgr.OnNext();
+        //PNT("END STAGE");
+
+        bulletMgr.OnNext();
+        effMgr.OnNext();
+
+        collWorld.Update_Player_Enemy();
+        collWorld.Update_Player_EnemyBullet();
+        collWorld.Update_Enemy_PlayerBullet();
+        gameUI.OnNext();
+    }
 }
 
 void WSTGame::OnEvent(int p, Key k, bool b)
@@ -120,6 +144,8 @@ void WSTGame::OnEvent(int p, Key k, bool b)
     if((k == T_ESC || k == T_PAUSE || k == T_ENTER)&&b){
         Pause();
     }
+    if(k == T_DBG_DOUBLE_SPEED)
+        m_dbg_doubleSpeed = b;
 }
 
 void WSTGame::Pause()

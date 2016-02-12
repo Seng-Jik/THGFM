@@ -104,6 +104,10 @@ Key KeyMapAct::kb2k(SDL_Keycode c)
         return T_RIGHT;
     case SDLK_SPACE:
         return T_PAUSE;
+    case SDLK_F1:
+        return T_DBG_DOUBLE_SPEED;
+    case SDLK_F2:
+        return T_DBG_INVIC;
     default:
         return T_NONE;
     }
