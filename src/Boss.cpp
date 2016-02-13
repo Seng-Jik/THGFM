@@ -24,6 +24,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
     //基本参数
     m_midway = r.Int("MIDWAY_BOSS");
     m_conversation = r.Str("CONVERSATION");
+    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED");
     m_basePath = basePath;
 
     //BGM参数
@@ -86,6 +87,12 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
         m_collEnable = true;
         m_bossConversation = nullptr;
     }
+    m_bossConversation_whenKilled = nullptr;
+    if(!m_conversation_whenKilled.empty()){
+        m_bossConversation_whenKilled = new BossConversation;
+        m_bossConversation_whenKilled -> LoadConversation(m_conversation_whenKilled,m_basePath,nullptr,0);
+        m_bossConversation_whenKilled -> SetPtrs(m_mainCnt,nullptr);
+    }
 }
 
 void Boss::OnBirth()
@@ -141,7 +148,8 @@ void Boss::OnNext()
     if(m_firsShow && m_spd <= 0){
         m_aspd = m_spd = 0;
         m_firsShow = false;
-        scClock.Show();
+        if(!m_bossConversation) scClock.Show();
+        PNT("SHOW CLOCK BY ONNEXT");
     }
     if(m_firsShow) return;
     scClock.SetTime(m_spellCards.front().endTime - m_cnt);
@@ -169,6 +177,8 @@ void Boss::OnNext()
             gameUI.CloseBoss();
             gameUI.HideHPLine();
             scClock.Hide();
+            itemMgr.GetAll(0);
+            if(m_bossConversation_whenKilled) Call(m_bossConversation_whenKilled);
             PNT("Boss End");
         }else{
             if(m_spellCards.front().isSpellCard)
@@ -196,6 +206,7 @@ void Boss::OnConersationFinished()
     m_cnt_begin = -1;
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
+    if(m_bossConversation) scClock.Show();
 }
 
 typedef void(*SCBg)(int cnt);
@@ -213,3 +224,4 @@ Boss::~Boss()
     for(int i = 0;i < 10;++i)
         SDL_DestroyTexture(m_images[i]);
 }
+

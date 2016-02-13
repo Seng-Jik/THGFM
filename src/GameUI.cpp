@@ -19,6 +19,7 @@ void GameUI::Init()
     m_bossHPLineShell = LoadPic("GameUI/BossHPLineShell.png");
     m_bossHPLine = LoadPic("GameUI/BossHPLine.png");
 
+
     m_spellCardStar = LoadPic("GameUI/SpellCardStar.png");
     m_scName_animation = m_scName_show = false;
 
@@ -59,12 +60,13 @@ void GameUI::OnDraw()
         m_scName.OnDraw();
 
     /* Boss ÑªÌõ */
-    SDL_SetTextureAlphaMod(m_bossHPLine,255*m_bossHPLineAlpha);
-    SDL_SetTextureAlphaMod(m_bossHPLineShell,255*m_bossHPLineAlpha);
+    SDL_SetTextureAlphaMod(m_bossHPLine,192*m_bossHPLineAlpha);
+    SDL_SetTextureAlphaMod(m_bossHPLineShell,128*m_bossHPLineAlpha);
     SDL_Rect rs = {600,32,639,32};
     SDL_RenderCopy(Snow::pRnd,m_bossHPLineShell,nullptr,&rs);
     rs.w = int(639*m_showSCHP);
-    SDL_RenderCopy(Snow::pRnd,m_bossHPLine,nullptr,&rs);
+    SDL_Rect rs2 = {0,0,rs.w,32};
+    SDL_RenderCopy(Snow::pRnd,m_bossHPLine,&rs2,&rs);
 
     scClock.OnDraw();
 }

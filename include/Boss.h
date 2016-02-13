@@ -16,6 +16,7 @@ class Boss
         bool m_bouns;   //是否应当奖励
         bool m_invi;    //Boss是否无敌
         BossConversation* m_bossConversation;   //Boss对话活动
+        BossConversation* m_bossConversation_whenKilled;   //Boss死亡后的对话活动
         float m_hpAttackMul = 1;    //攻击倍率(实际)
         float m_hpAttackMulTarget = 1;  //攻击倍率(目标变换值)
 
@@ -23,6 +24,7 @@ class Boss
         bool m_collEnable;
         bool m_midway;
         std::string m_conversation;
+        std::string m_conversation_whenKilled;
         std::string m_basePath;
 
         SDL_Texture* m_images[10];
@@ -47,6 +49,7 @@ class Boss
         std::vector<int> m_bullets;
     public:
         ~Boss();
+        inline int GetCnt(){return m_cnt;}
         void LoadRV(const std::string&,const std::string& basePath,int* cnt);
         void OnBirth();
         void OnDraw();

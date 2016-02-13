@@ -10,7 +10,8 @@ enum Key{
     T_ESC,
     T_NONE,
     T_DBG_DOUBLE_SPEED,
-    T_DBG_INVIC
+    T_DBG_INVIC,
+    T_DBG_PNTCNT
 };
 
 class KeyMapAct : public Snow::Activity

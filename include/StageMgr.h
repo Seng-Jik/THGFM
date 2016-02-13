@@ -57,6 +57,7 @@ class StageMgr
 
     public:
         static void Init();
+        static inline int GetCnt(){return m_cnt;}
 
         StageMgr();
         void LoadCSV(const std::string&,const std::string& basePath);

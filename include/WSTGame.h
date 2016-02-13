@@ -14,12 +14,18 @@ class WSTGame : public KeyMapAct
         void Pause();
         void OnResume();
 
+        void StageClear();
+
         void GrpShake(int frame);
         void GrpColorShake(int ms);
         ~WSTGame();
     protected:
     private:
         bool m_dbg_doubleSpeed = false;
+
+        SDL_Texture* m_stageClearScreen;
+        SDL_Rect m_stageClearScreenRect;
+        int m_stageClearEffCnt = 0;    //0为关闭动画,大于0为动画中
 
         SDL_Texture* m_pGameGraphic;
         int m_shkTmr = 0;

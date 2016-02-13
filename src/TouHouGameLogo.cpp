@@ -1,10 +1,12 @@
 #include "TouHouGameLogo.h"
 #include "WSTGame.h"
+#include "Tools.h"
 
 TouHouGameLogo* touHouGameLogo;
 
 TouHouGameLogo::TouHouGameLogo()
 {
+    SetLogicScreenSize(WIDTH,HEIGHT);
     //ctor
 }
 

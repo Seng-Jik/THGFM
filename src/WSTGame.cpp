@@ -15,7 +15,7 @@ WSTGame* wstg;
 
 WSTGame::WSTGame()
 {
-
+    SetLogicScreenSize(WIDTH,HEIGHT);
     player[0].SetPlayerImage(0);
     //m_p2.SetPlayerImage(0);
     player[0].Birth();
@@ -26,6 +26,11 @@ WSTGame::WSTGame()
 WSTGame::~WSTGame()
 {
     //dtor
+}
+
+void WSTGame::StageClear()
+{
+    m_stageClearEffCnt = 1;
 }
 
 void WSTGame::OnShow(){
@@ -88,6 +93,23 @@ void WSTGame::OnDraw()
         Snow::pRnd.Clear();
     }*/
     gameUI.OnDraw();
+
+    if(m_stageClearEffCnt){
+        Uint8 alpha;
+        if(m_stageClearEffCnt <= 60){
+            float per = m_stageClearEffCnt / 60.0;
+            alpha = 255*per;
+        }else if(m_stageClearEffCnt >= 180){
+            float per = (m_stageClearEffCnt - 180) / 60.0;
+            alpha = 255*per;
+        }else if(m_stageClearEffCnt >= 240){
+            alpha = 0;
+            m_stageClearEffCnt = 0;
+        }else alpha = 255;
+        SDL_SetTextureAlphaMod(m_stageClearScreen,alpha);
+        SDL_RenderCopy(Snow::pRnd,m_stageClearScreen,nullptr,&m_stageClearScreenRect);
+        ++m_stageClearEffCnt;
+    }
 }
 
 void WSTGame::OnNext()
@@ -146,6 +168,12 @@ void WSTGame::OnEvent(int p, Key k, bool b)
     }
     if(k == T_DBG_DOUBLE_SPEED)
         m_dbg_doubleSpeed = b;
+    if(k == T_DBG_PNTCNT && b){
+        PNT("F3--PRINT FRAME NUMBER:"<<stage.GetCnt());
+        if(stage.GetBoss()){
+            PNT("    BOSS FRAME:"<<stage.GetBoss()->GetCnt());
+        }
+    }
 }
 
 void WSTGame::Pause()
@@ -160,6 +188,11 @@ void WSTGame::OnResume(){
 
 void WSTGame::OnInit(){
     m_pGameGraphic = SDL_CreateTexture(Snow::pRnd,SDL_PIXELFORMAT_ARGB8888,SDL_TEXTUREACCESS_TARGET,WIDTH,HEIGHT);
+
+    m_stageClearScreen = LoadPic("GameUI/StageClear.png");
+    SDL_QueryTexture(m_stageClearScreen,nullptr,nullptr,&m_stageClearScreenRect.w,&m_stageClearScreenRect.h);
+    m_stageClearScreenRect.x = WIDTH/2 - m_stageClearScreenRect.w/2;
+    m_stageClearScreenRect.y = HEIGHT/2 - m_stageClearScreenRect.h/2;
 }
 
 void WSTGame::GrpShake(int frame)

@@ -5,6 +5,7 @@
 PauseActivity* pause;
 void PauseActivity::OnShow()
 {
+    SetLogicScreenSize(WIDTH,HEIGHT);
     SDL_Rect r = {0,0,Snow::pRnd.GetPhW(),Snow::pRnd.GetPhH()};
     Uint32* pixels = (new Uint32 [Snow::pRnd.GetPhW()*Snow::pRnd.GetPhH()]);
     SDL_RenderReadPixels(Snow::pRnd,

@@ -3,12 +3,14 @@
 #define PER_LOGO_WH 1.380487804878049f
 #define WORD_SIZE 128
 #include "Snow/Debug.h"
+#include "Tools.h"
 using namespace std;
 using namespace ::Snow;
 using namespace ACGCross;
 
 Logo::Logo()
 {
+    SetLogicScreenSize(WIDTH,HEIGHT);
     m_init = nullptr;
 }
 

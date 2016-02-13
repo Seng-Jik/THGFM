@@ -10,6 +10,8 @@
 using namespace Snow;
 
 //BossConversation* bossConversation;
+
+
 void BossConversation::OnInit()
 {
     m_text.Init();
@@ -174,7 +176,8 @@ void BossConversation::OnNext()
             m_window.SetAlpha(128-128);
             m_windowAnimation = NONEANM;
             m_nextTask = NONE;
-            m_bossObj -> OnConersationFinished();
+            if(m_bossObj) m_bossObj -> OnConersationFinished();
+            else wstg -> StageClear();
             Return();
         }
     }

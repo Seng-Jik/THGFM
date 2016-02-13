@@ -108,6 +108,8 @@ Key KeyMapAct::kb2k(SDL_Keycode c)
         return T_DBG_DOUBLE_SPEED;
     case SDLK_F2:
         return T_DBG_INVIC;
+    case SDLK_F3:
+        return T_DBG_PNTCNT;
     default:
         return T_NONE;
     }
