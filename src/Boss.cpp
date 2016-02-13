@@ -177,8 +177,10 @@ void Boss::OnNext()
             gameUI.CloseBoss();
             gameUI.HideHPLine();
             scClock.Hide();
-            itemMgr.GetAll(0);
-            if(m_bossConversation_whenKilled) Call(m_bossConversation_whenKilled);
+            if(m_bossConversation_whenKilled){
+                Call(m_bossConversation_whenKilled);
+                itemMgr.GetAll(0);
+            }
             PNT("Boss End");
         }else{
             if(m_spellCards.front().isSpellCard)

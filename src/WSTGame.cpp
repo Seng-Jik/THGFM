@@ -94,21 +94,23 @@ void WSTGame::OnDraw()
     }*/
     gameUI.OnDraw();
 
-    if(m_stageClearEffCnt){
+    if(m_stageClearEffCnt != 0){
         Uint8 alpha;
         if(m_stageClearEffCnt <= 60){
             float per = m_stageClearEffCnt / 60.0;
             alpha = 255*per;
-        }else if(m_stageClearEffCnt >= 180){
-            float per = (m_stageClearEffCnt - 180) / 60.0;
-            alpha = 255*per;
-        }else if(m_stageClearEffCnt >= 240){
+        }else if(m_stageClearEffCnt >= 240 && m_stageClearEffCnt < 300){
+            float per = (m_stageClearEffCnt - 240) / 60.0;
+            alpha = 255-255*per;
+        }else if(m_stageClearEffCnt >= 300){
             alpha = 0;
-            m_stageClearEffCnt = 0;
+            m_stageClearEffCnt = -1;
         }else alpha = 255;
         SDL_SetTextureAlphaMod(m_stageClearScreen,alpha);
         SDL_RenderCopy(Snow::pRnd,m_stageClearScreen,nullptr,&m_stageClearScreenRect);
-        ++m_stageClearEffCnt;
+        if(m_stageClearEffCnt == -1)
+            m_stageClearEffCnt = 0;
+        else ++m_stageClearEffCnt;
     }
 }
 

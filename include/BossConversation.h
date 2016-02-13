@@ -52,10 +52,11 @@ public:
 class BossConversation : public KeyMapAct
 {
     private:
-        int* m_cnt;
+        int* m_mainCnt; //主计时器
+        int m_cnt;  //独立计时器
         Boss* m_bossObj;
     public:
-        void SetPtrs(int* cnt,Boss* b){m_cnt = cnt;m_bossObj = b;}
+        void SetPtrs(int* cnt,Boss* b){m_mainCnt = cnt;m_bossObj = b;}
         void OnInit();
         void OnShow();
         void OnDraw();

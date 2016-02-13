@@ -20,6 +20,7 @@ void BossConversation::OnInit()
 #include "Snow/Debug.h"
 void BossConversation::OnShow()
 {
+    m_cnt = 0;
     m_left.Clear();
     m_right.Clear();
     m_left.SetData(100,1);
@@ -121,14 +122,14 @@ void BossConversation::OnDraw()
 
 void BossConversation::OnNext()
 {
-
+    ++m_cnt;
     wstg -> OnNext();
 
     m_left.OnNext();
     m_right.OnNext();
 
 
-    if(m_waitTrg == *m_cnt) {
+    if(m_waitTrg == m_cnt) {
         m_nextTask = PARSE;
         m_text.Clear();
         m_waitTrg = -1;
