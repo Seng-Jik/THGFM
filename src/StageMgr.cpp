@@ -83,15 +83,21 @@ void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath)
 
             m_enemys.push_back(e);
             last = e;
-        }else if(firstPop[0] == 'S'){
+        }else if(firstPop[0] == 'S' || firstPop[0] == 'D'){
             auto s = new Shot;
-            csv.PopInt(s->birth);
-            s->birth += last ->birth;
+            if(firstPop[0] == 'S') {
+                csv.PopInt(s->birth);
+                s->birth += last ->birth;
+            }else{
+                s->birth = -1;
+                s -> deadDanmaku = true;
+            }
             csv.PopInt(s->partten);
             double args;
             while(csv.PopFloat(args))
                 s->parttenArgs.push_back(args);
-            last -> shots.push_back(s);
+            if(firstPop[0] == 'S') last -> shots.push_back(s);
+            else last -> whenKilled = s;
         }else if(firstPop[0] == 'C'){
             int i;
             csv.PopInt(i);
@@ -116,6 +122,7 @@ void StageMgr::Clear()
             delete *pShot;
         }
         delete *p;
+        delete (*p) -> whenKilled;
     }
     m_enemys.clear();
     m_cnt = 0;
@@ -152,17 +159,7 @@ void StageMgr::OnNext()
     if(!m_clearScreenTime.empty())
         if(m_cnt == m_clearScreenTime.front()){
             m_clearScreenTime.pop();
-            for(int i = m_enemySearchBottom;i < m_enemySearchTop;++i){
-                if(m_enemys[i] -> live == Enemy::LIVE){
-                    effMgr.InstallFrameAnimation(0,m_enemys[i]->x,m_enemys[i]->y);
-                    KillEnemy(m_enemys[i]);
-                }
-            }
-            for(int i = 0;i < bulletMgr.GetSearchTop();++i){
-                if(bulletMgr[i].live) //effMgr.InstallFrameAnimation(0,bulletMgr[i].x,bulletMgr[i].y);
-                    bulletMgr.KillBulletAndInstallEffect(i);
-            }
-            bulletMgr.Clear();
+            KillEnemy(nullptr);
         }
 
     //Boss 处理
@@ -187,6 +184,13 @@ void StageMgr::OnNext()
             //如果生命值为0则杀死
             if(enemy.hp <= 0){
                 KillEnemy(&enemy);
+                if(enemy.whenKilled){
+                    enemy.whenKilled -> birth = m_cnt;
+                    enemy.whenKilled -> live = Shot::LIVE;
+                    enemy.whenKilled -> cnt = 0;
+                    enemy.shots.push_back(enemy.whenKilled);
+                    enemy.whenKilled = nullptr;
+                }
                 effMgr.InstallFrameAnimation(0,enemy.x,enemy.y);
                 itemMgr.AddItem(SCORE,10,enemy.x,enemy.y,enemy.items[SCORE]);
                 itemMgr.AddItem(POWER,15,enemy.x,enemy.y,enemy.items[POWER]);
@@ -238,15 +242,26 @@ void StageMgr::OnNext()
                     shot.cnt = 0;
                 }
                 //销毁已经空了的射击
-                else if((shot.live == Shot::LIVE && shot.cnt >= 300) || shot.live == Shot::STOPLIVE || shot.live == Shot::STOPSHOOT){
+                else if((shot.live == Shot::LIVE && shot.cnt >= 30) || shot.live == Shot::STOPLIVE || shot.live == Shot::STOPSHOOT || (shot.deadDanmaku&& shot.cnt >= 1)){
                     //子弹槽是否已经空掉
                     bool noBullet = true;
                     for(auto pBullet = shot.bullets.begin();pBullet != shot.bullets.end();++pBullet){
                         if(*pBullet != -1){
-                            noBullet = false;
-                            break;
+                            if(bulletMgr[*pBullet].live){
+                                noBullet = false;
+                                PNT("BULLET "<<*pBullet);
+                                break;
+                            }else *pBullet = -1;
                         }
                     }
+                    if(m_enemys.size()>=2) {
+                        if(m_enemys[0]->shots.size()>=2){
+                                if(m_enemys[0]->shots[1] == &shot){
+                                    PNT("CHECK "<<noBullet);
+                                }
+                        }
+                    }
+
                     if(noBullet){
                         shot.live = Shot::DEATH;
                         shot.bullets.clear();
@@ -259,8 +274,8 @@ void StageMgr::OnNext()
                 if(shot.live == Shot::LIVE || shot.live == Shot::STOPSHOOT){
                     //应用 Partten
                     (*shotPartten[shot.partten])(&shot,enemy.num);
-                    ++shot.cnt;
                 }
+                ++shot.cnt;
 
             }
 
@@ -283,12 +298,18 @@ void StageMgr::OnNext()
                 //PNT(m_enemySearchBottom<<" "<<m_enemySearchTop);
             }
         }
+        if(m_enemys.size()>=2) {
+                if(m_enemys[0]->shots.size()>=2){
+                    PNT(m_enemys[0]->shots[1]->live);
+                }
+        }
 
     }
 
     collWorld.SetEnemyXRect(bestLeft,bestRight);
     collWorld.SetEnemySearchTop(m_enemySearchTop,m_enemySearchBottom);
     ++m_cnt;
+    PNT("STAGE MGR:"<<m_enemySearchBottom<<","<<m_enemySearchTop);
 
     //logc<<"beg"<<endl;
     //logc.flush();
@@ -417,6 +438,7 @@ void StageMgr::KillEnemy(Enemy* e)
                 KillEnemy(m_enemys[i]);
             }
         }
+        m_enemySearchBottom = m_enemySearchTop;
     }else{
         e -> live = Enemy::STOPLIVE;
         FOR_EACH(p,e->shots.begin(),e->shots.end())

@@ -8,6 +8,7 @@
 #include "Snow.h"
 
 struct Shot{
+    bool deadDanmaku = false;   //是否为D指令造出的射击集
     int cnt;
     int birth; //出生时间
     enum{NOBIRTH,LIVE,STOPLIVE,STOPSHOOT,DEATH}live = NOBIRTH;
@@ -28,6 +29,7 @@ struct Enemy{
     int partten; //敌人模式
     double hp;
     std::vector<Shot*> shots;    //射击
+    Shot* whenKilled =nullptr;   //死亡后射击
     int style;  //敌人图像编号
     std::vector<double> parttenArgs;
 
