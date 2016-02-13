@@ -72,11 +72,11 @@ void Player::OnNext()
         if(!m_deathVS){
             itemMgr.AddItem(POWER,10,m_x,m_y,5);
             itemMgr.AddItem(SCORE,10,m_x,m_y,5);
+            effMgr.InstallFrameAnimation(0,m_x,m_y);
             m_x = m_y = -200;
             m_live = DEAD;
             gameUI.OnPlayerBeKilled();
             if(gameUI.GetLife() == 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
-            effMgr.InstallFrameAnimation(0,m_x,m_y);
             stage.KillEnemy(nullptr);
             //bulletMgr.Clear();
         }

@@ -249,16 +249,8 @@ void StageMgr::OnNext()
                         if(*pBullet != -1){
                             if(bulletMgr[*pBullet].live){
                                 noBullet = false;
-                                PNT("BULLET "<<*pBullet);
                                 break;
                             }else *pBullet = -1;
-                        }
-                    }
-                    if(m_enemys.size()>=2) {
-                        if(m_enemys[0]->shots.size()>=2){
-                                if(m_enemys[0]->shots[1] == &shot){
-                                    PNT("CHECK "<<noBullet);
-                                }
                         }
                     }
 
@@ -298,18 +290,12 @@ void StageMgr::OnNext()
                 //PNT(m_enemySearchBottom<<" "<<m_enemySearchTop);
             }
         }
-        if(m_enemys.size()>=2) {
-                if(m_enemys[0]->shots.size()>=2){
-                    PNT(m_enemys[0]->shots[1]->live);
-                }
-        }
-
     }
 
     collWorld.SetEnemyXRect(bestLeft,bestRight);
     collWorld.SetEnemySearchTop(m_enemySearchTop,m_enemySearchBottom);
     ++m_cnt;
-    PNT("STAGE MGR:"<<m_enemySearchBottom<<","<<m_enemySearchTop);
+    //PNT(m_enemySearchBottom<<" "<<m_enemySearchTop);
 
     //logc<<"beg"<<endl;
     //logc.flush();

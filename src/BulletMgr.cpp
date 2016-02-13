@@ -96,7 +96,6 @@ BulletMgr::~BulletMgr()
 
 void BulletMgr::OnNext()
 {
-    PNT("BULLET 0:"<<m_blts[0].live);
     for(int i = 0;i < m_searchTop;++i){
         if(m_blts[i].live){
             if(m_blts[i].alpha < 250 && m_blts[i].alpha_living){
