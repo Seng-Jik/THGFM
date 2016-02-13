@@ -95,7 +95,7 @@ void BossConversation::LoadConversation(const std::string& s,const std::string& 
     while(!m_conversations.empty()) m_conversations.pop();
     ResFile rf;
     rf.Load(basePath + s);
-    PNT("PATH:"<<basePath +s);
+    //PNT("PATH:"<<basePath +s);
     SDL_assert(rf.Success());
     Uint32 pos = 0;
     std::string line;
@@ -103,7 +103,7 @@ void BossConversation::LoadConversation(const std::string& s,const std::string& 
         line = GetLine(rf,pos);
         if(line.empty()) continue;
         if(line[0] == '#') continue;
-        PNT(line);
+        //PNT(line);
         m_conversations.push(line);
     }
 }

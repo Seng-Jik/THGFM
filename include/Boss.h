@@ -2,6 +2,7 @@
 #define BASEBOSS_H
 
 #include <string>
+#include <deque>
 #include "Snow.h"
 //#include "MathFunc.h"
 #include <queue>
@@ -38,7 +39,7 @@ class Boss
 
         int m_spellCardNum; //符卡总数
         struct SpellCard{
-            int endTime;    //符卡死亡终帧
+            int useBGMBlock;    //符卡乐句个数
             bool isSpellCard;   //是否为符卡
             double hp;    //符卡生命值
             int scPartten;  //符卡工作模式
@@ -47,6 +48,18 @@ class Boss
         };
         std::queue<SpellCard> m_spellCards;
         std::vector<int> m_bullets;
+
+        //结束时间
+        int m_attackEndTime;    //在攻击的情况下应当到达的时间
+        int m_endTime;  //在不攻击的情况下应当到达的时间
+
+        std::deque<int> m_bgmBlocks;
+        int m_lastBgmBlock = 0; //上一个时间
+        int m_halfLastBgmBlock; //下一个时间到上一个时间的减半
+        void loadBgmBlocks(const std::string& path);
+        void allocBgmAttackTime();  //为当前符卡分配结束时间
+
+        float getMul(); //取得当前最优的攻击倍率
     public:
         ~Boss();
         inline int GetCnt(){return m_cnt;}

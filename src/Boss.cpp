@@ -10,6 +10,44 @@
 #include "Player.h"
 #include "SCClock.h"
 using namespace Snow;
+
+inline float Boss::getMul()
+{
+    if(m_cnt > m_attackEndTime){
+        return 2;
+    }
+    if(m_attackEndTime - m_cnt <= 400){
+        return 1.5;
+    }
+    if(m_attackEndTime - m_cnt <= 200){
+        return 2;
+    }
+    return 1;
+}
+
+
+void Boss::allocBgmAttackTime()
+{
+    int baseOne = 0;
+    if(m_halfLastBgmBlock < m_cnt) baseOne = 1;
+    m_attackEndTime = m_bgmBlocks[baseOne + m_spellCards.front().useBGMBlock - 1];
+    m_endTime = m_bgmBlocks[baseOne + 2*m_spellCards.front().useBGMBlock - 1];
+}
+
+
+void Boss::loadBgmBlocks(const std::string& path)
+{
+    ResFile r;
+    r.Load(path);
+    Uint32 pos = 0;
+    std::string s;
+    while(pos < r.Size()){
+        s = GetLine(r,pos);
+        if(s[0] == '-') break;
+        else m_bgmBlocks.push_back(atoi(s.c_str()));
+    }
+}
+
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 {
     m_cnt = 0;
@@ -28,6 +66,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
     m_basePath = basePath;
 
     //BGM参数
+    loadBgmBlocks(basePath + r.Str("BGM_BLK"));
 
     //图像参数
     for(int i = 0;i < 10;++i){
@@ -52,17 +91,17 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
     SpellCard sc;
     do{
         int boolTmp;
-        sc.endTime = 0;
         csv.PopInt(boolTmp);
         sc.isSpellCard = boolTmp;
         if(sc.isSpellCard) ++m_spellCardNum;
-        csv.PopInt(sc.endTime);
-        if(sc.endTime == 0) continue;
+        sc.useBGMBlock = 0;
+        csv.PopInt(sc.useBGMBlock);
+        if(sc.useBGMBlock == 0) continue;
         csv.PopFloat(sc.hp);
         csv.PopStr(sc.title);
         csv.PopInt(sc.scPartten);
         csv.PopInt(sc.bgPartten);
-        PNT("Boss CSV:"<<sc.endTime<<" "<<sc.hp<<" "<<sc.isSpellCard);
+        PNT("Boss CSV:"<<sc.useBGMBlock<<" "<<sc.hp<<" "<<sc.isSpellCard);
         m_spellCards.push(sc);
     }while(csv.NextLine());
     if(!m_conversation.empty()){
@@ -97,6 +136,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
 void Boss::OnBirth()
 {
+    m_halfLastBgmBlock = (m_bgmBlocks[0])/2;
     m_cnt_begin = -1;
     collWorld.SetBossObj(this);
     //启动时启动对话系统
@@ -119,20 +159,30 @@ void Boss::OnNext()
 {
     ++m_cnt;
 
+    //乐句时间流动
+    if(m_cnt >= m_bgmBlocks[0]){
+        m_lastBgmBlock = m_bgmBlocks[0];
+        m_bgmBlocks.pop_front();
+        if(m_bgmBlocks.size() >= 1){
+            m_halfLastBgmBlock = (m_lastBgmBlock + m_bgmBlocks[0])/2;
+        }else m_halfLastBgmBlock = m_lastBgmBlock+1500;
+    }
+
     //攻击倍率变换
-    if(m_hpAttackMulTarget > 8) m_hpAttackMulTarget = 8;
-    else if(m_hpAttackMulTarget < 0.125) m_hpAttackMulTarget = 0.125;
+    m_hpAttackMulTarget = getMul();
+    //PNT("BOSS MUL:"<<m_hpAttackMulTarget<<" ATTACK_ENDTIME:"<<m_attackEndTime);
+    if(m_hpAttackMulTarget > 2) m_hpAttackMulTarget = 2;
+    else if(m_hpAttackMulTarget < 0.5) m_hpAttackMulTarget = 0.5;
 
     if(m_hpAttackMulTarget > m_hpAttackMul){
-        if(m_hpAttackMulTarget - m_hpAttackMul < 0.1)
+        if(m_hpAttackMulTarget - m_hpAttackMul < 0.025)
             m_hpAttackMul = m_hpAttackMulTarget;
-        else m_hpAttackMul += 0.1;
+        else m_hpAttackMul += 0.025;
     }else if(m_hpAttackMulTarget < m_hpAttackMul){
-        if(m_hpAttackMul -m_hpAttackMulTarget < 0.1)
+        if(m_hpAttackMul -m_hpAttackMulTarget < 0.025)
             m_hpAttackMul = m_hpAttackMulTarget;
-        else m_hpAttackMul -= 0.1;
+        else m_hpAttackMul -= 0.025;
     }
-    m_hpAttackMulTarget = 8;
 
     gameUI.UpdateSCHP(m_spellCards.front().hp/m_fullHP);
     if(m_invi){
@@ -152,11 +202,11 @@ void Boss::OnNext()
         PNT("SHOW CLOCK BY ONNEXT");
     }
     if(m_firsShow) return;
-    scClock.SetTime(m_spellCards.front().endTime - m_cnt);
+    scClock.SetTime(m_endTime - m_cnt);
 
 
     //当符卡死亡后
-    if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || m_cnt >= m_spellCards.front().endTime) && m_collEnable){
+    if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || m_cnt >= m_endTime) && m_collEnable){
         if(m_bouns && m_spellCards.front().isSpellCard){
             if(rand()%10 <= 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);
             else itemMgr.AddItem(BOMB,10,m_x,m_y,1);
@@ -183,6 +233,8 @@ void Boss::OnNext()
             }
             PNT("Boss End");
         }else{
+            allocBgmAttackTime();
+            m_hpAttackMul = m_hpAttackMulTarget = getMul();
             if(m_spellCards.front().isSpellCard)
             {
                 m_spellCardNum--;
@@ -200,16 +252,17 @@ void Boss::OnNext()
     else if(m_collEnable){
         (scPartten[m_spellCards.front().scPartten])(this,m_cnt,*m_mainCnt - m_cnt_begin,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
     }
+    PNT("BOSS FRAME:"<<m_cnt);
 }
 
 void Boss::OnConersationFinished()
 {
     m_collEnable = true;
     m_cnt_begin = -1;
-    m_cnt = 0;
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
     if(m_bossConversation) scClock.Show();
+    allocBgmAttackTime();
 }
 
 typedef void(*SCBg)(int cnt);

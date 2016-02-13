@@ -12,7 +12,7 @@ STR BGM_SND = "Boss/boss.ogg"
 FLOAT BGM_BPM = 260
 
 #BGM段落数据
-STR BGM_BLK = ""
+STR BGM_BLK = ""Boss/BGMBlocks.txt"
 
 #---------------------------- 图像参数
 #BOSS在游戏中的图像（最多只能存放10个，必须有10个常量项目）

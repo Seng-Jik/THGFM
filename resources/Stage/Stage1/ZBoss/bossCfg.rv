@@ -10,6 +10,7 @@ STR CONV_WHEN_KILLED = ""
 #BOSS BGM
 STR BGM_SND = ""
 STR BGM_BEATS = ""
+STR BGM_BLK = ""Boss/BGMBlocks.txt"
 
 #---------------------------- 图像参数
 #BOSS在游戏中的图像（最多只能存放10个，必须有10个常量项目）
