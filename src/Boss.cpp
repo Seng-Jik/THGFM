@@ -204,6 +204,7 @@ void Boss::OnConersationFinished()
 {
     m_collEnable = true;
     m_cnt_begin = -1;
+    m_cnt = 0;
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
     if(m_bossConversation) scClock.Show();
