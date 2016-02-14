@@ -18,8 +18,6 @@ class Boss
         bool m_invi;    //Boss是否无敌
         BossConversation* m_bossConversation;   //Boss对话活动
         BossConversation* m_bossConversation_whenKilled;   //Boss死亡后的对话活动
-        float m_hpAttackMul = 1;    //攻击倍率(实际)
-        float m_hpAttackMulTarget = 1;  //攻击倍率(目标变换值)
 
         bool m_live = true;    //存活标志
         bool m_collEnable;
@@ -50,8 +48,7 @@ class Boss
         std::vector<int> m_bullets;
 
         //结束时间
-        int m_attackEndTime;    //在攻击的情况下应当到达的时间
-        int m_endTime;  //在不攻击的情况下应当到达的时间
+        int m_endTime;  //应当到达的时间
 
         std::deque<int> m_bgmBlocks;
         int m_lastBgmBlock = 0; //上一个时间
@@ -59,7 +56,6 @@ class Boss
         void loadBgmBlocks(const std::string& path);
         void allocBgmAttackTime();  //为当前符卡分配结束时间
 
-        float getMul(); //取得当前最优的攻击倍率
     public:
         ~Boss();
         inline int GetCnt(){return m_cnt;}
@@ -70,7 +66,7 @@ class Boss
         void OnNext();
         void OnConersationFinished();
         inline bool Live(){return m_live;};
-        inline void KillHP(double hp){m_spellCards.front().hp-=m_hpAttackMul*hp;}
+        inline void KillHP(double hp){m_spellCards.front().hp-=hp;}
         inline bool IsInvi(){return m_invi;}
         inline int GetSpellCardNum(){return m_spellCardNum;}    //取符卡剩余数
         int birthTime;

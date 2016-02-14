@@ -147,10 +147,16 @@ void StageMgr::OnNext()
     //产生即将出生的敌人
     for(int i = m_enemySearchTop;i < (int)m_enemys.size();++i){
         if(m_cnt == m_enemys[i]->birth){
-            m_enemySearchTop=i+1;
-            if(m_enemySearchTop > (int)m_enemys.size()) m_enemySearchTop = m_enemys.size();
-            m_enemys[i]->cnt = 0;
-            m_enemys[i]->live = Enemy::LIVE;
+            if(!GetBoss()){  //如果此时没有Boss，则正常生成敌人
+                m_enemySearchTop=i+1;
+                if(m_enemySearchTop > (int)m_enemys.size()) m_enemySearchTop = m_enemys.size();
+                m_enemys[i]->cnt = 0;
+                m_enemys[i]->live = Enemy::LIVE;
+            }else{  //否则禁止敌人出现
+                m_enemySearchTop=i+1;
+                if(m_enemySearchTop > (int)m_enemys.size()) m_enemySearchTop = m_enemys.size();
+                m_enemys[i]->live = Enemy::DEATH;
+            }
         }else break;
     }
     //PNT(m_enemySearchBottom<<" "<<m_enemySearchTop);

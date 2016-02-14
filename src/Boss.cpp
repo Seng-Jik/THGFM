@@ -11,27 +11,11 @@
 #include "SCClock.h"
 using namespace Snow;
 
-inline float Boss::getMul()
-{
-    if(m_cnt > m_attackEndTime){
-        return 2;
-    }
-    if(m_attackEndTime - m_cnt <= 400){
-        return 1.5;
-    }
-    if(m_attackEndTime - m_cnt <= 200){
-        return 2;
-    }
-    return 1;
-}
-
-
 void Boss::allocBgmAttackTime()
 {
     int baseOne = 0;
     if(m_halfLastBgmBlock < m_cnt) baseOne = 1;
-    m_attackEndTime = m_bgmBlocks[baseOne + m_spellCards.front().useBGMBlock - 1];
-    m_endTime = m_bgmBlocks[baseOne + 2*m_spellCards.front().useBGMBlock - 1];
+    m_endTime = m_bgmBlocks[baseOne + m_spellCards.front().useBGMBlock - 1];
 }
 
 
@@ -168,22 +152,6 @@ void Boss::OnNext()
         }else m_halfLastBgmBlock = m_lastBgmBlock+1500;
     }
 
-    //¹¥»÷±¶ÂÊ±ä»»
-    m_hpAttackMulTarget = getMul();
-    //PNT("BOSS MUL:"<<m_hpAttackMulTarget<<" ATTACK_ENDTIME:"<<m_attackEndTime);
-    if(m_hpAttackMulTarget > 2) m_hpAttackMulTarget = 2;
-    else if(m_hpAttackMulTarget < 0.5) m_hpAttackMulTarget = 0.5;
-
-    if(m_hpAttackMulTarget > m_hpAttackMul){
-        if(m_hpAttackMulTarget - m_hpAttackMul < 0.025)
-            m_hpAttackMul = m_hpAttackMulTarget;
-        else m_hpAttackMul += 0.025;
-    }else if(m_hpAttackMulTarget < m_hpAttackMul){
-        if(m_hpAttackMul -m_hpAttackMulTarget < 0.025)
-            m_hpAttackMul = m_hpAttackMulTarget;
-        else m_hpAttackMul -= 0.025;
-    }
-
     gameUI.UpdateSCHP(m_spellCards.front().hp/m_fullHP);
     if(m_invi){
         m_invi = player[0].Booming();
@@ -234,7 +202,6 @@ void Boss::OnNext()
             PNT("Boss End");
         }else{
             allocBgmAttackTime();
-            m_hpAttackMul = m_hpAttackMulTarget = getMul();
             if(m_spellCards.front().isSpellCard)
             {
                 m_spellCardNum--;
