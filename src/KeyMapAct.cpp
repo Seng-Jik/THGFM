@@ -14,19 +14,20 @@ KeyMapAct::KeyMapAct()
 
 void KeyMapAct::LoadConfig()
 {
+    //TODO:ä¿®æˆä½¿ç”¨GameDataMgrå®Œæˆè¯»å–ã€‚
     ResVal r;r.Load("keyCfg.rv");
 
     for(int i = 0;i < 2;++i)
         for(int j = 0;j < 32;++j)
             m_k [i] [j] = T_NONE;
 
-    //1P ·½°¸
+    //1P æ–¹æ¡ˆ
     m_k [0] [r.Int("P1SHOT")] = T_SHOT;
     m_k [0] [r.Int("P1BOOM")] = T_BOOM;
     m_k [0] [r.Int("P1SLOW")] = T_SLOW;
     m_k [0] [r.Int("P1PAUSE")] = T_PAUSE;
 
-    //2P ·½°¸
+    //2P æ–¹æ¡ˆ
     m_k [1] [r.Int("P2SHOT")] = T_SHOT;
     m_k [1] [r.Int("P2BOOM")] = T_BOOM;
     m_k [1] [r.Int("P2SLOW")] = T_SLOW;
@@ -49,7 +50,7 @@ void KeyMapAct::OnEvent(const SDL_Event& e)
     else if(e.type == SDL_JOYAXISMOTION){
         int& oldValue = m_axis[e.jaxis.which][e.jaxis.axis];
 
-        if(e.jaxis.axis == 1){  //ÊúÖ±·½Ïò
+        if(e.jaxis.axis == 1){  //ç«–ç›´æ–¹å‘
             cout<<"H"<<e.jaxis.value<<endl;
 
             if(oldValue < 0 && e.jaxis.value >=0) OnEvent(e.jaxis.which,T_UP,false);
@@ -60,7 +61,7 @@ void KeyMapAct::OnEvent(const SDL_Event& e)
             oldValue = e.jaxis.value;
         }
 
-        else if(e.jaxis.axis == 0){  //Ë®Æ½·½Ïò
+        else if(e.jaxis.axis == 0){  //æ°´å¹³æ–¹å‘
             cout<<"H"<<e.jaxis.value<<endl;
 
             if(oldValue < 0 && e.jaxis.value >=0) OnEvent(e.jaxis.which,T_LEFT,false);
@@ -124,4 +125,3 @@ void KeyMapAct::Init()
         for(int j = 0;j<2;++j)
             m_axis[i][j] = 0;
 }
-
