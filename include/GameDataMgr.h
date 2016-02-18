@@ -1,6 +1,5 @@
 #pragma once
 #include "Snow.h"
-#include <cstdio>
 
 /** 存档管理器 */
 
