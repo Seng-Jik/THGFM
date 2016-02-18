@@ -16,6 +16,7 @@
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
 #include "SCClock.h"
+#include "GameDataMgr.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -28,16 +29,11 @@ void _initThread(THREAD_ID){
 }
 static Snow::Thread initThread(&_initThread);
 
-int main(int argc,char** argv){
-    Init();
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
-    SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
-    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
-    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D11_DEBUG,"0");
-    pRnd.Create("东方谷丰梦",FALSE,800,450);
-
-    ACGCross::Logo* acgclogo = new ACGCross::Logo;
+static void InitGameLogic(){
+    Uint8 gamePadSetting[8];
+    gameDataMgr.ReadInitSetting(gamePadSetting);
     KeyMapAct::Init();
+    //TODO:KeyMapAct::LoadSetting
     Player::Init();
     PlayerBullet::Init();
     BulletMgr::Init();
@@ -53,6 +49,18 @@ int main(int argc,char** argv){
     reimu.Init();
     gameUI.Init();
     scClock.Init();
+}
+
+int main(int argc,char** argv){
+    Init();
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
+    SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
+    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
+    SDL_SetHint(SDL_HINT_RENDER_DIRECT3D11_DEBUG,"0");
+    pRnd.Create("东方谷丰梦",FALSE,800,450);
+
+    ACGCross::Logo* acgclogo = new ACGCross::Logo;
+    InitGameLogic();
 
     #ifndef _DEBUG
     SDL_ShowCursor(0);
