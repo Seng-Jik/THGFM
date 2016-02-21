@@ -82,6 +82,7 @@
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/PlayerBullet.h" />
 		<Unit filename="include/SCClock.h" />
+		<Unit filename="include/SDASReader.h" />
 		<Unit filename="include/SeMgr.h" />
 		<Unit filename="include/ShotParttenAPI.h" />
 		<Unit filename="include/StageMgr.h" />
@@ -115,6 +116,7 @@
 		<Unit filename="src/SCBackground/Demo.cpp" />
 		<Unit filename="src/SCClock.cpp" />
 		<Unit filename="src/SCPartten/Demo.cpp" />
+		<Unit filename="src/SDASReader.cpp" />
 		<Unit filename="src/SeMgr.cpp" />
 		<Unit filename="src/ShtPartten/ShtPartten_Demo.cpp" />
 		<Unit filename="src/StageMgr.cpp" />

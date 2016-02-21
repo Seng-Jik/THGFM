@@ -16,6 +16,7 @@
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
 #include "SCClock.h"
+#include "SDASReader.h"
 #include "GameDataMgr.h"
 using namespace std;
 using namespace Snow;
@@ -57,6 +58,10 @@ int main(int argc,char** argv){
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D11_DEBUG,"0");
+
+    SDASReader sdasData;
+    //sdasData.OpenSDAS("data.sdasp");
+    Snow::ResFile::InstallReader(&sdasData);
     pRnd.Create("东方谷丰梦",FALSE,800,450);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
