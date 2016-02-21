@@ -29,9 +29,9 @@ void _initThread(THREAD_ID){
 }
 static Snow::Thread initThread(&_initThread);
 
-static void InitGameLogic(){
+static void InitGameLogic(ACGCross::Logo* acgclogo){
     Uint8 gamePadSetting[8];
-    gameDataMgr.ReadInitSetting(gamePadSetting);
+    //gameDataMgr.ReadInitSetting(gamePadSetting);
     KeyMapAct::Init();
     //TODO:KeyMapAct::LoadSetting
     Player::Init();
@@ -60,7 +60,7 @@ int main(int argc,char** argv){
     pRnd.Create("东方谷丰梦",FALSE,800,450);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
-    InitGameLogic();
+    InitGameLogic(acgclogo);
 
     #ifndef _DEBUG
     SDL_ShowCursor(0);

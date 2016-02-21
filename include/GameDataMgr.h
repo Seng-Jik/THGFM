@@ -13,9 +13,9 @@ public:
     //gamepad设置为Uint8数组，共八个数字，前四个分别为1P的SHOT,BOOM,SLOW,PAUSE的手柄键值，后四个为2P的。
     void SetGamePad(const Uint8* gamepad);
     //格式同上，设置手柄映射并应用到文件，不需要手动调用Flush()。
-    void SetBool(int i,bool b){m_bools[i]=b};
+    inline void SetBool(int i,bool b){m_bools[i]=b;}
     //设置一个bool值，存档中可以存储64个bool值。
-    inline bool GetBool(int i){return m_bools[i]};
+    inline bool GetBool(int i){return m_bools[i];}
     //获取一个Bool值
     void Flush();
     //把内存中的存档写到文件
