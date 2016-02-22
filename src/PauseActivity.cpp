@@ -28,6 +28,16 @@ void PauseActivity::OnShow()
     m_state = PAUSEING;
     m_tmr.Reset();
 
+    //display the button
+    for(int i = 0; i < ALLCHOICE; ++i){
+        m_select[i].Load("gameUI/pause_" + std::to_string(i) + ".png");
+        m_select[i].SetPos(CHOICEX,CHOICEY + 56 * i);
+    }
+    //display the pointer
+    m_ptr.Load("gameUI/pause_ptr.png");
+    m_ptr.SetPos(CHOICEX - 64,CHOICEY);
+    m_ptr_state = 0;
+
     //TODO:只处理了0号玩家
     player[0].ClearKey();
 }
@@ -36,6 +46,9 @@ void PauseActivity::OnDraw()
 {
     m_bgt_o.OnDraw();
     m_bgt.OnDraw();
+    for(int i = 0; i < ALLCHOICE; ++i)
+        m_select[i].OnDraw();
+    m_ptr.OnDraw();
 }
 
 void PauseActivity::OnNext()
@@ -56,13 +69,49 @@ void PauseActivity::OnNext()
         }
         else m_bgt.SetAlpha(255-255*per);
     }
-
+    m_ptr.SetPos(CHOICEX - 64,CHOICEY + 56 * m_ptr_state);
 }
 
 void PauseActivity::OnEvent(int p, Key k, bool b)
 {
-    if((k == T_ENTER || k == T_ESC || k == T_PAUSE)&&b){
-        ResumeGame();
+    if(b)
+    {
+        //PLAYSE();
+        switch(k){
+        case T_ESC:
+        case T_PAUSE:
+            ResumeGame();
+            break;
+
+        case T_UP:
+            if(m_ptr_state == 0)
+                m_ptr_state = ALLCHOICE - 1;
+            else
+                m_ptr_state--;
+            break;
+
+        case T_DOWN:
+            if(m_ptr_state == ALLCHOICE - 1)
+                m_ptr_state = 0;
+            else
+                m_ptr_state++;
+            break;
+
+        case T_ENTER:
+            switch(m_ptr_state)
+            {
+            case 0:
+                ResumeGame();
+            case 1:
+                //goto settings ui
+            case 2:
+                //goto the title
+            case 3:
+                //exit the game
+            default:
+                break;
+            }
+        }
     }
 }
 

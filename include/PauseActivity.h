@@ -16,6 +16,14 @@ class PauseActivity : public KeyMapAct
     protected:
     private:
         Snow::Surface m_bg;
+        Snow::Sprite m_select[4];
+        Snow::Sprite m_ptr;
+        int m_ptr_state;
+        //last = all - 1
+        const int ALLCHOICE = 4;
+        const int CHOICEX = 500;
+        const int CHOICEY = 250;
+        //Resume, Settings, Return_to_Title, Quit_the_Game
         Snow::Sprite m_bgt;
         Snow::Sprite m_bgt_o;
         Snow::Timer m_tmr;
