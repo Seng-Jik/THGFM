@@ -64,6 +64,7 @@
 		</ExtraCommands>
 		<Unit filename="include/ACGCross_Logo.h" />
 		<Unit filename="include/Background.h" />
+		<Unit filename="include/BasicPackReader.h" />
 		<Unit filename="include/Beater.h" />
 		<Unit filename="include/BgmMgr.h" />
 		<Unit filename="include/Boss.h" />
@@ -93,6 +94,7 @@
 		<Unit filename="include/WSTGame.h" />
 		<Unit filename="include/str2wstr.h" />
 		<Unit filename="src/ACGCross_Logo.cpp" />
+		<Unit filename="src/BasicPackReader.cpp" />
 		<Unit filename="src/Beater.cpp" />
 		<Unit filename="src/BgmMgr.cpp" />
 		<Unit filename="src/Boss.cpp" />
