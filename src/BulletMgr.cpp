@@ -92,7 +92,7 @@ BulletMgr::BulletMgr()
 BulletMgr::~BulletMgr()
 {
     //dtor
-};
+}
 
 void BulletMgr::OnNext()
 {
