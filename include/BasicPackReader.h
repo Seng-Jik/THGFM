@@ -1,18 +1,19 @@
-#ifndef SDASREADER_H
-#define SDASREADER_H
+#ifndef BasicPacker_H
+#define BasicPacker_H
 
 #include "Snow.h"
 #include <inttypes.h>
 #include <cstdio>
 #include <map>
 
-class SDASReader : public Snow::ResFileReader
+class BasicPackReader : public Snow::ResFileReader
 {
     public:
-        void OpenSDAS(const char* pkg);
+        void OpenPkg(const char* pkg);
         char* GetFile(const std::string&,Uint32& size);
     protected:
     private:
+        void decode(char* buf,int size);
         Uint64 hashStr(const char*);
         struct FileInfo{
             uint64_t fileNameHash;
@@ -22,4 +23,4 @@ class SDASReader : public Snow::ResFileReader
         FILE* m_pkg;
 };
 
-#endif // SDASREADER_H
+#endif // BasicPacker_H

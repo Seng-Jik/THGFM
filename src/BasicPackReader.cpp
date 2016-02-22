@@ -1,9 +1,9 @@
-#include "SDASReader.h"
+#include "BasicPackReader.h"
 #include<cstdlib>
 #include <conio.h>
 #include "Snow/Debug.h"
 
-void SDASReader::OpenSDAS(const char* pkg)
+void BasicPackReader::OpenPkg(const char* pkg)
 {
     m_pkg = fopen(pkg,"rb");
     PNT("OFFSET:"<<ftell(m_pkg));
@@ -25,7 +25,7 @@ void SDASReader::OpenSDAS(const char* pkg)
     }
 }
 
-char* SDASReader::GetFile(const std::string& s, Uint32& size)
+char* BasicPackReader::GetFile(const std::string& s, Uint32& size)
 {
     const FileInfo& fi = m_infos[hashStr(s.c_str())];
     size = fi.size;
@@ -36,12 +36,11 @@ char* SDASReader::GetFile(const std::string& s, Uint32& size)
     //TODO:Decode
     Uint32 encSize = 16384;
     if(size < encSize) encSize = size;
-    for(int i = 0;i < encSize;++i)
-        buf[i] =~buf[i];
+    decode(buf,encSize);
     return buf;
 }
 
-Uint64 SDASReader::hashStr(const char* str)
+Uint64 BasicPackReader::hashStr(const char* str)
 {
     Uint64 hash = 0;
     while (*str)
@@ -50,4 +49,10 @@ Uint64 SDASReader::hashStr(const char* str)
     }
 
     return (hash & 0x7FFFFFFF);
+}
+
+void BasicPackReader::decode(char* buf, int size)
+{
+    for(int i = 0;i < size;++i)
+        buf[i] =~buf[i];
 }
