@@ -17,19 +17,10 @@ void ShaoNvQiDaoZhong::Init()
 }
 
 
-ShaoNvQiDaoZhong::ShaoNvQiDaoZhong(void(*func)(Snow::THREAD_ID),Snow::Activity*)
+ShaoNvQiDaoZhong::ShaoNvQiDaoZhong(void(*func)(Snow::THREAD_ID),Snow::Activity* c):m_thd(func)
 {
-    //ctor
-}
-
-ShaoNvQiDaoZhong::~ShaoNvQiDaoZhong()
-{
-    //dtor
-}
-
-void ShaoNvQiDaoZhong::OnShow()
-{
-
+    m_frame = BEG_BEG;
+    m_act = c;
 }
 
 void ShaoNvQiDaoZhong::OnHide()
@@ -39,10 +30,23 @@ void ShaoNvQiDaoZhong::OnHide()
 
 void ShaoNvQiDaoZhong::OnDraw()
 {
-
+    SDL_RenderCopy(Snow::pRnd,m_ani[m_frame],nullptr,&DSTRECT);
 }
 
 void ShaoNvQiDaoZhong::OnNext()
 {
-
+    m_frame++;
+    if(m_frame == LOOP_END+1){
+        if(m_thd.Running()) m_frame = LOOP_BEG;
+    }
+    else if(m_frame == END_END){
+        if(m_act) Snow::Goto(m_act);
+        else Snow::Return();
+    }
 }
+
+void ShaoNvQiDaoZhong::SendMsg(int i)
+{
+    m_thd.SendMsg(i);
+}
+
