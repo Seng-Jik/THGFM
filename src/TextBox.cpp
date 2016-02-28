@@ -18,7 +18,6 @@ TextBox::TextBox()
     m_linePos = m_heiPos = 0;
     m_rfont.Load("FangZhengHei.TTF");
     m_tfont = TTF_OpenFontRW(m_rfont,m_rfont.Size(),r.Int("GAL_WORDSIZE"));
-    SDL_assert_release(m_tfont);
     m_word_h = r.Int("GAL_WORDSIZE");
 }
 
@@ -145,15 +144,12 @@ Uint32 TextBox::ForceAddPic(const std::string& file, const int fps, const int ti
 
 void TextBox::AddText(const std::wstring& s)
 {
-    printf("TE beg");
     auto pst = ForceAddText(s);
-    printf("TE 0");
     FOR_EACH(p,pst,m_text.size())
         m_text[p] -> SetAlpha(0);
     if(m_stat != TXT_SHOWING) m_showing_word = pst;
     m_stat = TXT_SHOWING;
     m_fpsCounter = m_nowFps;
-    printf("TE end");
 }
 
 void TextBox::AddPic(const std::string& file,const int fps,const int time)
