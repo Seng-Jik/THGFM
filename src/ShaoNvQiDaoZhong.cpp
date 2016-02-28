@@ -2,18 +2,11 @@
 #include "Tools.h"
 using namespace std;
 
-SDL_Texture* ShaoNvQiDaoZhong::m_ani[89];
+SDL_Texture* ShaoNvQiDaoZhong::m_ani;
 
 void ShaoNvQiDaoZhong::Init()
 {
-    string image;
-    for(int i = BEG_BEG;i <= END_END;++i){
-        image = "GameUI/Loading/snqdz00";
-        if(i<=9) image += '0';
-        image += to_string(i);
-        image += ".png";
-        m_ani[i] = LoadPic(image.c_str());
-    }
+    m_ani = LoadPic("GameUI/Loading.png");
 }
 
 
@@ -30,7 +23,8 @@ void ShaoNvQiDaoZhong::OnHide()
 
 void ShaoNvQiDaoZhong::OnDraw()
 {
-    SDL_RenderCopy(Snow::pRnd,m_ani[m_frame],nullptr,&DSTRECT);
+    SDL_Rect src = {0,58*m_frame,384,58};
+    SDL_RenderCopy(Snow::pRnd,m_ani,&src,&DSTRECT);
 }
 
 void ShaoNvQiDaoZhong::OnNext()

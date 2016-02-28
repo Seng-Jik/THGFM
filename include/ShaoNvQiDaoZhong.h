@@ -14,7 +14,7 @@ class ShaoNvQiDaoZhong:Snow::Activity
         void OnNext();
     protected:
     private:
-        static SDL_Texture* m_ani[89];    /* 0~2保留，3~29为启动动画，30~59为循环动画，60~88为结束动画。 */
+        static SDL_Texture* m_ani;
         static const int BEG_BEG = 3,BEGIN_END = 29,LOOP_BEG = 30,LOOP_END = 59,END_BEG = 60,END_END = 88;
         const SDL_Rect  DSTRECT = {896,624,384,96};
         int m_frame;
