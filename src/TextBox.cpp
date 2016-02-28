@@ -18,6 +18,7 @@ TextBox::TextBox()
     m_linePos = m_heiPos = 0;
     m_rfont.Load("FangZhengHei.TTF");
     m_tfont = TTF_OpenFontRW(m_rfont,m_rfont.Size(),r.Int("GAL_WORDSIZE"));
+    SDL_assert_release(m_tfont);
     m_word_h = r.Int("GAL_WORDSIZE");
 }
 
@@ -65,7 +66,6 @@ void TextBox::Clear()
 
 Uint32 TextBox::ForceAddText(const std::wstring& s)
 {
-
     Uint32 pFirstTex = m_text.size();
     FOR_EACH(p,s.begin(),s.end())
     {
@@ -75,7 +75,6 @@ Uint32 TextBox::ForceAddText(const std::wstring& s)
         /*渲染文字纹理*/
         m_text.push_back(new ::Snow::Sprite());
         const auto pTex = m_text.size() - 1;
-
 
         auto pSur = TTF_RenderGlyph_Blended(m_tfont,*p,m_color);
         ::Snow::DrawTextOutLine(pSur);
@@ -144,17 +143,17 @@ Uint32 TextBox::ForceAddPic(const std::string& file, const int fps, const int ti
 }
 
 
-
-
 void TextBox::AddText(const std::wstring& s)
 {
+    printf("TE beg");
     auto pst = ForceAddText(s);
+    printf("TE 0");
     FOR_EACH(p,pst,m_text.size())
         m_text[p] -> SetAlpha(0);
     if(m_stat != TXT_SHOWING) m_showing_word = pst;
     m_stat = TXT_SHOWING;
     m_fpsCounter = m_nowFps;
-
+    printf("TE end");
 }
 
 void TextBox::AddPic(const std::string& file,const int fps,const int time)
