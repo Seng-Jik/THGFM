@@ -8,18 +8,19 @@
 
 #define WINDOW_YOFFSET 50
 using namespace Snow;
-
 //BossConversation* bossConversation;
 
 
 void BossConversation::OnInit()
 {
-    m_text.Init();
+
 }
 
 #include "Snow/Debug.h"
 void BossConversation::OnShow()
 {
+    m_text = new ACGCross::Galgame::TextBox;
+    m_text -> Init();
     m_cnt = 0;
     m_left.Clear();
     m_right.Clear();
@@ -30,10 +31,11 @@ void BossConversation::OnShow()
     m_shotPressed[0] = player[0].GetShotPressed();
 
     m_window.Load("textWindow.png");
-    m_text.ForceClear();
-    m_text.SetEffectSpeed(150);
-    m_text.SetRect(200,500 + WINDOW_YOFFSET,880,200);
-    m_text.SetSpeed(50);
+    m_text->ForceClear();
+    m_text->SetEffectSpeed(150);
+    m_text->SetRect(200,500 + WINDOW_YOFFSET,880,200);
+    m_text->SetSpeed(50);
+    m_text->SetColor(255,255,255);
 
     /* 停止玩家活动 */
     /* DEBUG:只对应单玩家 */
@@ -81,8 +83,9 @@ bool BossConversation::parseLine()
         m_conversations.pop();
         if(m_conversations.empty()) return false;
     }
-    m_text.AddText(StringToWString(m_conversations.front()));
-    m_conversations.pop();
+    std::wstring s = StringToWString(m_conversations.front());
+    m_text->AddText(s);
+    if(!m_conversations.empty()) m_conversations.pop();
     return true;
 }
 
@@ -116,7 +119,7 @@ void BossConversation::OnDraw()
     m_left.OnDraw();
     m_right.OnDraw();
     m_window.OnDraw();
-    m_text.OnDraw();
+    m_text->OnDraw();
 
 }
 
@@ -128,21 +131,20 @@ void BossConversation::OnNext()
     m_left.OnNext();
     m_right.OnNext();
 
-
     if(m_waitTrg == m_cnt) {
         m_nextTask = PARSE;
-        m_text.Clear();
+        m_text->Clear();
         m_waitTrg = -1;
         m_oprEnable = true;
     }
 
-    m_text.OnNext();
-    if(m_text.Finished() && m_windowAnimation == NONEANM){
+    m_text->OnNext();
+    if(m_text->Finished() && m_windowAnimation == NONEANM){
         switch(m_nextTask){
         case PARSE:
             m_nextTask = NONE;
             if(!parseLine()){
-                m_text.Clear();
+                m_text->Clear();
                 m_left.Hide();
                 m_right.Hide();
                 m_nextTask = RETURN;
@@ -191,12 +193,12 @@ void BossConversation::OnEvent(int p, Key k, bool b)
         wstg -> OnEvent(p,k,b);
 
     if(!m_oprEnable) return;
-    else if((k == T_ENTER || k == T_SHOT) && b && m_nextTask == NONE && m_text.Finished()){
+    else if((k == T_ENTER || k == T_SHOT) && b && m_nextTask == NONE && m_text->Finished()){
         m_nextTask = PARSE;
-        m_text.Clear();
+        m_text->Clear();
     }
-    else if(k == T_SHOT && b && m_nextTask == NONE && !m_text.Finished()){
-        m_text.StopSpeak();
+    else if(k == T_SHOT && b && m_nextTask == NONE && !m_text->Finished()){
+        m_text->StopSpeak();
     }
 }
 
@@ -204,6 +206,7 @@ void BossConversation::OnHide()
 {
     /* TODO:仅1P */
     if(m_shotPressed[0]) player[0].OnEvent(T_SHOT,true);
+    delete m_text;
     delete this;
 }
 

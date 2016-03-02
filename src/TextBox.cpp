@@ -65,7 +65,6 @@ void TextBox::Clear()
 
 Uint32 TextBox::ForceAddText(const std::wstring& s)
 {
-
     Uint32 pFirstTex = m_text.size();
     FOR_EACH(p,s.begin(),s.end())
     {
@@ -75,7 +74,6 @@ Uint32 TextBox::ForceAddText(const std::wstring& s)
         /*渲染文字纹理*/
         m_text.push_back(new ::Snow::Sprite());
         const auto pTex = m_text.size() - 1;
-
 
         auto pSur = TTF_RenderGlyph_Blended(m_tfont,*p,m_color);
         ::Snow::DrawTextOutLine(pSur);
@@ -144,8 +142,6 @@ Uint32 TextBox::ForceAddPic(const std::string& file, const int fps, const int ti
 }
 
 
-
-
 void TextBox::AddText(const std::wstring& s)
 {
     auto pst = ForceAddText(s);
@@ -154,7 +150,6 @@ void TextBox::AddText(const std::wstring& s)
     if(m_stat != TXT_SHOWING) m_showing_word = pst;
     m_stat = TXT_SHOWING;
     m_fpsCounter = m_nowFps;
-
 }
 
 void TextBox::AddPic(const std::string& file,const int fps,const int time)

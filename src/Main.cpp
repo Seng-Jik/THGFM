@@ -18,6 +18,7 @@
 #include "SCClock.h"
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
+#include "ShaoNvQiDaoZhong.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -36,6 +37,7 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
     KeyMapAct::Init();
     //TODO:KeyMapAct::LoadSetting
     Player::Init();
+    ShaoNvQiDaoZhong::Init();
     PlayerBullet::Init();
     BulletMgr::Init();
     EffectMgr::Init();
@@ -72,8 +74,8 @@ int main(int argc,char** argv){
     acgclogo ->SetInitThread(&initThread);
     Run(acgclogo);
     #else
-    _initThread(nullptr);
-    Run(wstg);
+    //_initThread(nullptr);
+    Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
     #endif
     return 0;
 }

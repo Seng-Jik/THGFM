@@ -69,7 +69,7 @@ class BossConversation : public KeyMapAct
         Mix_Chunk* m_bgm;
         double m_bgmBpm;
 
-        ACGCross::Galgame::TextBox m_text;
+        ACGCross::Galgame::TextBox* m_text;
         std::string m_basePath;
         std::queue<std::string> m_conversations;
         bool parseLine();

@@ -54,10 +54,14 @@ void ScClock::OnDraw()
     int c;
     if(m_sec_0 != 0) c = 0;
     else c = 1;
+    if(m_sec_0 > 9 || m_sec_0 < 0) return;
     SDL_RenderCopy(Snow::pRnd, m_tex[c][m_sec_0], nullptr, &(m_rect[0]));
+    if(m_sec_1 > 9 || m_sec_1 < 0) return;
     SDL_RenderCopy(Snow::pRnd, m_tex[c][m_sec_1], nullptr, &(m_rect[1]));
     SDL_RenderCopy(Snow::pRnd, m_tex[c][10], nullptr, &(m_rect[2]));
+    if(m_msec_0 > 9 || m_msec_0 < 0) return;
     SDL_RenderCopy(Snow::pRnd, m_tex[c][m_msec_0], nullptr, &(m_rect[3]));
+    if(m_msec_1 > 9 || m_msec_1 < 0) return;
     SDL_RenderCopy(Snow::pRnd, m_tex[c][m_msec_1], nullptr, &(m_rect[4]));
 }
 

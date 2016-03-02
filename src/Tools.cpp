@@ -1,6 +1,7 @@
 #include "Tools.h"
 #include "CSVWRollBgp.h"
 #include "StageMgr.h"
+#include "ShaoNvQiDaoZhong.h"
 #include "StageTitle.h"
 #include "Snow/Debug.h"
 #include "Beater.h"
@@ -50,4 +51,5 @@ void LoadStage(const std::string& stageName, Level l)
     //beater.LoadBeats(path + stgConfig.Str("BGM_BEAT"));
     bgm.LoadMusic(path + stgConfig.Str("BGM_FILE"),stgConfig.Int("BGM_LOOPS"));
     beater.SetBeater(stgConfig.Float("BGM_BPM"));
+    ShaoNvQiDaoZhong::EndShaoNv();
 }

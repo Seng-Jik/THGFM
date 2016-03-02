@@ -11,6 +11,7 @@
 #include "SCClock.h"
 using namespace Snow;
 
+
 void Boss::allocBgmAttackTime()
 {
     int baseOne = 0;
@@ -171,7 +172,6 @@ void Boss::OnNext()
     }
     if(m_firsShow) return;
     scClock.SetTime(m_endTime - m_cnt);
-
 
     //µ±·û¿¨ËÀÍöºó
     if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || m_cnt >= m_endTime) && m_collEnable){
