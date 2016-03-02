@@ -74,8 +74,8 @@ int main(int argc,char** argv){
     acgclogo ->SetInitThread(&initThread);
     Run(acgclogo);
     #else
-    _initThread(nullptr);
-    Run(wstg);
+    //_initThread(nullptr);
+    Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
     #endif
     return 0;
 }
