@@ -17,10 +17,16 @@ class ShaoNvQiDaoZhong:public Snow::Activity
     protected:
     private:
         static std::atomic_bool m_continueRun;
-        static SDL_Texture* m_ani;
-        static const int BEG_BEG = 3,BEGIN_END = 29,LOOP_BEG = 30,LOOP_END = 59,END_BEG = 60,END_END = 88;
-        const SDL_Rect  DSTRECT = {896,624,384,58};
-        int m_frame;
+        static SDL_Texture* m_ani1,*m_ani2;
+
+        double m_yinyang_angle;
+        Uint8 m_yinyang_alpha,m_qidao_alpha;
+        bool m_qidao_alpha_down;
+
+        enum{
+            FADEIN,RUNNING,FADEOUT
+        }m_state;
+
         std::thread* m_thd;
         Snow::Activity* m_act;
 };
