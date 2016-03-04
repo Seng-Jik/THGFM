@@ -30,7 +30,7 @@ void Player::Init()
 
 Player::Player()
 {
-    //ctor
+    ResetScore();
 }
 
 Player::~Player()

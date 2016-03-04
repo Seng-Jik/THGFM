@@ -21,6 +21,7 @@ class Player
 
         bool m_booming = false;
         CharData* m_charData;
+        Uint32 m_score;
 
 
     public:
@@ -43,6 +44,10 @@ class Player
         void AddPower(double power);
         void ClearKey();
         inline bool Booming(){return m_booming;}
+
+        inline void AddScore(Uint32 s){m_score+=s;};
+        inline void ResetScore(){m_score=0;};
+        inline Uint32 GetScore(){return m_score;};
         virtual ~Player();
     protected:
 };
