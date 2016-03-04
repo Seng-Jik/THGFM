@@ -2,10 +2,54 @@
 #include "WSTGame.h"
 #include "Tools.h"
 #include "Player.h"
-PauseActivity* pause;
+PauseActivity * pause;
+
+PauseActivity::PauseActivity()
+{
+    //init the value
+    for(int i = 0; i < ALLCHOICE; ++i)
+    {
+        m_btns[i].func = BtnFunc(i);
+        m_btns[i].enabled = false;
+        m_btns[i].sp.Load("gameUI/pause_" + std::to_string(i) + ".png");
+        m_btns[i].sp.SetRollEnable(true);
+    }
+    m_change_quick_finish = false;
+    m_wait_frame_adddec = -1;
+}
+
+PauseActivity::~PauseActivity()
+{
+    for(int i = 0; i < ALLCHOICE; ++i)
+        m_btns[i].sp.Clear();
+}
+
+void PauseActivity::AddBtns(BtnFunc i_btns[], int i_len)
+{
+    if(i_len == 0){
+        std::cout << "WARNING: the number of buttons was not given" << std::endl;
+        i_len = 6;
+    }
+    //absolutely safe
+    for(int i = 0; i < ALLCHOICE; ++i)
+        m_btns[i].enabled = false;
+
+    for(int i = 0; i < i_len; ++i)
+        for(int j = 0; j < ALLCHOICE; ++j)
+            if(i_btns[i] == m_btns[j].func){
+                m_btns[j].enabled = true;
+                break;
+            }
+}
+
 void PauseActivity::OnShow()
 {
     SetLogicScreenSize(WIDTH,HEIGHT);
+    //use the frames to calculate as time(0.8s)
+    m_show_time = MENUSHOWTIME;
+    m_hide_time = MENUHIDETIME;
+    m_wait_time = MENUWAITTIME;
+
     SDL_Rect r = {0,0,Snow::pRnd.GetPhW(),Snow::pRnd.GetPhH()};
     Uint32* pixels = (new Uint32 [Snow::pRnd.GetPhW()*Snow::pRnd.GetPhH()]);
     SDL_RenderReadPixels(Snow::pRnd,
@@ -25,21 +69,20 @@ void PauseActivity::OnShow()
     m_bgt.SetAlpha(0);
 
     delete pixels;
-    m_state = PAUSEING;
+    m_state = SHOWING;
     m_tmr.Reset();
 
-    //display the button
-    for(int i = 0; i < ALLCHOICE; ++i){
-        m_select[i].Load("gameUI/pause_" + std::to_string(i) + ".png");
-        m_select[i].SetPos(CHOICEX,CHOICEY + 56 * i);
-    }
     //display the pointer
     m_ptr.Load("gameUI/pause_ptr.png");
-    m_ptr.SetPos(CHOICEX - 64,CHOICEY);
     m_ptr_state = 0;
+
+   //display the socre banner
+    m_score.Load("gameUI/current_score.png");
 
     //TODO:只处理了0号玩家
     player[0].ClearKey();
+    BtnFunc tmpBtn[5] = {RESUME, RESTART, SETTINGS, TOTITLE, EXIT};
+    AddBtns(tmpBtn, 5);
 }
 
 void PauseActivity::OnDraw()
@@ -47,29 +90,96 @@ void PauseActivity::OnDraw()
     m_bgt_o.OnDraw();
     m_bgt.OnDraw();
     for(int i = 0; i < ALLCHOICE; ++i)
-        m_select[i].OnDraw();
+        if(m_btns[i].enabled)
+            m_btns[i].sp.OnDraw();
     m_ptr.OnDraw();
+    m_score.OnDraw();
 }
 
 void PauseActivity::OnNext()
 {
-    if(m_state == PAUSEING){
-        float per = float(m_tmr.GetTimer())/100;
-        if(per>=1.0){
-            m_state = MENU;
-            m_bgt.SetAlpha(255);
+    float k;
+    int k_w, k_h;
+    switch(m_state)
+    {
+    case SHOWING:
+        //mathfunc animation
+        k = ACGCross::ArcFunc((MENUSHOWTIME - m_show_time) / (float)MENUSHOWTIME);
+        for(int i = 0; i < ALLCHOICE; ++i){
+            m_btns[i].sp.SetAlpha(k * 255);
+            m_btns[i].sp.SetPos(CHOICEX, int(HEIGHT - k * (HEIGHT - CHOICEY) + 56 * i));
         }
-        else m_bgt.SetAlpha(255*per);
-    }
-    if(m_state == RESUMEING){
-        float per = float(m_tmr.GetTimer())/100;
-        if(per>=1.0) {
+        m_bgt.SetAlpha(k * 255);
+        m_ptr.SetPos(CHOICEX - 70, int(HEIGHT - k * (HEIGHT - CHOICEY + 16)));
+        m_score.SetPos(int(WIDTH - k * (WIDTH - 80)), 50);
+        if(--m_show_time == 0)
+            m_state = WAITING;
+        break;
+
+    default:
+    case WAITING:
+        //pointer animation
+        k = (MENUWAITTIME - m_wait_time) / (float)MENUWAITTIME;
+        m_btns[m_ptr_state].sp.GetSize(k_w, k_h);
+        for (int i = 0; i < ALLCHOICE; ++i)
+            if(i != m_ptr_state){
+                m_btns[i].sp.SetAlpha(170 + 40 * k);
+                m_btns[i].sp.SetPos(CHOICEX,  CHOICEY + 56 * i);
+                m_btns[i].sp.SetRollAngle(0);
+            }
+        m_btns[m_ptr_state].sp.SetRollCenter(int(0.5 * k_w), int(k_h * 0.5));
+        //std::cout << "the center is " << CHOICEX + 0.5 * k_w << "," << CHOICEY + 56 * m_ptr_state + k_h * 0.5 << std::endl;
+        //std::cout << "the xy is " << CHOICEX << "," << CHOICEY + 56 * m_ptr_state << std::endl;
+        m_btns[m_ptr_state].sp.SetAlpha(255);
+        m_btns[m_ptr_state].sp.SetRollAngle(10 - 20 * k);
+        m_ptr.SetPos(CHOICEX - 70, (HEIGHT - CHOICEY - 30) + m_ptr_state * 56);
+        m_wait_time += m_wait_frame_adddec;
+        m_score.SetAlpha(180 + 40 * k);
+        if (m_wait_time == 0)
+            m_wait_frame_adddec = 1;
+        if (m_wait_time == MENUWAITTIME)
+            m_wait_frame_adddec = -1;
+        if (++m_cycle == 4)
+            m_cycle = 0;
+        break;
+
+    case CHOOSING:
+        //set the pos of ptr
+        k = ACGCross::ArcFunc((MENUCHANGETIME - m_change_time) / (float)MENUCHANGETIME);
+            m_ptr.SetPos(CHOICEX - 70, int((HEIGHT - CHOICEY - 30) + m_ptr_state * (56 * k)));
+        if (++m_change_time == MENUCHANGETIME || m_change_quick_finish) {
+            m_ptr.SetPos(CHOICEX - 70, (HEIGHT - CHOICEY - 30) + m_ptr_state * 56);
+            m_ptr_state = WAITING;
+            m_change_quick_finish = false;
+        }
+        std::cout << "Choosing ok" << std::endl;
+        break;
+
+    case FINISHED:
+        switch(m_ptr_state)
+        {
+        case 0:
+            m_state = HIDING;
+            m_tmr.Reset();
+            break;
+
+        default:
+            break;
+        }
+        break;
+
+    case HIDING:
+        k = ACGCross::ArcFunc((MENUHIDETIME - m_hide_time) / (float)MENUHIDETIME);
+        for(int i = 0; i < ALLCHOICE; ++i)
+            m_btns[i].sp.SetPos(CHOICEX, int(CHOICEY + k * (HEIGHT - CHOICEY) + 56 * i));
+        m_ptr.SetPos(CHOICEX - 70, int(CHOICEY - 10 + k * 400));
+        m_bgt_o.SetAlpha(255 - k * 255);
+        if(--m_hide_time == 0){
             wstg -> OnResume();
             Snow::Return();
         }
-        else m_bgt.SetAlpha(255-255*per);
+        break;
     }
-    m_ptr.SetPos(CHOICEX - 64,CHOICEY + 56 * m_ptr_state);
 }
 
 void PauseActivity::OnEvent(int p, Key k, bool b)
@@ -77,51 +187,58 @@ void PauseActivity::OnEvent(int p, Key k, bool b)
     if(b)
     {
         //PLAYSE();
+        se.Play(DEMOSE);
+
         switch(k){
-        case T_ESC:
-        case T_PAUSE:
-            ResumeGame();
+        case T_BOOM : case T_ESC : case T_PAUSE :
+            m_state = FINISHED;
+            m_ptr_state = RESUME;
             break;
 
         case T_UP:
+            if(m_change_time < MENUCHANGETIME)
+                m_change_quick_finish = true;
             if(m_ptr_state == 0)
+            {
                 m_ptr_state = ALLCHOICE - 1;
+                while(!m_btns[m_ptr_state].enabled)
+                    m_ptr_state--;
+            }
             else
+            {
                 m_ptr_state--;
+                while(!m_btns[m_ptr_state].enabled)
+                    m_ptr_state--;
+            }
+            m_state = WAITING;
+            m_change_time = 0;
+            std::cout << "Now m_ptr_state is " << m_ptr_state << std::endl;
             break;
 
         case T_DOWN:
+            if(m_change_time < MENUCHANGETIME)
+                m_change_quick_finish = true;
             if(m_ptr_state == ALLCHOICE - 1)
+            {
                 m_ptr_state = 0;
+                while(!m_btns[m_ptr_state].enabled)
+                    m_ptr_state++;
+            }
             else
+            {
                 m_ptr_state++;
+                while(!m_btns[m_ptr_state].enabled)
+                    m_ptr_state++;
+            }
+            m_state = WAITING;
+            m_change_time = 0;
+            std::cout << "Now m_ptr_state is " << m_ptr_state << std::endl;
             break;
 
         case T_ENTER:
-            switch(m_ptr_state)
-            {
-            case 0:
-                ResumeGame();
-            case 1:
-                //goto settings ui
-            case 2:
-                //goto the title
-            case 3:
-                //exit the game
-            default:
-                break;
-            }
+        case T_SHOT:
+            m_state = FINISHED;
+            break;
         }
     }
-}
-
-void PauseActivity::ResumeGame()
-{
-    m_state = RESUMEING;
-    m_tmr.Reset();
-}
-
-void PauseActivity::OnHide()
-{
-
 }
