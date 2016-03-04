@@ -14,8 +14,8 @@ SDL_Texture* LoadPic(const std::string& f)
     r.Load(f);
     PNT("LoadPic:"<<f);
     auto p = IMG_LoadTexture_RW(pRnd,r,r.Size());
-    SDL_SetTextureBlendMode(p,SDL_BLENDMODE_BLEND);
     SDL_assert(p != nullptr);
+    SDL_SetTextureBlendMode(p,SDL_BLENDMODE_BLEND);
     return p;
 }
 

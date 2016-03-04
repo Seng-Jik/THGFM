@@ -15,10 +15,12 @@
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
+#include "Title.h"
 #include "SCClock.h"
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
+#include "Title.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -75,7 +77,8 @@ int main(int argc,char** argv){
     Run(acgclogo);
     #else
     //_initThread(nullptr);
-    Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
+    //Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
+    Run(new Title);
     #endif
     return 0;
 }
