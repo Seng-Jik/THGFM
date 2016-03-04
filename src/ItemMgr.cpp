@@ -86,6 +86,8 @@ void ItemMgr::OnNext()
                             gameUI.OnGetBomb();break;
                         case LIFE1UP:
                             gameUI.OnGetLife();break;
+                        case SCORE:
+                            player[m_items[i].gettingToPlayer].AddScore(1);break;
                         };
                         Kill(i);
                 }
