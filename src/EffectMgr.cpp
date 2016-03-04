@@ -7,7 +7,7 @@ using namespace std;
 
 EffectMgr effMgr;
 
-EffectMgr::EffectStyle EffectMgr::m_effStyles[1];
+EffectMgr::EffectStyle EffectMgr::m_effStyles[32];
 
 EffectMgr::EffectMgr()
 {
@@ -20,20 +20,24 @@ EffectMgr::~EffectMgr()
 }
 void EffectMgr::Init()
 {
-    m_effStyles[0].frameWait =4;
-    m_effStyles[0].tex = new SDL_Texture* [4];
-    m_effStyles[0].tex[0]=LoadPic("Effect/boom1.png");
-    m_effStyles[0].tex[1]=LoadPic("Effect/boom2.png");
-    m_effStyles[0].tex[2]=LoadPic("Effect/boom3.png");
-    m_effStyles[0].tex[3]=LoadPic("Effect/boom4.png");
-    FOR_EACH(i,0,4){
-        SDL_SetTextureAlphaMod(m_effStyles[0].tex[i],160);
-    }
-    m_effStyles[0].texCount = 4;
+    Snow::CSVReader csv;
+    csv.LoadCSV("Effect/styles.csv");
+    int num = 0;
+    csv.NextLine();
+    do{
+        csv.PopInt(m_effStyles[num].texCount);
+        csv.PopInt(m_effStyles[num].frameWait);
+        m_effStyles[num].tex = new SDL_Texture* [m_effStyles[num].texCount];
+        for(int i = 0;i < m_effStyles[num].texCount;++i){
+            m_effStyles[num].tex[i] = LoadPic("Effect/eff"+std::to_string(num)+"/"+std::to_string(i+1)+".png");
+        }
+        ++num;
+    }while(csv.NextLine());
 }
 
 void EffectMgr::InstallFrameAnimation(int style, int x, int y)
 {
+    PNT("SSSSSS");
     for(int i = 0;i <1024;++i){
         if(m_effs[i].style == -1){
             m_effs[i].cnt = 0;

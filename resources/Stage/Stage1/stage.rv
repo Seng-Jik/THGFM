@@ -1,8 +1,8 @@
-#关卡配置
+﻿#关卡配置
 
 #关卡数据
-STR LSTG  = "stage.csv"
-STR HSTG = "stage.csv"
+STR LSTG  = "DTEST.csv"
+STR HSTG = "DTEST.csv"
 STR NSTG = "stage.csv"
 STR ESTG =  = "stage.csv"
 STR EXSTG = ""

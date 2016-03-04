@@ -20,7 +20,7 @@ class EffectMgr //用来管理和游戏内容完全无关的小特效
             SDL_Texture** tex;
             int texCount;
             int frameWait;
-        }m_effStyles[1];
+        }m_effStyles[32];
         struct Eff{ //Frame Animations
             int style = -1,cnt;
             int x,y;

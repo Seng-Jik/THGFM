@@ -46,12 +46,12 @@ void WSTGame::OnDraw()
     background.OnDraw();
     Boss* boss;
     if((boss = stage.GetBoss())!=nullptr) boss->OnSCBGDraw();
-    effMgr.OnDraw();
     playerBulletMgr.OnDraw();
     itemMgr.OnDraw();
     player[0].OnDraw();
     bulletMgr.OnDraw();
     stage.OnDraw();
+    effMgr.OnDraw();
 
     SDL_SetRenderTarget(Snow::pRnd,nullptr);
     SDL_Point poi = {WIDTH/2,HEIGHT/2};
