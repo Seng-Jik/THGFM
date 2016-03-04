@@ -219,7 +219,6 @@ void Boss::OnNext()
     else if(m_collEnable){
         (scPartten[m_spellCards.front().scPartten])(this,m_cnt,*m_mainCnt - m_cnt_begin,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
     }
-    PNT("BOSS FRAME:"<<m_cnt);
 }
 
 void Boss::OnConersationFinished()

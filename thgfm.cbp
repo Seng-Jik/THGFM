@@ -112,7 +112,6 @@
 		<Unit filename="include/StageTitle.h" />
 		<Unit filename="include/StdParttenAPI.h" />
 		<Unit filename="include/TextBox.h" />
-		<Unit filename="include/Title.h" />
 		<Unit filename="include/Tools.h" />
 		<Unit filename="include/TouHouGameLogo.h" />
 		<Unit filename="include/WSTGame.h" />
@@ -147,7 +146,6 @@
 		<Unit filename="src/StageMgr.cpp" />
 		<Unit filename="src/StageTitle.cpp" />
 		<Unit filename="src/TextBox.cpp" />
-		<Unit filename="src/Title.cpp" />
 		<Unit filename="src/Tools.cpp">
 			<Option compilerVar="CC" />
 		</Unit>

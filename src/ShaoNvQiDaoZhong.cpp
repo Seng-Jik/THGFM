@@ -67,11 +67,11 @@ void ShaoNvQiDaoZhong::OnNext()
     }
     if(m_state == RUNNING){
         if(m_qidao_alpha_down){
-            m_qidao_alpha -= 10;
-            if(m_qidao_alpha<50) m_qidao_alpha_down = false;
+            m_qidao_alpha -= 7;
+            if(m_qidao_alpha<150) m_qidao_alpha_down = false;
         }
         else{
-            m_qidao_alpha +=10;
+            m_qidao_alpha +=7;
             if(m_qidao_alpha>245) m_qidao_alpha_down = true;
         }
     }

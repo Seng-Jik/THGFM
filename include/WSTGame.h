@@ -29,6 +29,7 @@ class WSTGame : public KeyMapAct
 
         SDL_Texture* m_pGameGraphic;
         int m_shkTmr = 0;
+        Uint8 m_black_start_alpha;
 };
 
 extern WSTGame* wstg;

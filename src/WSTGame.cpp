@@ -38,6 +38,7 @@ void WSTGame::OnShow(){
     collWorld.ClearEnemy();
     collWorld.ClearEnemyBullet();
     bgm.Play();
+    m_black_start_alpha = 250;
 }
 double angle = 0;
 void WSTGame::OnDraw()
@@ -112,10 +113,14 @@ void WSTGame::OnDraw()
             m_stageClearEffCnt = 0;
         else ++m_stageClearEffCnt;
     }
+
+    SDL_SetRenderDrawColor(Snow::pRnd,0,0,0,m_black_start_alpha);
+    SDL_RenderFillRect(Snow::pRnd,nullptr);
 }
 
 void WSTGame::OnNext()
 {
+    if(m_black_start_alpha >= 10) m_black_start_alpha-=10;
     beater.OnNext();
     background.OnNext();
     //PNT("BEGIN PLAYER BULLET");
