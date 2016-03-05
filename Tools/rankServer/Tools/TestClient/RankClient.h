@@ -2,7 +2,8 @@ typedef unsigned char UINT8;
 typedef unsigned int UINT32;
 
 struct Rank{
-	char name[4];
+	char name[3];
+	UINT8 place;
 	UINT32 score;
 };
 
