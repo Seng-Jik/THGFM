@@ -77,8 +77,8 @@ int main(int argc,char** argv){
     Run(acgclogo);
     #else
     //_initThread(nullptr);
-    Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
-    //Run(new Title);
+    //Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
+    Run(new Title);
     #endif
     return 0;
 }

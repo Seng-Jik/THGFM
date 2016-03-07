@@ -17,10 +17,14 @@ void Title::OnInit()
 
 void Title::OnShow()
 {
-    m_btn_y = 200;
+    m_btn_y = 130;
     addButton("Title/Start.png",START);
-    addButton("Title/Start.png",STARTEXTRA);
-    addButton("Title/Start.png",EXIT);
+    //addButton("Title/Extra.png",STARTEXTRA);
+    //addButton("Title/Practice.png",PRATCICE);
+    //addButton("Title/MusicRoom.png",MUSICROOM);
+    addButton("Title/Rank.png",RANK);
+    if(KeyMapAct::HaveGamePad()) addButton("Title/GamePadSetting.png",GAMEPADKEYSET);
+    addButton("Title/Exit.png",EXIT);
     showButton();
 }
 
@@ -44,7 +48,7 @@ void Title::clearButton()
     for(Button& b:m_buttons)
         SDL_DestroyTexture(b.tex);
     m_buttons.clear();
-    m_btn_y = 200;
+    m_btn_y = 0;
 }
 
 void Title::addButton(const char* file, ButtonWork work)
@@ -53,7 +57,7 @@ void Title::addButton(const char* file, ButtonWork work)
     b.btn = work;
     b.tex = LoadPic(file);
     SDL_QueryTexture(b.tex,nullptr,nullptr,&b.dst_draw.w,&b.dst_draw.h);
-    b.dst_draw.x = b.dst.x = 100;
+    b.dst_draw.x = b.dst.x = 0;
     b.dst.y = m_btn_y;
     m_btn_y+=b.dst_draw.h;
     b.alpha = 255;
@@ -105,7 +109,7 @@ void Title::onNextButton()
                 b.alpha = 192;
             }
             m_buttonState = NORMAL;
-            m_selecter.SetPos(100,m_selecter_trg);
+            m_selecter.SetPos(0,m_selecter_trg);
             m_selecter.SetAlpha(255);
         }
         else{
@@ -113,7 +117,8 @@ void Title::onNextButton()
                 b.dst_draw.y = 150 + (per*b.dst.y - 150);
                 b.alpha = 192*per;
             }
-            m_selecter.SetPos(100,int(per*(m_selecter_trg - 50)+50));
+            //m_selecter.SetPos(0,int(per*(m_selecter_trg - 50)+50));
+            m_selecter.SetPos(0,m_selecter_trg);
             m_selecter.SetAlpha(255*per);
         }
     }
@@ -133,7 +138,7 @@ void Title::onNextButton()
         else if(per >0 && per <1) for(Button& b:m_buttons){
             b.dst_draw.y = 150 + ((1-per)*b.dst.y - 150);
             b.alpha = 192-192*per;
-            m_selecter.SetPos(100,int((1-per)*(m_selecter_trg - 50)+50));
+            //m_selecter.SetPos(0,int((1-per)*(m_selecter_trg - 50)+50));
             m_selecter.SetAlpha(255-255*per);
         }
     }
@@ -141,10 +146,10 @@ void Title::onNextButton()
     else if(m_buttonState == SELECTER_MOVING){
         float per = ACGCross::ArcFunc(float(m_btn_tmr.GetTimer())/500);
         if(per == -1){
-            m_selecter.SetPos(100,int(m_selecter_trg));
+            m_selecter.SetPos(0,int(m_selecter_trg));
             m_buttonState = NORMAL;
         }else{
-            m_selecter.SetPos(100,int(per*(m_selecter_trg - m_selecter_old))+m_selecter_old);
+            m_selecter.SetPos(0,int(per*(m_selecter_trg - m_selecter_old))+m_selecter_old);
         }
     }
 }
