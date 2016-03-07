@@ -41,11 +41,11 @@ class EffectMgr //用来管理和游戏内容完全无关的小特效
         static SDL_Texture* m_charBoom_tex;
         struct CharBombEffect{
             SDL_Rect rect;
-            Uint8 alpha;
+            Uint16 keepTime;
             bool live = false;
             Uint8 r,g,b;
             Uint8 wait;
-        }m_charBoomEff[4];
+        }m_charBoomEff[16];
 };
 
 extern EffectMgr effMgr;

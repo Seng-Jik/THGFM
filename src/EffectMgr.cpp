@@ -36,6 +36,8 @@ void EffectMgr::Init()
     }while(csv.NextLine());
 
     m_charBoom_tex = LoadPic("Effect/CharBoom.png");
+    SDL_SetTextureAlphaMod(m_charBoom_tex,96);
+    SDL_SetTextureBlendMode(m_charBoom_tex,SDL_BLENDMODE_BLEND);
 }
 
 void EffectMgr::InstallFrameAnimation(int style, int x, int y)
@@ -80,12 +82,12 @@ void EffectMgr::InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,boo
 
 void EffectMgr::InstallCharBoomAnimation(int x, int y, Uint8 r, Uint8 g, Uint8 b,int wait)
 {
-    for(int i = 0;i < 4;++i){
+    for(int i = 0;i < 16;++i){
         if(!m_charBoomEff[i].live){
             m_charBoomEff[i].r = r;
             m_charBoomEff[i].g = g;
             m_charBoomEff[i].b = b;
-            m_charBoomEff[i].alpha = 255;
+            m_charBoomEff[i].keepTime = 30;
             m_charBoomEff[i].live = true;
             m_charBoomEff[i].rect.x = x;
             m_charBoomEff[i].rect.y = y;
@@ -124,7 +126,7 @@ void EffectMgr::OnDraw()
     for(CharBombEffect& b:m_charBoomEff){
         if(b.live && b.wait ==0){
             SDL_SetTextureColorMod(m_charBoom_tex,b.r,b.g,b.b);
-            SDL_SetTextureAlphaMod(m_charBoom_tex,b.alpha);
+            //SDL_SetTextureAlphaMod(m_charBoom_tex,b.alpha);
             SDL_RenderCopy(Snow::pRnd,m_charBoom_tex,nullptr,&b.rect);
         }
     }
@@ -164,12 +166,12 @@ void EffectMgr::OnNext()
     for(CharBombEffect& b:m_charBoomEff){
         if(b.wait >0) --b.wait;
         else if(b.live){
-            b.rect.x -= 30;
-            b.rect.y -= 30;
-            b.rect.w += 60;
-            b.rect.h += 60;
-            b.alpha -= 10;
-            if(b.alpha < 10) b.live = false;
+            b.rect.x -= 70;
+            b.rect.y -= 70;
+            b.rect.w += 140;
+            b.rect.h += 140;
+            b.keepTime -= 1;
+            if(b.keepTime <= 0) b.live = false;
         }
     }
 }

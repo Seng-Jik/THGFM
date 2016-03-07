@@ -181,9 +181,9 @@ void Reimu::BulletInstaller(double power,int cnt,double x,double y)
 
 void Reimu::InstallDeatAnimation(int x, int y)
 {
-    effMgr.InstallCharBoomAnimation(x,y,255,255,255,0);
-    effMgr.InstallCharBoomAnimation(x,y,255,255,255,5);
-    effMgr.InstallCharBoomAnimation(x,y,255,255,255,10);
-    effMgr.InstallCharBoomAnimation(x,y,255,255,255,15);
+    effMgr.InstallCharBoomAnimation(x,y,216,4,9,0);
+    effMgr.InstallCharBoomAnimation(x,y,216,32,96,7);
+    effMgr.InstallCharBoomAnimation(x,y,216,4,9,14);
+    //effMgr.InstallCharBoomAnimation(x,y,10,0,0,15);
 }
 
