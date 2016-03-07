@@ -72,7 +72,7 @@ void Player::OnNext()
         if(!m_deathVS){
             itemMgr.AddItem(POWER,10,m_x,m_y,5);
             itemMgr.AddItem(SCORE,10,m_x,m_y,5);
-            effMgr.InstallFrameAnimation(0,m_x,m_y);
+            m_charData->InstallDeatAnimation(m_x,m_y);
             m_x = m_y = -200;
             m_live = DEAD;
             gameUI.OnPlayerBeKilled();
@@ -166,7 +166,8 @@ void Player::OnEvent(Key k, bool b)
 void Player::Invincible(int frame)
 {
     m_invin = frame;
-    collWorld.SetPlayer(m_playerNum,false);
+    if(frame) collWorld.SetPlayer(m_playerNum,false);
+    else collWorld.SetPlayer(m_playerNum,true);
 }
 
 void Player::Kill()

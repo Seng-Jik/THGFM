@@ -9,6 +9,7 @@ class CharData
         virtual void BoomOnDraw()=0;
         virtual void BoomReset(Player*)=0;
         virtual void BulletInstaller(double power,int cnt,double x,double y) = 0;
+        virtual void InstallDeatAnimation(int x,int y) = 0;
     protected:
     private:
 };
@@ -25,6 +26,7 @@ class Marisa:public CharData{
         virtual void BoomOnDraw();
         virtual void BoomReset(Player*);
         virtual void BulletInstaller(double power,int cnt,double x,double y);
+        virtual void InstallDeatAnimation(int x,int y);
 };
 extern Marisa marisa;
 
@@ -43,6 +45,7 @@ class Reimu:public CharData{
         virtual void BoomOnDraw();
         virtual void BoomReset(Player*);
         virtual void BulletInstaller(double power,int cnt,double x,double y);
+        virtual void InstallDeatAnimation(int x,int y);
 };
 extern Reimu reimu;
 

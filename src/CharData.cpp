@@ -4,6 +4,7 @@
 #include "WSTGame.h"
 #include "CollWorld.h"
 #include "PlayerBullet.h"
+#include "EffectMgr.h"
 Marisa marisa;
 void Marisa::Init()
 {
@@ -62,6 +63,12 @@ void Marisa::BulletInstaller(double power,int cnt,double x,double y)
     //TODO
     std::cout<<"marisa";
 }
+
+void Marisa::InstallDeatAnimation(int x, int y)
+{
+    effMgr.InstallCharBoomAnimation(x,y,255,255,255,0);
+}
+
 
 
 Reimu reimu;
@@ -171,3 +178,12 @@ void Reimu::BulletInstaller(double power,int cnt,double x,double y)
         }
     }
 }
+
+void Reimu::InstallDeatAnimation(int x, int y)
+{
+    effMgr.InstallCharBoomAnimation(x,y,255,255,255,0);
+    effMgr.InstallCharBoomAnimation(x,y,255,255,255,5);
+    effMgr.InstallCharBoomAnimation(x,y,255,255,255,10);
+    effMgr.InstallCharBoomAnimation(x,y,255,255,255,15);
+}
+

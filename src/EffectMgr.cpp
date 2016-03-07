@@ -8,6 +8,7 @@ using namespace std;
 EffectMgr effMgr;
 
 EffectMgr::EffectStyle EffectMgr::m_effStyles[32];
+SDL_Texture* EffectMgr::m_charBoom_tex;
 
 EffectMgr::EffectMgr()
 {
@@ -33,11 +34,12 @@ void EffectMgr::Init()
         }
         ++num;
     }while(csv.NextLine());
+
+    m_charBoom_tex = LoadPic("Effect/CharBoom.png");
 }
 
 void EffectMgr::InstallFrameAnimation(int style, int x, int y)
 {
-    PNT("SSSSSS");
     for(int i = 0;i <1024;++i){
         if(m_effs[i].style == -1){
             m_effs[i].cnt = 0;
@@ -76,6 +78,25 @@ void EffectMgr::InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,boo
     m_zoomOutEffs[num].angle = angle;
 }
 
+void EffectMgr::InstallCharBoomAnimation(int x, int y, Uint8 r, Uint8 g, Uint8 b,int wait)
+{
+    for(int i = 0;i < 4;++i){
+        if(!m_charBoomEff[i].live){
+            m_charBoomEff[i].r = r;
+            m_charBoomEff[i].g = g;
+            m_charBoomEff[i].b = b;
+            m_charBoomEff[i].alpha = 255;
+            m_charBoomEff[i].live = true;
+            m_charBoomEff[i].rect.x = x;
+            m_charBoomEff[i].rect.y = y;
+            m_charBoomEff[i].rect.w = m_charBoomEff[i].rect.h = 0;
+            m_charBoomEff[i].wait = wait;
+            break;
+        }
+    }
+}
+
+
 
 void EffectMgr::OnDraw()
 {
@@ -97,6 +118,15 @@ void EffectMgr::OnDraw()
         if(m_zoomOutEffs[i].tex){
             SDL_SetTextureAlphaMod(m_zoomOutEffs[i].tex,m_zoomOutEffs[i].alpha);
             SDL_RenderCopyEx(Snow::pRnd,m_zoomOutEffs[i].tex,nullptr,&m_zoomOutEffs[i].rect,m_zoomOutEffs[i].angle,&m_zoomOutEffs[i].centerPoi,SDL_FLIP_NONE);
+    }
+
+    //Char Boom Effect
+    for(CharBombEffect& b:m_charBoomEff){
+        if(b.live && b.wait ==0){
+            SDL_SetTextureColorMod(m_charBoom_tex,b.r,b.g,b.b);
+            SDL_SetTextureAlphaMod(m_charBoom_tex,b.alpha);
+            SDL_RenderCopy(Snow::pRnd,m_charBoom_tex,nullptr,&b.rect);
+        }
     }
 }
 
@@ -128,6 +158,19 @@ void EffectMgr::OnNext()
     }
     while(!m_zoomOutEffs[m_zoomOutEffSearchTop-1].tex && m_zoomOutEffSearchTop>=1){
         m_zoomOutEffSearchTop--;
+    }
+
+    //Char Boom Effect
+    for(CharBombEffect& b:m_charBoomEff){
+        if(b.wait >0) --b.wait;
+        else if(b.live){
+            b.rect.x -= 30;
+            b.rect.y -= 30;
+            b.rect.w += 60;
+            b.rect.h += 60;
+            b.alpha -= 10;
+            if(b.alpha < 10) b.live = false;
+        }
     }
 }
 

@@ -173,8 +173,14 @@ void WSTGame::OnEvent(int p, Key k, bool b)
     if((k == T_ESC || k == T_PAUSE || k == T_ENTER)&&b){
         Pause();
     }
-    if(k == T_DBG_DOUBLE_SPEED)
+    if(k == T_DBG_DOUBLE_SPEED){
         m_dbg_doubleSpeed = b;
+        if(b){
+            player[0].Invincible(100000);
+        }else{
+            player[0].Invincible(0);
+        }
+    }
     if(k == T_DBG_PNTCNT && b){
         PNT("F3--PRINT FRAME NUMBER:"<<stage.GetCnt());
         if(stage.GetBoss()){
