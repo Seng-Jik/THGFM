@@ -3,8 +3,10 @@
 INT MIDWAY_BOSS = 0
 
 #对话脚本
-STR CONV_WHEN_KILLED = "Boss/BOSSConEnd.txt"
-STR CONVERSATION = "Boss/BOSSCon.txt"
+STR CONV_WHEN_KILLED_REIMU = "Boss/BOSSConEnd.txt"
+STR CONV_WHEN_KILLED_MARISA = "Boss/BOSSConEnd.txt"
+STR CONVERSATION_REIMU = "Boss/BOSSCon.txt"
+STR CONVERSATION_MARISA = "Boss/BOSSCon.txt"
 
 #---------------------------- BGM参数
 #BOSS BGM
