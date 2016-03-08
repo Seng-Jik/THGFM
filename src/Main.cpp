@@ -15,12 +15,11 @@
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
-#include "Title.h"
+#include "Title/Title.h"
 #include "SCClock.h"
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
-#include "Title.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
