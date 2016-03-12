@@ -1,6 +1,6 @@
 #include "BgmMgr.h"
 #include "Snow/Debug.h"
-//#define DISABLE
+#define DISABLE
 BgmMgr bgm;
 
 static void _whenMusicFinished(){

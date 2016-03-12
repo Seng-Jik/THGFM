@@ -15,7 +15,7 @@
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
-#include "Title/Title.h"
+#include "Title/TitleMenu.h"
 #include "SCClock.h"
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
@@ -77,7 +77,7 @@ int main(int argc,char** argv){
     #else
     //_initThread(nullptr);
     //Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
-    Run(new Title);
+    Run(&titleMenu);
     #endif
     return 0;
 }

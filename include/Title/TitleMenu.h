@@ -1,14 +1,14 @@
-#ifndef TITLE_H
-#define TITLE_H
+#ifndef TitleMenu_H
+#define TitleMenu_H
 
 #include "../Snow.h"
 #include "../KeyMapAct.h"
 #include <vector>
 
-class Title : public KeyMapAct
+class TitleMenu : public KeyMapAct
 {
     public:
-        Title();
+        TitleMenu();
         void OnInit();
         void OnShow();
         void OnNext();
@@ -17,6 +17,8 @@ class Title : public KeyMapAct
         void OnEvent(int,Key,bool);
     protected:
     private:
+        SDL_Texture* m_bgp;
+
         /* 最基本的按钮架构 */
         enum ButtonWork{
             START,
@@ -59,4 +61,6 @@ class Title : public KeyMapAct
         void selectEnter();
 };
 
-#endif // TITLE_H
+extern TitleMenu titleMenu;
+
+#endif // TitleMenu_H

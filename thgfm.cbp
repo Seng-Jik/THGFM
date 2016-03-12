@@ -18,6 +18,7 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add directory="include" />
+					<Add directory="include/Title" />
 				</Compiler>
 				<Linker>
 					<Add library="lib/libSnow_Dbg.a" />
@@ -32,6 +33,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
+					<Add directory="include/Title" />
 				</Compiler>
 				<Linker>
 					<Add library="lib/libSnow.a" />
@@ -112,7 +114,7 @@
 		<Unit filename="include/StageTitle.h" />
 		<Unit filename="include/StdParttenAPI.h" />
 		<Unit filename="include/TextBox.h" />
-		<Unit filename="include/Title/Title.h" />
+		<Unit filename="include/Title/TitleMenu.h" />
 		<Unit filename="include/Tools.h" />
 		<Unit filename="include/TouHouGameLogo.h" />
 		<Unit filename="include/WSTGame.h" />
@@ -147,7 +149,7 @@
 		<Unit filename="src/StageMgr.cpp" />
 		<Unit filename="src/StageTitle.cpp" />
 		<Unit filename="src/TextBox.cpp" />
-		<Unit filename="src/Title/Title.cpp" />
+		<Unit filename="src/Title/TitleMenu.cpp" />
 		<Unit filename="src/Tools.cpp">
 			<Option compilerVar="CC" />
 		</Unit>

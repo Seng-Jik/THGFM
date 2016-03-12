@@ -1,22 +1,25 @@
-#include "Title/Title.h"
+#include "Title/TitleMenu.h"
 #include "Tools.h"
 #include "MathFunc.h"
 #include "BgmMgr.h"
 #include <Snow/Debug.h>
 
-Title::Title()
+TitleMenu titleMenu;
+
+TitleMenu::TitleMenu()
 {
     SetLogicScreenSize(1280,720);
 }
 
 
-void Title::OnInit()
+void TitleMenu::OnInit()
 {
     m_selecter.Load("Title/Selecter.png");
     m_actButton = 0;
+    m_bgp = LoadPic("Title/bgp.png");
 }
 
-void Title::OnShow()
+void TitleMenu::OnShow()
 {
     bgm.LoadMusic("Title/Title.wav",0);
     bgm.Play();
@@ -32,22 +35,23 @@ void Title::OnShow()
     m_selecter_alpha_downing = true;
 }
 
-void Title::OnNext()
+void TitleMenu::OnNext()
 {
     onNextButton();
 }
 
-void Title::OnDraw()
+void TitleMenu::OnDraw()
 {
+    SDL_RenderCopy(Snow::pRnd,m_bgp,nullptr,nullptr);
     onDrawButton();
 }
 
-void Title::OnHide()
+void TitleMenu::OnHide()
 {
     clearButton();
 }
 
-void Title::clearButton()
+void TitleMenu::clearButton()
 {
     for(Button& b:m_buttons)
         SDL_DestroyTexture(b.tex);
@@ -55,7 +59,7 @@ void Title::clearButton()
     m_btn_y = 0;
 }
 
-void Title::addButton(const char* file, ButtonWork work)
+void TitleMenu::addButton(const char* file, ButtonWork work)
 {
     Button b;
     b.btn = work;
@@ -68,7 +72,7 @@ void Title::addButton(const char* file, ButtonWork work)
     m_buttons.push_back(b);
 }
 
-void Title::doButton(ButtonWork b)
+void TitleMenu::doButton(ButtonWork b)
 {
     switch(b){
     case EXIT:
@@ -89,7 +93,7 @@ void Title::doButton(ButtonWork b)
     }
 }
 
-void Title::showButton()
+void TitleMenu::showButton()
 {
     m_buttonState = SHOWING;
     m_btn_tmr.Reset();
@@ -99,13 +103,13 @@ void Title::showButton()
     m_selecterAlpha = 255;
 }
 
-void Title::hideButton()
+void TitleMenu::hideButton()
 {
     m_buttonState = HIDING;
     m_btn_tmr.Reset();
 }
 
-void Title::onNextButton()
+void TitleMenu::onNextButton()
 {
     if(m_buttonState == SHOWING){
         float per = ACGCross::ArcFunc(float(m_btn_tmr.GetTimer())/500);
@@ -187,7 +191,7 @@ void Title::onNextButton()
     }
 }
 
-void Title::selectUp()
+void TitleMenu::selectUp()
 {
     if(m_actButton > 0){
         int x;
@@ -199,7 +203,7 @@ void Title::selectUp()
     }
 }
 
-void Title::selectDown()
+void TitleMenu::selectDown()
 {
     if(m_actButton < m_buttons.size() -1){
         int x;
@@ -211,7 +215,7 @@ void Title::selectDown()
     }
 }
 
-void Title::setActButton(int i){
+void TitleMenu::setActButton(int i){
     int x;
     m_selecter.GetPos(x,m_selecter_old);
     m_actButton=i;
@@ -220,14 +224,14 @@ void Title::setActButton(int i){
     m_btn_tmr.Reset();
 }
 
-void Title::selectEnter()
+void TitleMenu::selectEnter()
 {
     if(m_buttons[m_actButton].btn == EXIT) bgm.Stop(500);
     m_buttonState = SELECTER_FLASHING;
     m_btn_tmr.Reset();
 }
 
-void Title::onDrawButton()
+void TitleMenu::onDrawButton()
 {
     for(Button& b:m_buttons){
         //SDL_Rect dst={b.dst.x,b.dst_draw.y,b.dst_draw.w,b.dst_draw.h};
@@ -237,7 +241,7 @@ void Title::onDrawButton()
     m_selecter.OnDraw();
 }
 
-void Title::OnEvent(int, Key k, bool b)
+void TitleMenu::OnEvent(int, Key k, bool b)
 {
     if(m_buttonState == NORMAL || m_buttonState == SELECTER_MOVING){// || m_buttonState == HIDDEN){
         if(b){
