@@ -12,3 +12,15 @@
 *.la
 *.a
 /bin
+sdasp.layout
+bin
+Tools
+libgcc_s_dw2-1.dll
+libstdc++-6.dll
+libwinpthread-1.dll
+thgfmRank.dat
+thgfmRankServer.cbp
+thgfmRankServer.depend
+thgfmRankServer.layout
+bin
+Tools

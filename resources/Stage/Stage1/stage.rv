@@ -1,10 +1,10 @@
 ﻿#关卡配置
 
 #关卡数据
-STR LSTG  = "DTEST.csv"
+STR LSTG  = "Lunatic.csv"
 STR HSTG = "DTEST.csv"
 STR NSTG = "stage.csv"
-STR ESTG =  = "Lunatic.csv"
+STR ESTG =  = ""
 STR EXSTG = ""
 
 #背景图数据
@@ -17,6 +17,6 @@ INT TITLE_BEG = 80
 INT TITLE_END = 440
 
 #BGM
-FLOAT BGM_BPM = 145
+FLOAT BGM_BPM = 130
 STR BGM_FILE = "0.ogg"
 INT BGM_LOOPS = -1

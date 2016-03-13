@@ -76,6 +76,7 @@ bool BossConversation::parseLine()
                 bgm.UseMusic(m_bgm,1);
                 beater.ChangeBpm(m_bgmBpm);
                 bgm.Play();
+                stage.GetBoss() -> ResetCnt();
             }else if(cmd == "stp"){
                 bgm.Stop(atoi(arg.c_str()));
             }
