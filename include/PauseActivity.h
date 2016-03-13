@@ -34,13 +34,13 @@ public:
     void OnDraw();
     void OnNext();
     void OnEvent(int p, Key k, bool b);
+
 private:
+    //bg
     Snow::Surface m_bg;
-    Snow::Sprite m_num[10];
-    Snow::Sprite m_ptr;
-    Snow::Sprite m_score;
     Snow::Sprite m_bgt;
     Snow::Sprite m_bgt_o;
+    Snow::Sprite m_ptr;
     Snow::Timer m_tmr;
     bool m_change_quick_finish;
     enum { SHOWING, WAITING, CHOOSING, FINISHED, HIDING } m_state;
@@ -49,6 +49,14 @@ private:
     int m_wait_frame_adddec;
     int m_ptr_state;
     inline int SetCycle(int i_cycle){ if(i_cycle > 3) return i_cycle - 4; return i_cycle;}
+    //score modules
+    Snow::Sprite m_score;
+    int m_num_color;
+    SDL_Rect m_score_rect;
+    int m_score_rect_x;
+    int m_score_num;
+    int m_score_pt[11];
+    SDL_Texture * m_score_tex[10]; //0-9
 };
 
 extern PauseActivity* pause;

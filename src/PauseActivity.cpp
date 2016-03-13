@@ -77,7 +77,22 @@ void PauseActivity::OnShow()
     m_ptr_state = 0;
 
    //display the socre banner
+    int score = player[0].GetScore();
     m_score.Load("gameUI/current_score.png");
+    for (m_score_num = 0; score > 0; ++m_score_num){
+        m_score_pt[m_score_num] = score % 10;
+        score = (score - m_score_pt[m_score_num]) / 10;
+    }
+    m_score_rect.w = 28;
+    m_score_rect.h = 38;
+    m_score_rect.y = 50;
+
+    if(m_num_color == 1)
+        for (int i = 0; i < 10; ++i)
+            m_score_tex[i] = LoadPic("GameUI/Number/red/" + std::to_string(i) + ".PNG");
+    else
+        for (int i = 0; i < 10; ++i)
+            m_score_tex[i] = LoadPic("GameUI/Number/black/" + std::to_string(i) + ".PNG");
 
     //TODO:只处理了0号玩家
     player[0].ClearKey();
@@ -89,9 +104,14 @@ void PauseActivity::OnDraw()
 {
     m_bgt_o.OnDraw();
     m_bgt.OnDraw();
-    for(int i = 0; i < ALLCHOICE; ++i)
+    for (int i = 0; i < ALLCHOICE; ++i)
         if(m_btns[i].enabled)
             m_btns[i].sp.OnDraw();
+
+    for (int i = m_score_num - 1; i >= 0; --i) {
+        m_score_rect.x = m_score_rect_x + 240 - 32 * i;
+        SDL_RenderCopy(Snow::pRnd, m_score_tex[m_score_pt[i]], nullptr, &m_score_rect);
+    }
     m_ptr.OnDraw();
     m_score.OnDraw();
 }
@@ -111,6 +131,7 @@ void PauseActivity::OnNext()
         }
         m_bgt.SetAlpha(k * 255);
         m_ptr.SetPos(CHOICEX - 70, int(HEIGHT - k * (HEIGHT - CHOICEY + 16)));
+        m_score_rect_x = int(WIDTH - k * (WIDTH - 280));
         m_score.SetPos(int(WIDTH - k * (WIDTH - 80)), 50);
         if(--m_show_time == 0)
             m_state = WAITING;
@@ -119,28 +140,28 @@ void PauseActivity::OnNext()
     default:
     case WAITING:
         //pointer animation
-        k = (MENUWAITTIME - m_wait_time) / (float)MENUWAITTIME;
+        k = ACGCross::FArcFunc((MENUWAITTIME - m_wait_time) / (float)MENUWAITTIME);
         m_btns[m_ptr_state].sp.GetSize(k_w, k_h);
         for (int i = 0; i < ALLCHOICE; ++i)
             if(i != m_ptr_state){
-                m_btns[i].sp.SetAlpha(170 + 40 * k);
                 m_btns[i].sp.SetPos(CHOICEX,  CHOICEY + 56 * i);
                 m_btns[i].sp.SetRollAngle(0);
             }
-        m_btns[m_ptr_state].sp.SetRollCenter(int(0.5 * k_w), int(k_h * 0.5));
+        //m_btns[m_ptr_state].sp.SetRollCenter(int(0.5 * k_w), int(k_h * 0.5));
         //std::cout << "the center is " << CHOICEX + 0.5 * k_w << "," << CHOICEY + 56 * m_ptr_state + k_h * 0.5 << std::endl;
         //std::cout << "the xy is " << CHOICEX << "," << CHOICEY + 56 * m_ptr_state << std::endl;
-        m_btns[m_ptr_state].sp.SetAlpha(255);
-        m_btns[m_ptr_state].sp.SetRollAngle(10 - 20 * k);
+        m_btns[m_ptr_state].sp.SetAlpha(170 + 80 * k);
+        //m_btns[m_ptr_state].sp.SetRollAngle(10 - 20 * k);
         m_ptr.SetPos(CHOICEX - 70, (HEIGHT - CHOICEY - 30) + m_ptr_state * 56);
         m_wait_time += m_wait_frame_adddec;
-        m_score.SetAlpha(180 + 40 * k);
-        if (m_wait_time == 0)
+        m_score.SetAlpha(240 + 10 * k);
+        if (m_wait_time <= 0)
             m_wait_frame_adddec = 1;
-        if (m_wait_time == MENUWAITTIME)
+        if (m_wait_time >= MENUWAITTIME - 1)
             m_wait_frame_adddec = -1;
         if (++m_cycle == 4)
             m_cycle = 0;
+        std::cout << " the current frame of waiting is " << m_wait_time << std::endl;
         break;
 
     case CHOOSING:
@@ -170,8 +191,11 @@ void PauseActivity::OnNext()
 
     case HIDING:
         k = ACGCross::ArcFunc((MENUHIDETIME - m_hide_time) / (float)MENUHIDETIME);
-        for(int i = 0; i < ALLCHOICE; ++i)
+        for (int i = 0; i < ALLCHOICE; ++i)
             m_btns[i].sp.SetPos(CHOICEX, int(CHOICEY + k * (HEIGHT - CHOICEY) + 56 * i));
+        for (int i = 0; i < 10; ++i)
+            SDL_SetTextureAlphaMod(m_score_tex[i], 255 - k * 240);
+        m_score.SetAlpha(255 - k * 240);
         m_ptr.SetPos(CHOICEX - 70, int(CHOICEY - 10 + k * 400));
         m_bgt_o.SetAlpha(255 - k * 255);
         if(--m_hide_time == 0){

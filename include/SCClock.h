@@ -21,8 +21,8 @@ public:
 
 private:
     //the picture of color is the last
-    void reset();
-    void setAlpha(Uint8 alpha);
+    void Reset();
+    void SetAlpha(Uint8 alpha);
     SDL_Texture* m_tex[2][11];
     SDL_Rect m_rect[5];
     int m_sec_0, m_sec_1, m_msec_0, m_msec_1;

@@ -5,17 +5,17 @@ ScClock scClock;
 
 void ScClock::Init()
 {
-    for(int i = 0; i < 11; ++i){
+    for (int i = 0; i < 11; ++i) {
         m_tex[0][i] = LoadPic("GameUI/Number/black/" + std::to_string(i) + ".PNG");
         m_tex[1][i] = LoadPic("GameUI/Number/red/" + std::to_string(i) + ".PNG");
     }
-    reset();
-    setAlpha(0);
+    Reset();
+    SetAlpha(0);
 }
 
-void ScClock::setAlpha(Uint8 alpha)
+void ScClock::SetAlpha(Uint8 alpha)
 {
-    for(int i = 0;i < 11;++i){
+    for(int i = 0; i < 11; ++i){
         SDL_SetTextureAlphaMod(m_tex[0][i],alpha);
         SDL_SetTextureAlphaMod(m_tex[1][i],alpha);
     }
@@ -23,25 +23,25 @@ void ScClock::setAlpha(Uint8 alpha)
 
 void ScClock::OnNext()
 {
-    if(!m_visible) return;
-    if(m_anime == SHOWING_S1){
+    if (!m_visible) return;
+    if (m_anime == SHOWING_S1) {
         float per = m_animeTmr.GetTimer() / 30.0f;
-        setAlpha(per*192);
-        if(per >= 1) {
+        SetAlpha(per * 192);
+        if (per >= 1) {
             m_animeTmr.Reset();
             m_anime = SHOWING_S2;
         }
-    }else if(m_anime == SHOWING_S2){
+    }else if(m_anime == SHOWING_S2) {
         float per = ACGCross::ArcFunc(m_animeTmr.GetTimer() / 30.0f);
-        if(per == -1) per = 1;
-        for(int i = 0;i < 5;++i){
-            m_rect[i].y = 400 + per*150;
+        if (per == -1) per = 1;
+        for (int i = 0; i < 5; ++i) {
+            m_rect[i].y = 400 + per * 150;
         }
-        if(per >= 1) m_anime = NONE;
-    }else if(m_anime == HIDING){
+        if (per >= 1) m_anime = NONE;
+    }else if (m_anime == HIDING) {
         float per = m_animeTmr.GetTimer() / 30.0f;
-        setAlpha(192-per*192);
-        if(per >= 1){
+        SetAlpha(192 - per * 192);
+        if (per >= 1) {
             m_anime = NONE;
             m_visible = false;
         }
@@ -65,13 +65,13 @@ void ScClock::SetTime(int i_frame)
 {
     m_sec_0 = i_frame / 600;
     m_sec_1 = (i_frame / 60) % 10;
-    m_msec_0 = float(int(i_frame) % 60) *1000 / 60 /100;
-    m_msec_1 = int(float(int(i_frame) % 60) *1000 / 60 / 10) % 10;
+    m_msec_0 = float(int(i_frame) % 60) * 1000 / 60 / 100;
+    m_msec_1 = int(float(int(i_frame) % 60) * 1000 / 60 / 10) % 10;
 }
 
 void ScClock::Show()
 {
-    reset();
+    Reset();
     m_visible = true;
     m_anime = SHOWING_S1;
     m_animeTmr.Reset();
@@ -83,15 +83,15 @@ void ScClock::Hide()
     m_animeTmr.Reset();
 }
 
-void ScClock::reset()
+void ScClock::Reset()
 {
-    for(int i = 0; i < 5; ++i)
+    for (int i = 0; i < 5; ++i)
     {
         m_rect[i].w = 28;
         m_rect[i].h = 38;
-        m_rect[i].x = (WIDTH - 28 * 5) / 2 + 28 * (i - 2) + 27*2;
+        m_rect[i].x = (WIDTH - 28 * 5) / 2 + 28 * (i - 2) + 27 * 2;
         m_rect[i].y = 400;
     }
     m_rect[2].w = 13;
-    m_rect[2].x = WIDTH/2 - 7;
+    m_rect[2].x = WIDTH / 2 - 7;
 }
