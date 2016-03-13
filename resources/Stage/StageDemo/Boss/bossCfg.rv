@@ -1,0 +1,32 @@
+#---------------------------- 基本参数
+#BOSS是否为道中Boss
+INT MIDWAY_BOSS = 0
+
+#对话脚本
+STR CONV_WHEN_KILLED = "Boss/BOSSConEnd.txt"
+STR CONVERSATION = "Boss/BOSSCon.txt"
+
+#---------------------------- BGM参数
+#BOSS BGM
+STR BGM_SND = "Boss/boss.ogg"
+FLOAT BGM_BPM = 260
+
+#BGM段落数据
+STR BGM_BLK = ""Boss/BGMBlocks.txt"
+
+#---------------------------- 图像参数
+#BOSS在游戏中的图像（最多只能存放10个，必须有10个常量项目）
+#刚开始时默认显示0号图像
+STR IMG_FILE_0 = "Boss/Boss1.png"
+STR IMG_FILE_1 = ""
+STR IMG_FILE_2 = ""
+STR IMG_FILE_3 = ""
+STR IMG_FILE_4 = ""
+STR IMG_FILE_5 = ""
+STR IMG_FILE_6 = ""
+STR IMG_FILE_7 = ""
+STR IMG_FILE_8 = ""
+STR IMG_FILE_9 = ""
+
+#---------------------------- 符卡列表CSV配置
+STR SC_CSV = "Boss/SpellCards.csv"

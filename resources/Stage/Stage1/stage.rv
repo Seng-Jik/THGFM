@@ -4,11 +4,11 @@
 STR LSTG  = "DTEST.csv"
 STR HSTG = "DTEST.csv"
 STR NSTG = "stage.csv"
-STR ESTG =  = "stage.csv"
+STR ESTG =  = "Lunatic.csv"
 STR EXSTG = ""
 
 #背景图数据
-STR BGCSV = "bg.csv"
+STR BGCSV = "bgp/bg.csv"
 
 #Stage Title
 

@@ -27,7 +27,7 @@ Snow::Mutex initMutex;
 
 void _initThread(THREAD_ID){
     initMutex.Lock();
-    LoadStage("Stage1",LV_H);
+    LoadStage("Stage1",LV_L);
     initMutex.Unlock();
     PNT("INIT END");
 }
