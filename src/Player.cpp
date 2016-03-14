@@ -89,7 +89,7 @@ void Player::OnNext()
         collWorld.Update_Boom();
     }
 
-    if(m_k[4]) spd = 3;
+    if(m_k[4]) spd = 4;
     if((m_k[0] && m_k[2]) ||
        (m_k[0] && m_k[3]) ||
        (m_k[1] && m_k[2]) ||

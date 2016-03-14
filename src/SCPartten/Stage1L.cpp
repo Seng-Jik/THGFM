@@ -7,7 +7,7 @@
 
 void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //飘下羽毛
-    if(scnt % 1 == 0){
+    if(scnt % 2 == 0){
         BltSelfAngle(SCCreateBlt(b,Rand()*WIDTH,-32,Rand()*M_PI+M_PI,Rand()*10,300,2)) = Rand()*2*M_PI;
     }
     boss_spd = 0;
