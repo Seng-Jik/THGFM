@@ -46,6 +46,7 @@ class Boss
         };
         std::queue<SpellCard> m_spellCards;
         std::vector<int> m_bullets;
+        Snow::Bundle<256> m_scParttenData;
 
         //结束时间
         int m_endTime;  //应当到达的时间

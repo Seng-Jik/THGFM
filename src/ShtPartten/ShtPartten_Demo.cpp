@@ -1,5 +1,6 @@
 #include "ShotParttenAPI.h"
 #include "StdParttenAPI.h"
+#include <Snow/Bundle.h>
 #include <iostream>
 #include <cstdlib>
 using namespace std;

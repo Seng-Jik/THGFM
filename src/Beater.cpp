@@ -6,15 +6,15 @@ using namespace Snow;
 Beater beater;
 void Beater::SetCntPtr(int* mainCnt)
 {
-    m_pCnt = mainCnt;
 }
 
 void Beater::OnNext()
 {
+    m_cnt += 1;
     m_isBeat = false;
-    if(int(m_nextFps) == *m_pCnt){
+    if(m_cnt >= m_idenFps){
         m_isBeat = true;
-        m_nextFps += m_idenFps;
+        m_cnt -= m_idenFps;
         ++m_beatNum;
     }
     //PNT("BEATER:"<<*m_pCnt<<" "<<(int)m_nextFps);
@@ -36,17 +36,15 @@ void Beater::OnNext()
 }*/
 void Beater::SetBeater(double bpm)
 {
-    m_nextFps = m_idenFps = 60/(bpm/60);
-    m_beatNum = 0;
-    m_isBeat = false;
+    ChangeBpm(bpm);
 }
 
 void Beater::ChangeBpm(double bpm)
 {
-    m_nextFps = *m_pCnt;
+    m_cnt = 0;
     m_idenFps = 60/(bpm/60);
-    m_nextFps += m_idenFps;
     m_beatNum = 0;
+    m_isBeat = false;
 }
 
 

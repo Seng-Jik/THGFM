@@ -1,34 +1,74 @@
 #include "SeMgr.h"
-Mix_Chunk* SeMgr::m_se[20] = {nullptr};
+Mix_Chunk* SeMgr::m_se[50] = {nullptr};
 SeMgr se;
 void SeMgr::Init()
 {
-    loadSe(DEMOSE,"Se/0.wav");
+    loadSe(BONUS,"bouns");
+    loadSe(BONUS2,"bouns2");
+    loadSe(CANCEL00,"cancel00");
+    loadSe(CARDGET,"cardget");
+    loadSe(CAT00,"cat00");
+    loadSe(CAT01,"cat01");
+    loadSe(CH00,"ch00");
+    loadSe(CH01,"ch01");
+    loadSe(DAMAGE00,"damage00");
+    loadSe(DAMAGE01,"damage01");
+    loadSe(ENEP00,"enep00");
+    loadSe(ENEP01,"enep01");
+    loadSe(ENEP02,"enep02");
+    loadSe(EXTEND,"extend");
+    loadSe(GRAZE,"graze");
+    loadSe(GUN00,"gun00");
+    loadSe(HINT00,"hint00");
+    loadSe(INVALID,"invaild");
+    loadSe(ITEM00,"item0");
+    loadSe(KIRA00,"kira00");
+    loadSe(KIRA01,"kira01");
+    loadSe(KIRA02,"kira02");
+    loadSe(LAZER00,"lazer00");
+    loadSe(LAZER01,"lazer01");
+    loadSe(MSL,"msl");
+    loadSe(NEP00,"nep00");
+    loadSe(OK00,"ok00");
+    loadSe(OPTION,"option");
+    loadSe(PAUSE,"pause");
+    loadSe(PLDEAD00,"pldead00");
+    loadSe(PLST00,"plst");
+    loadSe(POWER0,"power0");
+    loadSe(POWER1,"power1");
+    loadSe(POWERUP,"powerup");
+    loadSe(SELECT00,"select00");
+    loadSe(SLASH,"slash");
+    loadSe(TAN00,"tan00");
+    loadSe(TAN01,"tan01");
+    loadSe(TAN02,"tan02");
+    loadSe(TIMEOUT,"timeout");
+    loadSe(TIMEOUT2,"timeout2");
+    loadSe(WARPL,"warpl");
+    loadSe(WARPR,"warpr");
+    loadSe(WATER,"water");
+    for(int i = 1;i < 100;++i){
+        Mix_Volume(i,5);
+    }
 }
 
 void SeMgr::Play(SeName n)
 {
-    Mix_PlayChannel(n+1,m_se[n],0);
+    Mix_PlayChannel(-1,m_se[n],0);
 }
 
 void SeMgr::Pause()
 {
-    for(int i = 0;i < 20;++i){
-        if(Mix_Playing(i+1) && m_se[i] != nullptr) Mix_Pause(i+1);
-    }
 }
 
 void SeMgr::Resume()
 {
-    for(int i = 0;i < 20;++i){
-        if(Mix_Paused(i+1) && m_se[i] != nullptr) Mix_Resume(i+1);
-    }
 }
 
 
 void SeMgr::loadSe(SeName n, const std::string& se)
 {
     Snow::ResFile r;
-    r.Load(se);
+    r.Load("Se/se_"+se+".OGG");
     m_se[n] = Mix_LoadWAV_RW(r,r.Size());
 }

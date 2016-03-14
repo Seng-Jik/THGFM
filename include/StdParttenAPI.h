@@ -2,6 +2,7 @@
 #include "StageMgr.h"
 #include "Player.h"
 #include <cmath>
+#include <cstdlib>
 #include "Tools.h"
 #include "Beater.h"
 
@@ -25,4 +26,8 @@ inline double EneGetPlrAngle(int playerNum,int enemy){
 
 inline int PlrCount(){
     return 1;
+}
+
+inline float Rand(){
+    return float(rand()) / RAND_MAX;
 }

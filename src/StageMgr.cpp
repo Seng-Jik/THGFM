@@ -200,7 +200,7 @@ void StageMgr::OnNext()
                 effMgr.InstallFrameAnimation(0,enemy.x,enemy.y);
                 itemMgr.AddItem(SCORE,10,enemy.x,enemy.y,enemy.items[SCORE]);
                 itemMgr.AddItem(POWER,15,enemy.x,enemy.y,enemy.items[POWER]);
-                se.Play(DEMOSE);
+                se.Play(TAN00);
             }
 
             //应用 Partten

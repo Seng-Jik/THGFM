@@ -141,6 +141,7 @@
 		<Unit filename="src/SCBackground/Demo.cpp" />
 		<Unit filename="src/SCClock.cpp" />
 		<Unit filename="src/SCPartten/Demo.cpp" />
+		<Unit filename="src/SCPartten/Stage1L.cpp" />
 		<Unit filename="src/SeMgr.cpp" />
 		<Unit filename="src/ShaoNvQiDaoZhong.cpp" />
 		<Unit filename="src/ShtPartten/ShtPartten_Demo.cpp" />

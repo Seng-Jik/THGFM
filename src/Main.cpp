@@ -25,6 +25,11 @@ using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
 
+void InitParttens(){
+    extern void ScParttenInit_Stage1L();
+    ScParttenInit_Stage1L();
+}
+
 void _initThread(THREAD_ID){
     initMutex.Lock();
     LoadStage("Stage1",LV_L);
@@ -58,6 +63,7 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 
 int main(int argc,char** argv){
     Init();
+    InitParttens();
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
