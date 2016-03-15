@@ -64,6 +64,9 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 int main(int argc,char** argv){
     Init();
     InitParttens();
+    extern void InitScBgs();
+    InitScBgs();
+
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");

@@ -139,6 +139,7 @@
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/PlayerBullet.cpp" />
 		<Unit filename="src/SCBackground/Demo.cpp" />
+		<Unit filename="src/SCBackground/ScBgp.cpp" />
 		<Unit filename="src/SCClock.cpp" />
 		<Unit filename="src/SCPartten/Demo.cpp" />
 		<Unit filename="src/SCPartten/Stage1L.cpp" />

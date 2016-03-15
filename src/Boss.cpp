@@ -9,6 +9,8 @@
 #include "GameUI.h"
 #include "Player.h"
 #include "SCClock.h"
+typedef void(*SCBg)(int cnt,Snow::Bundle<256>&);
+extern SCBg scbgs [];
 using namespace Snow;
 
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
@@ -52,6 +54,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
     do{
         int boolTmp;
         csv.PopInt(boolTmp);
+        if(boolTmp == 2) continue;
         sc.isSpellCard = boolTmp;
         if(sc.isSpellCard) ++m_spellCardNum;
         sc.endTime = -1;
@@ -60,6 +63,11 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
         csv.PopStr(sc.title);
         csv.PopInt(sc.scPartten);
         csv.PopInt(sc.bgPartten);
+        if(sc.bgPartten!= -1) {
+            sc.scBgData = new Snow::Bundle<256>;
+            sc.scBgData->ResetPtr();
+            (*scbgs[sc.bgPartten])(-1,*sc.scBgData);
+        }
         m_spellCards.push(sc);
     }while(csv.NextLine());
     if(!m_conversation.empty()){
@@ -152,6 +160,12 @@ void Boss::OnNext()
         m_cnt_begin = -1;
         bulletMgr.Clear();
         m_bullets.clear();
+        if(m_spellCards.front().bgPartten != -1){
+            m_spellCards.front().scBgData->ResetPtr();
+            (*scbgs[m_spellCards.front().bgPartten])(-2,*m_spellCards.front().scBgData);
+            delete m_spellCards.front().scBgData;
+        }
+
         m_spellCards.pop();
         m_bouns = true;
         gameUI.UpdateSCHP(1.0);
@@ -199,13 +213,13 @@ void Boss::OnConersationFinished()
     m_endTime = m_spellCards.front().endTime;
 }
 
-typedef void(*SCBg)(int cnt);
-extern SCBg scbgs [];
+
 void Boss::OnSCBGDraw()
 {
     if(!m_collEnable || m_spellCards.empty()) return;
     if(m_live && m_spellCards.front().bgPartten != -1 && m_cnt_begin != -1){
-        (*scbgs[m_spellCards.front().bgPartten])(*m_mainCnt-m_cnt_begin);
+        m_spellCards.front().scBgData->ResetPtr();
+        (*scbgs[m_spellCards.front().bgPartten])(*m_mainCnt-m_cnt_begin,*m_spellCards.front().scBgData);
     }
 }
 
@@ -213,5 +227,9 @@ Boss::~Boss()
 {
     for(int i = 0;i < 10;++i)
         SDL_DestroyTexture(m_images[i]);
+    while(!m_spellCards.empty()){
+        if(m_spellCards.front().bgPartten != -1) delete m_spellCards.front().scBgData;
+        m_spellCards.pop();
+    }
 }
 

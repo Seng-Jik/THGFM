@@ -86,7 +86,7 @@ void WSTGame::OnDraw()
     //m_p2.OnDraw();
     collWorld.Debug_DrawEnemy();
     //collWorld.Debug_DrawEnemyBullet();
-    //collWorld.Debug_DrawPlayer();
+    collWorld.Debug_DrawPlayer();
 
     /* Beater Sync Debug */
     /*if(beater.IsBeatFrame()){
@@ -183,6 +183,9 @@ void WSTGame::OnEvent(int p, Key k, bool b)
     }
     if(k == T_DBG_PNTCNT && b){
         PNT("F3--PRINT FRAME NUMBER:"<<stage.GetCnt());
+        int x,y;
+        SDL_GetMouseState(&x,&y);
+        PNT("MOUSE:"<<x<<","<<y);
         if(stage.GetBoss()){
             PNT("    BOSS FRAME:"<<stage.GetBoss()->GetCnt());
         }

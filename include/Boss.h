@@ -6,6 +6,7 @@
 #include "Snow.h"
 //#include "MathFunc.h"
 #include <queue>
+#include <set>
 #include "BossConversation.h"
 class Boss
 {
@@ -43,6 +44,7 @@ class Boss
             int scPartten;  //·û¿¨¹¤×÷Ä£Ê½
             int bgPartten;  //±³¾°Í¼
             std::string title;  //·û¿¨Ãû³Æ
+            Snow::Bundle<256>* scBgData; //·û¿¨±³¾°Êý¾Ý
         };
         std::queue<SpellCard> m_spellCards;
         std::vector<int> m_bullets;
