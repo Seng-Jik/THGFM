@@ -43,7 +43,9 @@ void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
 
 void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //子弹加速度
-    for(int i:bullets) BltSpd(i) += 0.1;
+    for(int i:bullets)
+        if(BltState(i,0) == 1) BltSpd(i) += 0.1;
+        else BltSpd(i) -= 0.1;
 
     //从大妖精位置发出彩色光芒
     int kcnt;
@@ -65,14 +67,25 @@ void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         data.Read<int>(kcnt);
         data.Read<DaiAI>(ai);
         ++kcnt;
-        if(kcnt >= 10 && kcnt <= 100){
-            for(int i = 0; i < 5;++i){
+        if(beater.IsBeatFrame()  && beater.GetBeatNum()%4==0) kcnt = 10;
+        if(kcnt >= 10 && kcnt <= 50){
+            for(int i = 0; i < 70;++i){
                 double ang = Rand()*2*M_PI;
                 int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,0.1,0,20+Rand()*8);
                 BltSelfAngle(num) =ang;
+                BltState(num,0) = 1;
             }
         }
-        if(kcnt >= 200) kcnt = 10;
+        if(beater.IsBeatFrame()&& (beater.GetBeatNum()%4==1|| beater.GetBeatNum()%4==3)){
+            int st = 20+Rand()*8;
+            for(int i = 0; i < 90;++i){
+                double ang = 2*M_PI/90*i;
+                int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,7,0,st);
+                BltSelfAngle(num) =ang;
+                BltState(num,0) = 2;
+            }
+        }
+        //if(kcnt >= 200) kcnt = 10;
 
         if(ai.ismoving){
             float per = ACGCross::ArcFunc(float(scnt - ai.beg_cnt)/60);
@@ -88,8 +101,13 @@ void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     data.Write<DaiAI>(ai);
 }
 
+void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+    //子弹加速度
+}
+
 void ScParttenInit_Stage1L(){
     scPartten[410] = &SC410;
     scPartten[411] = &SC411;
+    scPartten[412] = &SC412;
 }
 

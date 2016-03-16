@@ -57,6 +57,7 @@
 			<Add library="dxguid" />
 			<Add library="SDL2_Mixer" />
 			<Add library="SDL2_ttf" />
+			<Add library="SDL2_net" />
 			<Add directory="$(#sdl2.lib)" />
 		</Linker>
 		<ExtraCommands>
@@ -120,6 +121,7 @@
 		<Unit filename="src/ACGCross_Logo.cpp" />
 		<Unit filename="src/BasicPackReader.cpp" />
 		<Unit filename="src/Beater.cpp" />
+		<Unit filename="src/BetaClient.cpp" />
 		<Unit filename="src/BgmMgr.cpp" />
 		<Unit filename="src/Boss.cpp" />
 		<Unit filename="src/BossConversation.cpp" />

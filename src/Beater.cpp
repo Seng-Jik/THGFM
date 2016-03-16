@@ -16,7 +16,9 @@ void Beater::OnNext()
         m_isBeat = true;
         m_cnt -= m_idenFps;
         ++m_beatNum;
+        if(m_beatNum >= 4) m_beatNum=0;
     }
+    PNT("Beater 0  "<<m_cnt<<" "<<m_idenFps<<" "<<m_beatNum<<" "<<m_isBeat);
     //PNT("BEATER:"<<*m_pCnt<<" "<<(int)m_nextFps);
 }
 

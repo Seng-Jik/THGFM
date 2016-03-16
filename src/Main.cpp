@@ -63,6 +63,8 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 
 int main(int argc,char** argv){
     Init();
+    //extern Uint8 BetaStart();
+    //BetaStart();
     InitParttens();
     extern void InitScBgs();
     InitScBgs();
