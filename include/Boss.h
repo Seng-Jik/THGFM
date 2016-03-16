@@ -66,6 +66,7 @@ class Boss
         inline bool IsInvi(){return m_invi;}
         inline int GetSpellCardNum(){return m_spellCardNum;}    //È¡·û¿¨Ê£ÓàÊı
         inline void ResetCnt(){m_cnt = 0;}
+        inline int GetSCnt(){return *m_mainCnt - m_cnt_begin;}
         int birthTime;
 
     protected:

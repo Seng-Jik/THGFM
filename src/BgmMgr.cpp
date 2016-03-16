@@ -1,5 +1,6 @@
 #include "BgmMgr.h"
 #include "Snow/Debug.h"
+//#define DISABLE
 BgmMgr bgm;
 
 static void _whenMusicFinished(){
@@ -39,15 +40,19 @@ void BgmMgr::Clear()
 
 void BgmMgr::Play()
 {
+    #ifndef DISABLE
     Mix_PlayChannel(0,m_bgmMus,m_loops);
     while(!Mix_Playing(0));
+    #endif // DISABLE
 }
 
 
 void BgmMgr::Stop(int ms)
 {
     //Mix_FadeOutMusic(ms);
+    #ifndef DISABLE
     Mix_FadeOutChannel(0,ms);
+    #endif // DISABLE
 }
 
 void BgmMgr::Pause()
@@ -59,6 +64,8 @@ void BgmMgr::Pause()
 void BgmMgr::Resume()
 {
     //Mix_ResumeMusic();
+    #ifndef DISABLE
     Mix_Resume(0);
     while(!Mix_Playing(0));
+    #endif // DISABLE
 }

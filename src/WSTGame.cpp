@@ -89,10 +89,10 @@ void WSTGame::OnDraw()
     collWorld.Debug_DrawPlayer();
 
     /* Beater Sync Debug */
-    if(beater.IsBeatFrame()){
+    /*if(beater.IsBeatFrame()){
         SDL_SetRenderDrawColor(Snow::pRnd,255,0,0,255);
         Snow::pRnd.Clear();
-    }
+    }*/
     gameUI.OnDraw();
 
     if(m_stageClearEffCnt != 0){
@@ -188,6 +188,7 @@ void WSTGame::OnEvent(int p, Key k, bool b)
         PNT("MOUSE:"<<x<<","<<y);
         if(stage.GetBoss()){
             PNT("    BOSS FRAME:"<<stage.GetBoss()->GetCnt());
+            PNT("    BOSS SPELLCARD CNT:"<<stage.GetBoss() ->GetSCnt());
         }
     }
 }
