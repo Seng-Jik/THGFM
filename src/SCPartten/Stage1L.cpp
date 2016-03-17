@@ -3,12 +3,16 @@
 #include "Snow/Debug.h"
 #include "SeMgr.h"
 #include "MathFunc.h"
+#include "EffectMgr.h"
+#include <cmath>
 //大妖精
 
 void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //飘下羽毛
     if(scnt % 2 == 0){
-        BltSelfAngle(SCCreateBlt(b,Rand()*WIDTH,-32,Rand()*M_PI+M_PI,Rand()*10,300,2)) = Rand()*2*M_PI;
+        int s = SCCreateBlt(b,Rand()*WIDTH,-32,Rand()*M_PI+M_PI,Rand()*10,300,2);
+        if(s != -1)
+            BltSelfAngle(s) = Rand()*2*M_PI;
     }
     boss_spd = 0;
 
@@ -71,18 +75,22 @@ void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         if(kcnt >= 10 && kcnt <= 50){
             for(int i = 0; i < 70;++i){
                 double ang = Rand()*2*M_PI;
-                int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,0.1,0,20+Rand()*8);
-                BltSelfAngle(num) =ang;
-                BltState(num,0) = 1;
+                int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,0.1,0,20+Rand()*7);
+                if(num != -1){
+                    BltSelfAngle(num) =ang;
+                    BltState(num,0) = 1;
+                }
             }
         }
         if(beater.IsBeatFrame()&& (beater.GetBeatNum()%4==1|| beater.GetBeatNum()%4==3)&& scnt>60){
-            int st = 20+Rand()*8;
+            int st = 20+Rand()*7;
             for(int i = 0; i < 90;++i){
                 double ang = 2*M_PI/90*i;
                 int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,7,0,st);
-                BltSelfAngle(num) =ang;
-                BltState(num,0) = 2;
+                if(num != -1){
+                    BltSelfAngle(num) =ang;
+                    BltState(num,0) = 2;
+                }
             }
         }
         //if(kcnt >= 200) kcnt = 10;
@@ -105,7 +113,11 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     struct SC412Dmk{
         double dmk_speed;
     }dmk;
+    struct SC412ai{
+        int momentMove;
+    }ai;
     data.Read<SC412Dmk>(dmk);
+    data.Read<SC412ai>(ai);
 
     //开场环状弹幕
     //0号状态：0为刚发射出来，正在急剧减速，1为减速完成，正在加速
@@ -118,6 +130,7 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         dmk.dmk_speed = 40;
     }
     if((scnt >= 1 && scnt <= 31) || (scnt >= 230 && scnt <= 260) || (scnt >= 455 && scnt <= 485) || (scnt >= 677 && scnt <= 707)){
+        ai.momentMove = 100;
         int style = 30;
         int tcnt = scnt - 460;
         if((scnt >= 1 && scnt <= 31) || (scnt >= 455 && scnt <= 485)){
@@ -129,9 +142,11 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         for(int j = 0;j < 8;++j){
             for(int i = 0;i < 10;++i){
                 int blt = SCCreateBlt(b,boss_x+40,boss_y+40,source_angle,dmk.dmk_speed+0.5*i,0,style);
-                BltSelfAngle(blt) = source_angle;
-                BltState(blt,0)=0;
-                BltState(blt,1) = i;
+                if(blt != -1){
+                    BltSelfAngle(blt) = source_angle;
+                    BltState(blt,0)=0;
+                    BltState(blt,1) = i;
+                }
             }
             source_angle += M_PI/4;
         }
@@ -157,24 +172,113 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         PlrGetPos(0,x,y);
         double ang = StdGetAngle(boss_x+40,boss_y+40,x,y);
         for(int i = -3;i<=3;++i){
-            int n = SCCreateBlt(b,boss_x+40,boss_y+40,ang - 0.2*i,5,0,23);
-            BltSelfAngle(n) = ang - 0.2*i;
-            BltState(n,0) = 10;
+            int n = SCCreateBlt(b,boss_x+40,boss_y+40,ang - 0.2*i,8,0,23);
+            if(n != -1){
+                BltSelfAngle(n) = ang - 0.2*i;
+                BltState(n,0) = 10;
+            }
 
-            n = SCCreateBlt(b,boss_x+40,boss_y+40,ang - 0.4*i,5,0,30);
-            BltSelfAngle(n) = ang - 0.3*i;
-            BltState(n,0) = 11;
-            BltState(n,1) = 45;
+            n = SCCreateBlt(b,boss_x+40,boss_y+40,ang - 0.4*i,8,0,30);
+            if(n != -1){
+                BltSelfAngle(n) = ang - 0.3*i;
+                BltState(n,0) = 11;
+                BltState(n,1) = 45;
+            }
         }
+    }
+
+    //AI
+    if(ai.momentMove > 0) --ai.momentMove;
+    if(ai.momentMove == 1){
+        effMgr.InstallFrameAnimation(0,boss_x,boss_y);
+        boss_x = Rand()*200+1080;
+        boss_y = Rand() * 520+100;
     }
 
     data.ResetPtr();
     data.Write<SC412Dmk>(dmk);
+    data.Write<SC412ai>(ai);
+}
+
+void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+    //if(scnt % 2 == 0){
+    //0号状态：0-上升气流，1-下降水雾
+        int n;
+        BltSelfAngle(n = SCCreateBlt(b,Rand()*1280,740,M_PI/2,6*Rand(),80,27)) = M_PI/2;
+        if(n != -1)  BltState(n,0) = 0;
+
+        for(int i:bullets)
+        {
+            if(BltState(i,0) == 0){
+                BltSpd(i) -= 0.01;
+            }else if(BltState(i,0) == 1){
+                BltSpd(i) += 0.05;
+            }
+        }
+    //}
+    if(beater.IsBeatFrame() && scnt >= 120){
+        for(int i = 0;i < 8;++i){
+            n = SCCreateBlt(b,Rand()*1280,720*Rand(),M_PI/2*3,0.1,0,40);
+            if(n != -1)
+                BltState(n,0) = 1;
+        }
+    }
+}
+
+void SC414(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+    struct SC414Dmk{
+        double sin_x;
+        int x[8],y[8],cnt[8];
+    }dmk;
+    if(scnt <= 6){
+        dmk.sin_x = 0;
+        for(int i = 0;i < 8;++i) dmk.cnt[i] = -1;
+    }else{
+        data.ResetPtr();
+        data.Read<SC414Dmk>(dmk);
+    }
+    //sin形水波
+    if(scnt % 6 == 0){
+        //SCCreateBlt(b,1280,80+sin(dmk.sin_x)*80,0,8,0,40);
+        //SCCreateBlt(b,1280,360+sin(dmk.sin_x[1])*80,0,9,0,40);
+        //SCCreateBlt(b,1280,360+sin(dmk.sin_x[2])*80,0,9,0,40);
+        SCCreateBlt(b,1280,160+sin(dmk.sin_x)*120,0,12,0,40);
+        SCCreateBlt(b,1280,320+sin(dmk.sin_x)*160,0,16,0,40);
+        SCCreateBlt(b,1280,640+sin(dmk.sin_x)*200,0,20,0,40);
+        dmk.sin_x += 0.2;
+    }
+
+    //涟漪
+    if(beater.IsBeatFrame()){
+        //创建新的涟漪
+        for(int i = 0;i < 8;++i){
+            if(dmk.cnt[i] == -1){
+
+                dmk.cnt[i] = 10;
+                dmk.x[i] = Rand()*680+600;
+                dmk.y[i] = Rand()*720;
+                break;
+            }
+        }
+    }
+    for(int i = 0;i < 8;++i){
+        if(dmk.cnt[i] != -1) --dmk.cnt[i];
+        if(dmk.cnt[i] %3 == 0){
+            for(int j = 0;j < 40;++j){
+                int n = SCCreateBlt(b,dmk.x[i],dmk.y[i],M_PI*2*j/40,8,0,21);
+                if(n != -1) BltSelfAngle(n) = BltAngle(n);
+            }
+        }
+    }
+    data.ResetPtr();
+    data.Write<SC414Dmk>(dmk);
 }
 
 void ScParttenInit_Stage1L(){
     scPartten[410] = &SC410;
     scPartten[411] = &SC411;
     scPartten[412] = &SC412;
+    scPartten[413] = &SC413;
+    scPartten[414] = &SC414;
 }
 
