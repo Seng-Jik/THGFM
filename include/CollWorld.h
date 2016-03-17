@@ -81,6 +81,7 @@ public:
         m_player[p].enable = enable;
         m_player[p].x = x;
         m_player[p].y = y;
+        m_player[p].r = 1;
     }
 
     inline void SetPlayerBullet(int num,bool enable,double x,double x_old,double w,double y,double h,int searchTop){

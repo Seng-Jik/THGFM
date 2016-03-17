@@ -84,7 +84,7 @@ void WSTGame::OnDraw()
     //angle+=0.1;
     //collWorld.Debug_DrawPlayerBullet();
     //m_p2.OnDraw();
-    collWorld.Debug_DrawEnemy();
+    //collWorld.Debug_DrawEnemy();
     //collWorld.Debug_DrawEnemyBullet();
     collWorld.Debug_DrawPlayer();
 

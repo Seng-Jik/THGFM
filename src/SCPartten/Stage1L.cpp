@@ -9,10 +9,11 @@
 
 void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //飘下羽毛
-    if(scnt % 2 == 0){
-        int s = SCCreateBlt(b,Rand()*WIDTH,-32,Rand()*M_PI+M_PI,Rand()*10,300,2);
+    if(scnt % 6 == 0){
+        double ang = Rand()*M_PI/4-M_PI+M_PI/2;
+        int s = SCCreateBlt(b,Rand()*WIDTH,-32,ang,Rand()*6,300,2);
         if(s != -1)
-            BltSelfAngle(s) = Rand()*2*M_PI;
+            BltSelfAngle(s) = ang;
     }
     boss_spd = 0;
 
@@ -43,12 +44,17 @@ void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         boss_x = ai.o_x + (ai.trg_x-ai.o_x)*per;
         boss_y = ai.o_y+ (ai.trg_y-ai.o_y)*per;
     }
+
+    for(int i:bullets){
+        BltAngle(i) += 0.001;
+        BltSelfAngle(i) += 0.1*Rand();
+    }
 }
 
 void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //子弹加速度
     for(int i:bullets)
-        if(BltState(i,0) == 1) BltSpd(i) += 0.1;
+        if(BltState(i,0) == 1) BltSpd(i) += 0.025;
         else BltSpd(i) -= 0.1;
 
     //从大妖精位置发出彩色光芒
@@ -72,10 +78,10 @@ void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         data.Read<DaiAI>(ai);
         ++kcnt;
         if(beater.IsBeatFrame()  && beater.GetBeatNum()%4==0 && scnt>30) kcnt = 10;
-        if(kcnt >= 10 && kcnt <= 50){
-            for(int i = 0; i < 70;++i){
+        if(kcnt >= 10 && kcnt <= 40){
+            for(int i = 0; i < 5;++i){
                 double ang = Rand()*2*M_PI;
-                int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,0.1,0,20+Rand()*7);
+                int num = SCCreateBlt(b,boss_x+22,boss_y+22,ang,0.1,0,20+Rand()*7);
                 if(num != -1){
                     BltSelfAngle(num) =ang;
                     BltState(num,0) = 1;
@@ -84,9 +90,9 @@ void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         }
         if(beater.IsBeatFrame()&& (beater.GetBeatNum()%4==1|| beater.GetBeatNum()%4==3)&& scnt>60){
             int st = 20+Rand()*7;
-            for(int i = 0; i < 90;++i){
-                double ang = 2*M_PI/90*i;
-                int num = SCCreateBlt(b,boss_x+40,boss_y+40,ang,7,0,st);
+            for(int i = 0; i < 45;++i){
+                double ang = 2*M_PI/45*i;
+                int num = SCCreateBlt(b,boss_x+22,boss_y+22,ang,7,0,st);
                 if(num != -1){
                     BltSelfAngle(num) =ang;
                     BltState(num,0) = 2;
@@ -141,7 +147,7 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         double source_angle = M_PI*2*tcnt/60;
         for(int j = 0;j < 8;++j){
             for(int i = 0;i < 10;++i){
-                int blt = SCCreateBlt(b,boss_x+40,boss_y+40,source_angle,dmk.dmk_speed+0.5*i,0,style);
+                int blt = SCCreateBlt(b,boss_x+22,boss_y+22,source_angle,dmk.dmk_speed+0.5*i,0,style);
                 if(blt != -1){
                     BltSelfAngle(blt) = source_angle;
                     BltState(blt,0)=0;
@@ -170,15 +176,15 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     if(scnt >= 935 && scnt%18==0){
         double x,y;
         PlrGetPos(0,x,y);
-        double ang = StdGetAngle(boss_x+40,boss_y+40,x,y);
+        double ang = StdGetAngle(boss_x+22,boss_y+22,x,y);
         for(int i = -3;i<=3;++i){
-            int n = SCCreateBlt(b,boss_x+40,boss_y+40,ang - 0.2*i,8,0,23);
+            int n = SCCreateBlt(b,boss_x+22,boss_y+22,ang - 0.2*i,8,0,23);
             if(n != -1){
                 BltSelfAngle(n) = ang - 0.2*i;
                 BltState(n,0) = 10;
             }
 
-            n = SCCreateBlt(b,boss_x+40,boss_y+40,ang - 0.4*i,8,0,30);
+            n = SCCreateBlt(b,boss_x+22,boss_y+22,ang - 0.4*i,8,0,30);
             if(n != -1){
                 BltSelfAngle(n) = ang - 0.3*i;
                 BltState(n,0) = 11;
@@ -191,7 +197,7 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     if(ai.momentMove > 0) --ai.momentMove;
     if(ai.momentMove == 1){
         effMgr.InstallFrameAnimation(0,boss_x,boss_y);
-        boss_x = Rand()*200+1080;
+        boss_x = Rand()*200+980;
         boss_y = Rand() * 520+100;
     }
 
@@ -217,8 +223,13 @@ void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         }
     //}
     if(beater.IsBeatFrame() && scnt >= 120){
-        for(int i = 0;i < 8;++i){
-            n = SCCreateBlt(b,Rand()*1280,720*Rand(),M_PI/2*3,0.1,0,40);
+        for(int i = 0;i < 32;++i){
+            int x = Rand()*1280;
+            int y = 720*Rand();
+            double px,py;PlrGetPos(0,px,py);
+            if(px + 40 > x && px - 40 < x) return;
+            if(py + 40 > y && py - 40 < y) return;
+            n = SCCreateBlt(b,x,y,M_PI/2*3,0.1,0,40);
             if(n != -1)
                 BltState(n,0) = 1;
         }
@@ -238,18 +249,18 @@ void SC414(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
         data.Read<SC414Dmk>(dmk);
     }
     //sin形水波
-    if(scnt % 6 == 0){
+    if(scnt % 12 == 0){
         //SCCreateBlt(b,1280,80+sin(dmk.sin_x)*80,0,8,0,40);
         //SCCreateBlt(b,1280,360+sin(dmk.sin_x[1])*80,0,9,0,40);
         //SCCreateBlt(b,1280,360+sin(dmk.sin_x[2])*80,0,9,0,40);
-        SCCreateBlt(b,1280,160+sin(dmk.sin_x)*120,0,12,0,40);
-        SCCreateBlt(b,1280,320+sin(dmk.sin_x)*160,0,16,0,40);
-        SCCreateBlt(b,1280,640+sin(dmk.sin_x)*200,0,20,0,40);
+        SCCreateBlt(b,1280,160+sin(dmk.sin_x)*120,0,4,0,40);
+        SCCreateBlt(b,1280,320+sin(dmk.sin_x)*160,0,8,0,40);
+        SCCreateBlt(b,1280,640+sin(dmk.sin_x)*200,0,12,0,40);
         dmk.sin_x += 0.2;
     }
 
     //涟漪
-    if(beater.IsBeatFrame()){
+    if(beater.IsBeatFrame() && beater.GetBeatNum()%2==0){
         //创建新的涟漪
         for(int i = 0;i < 8;++i){
             if(dmk.cnt[i] == -1){

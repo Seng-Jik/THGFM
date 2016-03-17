@@ -21,6 +21,7 @@
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
 #include "Title.h"
+#include "BgmMgr.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -63,8 +64,15 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 
 int main(int argc,char** argv){
     Init();
-    //extern Uint8 BetaStart();
-    //BetaStart();
+    extern Uint8 BetaStart();
+    BetaStart();
+
+    //BasicPackReader bks[3];
+    //bks[0].OpenPkg("base.bpk");
+    //bks[1].OpenPkg("graphics.bpk");
+    //bks[2].OpenPkg("stage1.bpk");
+    //for(int i = 0;i < 3;++i) Snow::ResFile::InstallReader(&bks[i]);
+
     InitParttens();
     extern void InitScBgs();
     InitScBgs();
@@ -77,7 +85,7 @@ int main(int argc,char** argv){
     //BasicPackReader data;
     //data.OpenPkg("data.+pk");
     //Snow::ResFile::InstallReader(&data);
-    pRnd.Create("东方谷丰梦",FALSE,800,450);
+    pRnd.Create("东方谷丰梦",FALSE,1280,720);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
     InitGameLogic(acgclogo);
@@ -91,5 +99,6 @@ int main(int argc,char** argv){
     Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
     //Run(new Title);
     #endif
+    exit(0);
     return 0;
 }
