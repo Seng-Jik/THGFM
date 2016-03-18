@@ -11,7 +11,7 @@ const int CHOICEX = 100;
 const int CHOICEY = 350;
 const int MENUSHOWTIME = 48;    //frames
 const int MENUHIDETIME = 48;    //frames
-const int MENUWAITTIME = 25;
+const int MENUWAITTIME = 22;
 const int MENUCHANGETIME = 15;
 
 enum BtnFunc{    RESUME = 0,    RESTART,    RETRY,    SETTINGS,    TOTITLE,    EXIT };

@@ -140,28 +140,24 @@ void PauseActivity::OnNext()
     default:
     case WAITING:
         //pointer animation
-        k = ACGCross::FArcFunc((MENUWAITTIME - m_wait_time) / (float)MENUWAITTIME);
+        k = ACGCross::SArcFunc(m_wait_time / (float)MENUWAITTIME);
+        std::cout << " the current frame of hding is " << m_wait_time << "and k = " << k << std::endl;
         m_btns[m_ptr_state].sp.GetSize(k_w, k_h);
         for (int i = 0; i < ALLCHOICE; ++i)
             if(i != m_ptr_state){
                 m_btns[i].sp.SetPos(CHOICEX,  CHOICEY + 56 * i);
                 m_btns[i].sp.SetRollAngle(0);
             }
-        //m_btns[m_ptr_state].sp.SetRollCenter(int(0.5 * k_w), int(k_h * 0.5));
-        //std::cout << "the center is " << CHOICEX + 0.5 * k_w << "," << CHOICEY + 56 * m_ptr_state + k_h * 0.5 << std::endl;
-        //std::cout << "the xy is " << CHOICEX << "," << CHOICEY + 56 * m_ptr_state << std::endl;
-        m_btns[m_ptr_state].sp.SetAlpha(170 + 80 * k);
-        //m_btns[m_ptr_state].sp.SetRollAngle(10 - 20 * k);
+        m_btns[m_ptr_state].sp.SetAlpha(140 + 90 * k);
         m_ptr.SetPos(CHOICEX - 70, (HEIGHT - CHOICEY - 30) + m_ptr_state * 56);
         m_wait_time += m_wait_frame_adddec;
-        m_score.SetAlpha(240 + 10 * k);
         if (m_wait_time <= 0)
             m_wait_frame_adddec = 1;
         if (m_wait_time >= MENUWAITTIME - 1)
             m_wait_frame_adddec = -1;
         if (++m_cycle == 4)
             m_cycle = 0;
-        std::cout << " the current frame of waiting is " << m_wait_time << std::endl;
+        //std::cout << " the current frame of waiting is " << m_wait_time << std::endl;
         break;
 
     case CHOOSING:
@@ -191,14 +187,19 @@ void PauseActivity::OnNext()
 
     case HIDING:
         k = ACGCross::ArcFunc((MENUHIDETIME - m_hide_time) / (float)MENUHIDETIME);
+        //std::cout << " the current frame of hding is " << m_hide_time << "and k = " << k << std::endl;
         for (int i = 0; i < ALLCHOICE; ++i)
             m_btns[i].sp.SetPos(CHOICEX, int(CHOICEY + k * (HEIGHT - CHOICEY) + 56 * i));
         for (int i = 0; i < 10; ++i)
             SDL_SetTextureAlphaMod(m_score_tex[i], 255 - k * 240);
+
+        m_score_rect_x = int(k * (WIDTH - 280) + 480);
+        m_score.SetPos(int(k * (WIDTH - 80) + 80), 50);
         m_score.SetAlpha(255 - k * 240);
+
         m_ptr.SetPos(CHOICEX - 70, int(CHOICEY - 10 + k * 400));
-        m_bgt_o.SetAlpha(255 - k * 255);
-        if(--m_hide_time == 0){
+        m_bgt_o.SetAlpha(255 - k * 240);
+        if(--m_hide_time <= 0){
             wstg -> OnResume();
             Snow::Return();
         }
@@ -216,6 +217,7 @@ void PauseActivity::OnEvent(int p, Key k, bool b)
         switch(k){
         case T_BOOM : case T_ESC : case T_PAUSE :
             m_state = FINISHED;
+
             m_ptr_state = RESUME;
             break;
 
