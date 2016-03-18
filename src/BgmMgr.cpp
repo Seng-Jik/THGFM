@@ -3,9 +3,9 @@
 //#define DISABLE
 BgmMgr bgm;
 
-static void _whenMusicFinished(){
+//static void _whenMusicFinished(){
     //Mix_SetMusicPosition(30);
-}
+//}
 void BgmMgr::LoadMusic(const std::string& s,int loops)
 {
     //Mix_HookMusicFinished(_whenMusicFinished);

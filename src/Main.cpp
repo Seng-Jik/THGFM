@@ -27,8 +27,12 @@ using namespace Snow;
 Snow::Mutex initMutex;
 
 void InitParttens(){
-    extern void ScParttenInit_Stage1L();
-    ScParttenInit_Stage1L();
+    extern void InitScPartten_1L();
+    InitScPartten_1L();
+    extern void InitEnePartten_1L();
+    InitEnePartten_1L();
+    extern void InitShtPartten_1L();
+    InitShtPartten_1L();
 }
 
 void _initThread(THREAD_ID){

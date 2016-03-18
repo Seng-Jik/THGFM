@@ -7,7 +7,7 @@
 #include <cmath>
 //大妖精
 
-void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //飘下羽毛
     if(scnt % 6 == 0){
         double ang = Rand()*M_PI/4-M_PI+M_PI/2;
@@ -51,7 +51,7 @@ void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     }
 }
 
-void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //子弹加速度
     for(int i:bullets)
         if(BltState(i,0) == 1) BltSpd(i) += 0.025;
@@ -115,7 +115,7 @@ void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     data.Write<DaiAI>(ai);
 }
 
-void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     struct SC412Dmk{
         double dmk_speed;
     }dmk;
@@ -206,7 +206,7 @@ void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     data.Write<SC412ai>(ai);
 }
 
-void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //if(scnt % 2 == 0){
     //0号状态：0-上升气流，1-下降水雾
         int n;
@@ -236,7 +236,7 @@ void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     }
 }
 
-void SC414(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC414(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     struct SC414Dmk{
         double sin_x;
         int x[8],y[8],cnt[8];
@@ -284,8 +284,8 @@ void SC414(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,dou
     data.ResetPtr();
     data.Write<SC414Dmk>(dmk);
 }
-
-void ScParttenInit_Stage1L(){
+SCPartten scPartten [500] = {nullptr};
+void InitScPartten_1L(){
     scPartten[410] = &SC410;
     scPartten[411] = &SC411;
     scPartten[412] = &SC412;
