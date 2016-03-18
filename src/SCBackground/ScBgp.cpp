@@ -3,7 +3,7 @@
 #include "Tools.h"
 using namespace Snow;
 typedef void(*SCBg)(int cnt,Bundle<256>&);
-extern SCBg scbgs [80];
+SCBg scbgs [80];
 
 /* 特别的cnt == -1时要求初始化，
     cnt == -2时要求终期化。
