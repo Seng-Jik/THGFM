@@ -73,7 +73,7 @@ bool BossConversation::parseLine()
                 if(arg[0] == 'l') {m_left.UnAct();}
                 else if(arg[0] == 'r') {m_right.UnAct();}
             }else if(cmd == "bom"){
-                bgm.UseMusic(m_bgm,1);
+                bgm.UseMusic(m_bgm);
                 beater.ChangeBpm(m_bgmBpm);
                 bgm.Play();
                 stage.GetBoss() -> ResetCnt();
@@ -90,7 +90,7 @@ bool BossConversation::parseLine()
     return true;
 }
 
-void BossConversation::LoadConversation(const std::string& s,const std::string& basePath,Mix_Chunk* bgm,double bgmBpm)
+void BossConversation::LoadConversation(const std::string& s,const std::string& basePath,Bgm* bgm,double bgmBpm)
 {
     m_bgm = bgm;
     m_bgmBpm = bgmBpm;

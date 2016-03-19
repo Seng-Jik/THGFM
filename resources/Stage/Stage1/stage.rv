@@ -18,5 +18,4 @@ INT TITLE_END = 440
 
 #BGM
 FLOAT BGM_BPM = 60
-STR BGM_FILE = "IceDance.wav"
-INT BGM_LOOPS = -1
+STR BGM_FILE = "IceDance.rv"

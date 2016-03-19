@@ -70,7 +70,10 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 int main(int argc,char** argv){
     Init();
     extern Uint8 BetaStart();
-    BetaStart();
+    //BetaStart();
+
+    extern void SoundFinished(int channel);
+    Mix_ChannelFinished(&SoundFinished);
 
     //BasicPackReader bks[3];
     //bks[0].OpenPkg("base.bpk");
@@ -90,7 +93,7 @@ int main(int argc,char** argv){
     //BasicPackReader data;
     //data.OpenPkg("data.+pk");
     //Snow::ResFile::InstallReader(&data);
-    pRnd.Create("东方谷丰梦",FALSE,1280,720);
+    pRnd.Create("东方谷丰梦",FALSE,800,450);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
     InitGameLogic(acgclogo);

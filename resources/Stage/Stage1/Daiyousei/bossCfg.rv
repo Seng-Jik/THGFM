@@ -10,7 +10,7 @@ STR CONVERSATION_REIMU = "Daiyousei/BOSSCon.txt"
 
 #---------------------------- BGM参数
 #BOSS BGM
-STR BGM_SND = "Daiyousei/LunateElf.wav"
+STR BGM_SND = "Daiyousei/LunateElf.rv"
 FLOAT BGM_BPM = 130
 
 #---------------------------- 图像参数

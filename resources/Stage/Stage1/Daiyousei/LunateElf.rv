@@ -1,0 +1,3 @@
+INT HAVE_HEAD = 1
+STR BGM_HEAD = "Stage/Stage1/Daiyousei/LunateElf_H.Remix.wav"
+STR BGM_LOOP = "Stage/Stage1/Daiyousei/LunateElf_L.Remix.wav"

@@ -21,8 +21,8 @@ void TitleMenu::OnInit()
 
 void TitleMenu::OnShow()
 {
-    bgm.LoadMusic("Title/Title.wav",0);
-    bgm.Play();
+    //bgm.LoadMusic("Title/Title.wav",0);
+    //bgm.Play();
     m_btn_y = 130;
     addButton("Title/Start.png",START);
     //addButton("Title/Extra.png",STARTEXTRA);

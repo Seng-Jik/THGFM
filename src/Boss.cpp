@@ -74,12 +74,12 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,cons
     }while(csv.NextLine());
     if(!m_conversation.empty()){
         //Load Bgm
-        Mix_Chunk* bgm;
+        Bgm* bgm;
         double bpm;
         if(!r.Str("BGM_SND").empty()){
-            ResFile rf;
-            rf.Load(basePath + r.Str("BGM_SND"));
-            bgm = Mix_LoadWAV_RW(rf,rf.Size());
+            PNT("D 0");
+            bgm = new Bgm(basePath + r.Str("BGM_SND"));
+            PNT("D 1");
             bpm = r.Float("BGM_BPM");
         }else{
             bgm = nullptr;

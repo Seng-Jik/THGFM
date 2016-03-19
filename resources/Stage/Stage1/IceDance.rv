@@ -1,0 +1,2 @@
+INT HAVE_HEAD = 0
+STR BGM_LOOP = "Stage/Stage1/IceDance.wav"
