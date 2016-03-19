@@ -1,0 +1,22 @@
+﻿#关卡配置
+
+#关卡数据
+STR LSTG  = "DTEST.csv"
+STR HSTG = "DTEST.csv"
+STR NSTG = "stage.csv"
+STR ESTG =  = "stage.csv"
+STR EXSTG = ""
+
+#背景图数据
+STR BGCSV = "bg.csv"
+
+#Stage Title
+
+STR TITLE_IMG = "title.png"
+INT TITLE_BEG = 80
+INT TITLE_END = 440
+
+#BGM
+FLOAT BGM_BPM = 145
+STR BGM_FILE = "0.ogg"
+INT BGM_LOOPS = -1

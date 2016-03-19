@@ -15,19 +15,30 @@
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
-#include "Title.h"
+#include "Title/TitleMenu.h"
 #include "SCClock.h"
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
-#include "Title.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
 
+void InitParttens(){
+    extern void InitScPartten_1L();
+    InitScPartten_1L();
+    extern void InitEnePartten_1L();
+    InitEnePartten_1L();
+    extern void InitShtPartten_1L();
+    InitShtPartten_1L();
+
+    extern void InitScBgs();
+    InitScBgs();
+}
+
 void _initThread(THREAD_ID){
     initMutex.Lock();
-    LoadStage("Stage1",LV_H);
+    LoadStage("Stage1",LV_L);
     initMutex.Unlock();
     PNT("INIT END");
 }
@@ -58,6 +69,22 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 
 int main(int argc,char** argv){
     Init();
+    extern Uint8 BetaStart();
+    //BetaStart();
+
+    extern void SoundFinished(int channel);
+    Mix_ChannelFinished(&SoundFinished);
+
+    //BasicPackReader bks[3];
+    //bks[0].OpenPkg("base.bpk");
+    //bks[1].OpenPkg("graphics.bpk");
+    //bks[2].OpenPkg("stage1.bpk");
+    //for(int i = 0;i < 3;++i) Snow::ResFile::InstallReader(&bks[i]);
+
+    InitParttens();
+    extern void InitScBgs();
+    InitScBgs();
+
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
@@ -78,7 +105,8 @@ int main(int argc,char** argv){
     #else
     //_initThread(nullptr);
     Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
-    //Run(new Title);
+    //Run(&titleMenu);
     #endif
+    exit(0);
     return 0;
 }

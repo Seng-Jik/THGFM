@@ -9,31 +9,11 @@
 #include "GameUI.h"
 #include "Player.h"
 #include "SCClock.h"
+typedef void(*SCBg)(int cnt,Snow::Bundle<256>&);
+extern SCBg scbgs [];
 using namespace Snow;
 
-
-void Boss::allocBgmAttackTime()
-{
-    int baseOne = 0;
-    if(m_halfLastBgmBlock < m_cnt) baseOne = 1;
-    m_endTime = m_bgmBlocks[baseOne + m_spellCards.front().useBGMBlock - 1];
-}
-
-
-void Boss::loadBgmBlocks(const std::string& path)
-{
-    ResFile r;
-    r.Load(path);
-    Uint32 pos = 0;
-    std::string s;
-    while(pos < r.Size()){
-        s = GetLine(r,pos);
-        if(s[0] == '-') break;
-        else m_bgmBlocks.push_back(atoi(s.c_str()));
-    }
-}
-
-void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
+void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,const std::string& playerChar)
 {
     m_cnt = 0;
     m_spellCardNum = 0;
@@ -46,12 +26,9 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
     //基本参数
     m_midway = r.Int("MIDWAY_BOSS");
-    m_conversation = r.Str("CONVERSATION");
-    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED");
+    m_conversation = r.Str("CONVERSATION_"+playerChar);
+    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED_"+playerChar);
     m_basePath = basePath;
-
-    //BGM参数
-    loadBgmBlocks(basePath + r.Str("BGM_BLK"));
 
     //图像参数
     for(int i = 0;i < 10;++i){
@@ -72,31 +49,37 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
     //符卡列表CSV配置
     CSVReader csv;
-    csv.LoadCSV(basePath + r.Str("SC_CSV"));
     SpellCard sc;
+    csv.LoadCSV(basePath+r.Str("SC_CSV"));
+    csv.NextLine();
     do{
         int boolTmp;
         csv.PopInt(boolTmp);
+        if(boolTmp == 2) continue;
+        PNT("POP A BOSS SKILL.");
         sc.isSpellCard = boolTmp;
         if(sc.isSpellCard) ++m_spellCardNum;
-        sc.useBGMBlock = 0;
-        csv.PopInt(sc.useBGMBlock);
-        if(sc.useBGMBlock == 0) continue;
+        sc.endTime = -1;
+        csv.PopInt(sc.endTime);
         csv.PopFloat(sc.hp);
         csv.PopStr(sc.title);
         csv.PopInt(sc.scPartten);
         csv.PopInt(sc.bgPartten);
-        PNT("Boss CSV:"<<sc.useBGMBlock<<" "<<sc.hp<<" "<<sc.isSpellCard);
+        if(sc.bgPartten!= -1) {
+            sc.scBgData = new Snow::Bundle<256>;
+            sc.scBgData->ResetPtr();
+            (*scbgs[sc.bgPartten])(-1,*sc.scBgData);
+        }
         m_spellCards.push(sc);
     }while(csv.NextLine());
     if(!m_conversation.empty()){
         //Load Bgm
-        Mix_Chunk* bgm;
+        Bgm* bgm;
         double bpm;
         if(!r.Str("BGM_SND").empty()){
-            ResFile rf;
-            rf.Load(basePath + r.Str("BGM_SND"));
-            bgm = Mix_LoadWAV_RW(rf,rf.Size());
+            PNT("D 0");
+            bgm = new Bgm(basePath + r.Str("BGM_SND"));
+            PNT("D 1");
             bpm = r.Float("BGM_BPM");
         }else{
             bgm = nullptr;
@@ -121,7 +104,6 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
 void Boss::OnBirth()
 {
-    m_halfLastBgmBlock = (m_bgmBlocks[0])/2;
     m_cnt_begin = -1;
     collWorld.SetBossObj(this);
     //启动时启动对话系统
@@ -144,15 +126,10 @@ void Boss::OnNext()
 {
     ++m_cnt;
 
-    //乐句时间流动
-    if(m_cnt >= m_bgmBlocks[0]){
-        m_lastBgmBlock = m_bgmBlocks[0];
-        m_bgmBlocks.pop_front();
-        if(m_bgmBlocks.size() >= 1){
-            m_halfLastBgmBlock = (m_lastBgmBlock + m_bgmBlocks[0])/2;
-        }else m_halfLastBgmBlock = m_lastBgmBlock+1500;
+    if(*m_mainCnt%6 == 0){
+        m_imageUsing++;
+        if(!m_images[m_imageUsing]) m_imageUsing = 0;
     }
-
     gameUI.UpdateSCHP(m_spellCards.front().hp/m_fullHP);
     if(m_invi){
         m_invi = player[0].Booming();
@@ -185,6 +162,12 @@ void Boss::OnNext()
         m_cnt_begin = -1;
         bulletMgr.Clear();
         m_bullets.clear();
+        if(m_spellCards.front().bgPartten != -1){
+            m_spellCards.front().scBgData->ResetPtr();
+            (*scbgs[m_spellCards.front().bgPartten])(-2,*m_spellCards.front().scBgData);
+            delete m_spellCards.front().scBgData;
+        }
+
         m_spellCards.pop();
         m_bouns = true;
         gameUI.UpdateSCHP(1.0);
@@ -201,7 +184,7 @@ void Boss::OnNext()
             }
             PNT("Boss End");
         }else{
-            allocBgmAttackTime();
+            m_endTime = m_spellCards.front().endTime;
             if(m_spellCards.front().isSpellCard)
             {
                 m_spellCardNum--;
@@ -217,7 +200,8 @@ void Boss::OnNext()
         PNT("Spell Card End");
     }
     else if(m_collEnable){
-        (scPartten[m_spellCards.front().scPartten])(this,m_cnt,*m_mainCnt - m_cnt_begin,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets);
+        m_scParttenData.ResetPtr();
+        (scPartten[m_spellCards.front().scPartten])(this,m_cnt,*m_mainCnt - m_cnt_begin,m_imageUsing,m_x,m_y,m_spd,m_aspd,m_angle,m_spellCards.front().hp,m_bullets,m_scParttenData);
     }
 }
 
@@ -228,16 +212,16 @@ void Boss::OnConersationFinished()
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
     if(m_bossConversation) scClock.Show();
-    allocBgmAttackTime();
+    m_endTime = m_spellCards.front().endTime;
 }
 
-typedef void(*SCBg)(int cnt);
-extern SCBg scbgs [];
+
 void Boss::OnSCBGDraw()
 {
     if(!m_collEnable || m_spellCards.empty()) return;
-    if(m_live && m_spellCards.front().bgPartten != -1){
-        (*scbgs[m_spellCards.front().bgPartten])(*m_mainCnt-m_cnt_begin);
+    if(m_live && m_spellCards.front().bgPartten != -1 && m_cnt_begin != -1){
+        m_spellCards.front().scBgData->ResetPtr();
+        (*scbgs[m_spellCards.front().bgPartten])(*m_mainCnt-m_cnt_begin,*m_spellCards.front().scBgData);
     }
 }
 
@@ -245,5 +229,9 @@ Boss::~Boss()
 {
     for(int i = 0;i < 10;++i)
         SDL_DestroyTexture(m_images[i]);
+    while(!m_spellCards.empty()){
+        if(m_spellCards.front().bgPartten != -1) delete m_spellCards.front().scBgData;
+        m_spellCards.pop();
+    }
 }
 

@@ -3,22 +3,28 @@
 #include <string>
 #include "Snow.h"
 #include <atomic>
+
+struct Bgm{
+    Mix_Chunk* head,*loop;
+    Bgm(const std::string& rv);
+    ~Bgm();
+};
+
 class BgmMgr
 {
+    private:
+        Bgm* m_bgm;
     public:
-        void LoadMusic(const std::string&,int loops);
-        void UseMusic(Mix_Chunk*,int loops);
+        void LoadMusic(const std::string& rv);
+        void UseMusic(Bgm*);    //auto destroy bgm struct.
+        Mix_Chunk* GetBGMLoop(){return m_bgm->loop;}
+        Bgm* GetBGMObj(){return m_bgm;}
         void Play();
         void Clear();
         void Stop(int ms);
         void Pause();
         void Resume();
     protected:
-    private:
-        //Mix_Music* m_bgmMus;
-        atomic<Mix_Chunk*> m_bgmMusHead,m_bgmMusLoop;
-
-        int m_loops;
 };
 
 extern BgmMgr bgm;
