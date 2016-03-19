@@ -125,3 +125,8 @@ void KeyMapAct::Init()
         for(int j = 0;j<2;++j)
             m_axis[i][j] = 0;
 }
+
+bool KeyMapAct::HaveGamePad()
+{
+    return bool(SDL_NumJoysticks());
+}

@@ -33,7 +33,7 @@ void Boss::loadBgmBlocks(const std::string& path)
     }
 }
 
-void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
+void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,const std::string& playerChar)
 {
     m_cnt = 0;
     m_spellCardNum = 0;
@@ -46,8 +46,8 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
     //基本参数
     m_midway = r.Int("MIDWAY_BOSS");
-    m_conversation = r.Str("CONVERSATION");
-    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED");
+    m_conversation = r.Str("CONVERSATION_"+playerChar);
+    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED_"+playerChar);
     m_basePath = basePath;
 
     //BGM参数

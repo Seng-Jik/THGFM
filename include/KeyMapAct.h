@@ -19,6 +19,7 @@ class KeyMapAct : public Snow::Activity
     public:
         KeyMapAct();
         static void Init();
+        static bool HaveGamePad();
         void OnEvent(const SDL_Event& e);
         virtual void OnEvent(int,Key,bool) = 0;
         //玩家号，按键号，按键状态（true为按下，否则为弹出）

@@ -13,6 +13,7 @@
 #include "SeMgr.h"
 #include "ItemMgr.h"
 #include "BossConversation.h"
+#include "Player.h"
 
 using namespace Snow;
 
@@ -107,7 +108,7 @@ void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath)
             csv.PopInt(pBoss -> birthTime);
             string bossRV;
             csv.PopStr(bossRV);
-            pBoss -> LoadRV(basePath + bossRV,basePath,&m_cnt);
+            pBoss -> LoadRV(basePath + bossRV,basePath,&m_cnt,player[0].GetCharName());
             m_bosses.push(pBoss);
         }
     }while(csv.NextLine());
