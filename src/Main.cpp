@@ -20,11 +20,6 @@
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
-<<<<<<< HEAD
-=======
-#include "Title.h"
-#include "BgmMgr.h"
->>>>>>> 86c7ba240eb778b8b504ef801d07090f23bcb787
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -36,6 +31,9 @@ void InitParttens(){
     InitEnePartten_1L();
     extern void InitShtPartten_1L();
     InitShtPartten_1L();
+
+    extern void InitScBgs();
+    InitScBgs();
 }
 
 void _initThread(THREAD_ID){
@@ -103,8 +101,8 @@ int main(int argc,char** argv){
     Run(acgclogo);
     #else
     //_initThread(nullptr);
-    //Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
-    Run(&titleMenu);
+    Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
+    //Run(&titleMenu);
     #endif
     exit(0);
     return 0;

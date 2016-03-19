@@ -1,10 +1,6 @@
 #include "BgmMgr.h"
 #include "Snow/Debug.h"
-<<<<<<< HEAD
-#define DISABLE
-=======
 //#define DISABLE
->>>>>>> 86c7ba240eb778b8b504ef801d07090f23bcb787
 BgmMgr bgm;
 
 //static void _whenMusicFinished(){

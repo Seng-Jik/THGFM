@@ -13,33 +13,7 @@ typedef void(*SCBg)(int cnt,Snow::Bundle<256>&);
 extern SCBg scbgs [];
 using namespace Snow;
 
-<<<<<<< HEAD
-
-void Boss::allocBgmAttackTime()
-{
-    int baseOne = 0;
-    if(m_halfLastBgmBlock < m_cnt) baseOne = 1;
-    m_endTime = m_bgmBlocks[baseOne + m_spellCards.front().useBGMBlock - 1];
-}
-
-
-void Boss::loadBgmBlocks(const std::string& path)
-{
-    ResFile r;
-    r.Load(path);
-    Uint32 pos = 0;
-    std::string s;
-    while(pos < r.Size()){
-        s = GetLine(r,pos);
-        if(s[0] == '-') break;
-        else m_bgmBlocks.push_back(atoi(s.c_str()));
-    }
-}
-
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,const std::string& playerChar)
-=======
-void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
->>>>>>> 86c7ba240eb778b8b504ef801d07090f23bcb787
 {
     m_cnt = 0;
     m_spellCardNum = 0;
@@ -75,12 +49,14 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
     //∑˚ø®¡–±ÌCSV≈‰÷√
     CSVReader csv;
-    csv.LoadCSV(basePath + r.Str("SC_CSV"));
     SpellCard sc;
+    csv.LoadCSV(basePath+r.Str("SC_CSV"));
+    csv.NextLine();
     do{
         int boolTmp;
         csv.PopInt(boolTmp);
         if(boolTmp == 2) continue;
+        PNT("POP A BOSS SKILL.");
         sc.isSpellCard = boolTmp;
         if(sc.isSpellCard) ++m_spellCardNum;
         sc.endTime = -1;

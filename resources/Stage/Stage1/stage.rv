@@ -2,10 +2,10 @@
 
 #关卡数据
 STR LSTG  = "Lunatic.csv"
-STR HSTG = "DTEST.csv"
-STR NSTG = "stage.csv"
-STR ESTG =  = ""
-STR EXSTG = ""
+STR HSTG = "Lunatic.csv"
+STR NSTG = "Lunatic.csv"
+STR ESTG =  = "Lunatic.csv"
+STR EXSTG = "Lunatic.csv"
 
 #背景图数据
 STR BGCSV = "bgp/bg.csv"
