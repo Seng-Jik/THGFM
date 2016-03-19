@@ -2,6 +2,7 @@
 #define BGMMGR_H
 #include <string>
 #include "Snow.h"
+#include <atomic>
 class BgmMgr
 {
     public:
@@ -15,7 +16,8 @@ class BgmMgr
     protected:
     private:
         //Mix_Music* m_bgmMus;
-        Mix_Chunk* m_bgmMus;
+        atomic<Mix_Chunk*> m_bgmMusHead,m_bgmMusLoop;
+
         int m_loops;
 };
 

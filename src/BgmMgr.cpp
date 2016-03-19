@@ -5,7 +5,7 @@ BgmMgr bgm;
 static void _whenMusicFinished(){
     //Mix_SetMusicPosition(30);
 }
-void BgmMgr::LoadMusic(const std::string& s,int loops)
+void BgmMgr::LoadMusic(const std::string& s)
 {
     //Mix_HookMusicFinished(_whenMusicFinished);
     Clear();
