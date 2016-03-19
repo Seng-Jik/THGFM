@@ -1,5 +1,6 @@
 #include "ShotParttenAPI.h"
 #include "StdParttenAPI.h"
+#include <Snow/Bundle.h>
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -70,10 +71,4 @@ void SD004(Shot* s,int enemy){
     }
 }
 
-ShotPartten shotPartten [] = {
-    &SD000,
-    &SD001,
-    &SD002,
-    &SD003,
-    &SD004
-};
+

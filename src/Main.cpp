@@ -20,13 +20,27 @@
 #include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
+<<<<<<< HEAD
+=======
+#include "Title.h"
+#include "BgmMgr.h"
+>>>>>>> 86c7ba240eb778b8b504ef801d07090f23bcb787
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
 
+void InitParttens(){
+    extern void InitScPartten_1L();
+    InitScPartten_1L();
+    extern void InitEnePartten_1L();
+    InitEnePartten_1L();
+    extern void InitShtPartten_1L();
+    InitShtPartten_1L();
+}
+
 void _initThread(THREAD_ID){
     initMutex.Lock();
-    LoadStage("Stage1",LV_H);
+    LoadStage("Stage1",LV_L);
     initMutex.Unlock();
     PNT("INIT END");
 }
@@ -57,6 +71,19 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 
 int main(int argc,char** argv){
     Init();
+    extern Uint8 BetaStart();
+    BetaStart();
+
+    //BasicPackReader bks[3];
+    //bks[0].OpenPkg("base.bpk");
+    //bks[1].OpenPkg("graphics.bpk");
+    //bks[2].OpenPkg("stage1.bpk");
+    //for(int i = 0;i < 3;++i) Snow::ResFile::InstallReader(&bks[i]);
+
+    InitParttens();
+    extern void InitScBgs();
+    InitScBgs();
+
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"2");
     SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER,"0");
     SDL_SetHint(SDL_HINT_RENDER_DIRECT3D_THREADSAFE,"1");
@@ -65,7 +92,7 @@ int main(int argc,char** argv){
     //BasicPackReader data;
     //data.OpenPkg("data.+pk");
     //Snow::ResFile::InstallReader(&data);
-    pRnd.Create("东方谷丰梦",FALSE,800,450);
+    pRnd.Create("东方谷丰梦",FALSE,1280,720);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
     InitGameLogic(acgclogo);
@@ -79,5 +106,6 @@ int main(int argc,char** argv){
     //Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
     Run(&titleMenu);
     #endif
+    exit(0);
     return 0;
 }

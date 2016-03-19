@@ -12,7 +12,3 @@ void ED000(Enemy* e,int n){
     //if(EneCnt(e) >= 200 && EneCnt(e) <= 260)
        // EneSpd(e) += 0.2;
 }
-
-EnemyPartten enemyPartten[]= {
-    &ED000
-};

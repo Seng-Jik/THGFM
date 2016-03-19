@@ -78,7 +78,7 @@ void BulletMgr::Init()
             loadCircleBulletStyle(num,file.c_str(),r1,r2);
         }else if(shape[0] == 'R'){
             loadXRectBulletStyle(num,file.c_str(),r1,r2);
-        }
+        }else if(shape[0] == '#');
         ++num;
     }while(csv.NextLine());
 }

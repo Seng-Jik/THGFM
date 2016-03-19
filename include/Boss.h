@@ -6,6 +6,7 @@
 #include "Snow.h"
 //#include "MathFunc.h"
 #include <queue>
+#include <set>
 #include "BossConversation.h"
 class Boss
 {
@@ -26,7 +27,7 @@ class Boss
         std::string m_conversation_whenKilled;
         std::string m_basePath;
 
-        SDL_Texture* m_images[10];
+        SDL_Texture* m_images[10] = {nullptr};
         int m_images_w,m_images_h;
 
         int m_imageUsing;
@@ -37,25 +38,20 @@ class Boss
 
         int m_spellCardNum; //符卡总数
         struct SpellCard{
-            int useBGMBlock;    //符卡乐句个数
+            int endTime;    //符卡乐句个数
             bool isSpellCard;   //是否为符卡
             double hp;    //符卡生命值
             int scPartten;  //符卡工作模式
             int bgPartten;  //背景图
             std::string title;  //符卡名称
+            Snow::Bundle<256>* scBgData; //符卡背景数据
         };
         std::queue<SpellCard> m_spellCards;
         std::vector<int> m_bullets;
+        Snow::Bundle<256> m_scParttenData;
 
         //结束时间
         int m_endTime;  //应当到达的时间
-
-        std::deque<int> m_bgmBlocks;
-        int m_lastBgmBlock = 0; //上一个时间
-        int m_halfLastBgmBlock; //下一个时间到上一个时间的减半
-        void loadBgmBlocks(const std::string& path);
-        void allocBgmAttackTime();  //为当前符卡分配结束时间
-
     public:
         ~Boss();
         inline int GetCnt(){return m_cnt;}
@@ -69,6 +65,8 @@ class Boss
         inline void KillHP(double hp){m_spellCards.front().hp-=hp;}
         inline bool IsInvi(){return m_invi;}
         inline int GetSpellCardNum(){return m_spellCardNum;}    //取符卡剩余数
+        inline void ResetCnt(){m_cnt = 0;}
+        inline int GetSCnt(){return *m_mainCnt - m_cnt_begin;}
         int birthTime;
 
     protected:

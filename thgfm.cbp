@@ -59,6 +59,7 @@
 			<Add library="dxguid" />
 			<Add library="SDL2_Mixer" />
 			<Add library="SDL2_ttf" />
+			<Add library="SDL2_net" />
 			<Add directory="$(#sdl2.lib)" />
 		</Linker>
 		<ExtraCommands>
@@ -122,6 +123,7 @@
 		<Unit filename="src/ACGCross_Logo.cpp" />
 		<Unit filename="src/BasicPackReader.cpp" />
 		<Unit filename="src/Beater.cpp" />
+		<Unit filename="src/BetaClient.cpp" />
 		<Unit filename="src/BgmMgr.cpp" />
 		<Unit filename="src/Boss.cpp" />
 		<Unit filename="src/BossConversation.cpp" />
@@ -131,7 +133,7 @@
 		<Unit filename="src/CharData.cpp" />
 		<Unit filename="src/CollWorld.cpp" />
 		<Unit filename="src/EffectMgr.cpp" />
-		<Unit filename="src/EnePartten/EnePartten_Demo.cpp" />
+		<Unit filename="src/EnePartten/Stage1L.cpp" />
 		<Unit filename="src/GameUI.cpp" />
 		<Unit filename="src/ItemMgr.cpp" />
 		<Unit filename="src/KeyMapAct.cpp" />
@@ -140,12 +142,12 @@
 		<Unit filename="src/PauseActivity.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/PlayerBullet.cpp" />
-		<Unit filename="src/SCBackground/Demo.cpp" />
+		<Unit filename="src/SCBackground/ScBgp.cpp" />
 		<Unit filename="src/SCClock.cpp" />
-		<Unit filename="src/SCPartten/Demo.cpp" />
+		<Unit filename="src/SCPartten/Stage1L.cpp" />
 		<Unit filename="src/SeMgr.cpp" />
 		<Unit filename="src/ShaoNvQiDaoZhong.cpp" />
-		<Unit filename="src/ShtPartten/ShtPartten_Demo.cpp" />
+		<Unit filename="src/ShtPartten/Stage1L.cpp" />
 		<Unit filename="src/StageMgr.cpp" />
 		<Unit filename="src/StageTitle.cpp" />
 		<Unit filename="src/TextBox.cpp" />

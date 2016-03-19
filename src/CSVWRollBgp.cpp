@@ -51,7 +51,7 @@ void CSVWRollBgp::LoadCSV(const std::string& stage,const std::string& bgcsv)
         csv.PopInt(sc.bgNum);
         csv.PopFloat(sc.trgVal);
         m_cmds.push(sc);
-        PNT("WRollBgp::LoadCSV:"<<"CMD "<<sc.type<<sc.begTime);
+        //PNT("WRollBgp::LoadCSV:"<<"CMD "<<sc.type<<sc.begTime);
     }
 
     m_cnt = 0;
@@ -98,7 +98,7 @@ void CSVWRollBgp::OnNext()
     }
 
     while(m_cmds.front().begTime == m_cnt && !m_cmds.empty()){
-        PNT("WRollBgp:"<<m_cmds.front().type<<m_cnt);
+        //PNT("WRollBgp:"<<m_cmds.front().type<<m_cnt);
         switch(m_cmds.front().type){
         case 'A':
             m_bgs[m_cmds.front().bgNum].alphaTrg = m_cmds.front().trgVal;

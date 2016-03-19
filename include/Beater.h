@@ -16,10 +16,9 @@ class Beater
         //后者不会，只会更改节奏，为进入Boss时使用
     protected:
     private:
-        int* m_pCnt;
+        double m_cnt;
         //std::queue<int> m_beats;
         double m_idenFps;
-        double m_nextFps;
         bool m_isBeat;
         int m_beatNum;
 

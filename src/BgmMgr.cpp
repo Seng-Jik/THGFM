@@ -1,11 +1,15 @@
 #include "BgmMgr.h"
 #include "Snow/Debug.h"
+<<<<<<< HEAD
 #define DISABLE
+=======
+//#define DISABLE
+>>>>>>> 86c7ba240eb778b8b504ef801d07090f23bcb787
 BgmMgr bgm;
 
-static void _whenMusicFinished(){
+//static void _whenMusicFinished(){
     //Mix_SetMusicPosition(30);
-}
+//}
 void BgmMgr::LoadMusic(const std::string& s,int loops)
 {
     //Mix_HookMusicFinished(_whenMusicFinished);
