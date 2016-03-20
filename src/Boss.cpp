@@ -77,9 +77,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,cons
         Bgm* bgm;
         double bpm;
         if(!r.Str("BGM_SND").empty()){
-            PNT("D 0");
             bgm = new Bgm(basePath + r.Str("BGM_SND"));
-            PNT("D 1");
             bpm = r.Float("BGM_BPM");
         }else{
             bgm = nullptr;

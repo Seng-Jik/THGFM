@@ -17,7 +17,6 @@
 #include "TouHouGameLogo.h"
 #include "Title/TitleMenu.h"
 #include "SCClock.h"
-#include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
 using namespace std;

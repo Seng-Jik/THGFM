@@ -189,9 +189,6 @@ void WSTGame::OnEvent(int p, Key k, bool b)
         if(stage.GetBoss()){
             PNT("    BOSS FRAME:"<<stage.GetBoss()->GetCnt());
             PNT("    BOSS SPELLCARD CNT:"<<stage.GetBoss() ->GetSCnt());
-            PNT("    BGM_MGR:"<<&bgm);
-            PNT("    BGM_OBJ"<<bgm.GetBGMObj());
-            PNT("    BGM_LOOP:"<<bgm.GetBGMLoop());
         }
     }
 }

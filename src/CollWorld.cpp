@@ -283,7 +283,7 @@ void CollWorld::Update_Boom()
             //т╡пн
             if(m_enemyBullets[i].enable && coll_r2c(m_booms[boom],m_enemyBullets[i])){
                 m_enemyBullets[i].enable = false;
-                bulletMgr.Kill(i);
+                bulletMgr.KillBulletAndInstallEffect(i);
             }
             //╥╫пн
             if(m_enemyBulletsXRect[i].enable){
