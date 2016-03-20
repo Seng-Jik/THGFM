@@ -10,9 +10,7 @@ using namespace Snow;
 using namespace std;
 
 void SoundFinished(int channel){
-    PNT(bgm.GetBGMLoop());
     if(channel == 0){
-        PNT(bgm.GetBGMLoop());
         if(bgm.GetBGMLoop()) Mix_PlayChannel(0,bgm.GetBGMLoop(),-1);
     }
 }

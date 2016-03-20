@@ -31,7 +31,6 @@ void BgmMgr::LoadMusic(const std::string& rv)
 {
     Clear();
     m_bgm = new Bgm(rv);
-    PNT("MUSIC RELOADED");
 }
 
 void BgmMgr::Clear()
@@ -39,14 +38,12 @@ void BgmMgr::Clear()
     Stop(0);
     delete m_bgm;
     m_bgm = nullptr;
-    PNT("MUSIC KILLED");
 }
 
 void BgmMgr::UseMusic(Bgm* bgm)
 {
     Clear();
     m_bgm = bgm;
-    PNT("MUSIC CHANGED.");
 }
 
 

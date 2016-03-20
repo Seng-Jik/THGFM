@@ -50,8 +50,8 @@ void WSTGame::OnDraw()
     playerBulletMgr.OnDraw();
     itemMgr.OnDraw();
     player[0].OnDraw();
-    bulletMgr.OnDraw();
     stage.OnDraw();
+    bulletMgr.OnDraw();
     effMgr.OnDraw();
 
     SDL_SetRenderTarget(Snow::pRnd,nullptr);
