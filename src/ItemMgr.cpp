@@ -50,7 +50,7 @@ void ItemMgr::OnNext()
                 if(m_items[i].boomSpdX-0.1>0.9) m_items[i].boomSpdX -= 0.1;
                 if(m_items[i].boom <= 0) m_items[i].state = Item::DOWNING;
 
-                if(m_items[i].y >= HEIGHT || m_items[i].x < 16) Kill(i);
+                if(m_items[i].y >= HEIGHT || m_items[i].x < -32) Kill(i);
 
                 /* 收取开始 */
                 for(int p = 0;p < 2;++p){
