@@ -90,8 +90,12 @@ static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
         }
         if(beater.IsBeatFrame()&& (beater.GetBeatNum()%4==1|| beater.GetBeatNum()%4==3)&& scnt>60){
             int st = 20+Rand()*7;
+
+            double x,y;
+            PlrGetPos(0,x,y);
+            double pang = StdGetAngle(boss_x+22,boss_y+22,x,y);
             for(int i = 0; i < 45;++i){
-                double ang = 2*M_PI/45*i;
+                double ang = 2*M_PI/45*i + pang;
                 int num = SCCreateBlt(b,boss_x+22,boss_y+22,ang,7,0,st);
                 if(num != -1){
                     BltSelfAngle(num) =ang;
