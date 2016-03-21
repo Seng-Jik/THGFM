@@ -98,16 +98,35 @@ void BulletMgr::OnNext()
 {
     for(int i = 0;i < m_searchTop;++i){
         if(m_blts[i].live){
-            if(m_blts[i].alpha < 250 && m_blts[i].alpha_living){
+            /*if(m_blts[i].alpha < 250 && m_blts[i].alpha_living){
                 m_blts[i].alpha+=25;
                 if(m_blts[i].alpha == 255) m_blts[i].alpha_living = false;
-            }
+            }*/
             m_blts[i].x -= m_blts[i].spd * cos(m_blts[i].angle);
             m_blts[i].y -= m_blts[i].spd * sin(m_blts[i].angle);
             ++m_blts[i].cnt;
-            switch(m_bulletStyle[m_blts[i].style].shape){
+            if(m_blts[i].collateEnabled) switch(m_bulletStyle[m_blts[i].style].shape){
             case BulletStyle::CIRCLE:
                 collWorld.SetEnemyBulletCircle(i,true,m_blts[i].x,m_blts[i].y,m_bulletStyle[m_blts[i].style].circle.coll_r);
+                break;
+            case BulletStyle::XRECT:
+                //TODO:SetRectColler
+                enableXRectBullet(i);
+                break;
+            }
+
+            switch(m_bulletStyle[m_blts[i].style].shape){
+            case BulletStyle::CIRCLE:
+                if(m_blts[i].ani == Bullet::SHOWING || m_blts[i].ani == Bullet::HIDING){
+                    m_blts[i].aniState[0]+=0.05;
+                    if(m_blts[i].aniState[0] >= 1){
+                        m_blts[i].aniState[0] = 1;
+                        if(m_blts[i].ani == Bullet::SHOWING)
+                            m_blts[i].ani = Bullet::NONE;
+                        else if(m_blts[i].ani == Bullet::HIDING)
+                            Kill(i);
+                    }
+                }
                 break;
             case BulletStyle::XRECT:
                 //TODO:SetRectColler
@@ -147,11 +166,36 @@ void BulletMgr::OnDraw()
                                 int(2*m_bulletStyle[m_blts[i].style].circle.r),
                                 int(2*m_bulletStyle[m_blts[i].style].circle.r)
             };
-            SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
-            SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].circle.r),int(m_bulletStyle[m_blts[i].style].circle.r)};
+            Uint8 alpha = m_blts[i].alpha;
+            if(m_blts[i].ani == Bullet::SHOWING){
+                switch(m_bulletStyle[m_blts[i].style].shape){
+                case BulletStyle::CIRCLE:
+                    int kr = 1.5*(1-m_blts[i].aniState[0])*(m_bulletStyle[m_blts[i].style].circle.r);
+                    r.x -= kr;
+                    r.y -= kr;
+                    r.w += 2*kr;
+                    r.h += 2*kr;
+                    alpha *= m_blts[i].aniState[0];
+                    break;
+                }
+            }
+            else if(m_blts[i].ani == Bullet::HIDING){
+                switch(m_bulletStyle[m_blts[i].style].shape){
+                case BulletStyle::CIRCLE:
+                    int kr = (1-m_blts[i].aniState[0])*(m_bulletStyle[m_blts[i].style].circle.r);
+                    r.x += kr/2;
+                    r.y += kr/2;
+                    r.w -= kr;
+                    r.h -= kr;
+                    alpha *= 1-m_blts[i].aniState[0];
+                    break;
+                }
+            }
+            SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,alpha);
+            //SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].circle.r),int(m_bulletStyle[m_blts[i].style].circle.r)};
             //PNT("DRAW BULLET:"<<m_blts[i].roll_x<<" "<<m_blts[i].roll_y);
             //SDL_Point poi = {8,8};
-            SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&poi,SDL_FLIP_NONE);
+            SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,nullptr,SDL_FLIP_NONE);
             //SDL_RenderCopy(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r);
         }
         else if(m_blts[i].live && m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT){
@@ -191,10 +235,13 @@ int BulletMgr::Alloc(double x,double y,int style)
     m_blts[n].style = style;
     m_blts[n].live = true;
     m_blts[n].cnt = 0;
-    m_blts[n].alpha = 0;
+    m_blts[n].alpha = 255;
     m_blts[n].alpha_living = true;
     m_blts[n].self_w = m_bulletStyle[style].xrect.w;
     m_blts[n].self_h = m_bulletStyle[style].xrect.h;
+    m_blts[n].collateEnabled = true;
+
+
     switch(m_bulletStyle[style].shape){
     case BulletStyle::XRECT:
         m_blts[n].x = x;
@@ -205,6 +252,9 @@ int BulletMgr::Alloc(double x,double y,int style)
     case BulletStyle::CIRCLE:
         m_blts[n].x = m_bulletStyle[style].circle.r/2+x;
         m_blts[n].y = m_bulletStyle[style].circle.r/2+y;
+
+        m_blts[n].aniState[0] = 0;
+        m_blts[n].ani = Bullet::SHOWING;
         break;
     }
 
@@ -257,16 +307,11 @@ void BulletMgr::KillBulletAndInstallEffect(int n)
             SDL_Point roll_poi = {m_blts[i].self_roll_center_x,m_blts[i].self_roll_center_y};
             SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
             effMgr.InstallZoomOutAnimation(m_bulletStyle[m_blts[n].style].tex,r,true,roll_poi,m_blts[i].self_angle* 180/M_PI);
+            Kill(n);
     }
     else if(m_blts[i].live && m_bulletStyle[m_blts[i].style].shape == BulletStyle::CIRCLE){
-        SDL_Rect r = {int(m_blts[i].x - m_bulletStyle[m_blts[i].style].circle.r),
-                            int(m_blts[i].y - m_bulletStyle[m_blts[i].style].circle.r),
-                            int(2*m_bulletStyle[m_blts[i].style].circle.r),
-                            int(2*m_bulletStyle[m_blts[i].style].circle.r)
-        };
-        SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
-        SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].circle.r),int(m_bulletStyle[m_blts[i].style].circle.r)};
-        effMgr.InstallZoomOutAnimation(m_bulletStyle[m_blts[n].style].tex,r,true,poi,m_blts[i].self_angle* 180/M_PI);
+        m_blts[i].aniState[0] = 0;
+        m_blts[i].ani = Bullet::HIDING;
+        m_blts[i].collateEnabled = false;
     }
-    Kill(n);
 }

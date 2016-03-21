@@ -5,6 +5,7 @@
 #include "StageMgr.h"
 struct Bullet{
     bool live;  //生存
+    bool collateEnabled;    //已启用碰撞检测
     int style;  //风格
     int cnt,minLiveTime;    //帧计数器，最短生存时间
     double x,y,angle,spd;   //x,y,飞行角度,速度
@@ -19,6 +20,11 @@ struct Bullet{
 
     Shot* link;
     int linkNum;
+
+    enum{SHOWING,HIDING,NONE}ani;   //动画类型
+    float aniState[2];
+    //圆形弹幕中
+    //  0号为动画百分比
 };
 class BulletMgr
 {

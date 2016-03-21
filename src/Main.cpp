@@ -15,13 +15,10 @@
 #include "ACGCross_Logo.h"
 #include "Snow/Debug.h"
 #include "TouHouGameLogo.h"
-#include "Title.h"
+#include "Title/TitleMenu.h"
 #include "SCClock.h"
-#include "BasicPackReader.h"
 #include "GameDataMgr.h"
 #include "ShaoNvQiDaoZhong.h"
-#include "Title.h"
-#include "BgmMgr.h"
 using namespace std;
 using namespace Snow;
 Snow::Mutex initMutex;
@@ -33,6 +30,9 @@ void InitParttens(){
     InitEnePartten_1L();
     extern void InitShtPartten_1L();
     InitShtPartten_1L();
+
+    extern void InitScBgs();
+    InitScBgs();
 }
 
 void _initThread(THREAD_ID){
@@ -69,7 +69,10 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 int main(int argc,char** argv){
     Init();
     extern Uint8 BetaStart();
-    BetaStart();
+    //BetaStart();
+
+    extern void SoundFinished(int channel);
+    Mix_ChannelFinished(&SoundFinished);
 
     //BasicPackReader bks[3];
     //bks[0].OpenPkg("base.bpk");
@@ -89,7 +92,7 @@ int main(int argc,char** argv){
     //BasicPackReader data;
     //data.OpenPkg("data.+pk");
     //Snow::ResFile::InstallReader(&data);
-    pRnd.Create("东方谷丰梦",FALSE,1280,720);
+    pRnd.Create("东方谷丰梦",FALSE,800,450);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
     InitGameLogic(acgclogo);
@@ -101,7 +104,7 @@ int main(int argc,char** argv){
     #else
     //_initThread(nullptr);
     Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
-    //Run(new Title);
+    //Run(&titleMenu);
     #endif
     exit(0);
     return 0;

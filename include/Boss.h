@@ -55,7 +55,7 @@ class Boss
     public:
         ~Boss();
         inline int GetCnt(){return m_cnt;}
-        void LoadRV(const std::string&,const std::string& basePath,int* cnt);
+        void LoadRV(const std::string&,const std::string& basePath,int* cnt,const std::string& playerChar);
         void OnBirth();
         void OnDraw();
         void OnSCBGDraw();

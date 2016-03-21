@@ -48,6 +48,7 @@ class Player
         inline void AddScore(Uint32 s){m_score+=s;};
         inline void ResetScore(){m_score=0;};
         inline Uint32 GetScore(){return m_score;};
+        std::string GetCharName();
         virtual ~Player();
     protected:
 };

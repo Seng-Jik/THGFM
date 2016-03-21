@@ -188,3 +188,9 @@ void Player::ClearKey(){
     for(int i = 0;i < 8;++i)
         m_k[i] = false;
 }
+
+std::string Player::GetCharName()
+{
+    return m_charData -> CharName();
+}
+

@@ -13,7 +13,7 @@ typedef void(*SCBg)(int cnt,Snow::Bundle<256>&);
 extern SCBg scbgs [];
 using namespace Snow;
 
-void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
+void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,const std::string& playerChar)
 {
     m_cnt = 0;
     m_spellCardNum = 0;
@@ -26,8 +26,8 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
     //基本参数
     m_midway = r.Int("MIDWAY_BOSS");
-    m_conversation = r.Str("CONVERSATION");
-    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED");
+    m_conversation = r.Str("CONVERSATION_"+playerChar);
+    m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED_"+playerChar);
     m_basePath = basePath;
 
     //图像参数
@@ -49,12 +49,14 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
 
     //符卡列表CSV配置
     CSVReader csv;
-    csv.LoadCSV(basePath + r.Str("SC_CSV"));
     SpellCard sc;
+    csv.LoadCSV(basePath+r.Str("SC_CSV"));
+    csv.NextLine();
     do{
         int boolTmp;
         csv.PopInt(boolTmp);
         if(boolTmp == 2) continue;
+        PNT("POP A BOSS SKILL.");
         sc.isSpellCard = boolTmp;
         if(sc.isSpellCard) ++m_spellCardNum;
         sc.endTime = -1;
@@ -72,12 +74,10 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt)
     }while(csv.NextLine());
     if(!m_conversation.empty()){
         //Load Bgm
-        Mix_Chunk* bgm;
+        Bgm* bgm;
         double bpm;
         if(!r.Str("BGM_SND").empty()){
-            ResFile rf;
-            rf.Load(basePath + r.Str("BGM_SND"));
-            bgm = Mix_LoadWAV_RW(rf,rf.Size());
+            bgm = new Bgm(basePath + r.Str("BGM_SND"));
             bpm = r.Float("BGM_BPM");
         }else{
             bgm = nullptr;
