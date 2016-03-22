@@ -3,6 +3,7 @@
 #include <cmath>
 #include "CollWorld.h"
 #include <cmath>
+#include "MathFunc.h"
 #include "Snow/Debug.h"
 using namespace Snow;
 
@@ -14,14 +15,14 @@ void BulletMgr::enableXRectBullet(int bltNum)
     int x[4],y[4],x2[4];
     double theta = m_blts[bltNum].self_angle;
     //theta = 2*M_PI - theta;
-    x[0] = -m_blts[bltNum].self_roll_center_x;
-    y[0] = -m_blts[bltNum].self_roll_center_y;
-    x[1] = -m_blts[bltNum].self_roll_center_x;
-    y[1] = m_blts[bltNum].self_roll_center_y;
-    x[2] = m_blts[bltNum].self_roll_center_x;
-    y[2] = m_blts[bltNum].self_roll_center_y;
-    x[3] = m_blts[bltNum].self_roll_center_x;
-    y[3] = -m_blts[bltNum].self_roll_center_y;
+    x[0] = -m_blts[bltNum].self_w/2.0;
+    y[0] = -m_blts[bltNum].self_h/2.0;
+    x[1] = -m_blts[bltNum].self_w/2.0;
+    y[1] = m_blts[bltNum].self_h/2.0;
+    x[2] = m_blts[bltNum].self_w/2.0;
+    y[2] = m_blts[bltNum].self_h/2.0;
+    x[3] = m_blts[bltNum].self_w/2.0;
+    y[3] = -m_blts[bltNum].self_h/2.0;
     /*x[0] = 0;
     y[0] = 0;
     x[1] = 0;
@@ -49,11 +50,12 @@ void BulletMgr::loadCircleBulletStyle(int i, const std::string& s, double r, dou
     m_bulletStyle[i].circle.coll_r = coll_r;
 }
 
-void BulletMgr::loadXRectBulletStyle(int i, const std::string& s, int w, int h)
+void BulletMgr::loadXRectBulletStyle(int shape,int i, const std::string& s, int w, int h)
 {
     m_bulletStyle[i].tex = LoadPic(s);
     SDL_SetTextureBlendMode(m_bulletStyle[i].tex,SDL_BLENDMODE_BLEND);
-    m_bulletStyle[i].shape = BulletStyle::XRECT;
+    if(shape == 1) m_bulletStyle[i].shape = BulletStyle::XRECT1;
+    else if(shape == 2) m_bulletStyle[i].shape = BulletStyle::XRECT2;
     m_bulletStyle[i].xrect.w = w;
     m_bulletStyle[i].xrect.h = h;
 }
@@ -77,7 +79,10 @@ void BulletMgr::Init()
         if(shape[0] == 'C'){
             loadCircleBulletStyle(num,file.c_str(),r1,r2);
         }else if(shape[0] == 'R'){
-            loadXRectBulletStyle(num,file.c_str(),r1,r2);
+            if(shape[1] == '1')
+                loadXRectBulletStyle(BulletStyle::XRECT1,num,file.c_str(),r1,r2);
+            else if(shape[1] == '2')
+                loadXRectBulletStyle(BulletStyle::XRECT2,num,file.c_str(),r1,r2);
         }else if(shape[0] == '#');
         ++num;
     }while(csv.NextLine());
@@ -109,12 +114,14 @@ void BulletMgr::OnNext()
             case BulletStyle::CIRCLE:
                 collWorld.SetEnemyBulletCircle(i,true,m_blts[i].x,m_blts[i].y,m_bulletStyle[m_blts[i].style].circle.coll_r);
                 break;
-            case BulletStyle::XRECT:
+            case BulletStyle::XRECT2:
+            case BulletStyle::XRECT1:
                 //TODO:SetRectColler
                 enableXRectBullet(i);
                 break;
             }
 
+            //Animation(Show and Hide)
             switch(m_bulletStyle[m_blts[i].style].shape){
             case BulletStyle::CIRCLE:
                 if(m_blts[i].ani == Bullet::SHOWING || m_blts[i].ani == Bullet::HIDING){
@@ -128,9 +135,22 @@ void BulletMgr::OnNext()
                     }
                 }
                 break;
-            case BulletStyle::XRECT:
-                //TODO:SetRectColler
-                enableXRectBullet(i);
+            case BulletStyle::XRECT1:
+                if(m_blts[i].ani == Bullet::SHOWING || m_blts[i].ani == Bullet::HIDING){
+                    if(m_blts[i].ani == Bullet::SHOWING)
+                        m_blts[i].aniState[0] = ACGCross::ArcFunc((m_blts[i].cnt) / 45.0);
+                    else if(m_blts[i].ani == Bullet::HIDING)
+                        m_blts[i].aniState[0] = ACGCross::FArcFunc((m_blts[i].cnt - m_blts[i].aniState[1]) / 45.0);
+                    if(m_blts[i].aniState[0] == -1){
+                        m_blts[i].aniState[0] = 1;
+                        if(m_blts[i].ani == Bullet::SHOWING)
+                            m_blts[i].ani = Bullet::NONE;
+                        else if(m_blts[i].ani == Bullet::HIDING)
+                            Kill(i);
+                    }
+                }
+                //m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h*m_blts[i].aniState[0];
+            case BulletStyle::XRECT2:
                 break;
             }
 
@@ -142,7 +162,7 @@ void BulletMgr::OnNext()
                     m_blts[i].y > HEIGHT+ m_bulletStyle[m_blts[i].style].circle.r||
                     m_blts[i].y < -m_bulletStyle[m_blts[i].style].circle.r);
 
-            else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT){
+            else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1 || m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2){
                 int bigEdge = m_bulletStyle[m_blts[i].style].xrect.w > m_bulletStyle[m_blts[i].style].xrect.h ? m_bulletStyle[m_blts[i].style].xrect.w : m_bulletStyle[m_blts[i].style].xrect.h;
                 ++bigEdge;
                 needKill = m_blts[i].minLiveTime <= m_blts[i].cnt && (
@@ -168,28 +188,21 @@ void BulletMgr::OnDraw()
             };
             Uint8 alpha = m_blts[i].alpha;
             if(m_blts[i].ani == Bullet::SHOWING){
-                switch(m_bulletStyle[m_blts[i].style].shape){
-                case BulletStyle::CIRCLE:
-                    int kr = 1.5*(1-m_blts[i].aniState[0])*(m_bulletStyle[m_blts[i].style].circle.r);
-                    r.x -= kr;
-                    r.y -= kr;
-                    r.w += 2*kr;
-                    r.h += 2*kr;
-                    alpha *= m_blts[i].aniState[0];
-                    break;
-                }
+                int kr = 1.5*(1-m_blts[i].aniState[0])*(m_bulletStyle[m_blts[i].style].circle.r);
+                r.x -= kr;
+                r.y -= kr;
+                r.w += 2*kr;
+                r.h += 2*kr;
+                alpha *= m_blts[i].aniState[0];
+
             }
             else if(m_blts[i].ani == Bullet::HIDING){
-                switch(m_bulletStyle[m_blts[i].style].shape){
-                case BulletStyle::CIRCLE:
                     int kr = (1-m_blts[i].aniState[0])*(m_bulletStyle[m_blts[i].style].circle.r);
                     r.x += kr/2;
                     r.y += kr/2;
                     r.w -= kr;
                     r.h -= kr;
                     alpha *= 1-m_blts[i].aniState[0];
-                    break;
-                }
             }
             SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,alpha);
             //SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].circle.r),int(m_bulletStyle[m_blts[i].style].circle.r)};
@@ -198,17 +211,31 @@ void BulletMgr::OnDraw()
             SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,nullptr,SDL_FLIP_NONE);
             //SDL_RenderCopy(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r);
         }
-        else if(m_blts[i].live && m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT){
+        else if(m_blts[i].live && (m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1 || (m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2))){
+            Uint8 alpha = m_blts[i].alpha;
+            if(m_blts[i].ani == Bullet::SHOWING){
+                //alpha *= m_blts[i].aniState[0];
+                m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h * m_blts[i].aniState[0];
+                //m_blts[i].y -= (m_bulletStyle[m_blts[i].style].xrect.h - m_blts[i].self_h)/4;
+            }
+            else if(m_blts[i].ani == Bullet::HIDING){
+                //alpha *= 1-m_blts[i].aniState[0];
+                m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h * (1-m_blts[i].aniState[0]);
+            }
+            SDL_Point roll_poi = {m_blts[i].self_roll_center_x,m_blts[i].self_roll_center_y};
+            //SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,128);
+            SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,alpha);
             SDL_Rect r = {int(m_blts[i].x-m_blts[i].self_w/2),
                                 int(m_blts[i].y-m_blts[i].self_h/2),
                                 int(m_blts[i].self_w),
                                 int(m_blts[i].self_h)
             };
-            SDL_Point roll_poi = {m_blts[i].self_roll_center_x,m_blts[i].self_roll_center_y};
-            //SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,128);
-            SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
             //SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].xrect.w/2),int(m_bulletStyle[m_blts[i].style].xrect.h/2)};
-            SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&roll_poi,SDL_FLIP_NONE);
+            if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1){
+                SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&roll_poi,SDL_FLIP_NONE);
+            }else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2){
+                SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&roll_poi,SDL_FLIP_NONE);
+            }
         }
     }
 }
@@ -243,11 +270,14 @@ int BulletMgr::Alloc(double x,double y,int style)
 
 
     switch(m_bulletStyle[style].shape){
-    case BulletStyle::XRECT:
+    case BulletStyle::XRECT1:
+    case BulletStyle::XRECT2:
         m_blts[n].x = x;
         m_blts[n].y = y;
         m_blts[n].self_roll_center_x = m_blts[n].self_w/2;
         m_blts[n].self_roll_center_y = m_blts[n].self_h/2;
+        m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1号是动画启动时的帧号
+        m_blts[n].ani = Bullet::SHOWING;
         break;
     case BulletStyle::CIRCLE:
         m_blts[n].x = m_bulletStyle[style].circle.r/2+x;
@@ -286,7 +316,8 @@ void BulletMgr::Kill(int n)
     case BulletStyle::CIRCLE:
         collWorld.SetEnemyBulletCircle(n,false);
         break;
-    case BulletStyle::XRECT:
+    case BulletStyle::XRECT1:
+    case BulletStyle::XRECT2:
         collWorld.SetEnemyBulletXRect(n,false);
         break;
     }
@@ -298,19 +329,18 @@ void BulletMgr::Kill(int n)
 void BulletMgr::KillBulletAndInstallEffect(int n)
 {
     int i = n;
-    if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT){
-            SDL_Rect r = {int(m_blts[i].x-m_blts[i].self_w/2),
-                                int(m_blts[i].y-m_blts[i].self_h/2),
-                                int(m_blts[i].self_w),
-                                int(m_blts[i].self_h)
-            };
-            SDL_Point roll_poi = {m_blts[i].self_roll_center_x,m_blts[i].self_roll_center_y};
-            SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,m_blts[i].alpha);
-            effMgr.InstallZoomOutAnimation(m_bulletStyle[m_blts[n].style].tex,r,true,roll_poi,m_blts[i].self_angle* 180/M_PI);
-            Kill(n);
+    if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1 ){
+        m_blts[i].aniState[0] = 0;
+        m_blts[i].aniState[1] = m_blts[i].cnt;
+        m_blts[i].ani = Bullet::HIDING;
+        m_blts[i].collateEnabled = false;
+    }
+    else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2){
+
     }
     else if(m_blts[i].live && m_bulletStyle[m_blts[i].style].shape == BulletStyle::CIRCLE){
         m_blts[i].aniState[0] = 0;
+        m_blts[i].aniState[1] = m_blts[i].cnt;
         m_blts[i].ani = Bullet::HIDING;
         m_blts[i].collateEnabled = false;
     }

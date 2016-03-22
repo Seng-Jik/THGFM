@@ -80,7 +80,7 @@ void WSTGame::OnDraw()
     //SDL_SetRenderDrawBlendMode(Snow::pRnd,SDL_BLENDMODE_BLEND);
     //SDL_RenderFillRect(Snow::pRnd,nullptr);
 
-    //collWorld.Debug_DrawEnemy_XRect();
+    collWorld.Debug_DrawEnemy_XRect();
     //angle+=0.1;
     //collWorld.Debug_DrawPlayerBullet();
     //m_p2.OnDraw();

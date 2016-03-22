@@ -5,19 +5,20 @@
 #include <cstdlib>
 
 static void L100(Shot* s,int enemy){
-    if(ShtCnt()>=60) ShtEnd();
+    if(beater.IsBeatFrame()){
     //if(ShtCnt(s)%1== 1){// && ShtCnt(s) <= 3200){
         double x,y;
         EneGetPos(enemy,x,y);
         //ShtCreateBlt(s,x,y,EneGetPlrAngle(0,enemy),0.1,30,0);
-        ShtCreateBlt(s,800+rand()%200,rand()%720,EneGetPlrAngle(0,enemy),1,0,0);
-   // }
+        ShtCreateBlt(s,500,500,EneGetPlrAngle(0,enemy),1,0,1);
+        ShtEnd();
+    }
     ShtForBullet(i){
         //BltSpd(*p) = 0.01;
         //BltAngle(*p) += 0.05;
         //if(beater.IsBeatFrame()) BltSpd(*p) = -BltSpd(*p);
         BltSpd(i) += 0.001;
-        BltAngle(i) = EneGetPlrAngle(0,enemy);
+        //BltSelfAngle(i) = BltAngle(i) = EneGetPlrAngle(0,enemy);
         //BltAngle(*p) = EneGetPlrAngle(0,enemy);
     }
 }

@@ -33,7 +33,9 @@ class BulletMgr
         std::priority_queue<int> m_freeList;
         struct BulletStyle{
             SDL_Texture* tex;
-            enum{CIRCLE,XRECT}shape = CIRCLE; //刚体形状
+            enum{CIRCLE,XRECT1,XRECT2}shape = CIRCLE; //刚体形状
+            //XRect1  -- 刺穿整个
+            //XRect2 -- 和子弹垂直的方向淡入
             union{
                 struct{
                     double r;
@@ -50,7 +52,7 @@ class BulletMgr
 
         void enableXRectBullet(int bltNum);
         static void loadCircleBulletStyle(int i,const std::string&,double r=8,double coll_r=6);
-        static void loadXRectBulletStyle(int i,const std::string&,int w,int h);
+        static void loadXRectBulletStyle(int shape,int i,const std::string&,int w,int h);
     public:
         static void Init();
         BulletMgr();
