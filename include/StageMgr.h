@@ -31,7 +31,7 @@ struct Enemy{
     std::vector<Shot*> shots;    //射击
     Shot* whenKilled =nullptr;   //死亡后射击
     int style;  //敌人图像编号
-    std::vector<double> parttenArgs;
+    double parttenArgs[8];
 
     int items[2];   //爆出的道具
 };

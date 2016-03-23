@@ -3,7 +3,6 @@
 #include "Tools.h"
 #include <cmath>
 #include "Snow/Debug.h"
-#include "EnePartten.h"
 #include "ShotParttenAPI.h"
 #include "CollWorld.h"
 #include "StageTitle.h"
@@ -14,6 +13,7 @@
 #include "ItemMgr.h"
 #include "BossConversation.h"
 #include "Player.h"
+#include "LuaEnemyParttenMgr.h"
 
 using namespace Snow;
 
@@ -24,6 +24,7 @@ int StageMgr::m_cnt = 0;
 
 void StageMgr::Init()
 {
+    luaEnemyParttens.InitByStageMgr();
     Snow::CSVReader csv;
     csv.LoadCSV("Enemy/styles.csv");
     int num = 0;
@@ -79,8 +80,11 @@ void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath)
             csv.PopInt(e -> items[SCORE]);
             csv.PopInt(e -> items[POWER]);
             double args;
-            while(csv.PopFloat(args))
-                e->parttenArgs.push_back(args);
+            int argi = 0;
+            while(csv.PopFloat(args)){
+                e->parttenArgs[argi] = args;
+                ++argi;
+            }
 
             m_enemys.push_back(e);
             last = e;
@@ -207,7 +211,8 @@ void StageMgr::OnNext()
 
             //应用 Partten
             if(enemy.partten != -1)
-                enemyPartten[enemy.partten](&enemy,enemyNum);
+                //enemyPartten[enemy.partten](&enemy,enemyNum);
+                luaEnemyParttens.ProcEnemy(&enemy);
             ++enemy.cnt;
 
             //坐标运算
