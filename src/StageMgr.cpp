@@ -52,8 +52,9 @@ StageMgr::~StageMgr()
     //dtor
 }
 
-void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath)
+void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath,Level lv)
 {
+    m_lv = lv;
     CSVReader csv;
     csv.LoadCSV(stage);
 

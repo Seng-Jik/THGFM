@@ -5,6 +5,7 @@
 #include <queue>
 #include <forward_list>
 #include "Boss.h"
+#include "Tools.h"
 #include "Snow.h"
 
 struct Shot{
@@ -54,13 +55,15 @@ class StageMgr
         std::queue<int> m_clearScreenTime;
 
         std::queue<Boss*> m_bosses;
+        Level m_lv;
 
     public:
         static void Init();
         static inline int GetCnt(){return m_cnt;}
 
         StageMgr();
-        void LoadCSV(const std::string&,const std::string& basePath);
+        void LoadCSV(const std::string&,const std::string& basePath,Level lv);
+        Level GetLv(){return m_lv;}
         void Clear();
         void OnNext();
         void OnDraw();
