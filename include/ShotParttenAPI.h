@@ -50,7 +50,7 @@ inline int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int min
     int n = bulletMgr.Alloc(x,y,style);
     if(n == -1) return -1;
     bulletMgr[n].angle = angle;
-    bulletMgr[n].self_angle = 0;
+    bulletMgr[n].self_angle = angle;
     bulletMgr[n].spd = spd;
     bulletMgr[n].minLiveTime = minLiveTime;
     bulletMgr[n].link = nullptr;

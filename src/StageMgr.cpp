@@ -141,6 +141,7 @@ void StageMgr::Clear()
 
 void StageMgr::OnNext()
 {
+    //PNT(m_enemySearchBottom);
     if(m_cnt >= stageTitle.GetBeginTime() && m_cnt <= stageTitle.GetEndTime())
         stageTitle.OnNext();
 
@@ -435,7 +436,8 @@ void StageMgr::KillEnemy(Enemy* e)
     }else{
         e -> live = Enemy::STOPLIVE;
         FOR_EACH(p,e->shots.begin(),e->shots.end())
-            (*p) -> live = Shot::STOPSHOOT;
+            if((*p) -> live == Shot::LIVE)
+                (*p) -> live = Shot::STOPSHOOT;
         collWorld.SetEnemy(e->num,false,0,0,0);
     }
 }

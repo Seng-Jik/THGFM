@@ -181,7 +181,7 @@ void Player::Birth()
 {
     m_live = Player::BIRTHING;
     m_birthTimer=0;
-    Invincible(60);
+    Invincible(180);
 }
 
 void Player::ClearKey(){
