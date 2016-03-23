@@ -14,8 +14,8 @@ struct Bullet{
     bool alpha_living = false;
 
     double self_angle = 0;    //旋转角度
-    int self_w; //子弹自我缩放，只适用于四边形子弹
-    int self_h;
+    double self_w; //子弹自我缩放，只适用于四边形子弹
+    double self_h;
     int self_roll_center_x,self_roll_center_y;
 
     Shot* link;

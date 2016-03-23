@@ -10,7 +10,7 @@ static void L100(Shot* s,int enemy){
         double x,y;
         EneGetPos(enemy,x,y);
         //ShtCreateBlt(s,x,y,EneGetPlrAngle(0,enemy),0.1,30,0);
-        ShtCreateBlt(s,500,500,EneGetPlrAngle(0,enemy),1,0,1);
+        ShtCreateBlt(s,1000,500,EneGetPlrAngle(0,enemy),4,0,1);
         ShtEnd();
     }
     ShtForBullet(i){

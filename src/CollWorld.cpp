@@ -296,7 +296,7 @@ void CollWorld::Update_Boom()
                 }
                 if(AllIn){
                     m_enemyBullets[i].enable = false;
-                    bulletMgr.Kill(i);
+                    bulletMgr.KillBulletAndInstallEffect(i);
                 }
             }
         }

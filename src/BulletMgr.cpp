@@ -149,9 +149,39 @@ void BulletMgr::OnNext()
                             Kill(i);
                     }
                 }
+                break;
                 //m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h*m_blts[i].aniState[0];
             case BulletStyle::XRECT2:
+                if(m_blts[i].ani == Bullet::SHOWING || m_blts[i].ani == Bullet::HIDING){
+                    if(m_blts[i].ani == Bullet::SHOWING){
+                        m_blts[i].self_w += m_blts[i].spd * cos(m_blts[i].angle);
+                        m_blts[i].x += m_blts[i].spd * cos(m_blts[i].angle)/2;
+                        if(m_bulletStyle[m_blts[i].style].xrect.w <= m_blts[i].self_w){
+                            m_blts[i].ani = Bullet::NONE;
+                            m_bulletStyle[m_blts[i].style].xrect.w = m_blts[i].self_w;
+                        }
+                    }
+                    else if(m_blts[i].ani == Bullet::HIDING){
+                        m_blts[i].self_w -= m_blts[i].spd * cos(m_blts[i].angle);
+                        //m_blts[i].x -= m_blts[i].spd * cos(m_blts[i].angle);
+                        if(m_blts[i].self_w <= 0){
+                                Kill(i);
+                        }
+                    }
+                }
                 break;
+            }
+
+            if(m_blts[i].ani == Bullet::HIDING){
+                switch(m_bulletStyle[m_blts[i].style].shape){
+                case BulletStyle::CIRCLE:
+                    collWorld.SetEnemyBulletCircle(i,false);
+                    break;
+                case BulletStyle::XRECT1:
+                case BulletStyle::XRECT2:
+                    collWorld.SetEnemyBulletXRect(i,false);
+                    break;
+                }
             }
 
             bool needKill = false;
@@ -213,15 +243,25 @@ void BulletMgr::OnDraw()
         }
         else if(m_blts[i].live && (m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1 || (m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2))){
             Uint8 alpha = m_blts[i].alpha;
-            if(m_blts[i].ani == Bullet::SHOWING){
-                //alpha *= m_blts[i].aniState[0];
-                m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h * m_blts[i].aniState[0];
-                //m_blts[i].y -= (m_bulletStyle[m_blts[i].style].xrect.h - m_blts[i].self_h)/4;
+
+            if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1){
+                if(m_blts[i].ani == Bullet::SHOWING){
+                    m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h * m_blts[i].aniState[0];
+                }
+                else if(m_blts[i].ani == Bullet::HIDING){
+                    m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h * (1-m_blts[i].aniState[0]);
+                }
+            }else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2){
+                if(m_blts[i].ani == Bullet::SHOWING){
+                /*    auto old_x = m_blts[i].self_w;
+                    m_blts[i].self_w = m_bulletStyle[m_blts[i].style].xrect.w * m_blts[i].aniState[0];
+                    m_blts[i].x += (old_x - m_blts[i].self_w)/2;*/
+                }
+                else if(m_blts[i].ani == Bullet::HIDING){
+                    //m_blts[i].self_w = m_bulletStyle[m_blts[i].style].xrect.w * (1-m_blts[i].aniState[0]);
+                }
             }
-            else if(m_blts[i].ani == Bullet::HIDING){
-                //alpha *= 1-m_blts[i].aniState[0];
-                m_blts[i].self_h = m_bulletStyle[m_blts[i].style].xrect.h * (1-m_blts[i].aniState[0]);
-            }
+
             SDL_Point roll_poi = {m_blts[i].self_roll_center_x,m_blts[i].self_roll_center_y};
             //SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,128);
             SDL_SetTextureAlphaMod(m_bulletStyle[m_blts[i].style].tex,alpha);
@@ -231,11 +271,7 @@ void BulletMgr::OnDraw()
                                 int(m_blts[i].self_h)
             };
             //SDL_Point poi = {int(m_bulletStyle[m_blts[i].style].xrect.w/2),int(m_bulletStyle[m_blts[i].style].xrect.h/2)};
-            if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT1){
-                SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&roll_poi,SDL_FLIP_NONE);
-            }else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2){
-                SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&roll_poi,SDL_FLIP_NONE);
-            }
+            SDL_RenderCopyEx(pRnd,m_bulletStyle[m_blts[i].style].tex,nullptr,&r,m_blts[i].self_angle * 180/M_PI,&roll_poi,SDL_FLIP_NONE);
         }
     }
 }
@@ -271,6 +307,13 @@ int BulletMgr::Alloc(double x,double y,int style)
 
     switch(m_bulletStyle[style].shape){
     case BulletStyle::XRECT1:
+        m_blts[n].x = x;
+        m_blts[n].y = y;
+        m_blts[n].self_roll_center_x = m_blts[n].self_w/2;
+        m_blts[n].self_roll_center_y = m_blts[n].self_h/2;
+        m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1号是动画启动时的帧号
+        m_blts[n].ani = Bullet::SHOWING;
+        break;
     case BulletStyle::XRECT2:
         m_blts[n].x = x;
         m_blts[n].y = y;
@@ -278,6 +321,7 @@ int BulletMgr::Alloc(double x,double y,int style)
         m_blts[n].self_roll_center_y = m_blts[n].self_h/2;
         m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1号是动画启动时的帧号
         m_blts[n].ani = Bullet::SHOWING;
+        m_blts[n].self_w = 0;
         break;
     case BulletStyle::CIRCLE:
         m_blts[n].x = m_bulletStyle[style].circle.r/2+x;
@@ -334,14 +378,20 @@ void BulletMgr::KillBulletAndInstallEffect(int n)
         m_blts[i].aniState[1] = m_blts[i].cnt;
         m_blts[i].ani = Bullet::HIDING;
         m_blts[i].collateEnabled = false;
+        collWorld.SetEnemyBulletXRect(n,false);
     }
     else if(m_bulletStyle[m_blts[i].style].shape == BulletStyle::XRECT2){
-
+            m_blts[i].aniState[0] = 0;
+        m_blts[i].aniState[1] = m_blts[i].cnt;
+        m_blts[i].ani = Bullet::HIDING;
+        m_blts[i].collateEnabled = false;
+        collWorld.SetEnemyBulletXRect(n,false);
     }
     else if(m_blts[i].live && m_bulletStyle[m_blts[i].style].shape == BulletStyle::CIRCLE){
         m_blts[i].aniState[0] = 0;
         m_blts[i].aniState[1] = m_blts[i].cnt;
         m_blts[i].ani = Bullet::HIDING;
         m_blts[i].collateEnabled = false;
+        collWorld.SetEnemyBulletCircle(n,false);
     }
 }
