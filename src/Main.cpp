@@ -27,8 +27,6 @@ Snow::Mutex initMutex;
 void InitParttens(){
     extern void InitScPartten_1L();
     InitScPartten_1L();
-    extern void InitEnePartten_1L();
-    InitEnePartten_1L();
     extern void InitShtPartten_1L();
     InitShtPartten_1L();
 
@@ -75,9 +73,9 @@ int main(int argc,char** argv){
     extern void SoundFinished(int channel);
     Mix_ChannelFinished(&SoundFinished);
 
-    /*ACPReader acp;
-    acp.OpenPkg("assets.acp");
-    ResFile::InstallReader(&acp);*/
+    //ACPReader acp;
+    //acp.OpenPkg("assets.acp");
+    //ResFile::InstallReader(&acp);
 
     //BasicPackReader bks[3];
     //bks[0].OpenPkg("base.bpk");
@@ -114,3 +112,15 @@ int main(int argc,char** argv){
     exit(0);
     return 0;
 }
+/*
+#include "lua.hpp"
+int main(int argc,char** argv){
+    Init();
+    Snow::ResFile r("EnemyParttens/HelloEnemy.lua");
+    auto L = luaL_newstate();
+    luaL_openlibs(L);
+    luaL_loadbuffer(L,r,r.Size(),"line");
+    int i = lua_pcall(L,0,0,0);
+    PNT(i);
+    system("pause");
+}*/

@@ -60,6 +60,7 @@
 			<Add library="SDL2_Mixer" />
 			<Add library="SDL2_ttf" />
 			<Add library="SDL2_net" />
+			<Add library="lib/liblua.a" />
 			<Add directory="$(#sdl2.lib)" />
 		</Linker>
 		<ExtraCommands>
@@ -77,11 +78,10 @@
 		<Unit filename="include/CharData.h" />
 		<Unit filename="include/CollWorld.h" />
 		<Unit filename="include/EffectMgr.h" />
-		<Unit filename="include/EnePartten.h" />
-		<Unit filename="include/EnemyParttenAPI.h" />
 		<Unit filename="include/GameUI.h" />
 		<Unit filename="include/ItemMgr.h" />
 		<Unit filename="include/KeyMapAct.h" />
+		<Unit filename="include/LuaEnemyParttenMgr.h" />
 		<Unit filename="include/PauseActivity.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/PlayerBullet.h" />
@@ -133,10 +133,10 @@
 		<Unit filename="src/CharData.cpp" />
 		<Unit filename="src/CollWorld.cpp" />
 		<Unit filename="src/EffectMgr.cpp" />
-		<Unit filename="src/EnePartten/Stage1L.cpp" />
 		<Unit filename="src/GameUI.cpp" />
 		<Unit filename="src/ItemMgr.cpp" />
 		<Unit filename="src/KeyMapAct.cpp" />
+		<Unit filename="src/LuaEnemyParttenMgr.cpp" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/MathFunc.cpp" />
 		<Unit filename="src/PauseActivity.cpp" />

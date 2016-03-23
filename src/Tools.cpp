@@ -40,15 +40,15 @@ void LoadStage(const std::string& stageName, Level l)
     stage.Clear();
     switch(l){
     case LV_E:
-        stage.LoadCSV(path+stgConfig.Str("ESTG"),path);break;
+        stage.LoadCSV(path+stgConfig.Str("ESTG"),path,l);break;
     case LV_N:
-        stage.LoadCSV(path+stgConfig.Str("NSTG"),path);break;
+        stage.LoadCSV(path+stgConfig.Str("NSTG"),path,l);break;
     case LV_H:
-        stage.LoadCSV(path+stgConfig.Str("HSTG"),path);break;
+        stage.LoadCSV(path+stgConfig.Str("HSTG"),path,l);break;
     case LV_L:
-        stage.LoadCSV(path+stgConfig.Str("LSTG"),path);break;
+        stage.LoadCSV(path+stgConfig.Str("LSTG"),path,l);break;
     case LV_EX:
-        stage.LoadCSV(path+stgConfig.Str("EXSTG"),path);break;
+        stage.LoadCSV(path+stgConfig.Str("EXSTG"),path,l);break;
     }
 
     //Load Stage Title

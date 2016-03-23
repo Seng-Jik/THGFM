@@ -6,7 +6,11 @@
 #define WIDTH 1280
 #define HEIGHT 720
 enum Level{
-    LV_E,LV_N,LV_H,LV_L,LV_EX
+    LV_E=0,
+    LV_N=1,
+    LV_H=2,
+    LV_L=3,
+    LV_EX=4
 };
 
 SDL_Texture* LoadPic(const std::string&);
