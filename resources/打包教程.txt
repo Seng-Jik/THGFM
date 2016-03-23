@@ -1,0 +1,15 @@
+创建文件list.txt
+在里面写需要打包的文件名，相对于resources文件夹的路径。
+最后一行写@END.
+以打包Item目录为例，list.txt如下：
+
+============代码==================
+Item/Bomb.png
+Item/FullPower.png
+Item/Life.png
+Item/Power.png
+Item/Score.png
+Item/UpCorner.png
+@END
+
+==============结束================

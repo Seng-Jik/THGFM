@@ -18,6 +18,7 @@
 #include "Title/TitleMenu.h"
 #include "SCClock.h"
 #include "GameDataMgr.h"
+#include "ACPReader.h"
 #include "ShaoNvQiDaoZhong.h"
 using namespace std;
 using namespace Snow;
@@ -73,6 +74,10 @@ int main(int argc,char** argv){
 
     extern void SoundFinished(int channel);
     Mix_ChannelFinished(&SoundFinished);
+
+    /*ACPReader acp;
+    acp.OpenPkg("assets.acp");
+    ResFile::InstallReader(&acp);*/
 
     //BasicPackReader bks[3];
     //bks[0].OpenPkg("base.bpk");
