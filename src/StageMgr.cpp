@@ -14,6 +14,7 @@
 #include "BossConversation.h"
 #include "Player.h"
 #include "LuaEnemyParttenMgr.h"
+#include "LuaShotPartten.h"
 
 using namespace Snow;
 
@@ -25,6 +26,7 @@ int StageMgr::m_cnt = 0;
 void StageMgr::Init()
 {
     luaEnemyParttens.InitByStageMgr();
+    luaShotParttens.InitByStageMgr();
     Snow::CSVReader csv;
     csv.LoadCSV("Enemy/styles.csv");
     int num = 0;
@@ -279,7 +281,8 @@ void StageMgr::OnNext()
 
                 if(shot.live == Shot::LIVE || shot.live == Shot::STOPSHOOT){
                     //应用 Partten
-                    (*shotPartten[shot.partten])(&shot,enemy.num);
+                    //(*shotPartten[shot.partten])(&shot,enemy.num);
+                    luaShotParttens.ProcShot(&shot,enemy.num);
                 }
                 ++shot.cnt;
 

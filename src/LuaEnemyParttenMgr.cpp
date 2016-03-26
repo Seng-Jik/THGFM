@@ -8,7 +8,10 @@ LuaEnemyParttenMgr luaEnemyParttens;
 void LuaEnemyParttenMgr::InitByStageMgr()
 {
     m_luaVM = luaL_newstate();
-    luaL_openlibs(m_luaVM);
+    luaopen_base(m_luaVM);
+    luaopen_io(m_luaVM);
+    luaopen_math(m_luaVM);
+    luaopen_debug(m_luaVM);
     Snow::CSVReader csv;
     csv.LoadCSV("EnemyParttens/parttens.csv");
     int i = 0;
@@ -43,6 +46,11 @@ void LuaEnemyParttenMgr::ProcEnemy(Enemy* e)
     lua_setglobal(m_luaVM,"y");
     lua_setglobal(m_luaVM,"x");
 
+    lua_pushboolean(m_luaVM,beater.IsBeatFrame());
+    lua_pushnumber(m_luaVM,beater.GetBeatNum());
+    lua_setglobal(m_luaVM,"beatCount");
+    lua_setglobal(m_luaVM,"beatFrame");
+
 
     // 可写组数据
     lua_pushnumber(m_luaVM,e -> angle);
@@ -63,6 +71,7 @@ void LuaEnemyParttenMgr::ProcEnemy(Enemy* e)
     //PNT("CALL LUA");
     luaL_loadbuffer(m_luaVM,*m_parttens[e->partten-1],m_parttens[e->partten-1]->Size(),"ep");
     if(lua_pcall(m_luaVM,0,0,0)){
+        PNT("Lua Enemy Partten Error in partten"<<e->partten-1);
         PNT(lua_tostring(m_luaVM,-1));
         system("pause");
         exit(-1);
