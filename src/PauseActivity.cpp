@@ -144,6 +144,9 @@ void PauseActivity::OnNext()
         case SHOWING:
             //get position
             k = ACGCross::ArcFunc((MENUSHOWTIME - m_show_time) / (float)MENUSHOWTIME);
+            m_submenu_ask_sp[0].SetAlpha(255 * k);
+            m_submenu_ask_sp[1].SetAlpha(255 * k);
+            m_submenu_ptr_sp.SetAlpha(255 * k);
             m_submenu_ask_sp[0].SetPos(CHOICEX + k_w + 20, int(p_y + 153 - 170 * k));
             m_submenu_ask_sp[1].SetPos(CHOICEX + k_w + 20, int(p_y + 193 - 170 * k));
             m_submenu_ptr = 0;
@@ -153,13 +156,6 @@ void PauseActivity::OnNext()
             break;
         default:
         case WAITING:
-            /*m_wait_time += m_wait_frame_adddec;
-            if (m_wait_time <= 0)
-                m_wait_frame_adddec = 1;
-            if (m_wait_time >= MENUWAITTIME - 1)
-                m_wait_frame_adddec = -1;
-            if (++m_cycle == 4)
-                m_cycle = 0;*/
             break;
         case CHOOSING:
             m_submenu_ptr_sp.SetPos(CHOICEX + k_w + 20, p_y - 17 + 40 * m_submenu_ptr);
@@ -171,6 +167,9 @@ void PauseActivity::OnNext()
         case HIDING:
             k = ACGCross::ArcFunc((MENUHIDETIME - m_hide_time) / (float)MENUHIDETIME);
             m_submenu_ask_sp[0].SetPos(CHOICEX + k_w + 20, int(p_y + 100 * k * (6 - m_ptr_state)));
+            m_submenu_ask_sp[0].SetAlpha(255 - 240 * k);
+            m_submenu_ask_sp[1].SetAlpha(255 - 240 * k);
+            m_submenu_ptr_sp.SetAlpha(255 - 240 * k);
             m_submenu_ask_sp[1].SetPos(CHOICEX + k_w + 20, int(p_y + 70 + 100 * k * (6 - m_ptr_state)));
             m_submenu_ptr_sp.SetPos(CHOICEX + k_w + 20, int(p_y + 90 + 100 * k * (6 - m_ptr_state)));
             if (--m_hide_time <= 0)
@@ -247,7 +246,10 @@ void PauseActivity::OnNext()
         k = ACGCross::ArcFunc((MENUHIDETIME - m_hide_time) / (float)MENUHIDETIME);
         //std::cout << " the current frame of hding is " << m_hide_time << "and k = " << k << std::endl;
         for (int i = 0; i < ALLCHOICE; ++i)
+        {
+            m_btns[i].sp.SetAlpha(255 - 240 * k);
             m_btns[i].sp.SetPos(CHOICEX, int(CHOICEY + k * (HEIGHT - CHOICEY) + 56 * i));
+        }
         for (int i = 0; i < 10; ++i)
             SDL_SetTextureAlphaMod(m_score_tex[i], 255 - k * 240);
 
@@ -255,8 +257,9 @@ void PauseActivity::OnNext()
         m_score.SetPos(int(k * (WIDTH - 80) + 80), 50);
         m_score.SetAlpha(255 - k * 240);
 
+
         m_ptr.SetPos(CHOICEX - 70, int(CHOICEY - 10 + k * 400));
-        m_bgt_o.SetAlpha(255 - k * 240);
+        m_bgt.SetAlpha(255 - k * 240);
         if(--m_hide_time <= 0){
             wstg -> OnResume();
             Snow::Return();
