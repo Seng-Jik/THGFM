@@ -167,7 +167,6 @@
 		<Unit filename="src/SCPartten/Stage1L.cpp" />
 		<Unit filename="src/SeMgr.cpp" />
 		<Unit filename="src/ShaoNvQiDaoZhong.cpp" />
-		<Unit filename="src/ShtPartten/Stage1L.cpp" />
 		<Unit filename="src/StageMgr.cpp" />
 		<Unit filename="src/StageTitle.cpp" />
 		<Unit filename="src/TextBox.cpp" />

@@ -1,10 +1,30 @@
 #include "LuaShotPartten.h"
 #include "StageMgr.h"
 #include <vector>
-#include "ShotParttenAPI.h"
+#include "BulletMgr.h"
+#include "Snow/Debug.h"
 #include "StdParttenAPI.h"
 
 LuaShotParttenMgr luaShotParttens;
+
+//µ×²ã½Ó¿Ú
+#define ShtEnd() s -> live = Shot::STOPLIVE
+
+static inline int ShtCreateBlt(Shot* s,double x,double y,double angle,double spd,int minLiveTime,int style)
+{
+    if(s->live == Shot::LIVE){
+        int n = bulletMgr.Alloc(x,y,style);
+        if(n == -1) return -1;
+        bulletMgr[n].angle = angle;
+        bulletMgr[n].self_angle = 0;
+        bulletMgr[n].spd = spd;
+        bulletMgr[n].minLiveTime = minLiveTime;
+        bulletMgr[n].link = s;
+        bulletMgr[n].linkNum = s ->bullets.size();
+        s -> bullets.push_back(n);
+        return n;
+    }else return -1;
+}
 
 //Lua½»»¥API
 static Shot* now;
@@ -138,7 +158,6 @@ void LuaShotParttenMgr::InitByStageMgr()
         if(!path.empty()){
             m_parttens[i] = new Snow::ResFile;
             m_parttens[i] -> Load("ShotParttens/"+path);
-            PNT("LOAD SHOT PARTTEN  "<<m_parttens[i]->Size()<<"  ShotParttens/"+path);
         }
         ++i;
     }while(csv.NextLine());

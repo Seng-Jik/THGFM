@@ -27,8 +27,6 @@ Snow::Mutex initMutex;
 void InitParttens(){
     extern void InitScPartten_1L();
     InitScPartten_1L();
-    extern void InitShtPartten_1L();
-    InitShtPartten_1L();
 
     extern void InitScBgs();
     InitScBgs();
