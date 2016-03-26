@@ -39,6 +39,7 @@ bool ACPReader::OpenPkg(const char* pkg){
                 //printf("OpenPkg:Open File Size:%d\n",info.size);
                 m_hashes[info.nameHash] = info;
      }
+     return true;
 }
 
 char* ACPReader::GetFile(const std::string& fileName,Uint32& size){

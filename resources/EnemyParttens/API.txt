@@ -15,6 +15,9 @@ x	敌人的x坐标
 y	敌人的y坐标
 hp	敌人的hp
 
+beatFrame	bool值，是否为节奏帧
+beatCount	节奏号
+
 可写组
 可以读写，写入后对敌人状态有影响
 

@@ -46,6 +46,11 @@ void LuaEnemyParttenMgr::ProcEnemy(Enemy* e)
     lua_setglobal(m_luaVM,"y");
     lua_setglobal(m_luaVM,"x");
 
+    lua_pushboolean(m_luaVM,beater.IsBeatFrame());
+    lua_pushnumber(m_luaVM,beater.GetBeatNum());
+    lua_setglobal(m_luaVM,"beatCount");
+    lua_setglobal(m_luaVM,"beatFrame");
+
 
     // 可写组数据
     lua_pushnumber(m_luaVM,e -> angle);

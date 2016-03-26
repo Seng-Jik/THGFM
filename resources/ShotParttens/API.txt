@@ -1,0 +1,49 @@
+只读组
+shtFrame	射击集年龄（单位：帧）
+beatFrame	bool值，是否为节奏帧
+beatCount	节奏号
+eneX	发射者X位置
+eneY	发射者Y位置
+plrX	玩家X位置
+plrY	玩家Y位置
+ene_plr_Angle	敌人到玩家的自机狙角度
+level	难度
+
+
+可写组
+shtPartten	更改当前射击集的模式（将会从下一帧开始）
+
+
+API
+
+子弹生命周期系API
+int NextBullet()	获取本射击，下个子弹的控制权，-1为结束，第一次调用之前必调用SelectFirsrBullet
+int SelectFirstBullet()	获取本射击第一个子弹的控制权 ，如果为-1则失败，因为没有子弹可以选择
+
+int ShootBullet(double x,double y,double angle,double speed,int minLiveTime,int style)
+	发射子弹，返回子弹的编号（Lua层），然后获取控制权，如果为-1则为失败，此时不具有任何子弹控制权
+	x,y,角度,速度,最低存活时间,子弹风格编号
+void KillBullet(int n)	杀除此子弹，此后对此子弹的任何操作都是安全而无效的，然而下次遍历将会跳过此子弹
+
+射击集生命周期系API
+void ShtEnd()	停止射击集活动（会继续完成此次活动）
+
+射击集参数存储空间（实现延后）
+int GetDataSize()	取得参数存储空间
+void MoreData()	获得1个空间并添加到空间尾部
+int GetData(int n)	取得第n个空间
+void SetData(int n,int x)	设置第n个空间的值
+
+其它API
+Rand()	返回0-1之间的随机数
+
+
+子弹参数
+可写组
+bltAngle	子弹角度
+bltSpd	子弹速度
+bltState0-7	8个子弹参数
+bltSelfAngle	子弹自身旋转角度
+
+只读组
+bltFrame	子弹年龄
