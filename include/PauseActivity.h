@@ -43,12 +43,21 @@ private:
     Snow::Sprite m_ptr;
     Snow::Timer m_tmr;
     bool m_change_quick_finish;
-    enum { SHOWING, WAITING, CHOOSING, FINISHED, HIDING } m_state;
-    btn m_btns[ALLCHOICE];
+    enum { SHOWING, WAITING, CHOOSING, FINISHED, HIDING } m_state, m_sub_state;
+
+    btn m_btns[ALLCHOICE];  //and the position will be automatically calc-ed according to the near btn.
     int m_show_time, m_hide_time, m_wait_time, m_change_time, m_cycle;
     int m_wait_frame_adddec;
     int m_ptr_state;
     inline int SetCycle(int i_cycle){ if(i_cycle > 3) return i_cycle - 4; return i_cycle;}
+
+    //submenu
+    Snow::Sprite m_submenu_ask_sp[2];
+    Snow::Sprite m_submenu_ptr_sp;
+    int m_submenu_ptr;
+    int m_submenu_state;
+    bool m_submenu;
+
     //score modules
     Snow::Sprite m_score;
     int m_num_color;

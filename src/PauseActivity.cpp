@@ -94,6 +94,14 @@ void PauseActivity::OnShow()
         for (int i = 0; i < 10; ++i)
             m_score_tex[i] = LoadPic("GameUI/Number/black/" + std::to_string(i) + ".PNG");
 
+    //Init submenu
+    m_submenu = false;
+    m_submenu_state = SHOWING;
+    m_submenu_ask_sp[0].Load("GameUI/pause_sub_0.png");
+    m_submenu_ask_sp[1].Load("GameUI/pause_sub_1.png");
+    m_submenu_ptr_sp.Load("GameUI/pause_sub_bg.png");
+
+
     //TODO:只处理了0号玩家
     player[0].ClearKey();
     BtnFunc tmpBtn[5] = {RESUME, RESTART, SETTINGS, TOTITLE, EXIT};
@@ -114,12 +122,62 @@ void PauseActivity::OnDraw()
     }
     m_ptr.OnDraw();
     m_score.OnDraw();
+    //sub menu
+    if(m_submenu)
+    {
+        m_submenu_ask_sp[0].OnDraw();
+        m_submenu_ask_sp[1].OnDraw();
+        m_submenu_ptr_sp.OnDraw();
+    }
 }
 
 void PauseActivity::OnNext()
 {
     float k;
-    int k_w, k_h;
+    int k_w, k_h, p_x, p_y;
+    if (m_submenu)
+    {
+        m_btns[m_ptr_state].sp.GetPos(p_x, p_y);
+        m_btns[m_ptr_state].sp.GetSize(k_w, k_h);
+        switch (m_submenu_state)
+        {
+        case SHOWING:
+            //get position
+            k = ACGCross::ArcFunc((MENUSHOWTIME - m_show_time) / (float)MENUSHOWTIME);
+            m_submenu_ask_sp[0].SetPos(CHOICEX + k_w + 20, int(p_y + 153 - 170 * k));
+            m_submenu_ask_sp[1].SetPos(CHOICEX + k_w + 20, int(p_y + 193 - 170 * k));
+            m_submenu_ptr = 0;
+            m_submenu_ptr_sp.SetPos(CHOICEX + k_w + 20, int(HEIGHT * (1 - k) + p_y + k_h - 50));
+            if(--m_show_time == 0)
+                m_submenu_state = WAITING;
+            break;
+        default:
+        case WAITING:
+            /*m_wait_time += m_wait_frame_adddec;
+            if (m_wait_time <= 0)
+                m_wait_frame_adddec = 1;
+            if (m_wait_time >= MENUWAITTIME - 1)
+                m_wait_frame_adddec = -1;
+            if (++m_cycle == 4)
+                m_cycle = 0;*/
+            break;
+        case CHOOSING:
+            m_submenu_ptr_sp.SetPos(CHOICEX + k_w + 20, p_y - 17 + 40 * m_submenu_ptr);
+            m_submenu_state = WAITING;
+            break;
+        case FINISHED:
+
+            break;
+        case HIDING:
+            k = ACGCross::ArcFunc((MENUHIDETIME - m_hide_time) / (float)MENUHIDETIME);
+            m_submenu_ask_sp[0].SetPos(CHOICEX + k_w + 20, int(p_y + 100 * k * (6 - m_ptr_state)));
+            m_submenu_ask_sp[1].SetPos(CHOICEX + k_w + 20, int(p_y + 70 + 100 * k * (6 - m_ptr_state)));
+            m_submenu_ptr_sp.SetPos(CHOICEX + k_w + 20, int(p_y + 90 + 100 * k * (6 - m_ptr_state)));
+            if (--m_hide_time <= 0)
+                m_submenu = false;
+            break;
+        }
+    }
     switch(m_state)
     {
     case SHOWING:
@@ -209,15 +267,39 @@ void PauseActivity::OnNext()
 
 void PauseActivity::OnEvent(int p, Key k, bool b)
 {
-    if(b)
+    if(m_submenu && b && m_submenu_state != HIDING){
+        switch (k)
+        {
+        case T_BOOM : case T_ESC : case T_PAUSE :
+            m_show_time = MENUSHOWTIME;
+            m_wait_time = MENUWAITTIME;
+            m_submenu_state = HIDING;
+            break;
+
+        case T_UP  :        case T_DOWN:
+            m_submenu_ptr = !m_submenu_ptr;
+            m_submenu_state = CHOOSING;
+            break;
+
+        case T_ENTER: case T_SHOT:
+
+            if(m_submenu_ptr == 0)
+            {
+                m_hide_time = MENUHIDETIME;
+                m_submenu_state = HIDING;
+            }
+        }
+        return;
+    }
+
+    if(!m_submenu && b && m_state != SHOWING)
     {
         //PLAYSE();
         se.Play(DEMOSE);
-
+        m_btns[m_ptr_state].sp.SetAlpha(255);
         switch(k){
         case T_BOOM : case T_ESC : case T_PAUSE :
             m_state = FINISHED;
-
             m_ptr_state = RESUME;
             break;
 
@@ -258,12 +340,26 @@ void PauseActivity::OnEvent(int p, Key k, bool b)
             }
             m_state = WAITING;
             m_change_time = 0;
-            std::cout << "Now m_ptr_state is " << m_ptr_state << std::endl;
+            //std::cout << "Now m_ptr_state is " << m_ptr_state << std::endl;
             break;
 
         case T_ENTER:
         case T_SHOT:
-            m_state = FINISHED;
+            switch (m_ptr_state)
+            {
+            case 0:
+                m_state = FINISHED;
+                break;
+            case 2:
+            case 4:
+            case 5:
+                m_state = WAITING;
+                m_submenu = true;
+                m_submenu_state = SHOWING;
+                break;
+            default:
+                break;
+            }
             break;
         }
     }

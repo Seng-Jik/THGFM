@@ -43,6 +43,8 @@ class Player
         void AddPower(double power);
         void ClearKey();
         inline bool Booming(){return m_booming;}
+        inline Uint32 GetScore(){return 529706306;}
+        //inline Uint32 GetScore(){return m_score;}
         virtual ~Player();
     protected:
 };
