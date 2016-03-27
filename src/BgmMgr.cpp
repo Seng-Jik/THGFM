@@ -1,6 +1,6 @@
 #include "BgmMgr.h"
 #include "Snow/Debug.h"
-#define DISABLE
+//#define DISABLE
 static char memory_Dontuse [64];    //此处发生内存损坏，已修补
 BgmMgr bgm;
 
