@@ -38,7 +38,7 @@ class Boss
 
         int m_spellCardNum; //符卡总数
         struct SpellCard{
-            int endTime;    //符卡乐句个数
+            int timeLimit;    //符卡时长限制
             bool isSpellCard;   //是否为符卡
             double hp;    //符卡生命值
             int scPartten;  //符卡工作模式

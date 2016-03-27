@@ -59,8 +59,8 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,cons
         PNT("POP A BOSS SKILL.");
         sc.isSpellCard = boolTmp;
         if(sc.isSpellCard) ++m_spellCardNum;
-        sc.endTime = -1;
-        csv.PopInt(sc.endTime);
+        sc.timeLimit = -1;
+        csv.PopInt(sc.timeLimit);
         csv.PopFloat(sc.hp);
         csv.PopStr(sc.title);
         csv.PopInt(sc.scPartten);
@@ -182,7 +182,7 @@ void Boss::OnNext()
             }
             PNT("Boss End");
         }else{
-            m_endTime = m_spellCards.front().endTime;
+            m_endTime = m_spellCards.front().timeLimit + m_cnt;
             if(m_spellCards.front().isSpellCard)
             {
                 m_spellCardNum--;
@@ -210,7 +210,7 @@ void Boss::OnConersationFinished()
     gameUI.SetSpellCard(m_spellCards.front().title);
     m_conversation.clear();
     if(m_bossConversation) scClock.Show();
-    m_endTime = m_spellCards.front().endTime;
+    m_endTime = m_spellCards.front().timeLimit + m_cnt;
 }
 
 

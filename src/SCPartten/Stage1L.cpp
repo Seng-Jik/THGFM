@@ -9,7 +9,7 @@
 
 static void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //飘下羽毛
-    if(scnt % 6 == 0){
+    if(scnt % 8 == 0){
         double ang = Rand()*M_PI/4-M_PI+M_PI/2;
         int s = SCCreateBlt(b,Rand()*WIDTH,-32,ang,Rand()*6,300,2);
         if(s != -1)
@@ -94,8 +94,8 @@ static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
             double x,y;
             PlrGetPos(0,x,y);
             double pang = StdGetAngle(boss_x+22,boss_y+22,x,y);
-            for(int i = 0; i < 45;++i){
-                double ang = 2*M_PI/45*i - pang;
+            for(int i = 0; i < 30;++i){
+                double ang = 2*M_PI/30*i - pang;
                 int num = SCCreateBlt(b,boss_x+22,boss_y+22,ang,7,0,st);
                 if(num != -1){
                     BltSelfAngle(num) =ang;
@@ -125,9 +125,9 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     }dmk;
     struct SC412ai{
         int momentMove;
-    }ai;
+    }ai2;
     data.Read<SC412Dmk>(dmk);
-    data.Read<SC412ai>(ai);
+    data.Read<SC412ai>(ai2);
 
     //开场环状弹幕
     //0号状态：0为刚发射出来，正在急剧减速，1为减速完成，正在加速
@@ -140,7 +140,7 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
         dmk.dmk_speed = 40;
     }
     if((scnt >= 1 && scnt <= 31) || (scnt >= 230 && scnt <= 260) || (scnt >= 455 && scnt <= 485) || (scnt >= 677 && scnt <= 707)){
-        ai.momentMove = 100;
+        ai2.momentMove = 100;
         int style = 30;
         int tcnt = scnt - 460;
         if((scnt >= 1 && scnt <= 31) || (scnt >= 455 && scnt <= 485)){
@@ -176,21 +176,23 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
         }
     }
 
+
+
     //连续的狙
-    if(scnt >= 935 && scnt%18==0){
+    if(scnt >= 935 && scnt%24==0){
         double x,y;
         PlrGetPos(0,x,y);
         double ang = StdGetAngle(boss_x+22,boss_y+22,x,y);
-        for(int i = -3;i<=3;++i){
-            int n = SCCreateBlt(b,boss_x+22,boss_y+22,ang - 0.2*i,8,0,23);
+        for(int i = -2;i<=2;++i){
+            int n = SCCreateBlt(b,boss_x+22,boss_y+22,ang - 0.4*i,8,0,23);
             if(n != -1){
-                BltSelfAngle(n) = ang - 0.2*i;
+                BltSelfAngle(n) = ang - 0.4*i;
                 BltState(n,0) = 10;
             }
 
             n = SCCreateBlt(b,boss_x+22,boss_y+22,ang - 0.4*i,8,0,30);
             if(n != -1){
-                BltSelfAngle(n) = ang - 0.3*i;
+                BltSelfAngle(n) = ang - 0.4*i;
                 BltState(n,0) = 11;
                 BltState(n,1) = 45;
             }
@@ -198,8 +200,8 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     }
 
     //AI
-    if(ai.momentMove > 0) --ai.momentMove;
-    if(ai.momentMove == 1){
+    if(ai2.momentMove > 0) --ai2.momentMove;
+    if(ai2.momentMove == 1){
         effMgr.InstallFrameAnimation(0,boss_x,boss_y);
         boss_x = Rand()*200+980;
         boss_y = Rand() * 520+100;
@@ -207,7 +209,7 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
 
     data.ResetPtr();
     data.Write<SC412Dmk>(dmk);
-    data.Write<SC412ai>(ai);
+    data.Write<SC412ai>(ai2);
 }
 
 static void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
