@@ -4,6 +4,7 @@
 #include "BulletMgr.h"
 #include "Snow/Debug.h"
 #include "StdParttenAPI.h"
+#include "SeMgr.h"
 
 LuaShotParttenMgr luaShotParttens;
 
@@ -48,6 +49,11 @@ static int luaApi_NextBullet(lua_State* s){
     lua_pushnumber(s,ret);
     luaShotParttens.loadBulletVars();
     return 1;
+}
+
+static int luaApi_Se(lua_State* s){
+    se.Play(lua_tostring(s,1));
+    return 0;
 }
 
 static int luaApi_SelectFirstBullet(lua_State* s){
@@ -147,6 +153,8 @@ void LuaShotParttenMgr::InitByStageMgr()
     lua_register(m_luaVM,"GetData",&luaApi_GetData);
     lua_register(m_luaVM,"SetData",&luaApi_SetData);
     lua_register(m_luaVM,"MoreData",&luaApi_MoreData);
+
+    lua_register(m_luaVM,"Se",&luaApi_Se);
 
     Snow::CSVReader csv;
     csv.LoadCSV("ShotParttens/parttens.csv");

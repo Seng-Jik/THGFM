@@ -8,6 +8,7 @@
 #include "BulletMgr.h"
 #include "EffectMgr.h"
 #include "StageMgr.h"
+#include "SeMgr.h"
 
 using namespace Snow;
 
@@ -175,6 +176,7 @@ void Player::Kill()
     if(m_live != LIVING) return;
     m_live = Player::DEATHVS;
     m_deathVS = 10;
+    se.Play(PLDEAD00);
 }
 
 void Player::Birth()

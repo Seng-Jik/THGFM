@@ -1,6 +1,7 @@
 #ifndef SEMGR_H
 #define SEMGR_H
 #include "Snow.h"
+#include <map>
 enum SeName{
     BONUS,
     BONUS2,
@@ -52,12 +53,14 @@ class SeMgr
     public:
         static void Init();
         void Play(SeName);
+        void Play(const std::string&);
         void Pause();
         void Resume();
     protected:
     private:
         static void loadSe(SeName,const std::string& se);
         static Mix_Chunk* m_se[50];
+        static std::map<std::string,Mix_Chunk*> m_map;
 };
 extern SeMgr se;
 

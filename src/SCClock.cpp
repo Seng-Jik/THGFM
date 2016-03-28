@@ -1,6 +1,6 @@
 #include "SCClock.h"
 #include "Tools.h"
-
+#include "SeMgr.h"
 ScClock scClock;
 
 void ScClock::Init()
@@ -69,6 +69,14 @@ void ScClock::SetTime(int i_frame)
 {
     m_sec_0 = i_frame / 600;
     m_sec_1 = (i_frame / 60) % 10;
+    if(m_visible){
+        if(!(i_frame%60)&&i_frame <=600 && i_frame>0){
+            if(i_frame > 180)
+                se.Play(TIMEOUT);
+            else
+                se.Play(TIMEOUT2);
+        }
+    }
     m_msec_0 = float(int(i_frame) % 60) *1000 / 60 /100;
     m_msec_1 = int(float(int(i_frame) % 60) *1000 / 60 / 10) % 10;
 }

@@ -35,8 +35,8 @@ int GetData(int n)	取得第n个空间
 void SetData(int n,int x)	设置第n个空间的值
 
 其它API
-Rand()	返回0-1之间的随机数
-
+float Rand()	返回0-1之间的随机数
+void Se(string SeName)	播放音效，参数小写，如播放"Se/se_pldead00.wav"则参数为"pldead00"
 
 子弹参数
 可写组
