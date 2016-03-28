@@ -46,7 +46,15 @@ void WSTGame::OnDraw()
     SDL_SetRenderTarget(Snow::pRnd,m_pGameGraphic);
     background.OnDraw();
     Boss* boss;
-    if((boss = stage.GetBoss())!=nullptr) boss->OnSCBGDraw();
+    if((boss = stage.GetBoss())!=nullptr){
+        if(boss ->HaveSpellCardBgp()){
+            SDL_SetRenderTarget(Snow::pRnd,m_pBossBgp);
+            boss->OnSCBGDraw();
+            SDL_SetRenderTarget(Snow::pRnd,m_pGameGraphic);
+            SDL_SetTextureAlphaMod(m_pBossBgp,m_bossBgpAlpha);
+            SDL_RenderCopy(Snow::pRnd,m_pBossBgp,nullptr,nullptr);
+        }
+    }
     playerBulletMgr.OnDraw();
     itemMgr.OnDraw();
     player[0].OnDraw();
@@ -164,7 +172,22 @@ void WSTGame::OnNext()
         collWorld.Update_Enemy_PlayerBullet();
         gameUI.OnNext();
     }
+
+    if(m_bossBgpState == SHOWING){
+        m_bossBgpAlpha += 10;
+        if(m_bossBgpAlpha > 255-10){
+            m_bossBgpAlpha = 255;
+            m_bossBgpState= NORMAL;
+        }
+    }
 }
+
+void WSTGame::FadeInBossSpellCardBgp()
+{
+    m_bossBgpAlpha = 0;
+    m_bossBgpState = SHOWING;
+}
+
 
 void WSTGame::OnEvent(int p, Key k, bool b)
 {
@@ -205,6 +228,8 @@ void WSTGame::OnResume(){
 
 void WSTGame::OnInit(){
     m_pGameGraphic = SDL_CreateTexture(Snow::pRnd,SDL_PIXELFORMAT_ARGB8888,SDL_TEXTUREACCESS_TARGET,WIDTH,HEIGHT);
+    m_pBossBgp = SDL_CreateTexture(Snow::pRnd,SDL_PIXELFORMAT_ARGB8888,SDL_TEXTUREACCESS_TARGET,WIDTH,HEIGHT);
+    SDL_SetTextureBlendMode(m_pBossBgp,SDL_BLENDMODE_BLEND);
 
     m_stageClearScreen = LoadPic("GameUI/StageClear.png");
     SDL_QueryTexture(m_stageClearScreen,nullptr,nullptr,&m_stageClearScreenRect.w,&m_stageClearScreenRect.h);

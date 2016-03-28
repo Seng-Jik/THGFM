@@ -67,6 +67,7 @@ class Boss
         inline int GetSpellCardNum(){return m_spellCardNum;}    //È¡·û¿¨Ê£ÓàÊı
         inline void ResetCnt(){m_cnt = 0;}
         inline int GetSCnt(){return *m_mainCnt - m_cnt_begin;}
+        inline bool HaveSpellCardBgp(){return m_spellCards.front().bgPartten != -1;}
         int birthTime;
 
     protected:

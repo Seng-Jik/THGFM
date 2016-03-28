@@ -7,6 +7,7 @@
 #include "ItemMgr.h"
 #include "CollWorld.h"
 #include "GameUI.h"
+#include "WSTGame.h"
 #include "Player.h"
 #include "SCClock.h"
 typedef void(*SCBg)(int cnt,Snow::Bundle<256>&);
@@ -182,6 +183,7 @@ void Boss::OnNext()
             }
             PNT("Boss End");
         }else{
+            if(m_spellCards.front().bgPartten != -1) wstg -> FadeInBossSpellCardBgp();
             m_endTime = m_spellCards.front().timeLimit + m_cnt;
             if(m_spellCards.front().isSpellCard)
             {
