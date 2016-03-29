@@ -8,7 +8,7 @@ class EffectMgr //用来管理和游戏内容完全无关的小特效
         EffectMgr();
         static void Init();
         void InstallFrameAnimation(int style,int x,int y);
-        void InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,bool alphaDown,const SDL_Point& poi,const double angle);
+        void InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,bool alphaDown,const SDL_Point& poi,const float angle);
         void InstallCharBoomAnimation(int x,int y,Uint8 r,Uint8 g,Uint8 b,int wait);
         void OnDraw();
         void OnNext();
@@ -32,7 +32,7 @@ class EffectMgr //用来管理和游戏内容完全无关的小特效
             SDL_Texture* tex = nullptr;
             SDL_Rect rect;
             SDL_Point centerPoi;
-            double angle;
+            float angle;
             Uint8 alpha;
             bool alphaDown;
         }m_zoomOutEffs[1024];

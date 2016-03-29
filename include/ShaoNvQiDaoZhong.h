@@ -19,7 +19,7 @@ class ShaoNvQiDaoZhong:public Snow::Activity
         static std::atomic_bool m_continueRun;
         static SDL_Texture* m_ani1,*m_ani2;
 
-        double m_yinyang_angle;
+        float m_yinyang_angle;
         Uint8 m_yinyang_alpha,m_qidao_alpha;
         bool m_qidao_alpha_down;
 

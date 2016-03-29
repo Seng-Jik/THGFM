@@ -6,11 +6,11 @@ class Boss;
 class CollWorld{
 private:
     struct CollRect{
-        double x,y,w = 4,h = 4;
+        float x,y,w = 4,h = 4;
         bool enable = false;
     };
     struct CollCircle{
-        double x,y,r = 4;
+        float x,y,r = 4;
         bool enable = false;
     };
     CollCircle m_player[2];
@@ -40,17 +40,17 @@ private:
     CollXRect m_enemyBulletsXRect[1500];
 
     inline bool coll_r2c(const CollRect& r,const CollCircle& c){
-        double x1 = r.x - c.r;
-        double y1 = r.y - c.r;
-        double x2 = r.x + r.w + c.r;
-        double y2 = r.y + r.h + c.r;
+        float x1 = r.x - c.r;
+        float y1 = r.y - c.r;
+        float x2 = r.x + r.w + c.r;
+        float y2 = r.y + r.h + c.r;
         return c.x > x1 && c.x < x2 && c.y > y1 && c.y < y2;
     }
 
     inline bool coll_c2c(const CollCircle& c1,const CollCircle& c2){
-        double w = c1.x - c2.x;
-        double h = c1.y - c2.y;
-        double r = c1.r + c2.r;
+        float w = c1.x - c2.x;
+        float h = c1.y - c2.y;
+        float r = c1.r + c2.r;
         return r*r >= w*w+h*h;
     }
 
@@ -76,7 +76,7 @@ public:
         m_enemy_playerBullet_opmRect.w = right - left;
     }
 
-    inline void SetPlayer(int p,bool enable,double x = 0,double y = 0)  //设置玩家，判定点为矩形
+    inline void SetPlayer(int p,bool enable,float x = 0,float y = 0)  //设置玩家，判定点为矩形
     {
         m_player[p].enable = enable;
         m_player[p].x = x;
@@ -84,7 +84,7 @@ public:
         m_player[p].r = 1;
     }
 
-    inline void SetPlayerBullet(int num,bool enable,double x,double x_old,double w,double y,double h,int searchTop){
+    inline void SetPlayerBullet(int num,bool enable,float x,float x_old,float w,float y,float h,int searchTop){
         m_playerBulletSearchTop = searchTop;
 
         m_playerBullets[num].enable = enable;
@@ -95,7 +95,7 @@ public:
     }
 
     void SetEnemyBuffurSize(int n);
-    inline void SetEnemy(int num,bool enable,double x,double y,double r)   //设置敌人，判定点为圆形
+    inline void SetEnemy(int num,bool enable,float x,float y,float r)   //设置敌人，判定点为圆形
     {
         m_enemys[num].enable = enable;
         m_enemys[num].x = x;
@@ -103,7 +103,7 @@ public:
         m_enemys[num].r = r;
     }
 
-    inline void SetEnemyBulletCircle(int num,bool enable,double x=0,double y=0,double r=0) //设置敌人子弹，判定点为圆形
+    inline void SetEnemyBulletCircle(int num,bool enable,float x=0,float y=0,float r=0) //设置敌人子弹，判定点为圆形
     {
         m_enemyBullets[num].enable = enable;
         m_enemyBullets[num].x = x;

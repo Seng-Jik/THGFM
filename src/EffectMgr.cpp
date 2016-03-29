@@ -58,7 +58,7 @@ void EffectMgr::InstallFrameAnimation(int style, int x, int y)
     }
 }
 
-void EffectMgr::InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,bool alphaDown,const SDL_Point& poi,const double angle)
+void EffectMgr::InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,bool alphaDown,const SDL_Point& poi,const float angle)
 {
     //寻找一个空着的特效位置
     int num = 0;

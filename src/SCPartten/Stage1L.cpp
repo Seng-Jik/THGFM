@@ -7,10 +7,10 @@
 #include <cmath>
 //大妖精
 
-static void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC410(Boss* b,int cnt,int scnt,int& image,float& boss_x,float& boss_y,float& boss_spd,float& boss_aspd,float& boss_angle,float hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //飘下羽毛
     if(scnt % 8 == 0){
-        double ang = Rand()*M_PI/4-M_PI+M_PI/2;
+        float ang = Rand()*M_PI/4-M_PI+M_PI/2;
         int s = SCCreateBlt(b,Rand()*WIDTH,-32,ang,Rand()*6,300,2);
         if(s != -1)
             BltSelfAngle(s) = ang;
@@ -51,7 +51,7 @@ static void SC410(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     }
 }
 
-static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC411(Boss* b,int cnt,int scnt,int& image,float& boss_x,float& boss_y,float& boss_spd,float& boss_aspd,float& boss_angle,float hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //子弹加速度
     for(int i:bullets)
         if(BltState(i,0) == 1) BltSpd(i) += 0.025;
@@ -80,7 +80,7 @@ static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
         if(beater.IsBeatFrame()  && beater.GetBeatNum()%4==0 && scnt>30) kcnt = 10;
         if(kcnt >= 10 && kcnt <= 40){
             for(int i = 0; i < 5;++i){
-                double ang = Rand()*2*M_PI;
+                float ang = Rand()*2*M_PI;
                 int num = SCCreateBlt(b,boss_x+22,boss_y+22,ang,0.1,0,20+Rand()*7);
                 if(num != -1){
                     BltSelfAngle(num) =ang;
@@ -91,11 +91,11 @@ static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
         if(beater.IsBeatFrame()&& (beater.GetBeatNum()%4==1|| beater.GetBeatNum()%4==3)&& scnt>60){
             int st = 20+Rand()*7;
 
-            double x,y;
+            float x,y;
             PlrGetPos(0,x,y);
-            double pang = StdGetAngle(boss_x+22,boss_y+22,x,y);
+            float pang = StdGetAngle(boss_x+22,boss_y+22,x,y);
             for(int i = 0; i < 30;++i){
-                double ang = 2*M_PI/30*i - pang;
+                float ang = 2*M_PI/30*i - pang;
                 int num = SCCreateBlt(b,boss_x+22,boss_y+22,ang,7,0,st);
                 if(num != -1){
                     BltSelfAngle(num) =ang;
@@ -119,9 +119,9 @@ static void SC411(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     data.Write<DaiAI>(ai);
 }
 
-static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC412(Boss* b,int cnt,int scnt,int& image,float& boss_x,float& boss_y,float& boss_spd,float& boss_aspd,float& boss_angle,float hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     struct SC412Dmk{
-        double dmk_speed;
+        float dmk_speed;
     }dmk;
     struct SC412ai{
         int momentMove;
@@ -148,7 +148,7 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
             tcnt = scnt - 1;
         }
 
-        double source_angle = M_PI*2*tcnt/60;
+        float source_angle = M_PI*2*tcnt/60;
         for(int j = 0;j < 8;++j){
             for(int i = 0;i < 10;++i){
                 int blt = SCCreateBlt(b,boss_x+22,boss_y+22,source_angle,dmk.dmk_speed+0.5*i,0,style);
@@ -169,7 +169,7 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     }else if(BltState(i,0)==11){
         BltState(i,1) -= 1;
         if(BltState(i,1) == 0){
-            double x,y;
+            float x,y;
             PlrGetPos(0,x,y);
             BltAngle(i) = BltSelfAngle(i) = StdGetAngle(bulletMgr[i].x,bulletMgr[i].y,x,y);
             BltState(i,0) = 12;
@@ -180,9 +180,9 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
 
     //连续的狙
     if(scnt >= 935 && scnt%24==0){
-        double x,y;
+        float x,y;
         PlrGetPos(0,x,y);
-        double ang = StdGetAngle(boss_x+22,boss_y+22,x,y);
+        float ang = StdGetAngle(boss_x+22,boss_y+22,x,y);
         for(int i = -2;i<=2;++i){
             int n = SCCreateBlt(b,boss_x+22,boss_y+22,ang - 0.4*i,8,0,23);
             if(n != -1){
@@ -212,7 +212,7 @@ static void SC412(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     data.Write<SC412ai>(ai2);
 }
 
-static void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC413(Boss* b,int cnt,int scnt,int& image,float& boss_x,float& boss_y,float& boss_spd,float& boss_aspd,float& boss_angle,float hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     //if(scnt % 2 == 0){
     //0号状态：0-上升气流，1-下降水雾
         int n;
@@ -232,7 +232,7 @@ static void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
         for(int i = 0;i < 32;++i){
             int x = Rand()*1280;
             int y = 720*Rand();
-            double px,py;PlrGetPos(0,px,py);
+            float px,py;PlrGetPos(0,px,py);
             if(px + 40 > x && px - 40 < x) return;
             if(py + 40 > y && py - 40 < y) return;
             n = SCCreateBlt(b,x,y,M_PI/2*3,0.1,0,40);
@@ -242,9 +242,9 @@ static void SC413(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& bos
     }
 }
 
-static void SC414(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
+static void SC414(Boss* b,int cnt,int scnt,int& image,float& boss_x,float& boss_y,float& boss_spd,float& boss_aspd,float& boss_angle,float hp,const std::vector<int>& bullets,Snow::Bundle<256>& data){
     struct SC414Dmk{
-        double sin_x;
+        float sin_x;
         int x[8],y[8],cnt[8];
     }dmk;
     if(scnt <= 6){

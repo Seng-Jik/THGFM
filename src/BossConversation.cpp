@@ -90,7 +90,7 @@ bool BossConversation::parseLine()
     return true;
 }
 
-void BossConversation::LoadConversation(const std::string& s,const std::string& basePath,Bgm* bgm,double bgmBpm)
+void BossConversation::LoadConversation(const std::string& s,const std::string& basePath,Bgm* bgm,float bgmBpm)
 {
     m_bgm = bgm;
     m_bgmBpm = bgmBpm;

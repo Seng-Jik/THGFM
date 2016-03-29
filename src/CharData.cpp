@@ -17,7 +17,7 @@ void Marisa::Init()
 
 bool Marisa::BoomOnNext(Player* p)
 {
-    double x,y;
+    float x,y;
     p->GetPos(x,y);
     m_r.x = x;
     m_r.y = y;
@@ -58,7 +58,7 @@ void Marisa::BoomReset(Player*)
     wstg->GrpShake(330);
 }
 #include <iostream>
-void Marisa::BulletInstaller(double power,int cnt,double x,double y)
+void Marisa::BulletInstaller(float power,int cnt,float x,float y)
 {
     //TODO
     std::cout<<"marisa";
@@ -143,7 +143,7 @@ void Reimu::BoomReset(Player* p)
     wstg->GrpShake(210);
     m_spd = 32;
 
-    double x,y;
+    float x,y;
     p -> GetPos(x,y);
     for(int i = 0;i < 2;++i){
         m_wr[i].x = 0;
@@ -153,7 +153,7 @@ void Reimu::BoomReset(Player* p)
     }
 }
 
-void Reimu::BulletInstaller(double power,int cnt,double x,double y)
+void Reimu::BulletInstaller(float power,int cnt,float x,float y)
 {
     if(cnt%3 == 0){
         int powerMode = int(power);

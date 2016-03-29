@@ -34,7 +34,9 @@ void StageMgr::Init()
     do{
         PNT("TEST NUM:"<<num);
         csv.PopInt(m_eStyles[num].texCount);
-        csv.PopFloat(m_eStyles[num].r);
+        double r;
+        csv.PopFloat(r);
+        m_eStyles[num].r = r;
         for(int i = 0;i < m_eStyles[num].texCount;++i){
             m_eStyles[num].tex[i] = LoadPic("Enemy/e"+std::to_string(num)+"/"+std::to_string(i+1)+".png");
         }
@@ -70,13 +72,14 @@ void StageMgr::LoadCSV(const std::string& stage,const std::string& basePath,Leve
             e -> texNum = 0;
             e -> flipMode = SDL_FLIP_NONE;
             csv.PopInt(e -> birth);
-            csv.PopFloat(e -> x);
-            csv.PopFloat(e -> y);
-            csv.PopFloat(e -> angle);
+            double dbl;
+            csv.PopFloat(dbl);e -> x = dbl;
+            csv.PopFloat(dbl);e -> y = dbl;
+            csv.PopFloat(dbl);e -> angle = dbl;
             e -> angle = Ang2Arc(e -> angle);
-            csv.PopFloat(e -> spd);
+            csv.PopFloat(dbl);e -> spd = dbl;
             csv.PopInt(e -> partten);
-            csv.PopFloat(e -> hp);
+            csv.PopFloat(dbl);e -> hp = dbl;
             csv.PopInt(e -> style);
             e -> num = m_enemys.size();
 

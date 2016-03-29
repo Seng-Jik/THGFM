@@ -16,7 +16,7 @@ struct Shot{
     //未出生,活着,停止射击,死亡
     int partten;    //射击模式
     std::vector<int> bullets;   //子弹集
-    std::vector<double> parttenArgs;
+    std::vector<float> parttenArgs;
 };
 struct Enemy{
     int cnt;
@@ -25,14 +25,14 @@ struct Enemy{
     int texNum; //当前使用的图像编号
     SDL_RendererFlip flipMode;  //翻脸模式，自动判断是向前还是向后移动并自动翻转
     enum{NOBIRTH,LIVE,STOPLIVE,DEATH}live = NOBIRTH;
-    double angle;   //角度
-    double x,y,spd; //x,y,速度,判定半径
+    float angle;   //角度
+    float x,y,spd; //x,y,速度,判定半径
     int partten; //敌人模式
-    double hp;
+    float hp;
     std::vector<Shot*> shots;    //射击
     Shot* whenKilled =nullptr;   //死亡后射击
     int style;  //敌人图像编号
-    double parttenArgs[8];
+    float parttenArgs[8];
 
     int items[2];   //爆出的道具
 };
@@ -48,7 +48,7 @@ class StageMgr
         struct EnemyStyle{
             SDL_Texture* tex[16];
             int texCount = 1;
-            double r = 16;
+            float r = 16;
         };
         static EnemyStyle m_eStyles [128];
 
@@ -68,7 +68,7 @@ class StageMgr
         void OnNext();
         void OnDraw();
         void KillEnemy(Enemy*);
-        inline void KillEnemy(int num,double hp){
+        inline void KillEnemy(int num,float hp){
             m_enemys[num]->hp -= hp;
         }
 

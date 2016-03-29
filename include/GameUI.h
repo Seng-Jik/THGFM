@@ -67,7 +67,7 @@ class GameUI
         inline void KillSpellCard(){
             m_scName_show = false;
         }
-        inline void UpdateSCHP(double hp){  //更新符卡剩余生命值
+        inline void UpdateSCHP(float hp){  //更新符卡剩余生命值
             m_scHP = hp;
         };
         inline void ResetHPLine(){m_showSCHP = 0;}

@@ -18,7 +18,7 @@ void PlayerBullet::Init()
 }
 
 
-inline void PlayerBullet::setBullet(int num,double x,double y,double power,int style){
+inline void PlayerBullet::setBullet(int num,float x,float y,float power,int style){
 	//Sync CollWorld
     if(m_bullets[num].style != -1)
         collWorld.SetPlayerBullet(num,true,x,x,y,m_bulletStyles[m_bullets[num].style].w,m_bulletStyles[m_bullets[num].style].h,m_searchTop);
@@ -30,7 +30,7 @@ inline void PlayerBullet::setBullet(int num,double x,double y,double power,int s
 	m_bullets[num].style=style;
 }
 
-void PlayerBullet::Add(double x,double y,double power,int style){
+void PlayerBullet::Add(float x,float y,float power,int style){
 	for(int i=0;i<m_searchTop;++i)
 		if(m_bullets[i].style == -1){
 			setBullet(i,x,y,power,style);

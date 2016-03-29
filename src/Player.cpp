@@ -82,7 +82,7 @@ void Player::OnNext()
             //bulletMgr.Clear();
         }
     }
-    double spd = 9;
+    float spd = 9;
     if(m_booming){
         m_booming = m_charData->BoomOnNext(this);
         if(!m_booming)
@@ -133,7 +133,7 @@ void Player::OnNext()
     if(m_x >= 1000) itemMgr.GetAll(m_playerNum);
 }
 
-void Player::AddPower(double power)
+void Player::AddPower(float power)
 {
     m_powerValue += power;
 }

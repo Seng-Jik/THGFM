@@ -11,13 +11,13 @@ class Player
 
         int m_invin = 0;
         int m_deathVS = 0;  //¾öËÀ£¡
-        double m_x = 0,m_y = 0;
+        float m_x = 0,m_y = 0;
         SDL_Rect m_r = {0,0,80,95};
         int m_cnt = 0;
         bool m_k [8] = {false};
         int m_playerNum = 0;
         int m_playerImageNum = 0;
-        double m_powerValue = 0;
+        float m_powerValue = 0;
 
         bool m_booming = false;
         CharData* m_charData;
@@ -33,15 +33,15 @@ class Player
         void OnDraw();
         void OnNext();
         void OnEvent(Key,bool);
-        void GetPos(double& x,double& y){x=m_x;y=m_y;}
+        void GetPos(float& x,float& y){x=m_x;y=m_y;}
         void Invincible(int);
         void SetPlayer(int);
-        inline double GetX(){return m_x;}
-        inline double GetY(){return m_y;}
+        inline float GetX(){return m_x;}
+        inline float GetY(){return m_y;}
         inline bool Living(){return m_live == LIVING || m_live == BIRTHING;}
         void Kill();
         void Birth();
-        void AddPower(double power);
+        void AddPower(float power);
         void ClearKey();
         inline bool Booming(){return m_booming;}
 

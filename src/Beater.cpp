@@ -34,12 +34,12 @@ void Beater::OnNext()
         }
     }
 }*/
-void Beater::SetBeater(double bpm)
+void Beater::SetBeater(float bpm)
 {
     ChangeBpm(bpm);
 }
 
-void Beater::ChangeBpm(double bpm)
+void Beater::ChangeBpm(float bpm)
 {
     m_cnt = 0;
     m_idenFps = 60/(bpm/60);

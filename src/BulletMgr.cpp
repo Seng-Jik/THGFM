@@ -13,7 +13,7 @@ void BulletMgr::enableXRectBullet(int bltNum)
 {
     //TODO：Debug项目，四边形子弹的旋转角对四个点的转换并设置到碰撞盒
     int x[4],y[4],x2[4];
-    double theta = m_blts[bltNum].self_angle;
+    float theta = m_blts[bltNum].self_angle;
     //theta = 2*M_PI - theta;
     x[0] = -m_blts[bltNum].self_w/2.0;
     y[0] = -m_blts[bltNum].self_h/2.0;
@@ -41,7 +41,7 @@ void BulletMgr::enableXRectBullet(int bltNum)
     collWorld.SetEnemyBulletXRect(bltNum,true,x2,y);
 }
 
-void BulletMgr::loadCircleBulletStyle(int i, const std::string& s, double r, double coll_r)
+void BulletMgr::loadCircleBulletStyle(int i, const std::string& s, float r, float coll_r)
 {
     m_bulletStyle[i].tex = LoadPic(s);
     SDL_SetTextureBlendMode(m_bulletStyle[i].tex,SDL_BLENDMODE_BLEND);
@@ -287,7 +287,7 @@ void BulletMgr::Clear()
     collWorld.ClearEnemyBullet();
 }
 
-int BulletMgr::Alloc(double x,double y,int style)
+int BulletMgr::Alloc(float x,float y,int style)
 {
     if(m_freeList.empty()) return -1;
     int n = 1499 - m_freeList.top();

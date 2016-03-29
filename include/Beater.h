@@ -9,16 +9,16 @@ class Beater
         void SetCntPtr(int* mainCnt);
 
         void OnNext();
-        void SetBeater(double bpm);
-        void ChangeBpm(double bpm);
+        void SetBeater(float bpm);
+        void ChangeBpm(float bpm);
         //两者的不同：
         //前者会清空计时器，即为变换关卡时使用
         //后者不会，只会更改节奏，为进入Boss时使用
     protected:
     private:
-        double m_cnt;
+        float m_cnt;
         //std::queue<int> m_beats;
-        double m_idenFps;
+        float m_idenFps;
         bool m_isBeat;
         int m_beatNum;
 

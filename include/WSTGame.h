@@ -22,7 +22,7 @@ class WSTGame : public KeyMapAct
         ~WSTGame();
     protected:
     private:
-        bool m_dbg_doubleSpeed = false;
+        bool m_dbg_floatSpeed = false;
 
         SDL_Texture* m_stageClearScreen;
         SDL_Rect m_stageClearScreenRect;

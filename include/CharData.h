@@ -8,7 +8,7 @@ class CharData
         virtual bool BoomOnNext(Player*)=0;
         virtual void BoomOnDraw()=0;
         virtual void BoomReset(Player*)=0;
-        virtual void BulletInstaller(double power,int cnt,double x,double y) = 0;
+        virtual void BulletInstaller(float power,int cnt,float x,float y) = 0;
         virtual void InstallDeatAnimation(int x,int y) = 0;
         virtual std::string CharName()=0;
     protected:
@@ -26,7 +26,7 @@ class Marisa:public CharData{
         virtual bool BoomOnNext(Player*);
         virtual void BoomOnDraw();
         virtual void BoomReset(Player*);
-        virtual void BulletInstaller(double power,int cnt,double x,double y);
+        virtual void BulletInstaller(float power,int cnt,float x,float y);
         virtual void InstallDeatAnimation(int x,int y);
         virtual std::string CharName(){return "MARISA";}
 };
@@ -46,7 +46,7 @@ class Reimu:public CharData{
         virtual bool BoomOnNext(Player*);
         virtual void BoomOnDraw();
         virtual void BoomReset(Player*);
-        virtual void BulletInstaller(double power,int cnt,double x,double y);
+        virtual void BulletInstaller(float power,int cnt,float x,float y);
         virtual void InstallDeatAnimation(int x,int y);
         virtual std::string CharName(){return "REIMU";}
 };

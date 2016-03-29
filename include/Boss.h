@@ -10,7 +10,7 @@
 #include "BossConversation.h"
 class Boss
 {
-    friend int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int minLiveTime,int style);
+    friend int SCCreateBlt(Boss* s,float x,float y,float angle,float spd,int minLiveTime,int style);
     friend class BulletMgr;
     private:
         int* m_mainCnt;  //全局帧计数器
@@ -32,9 +32,9 @@ class Boss
 
         int m_imageUsing;
         bool m_firsShow;
-        double m_x,m_y,m_spd,m_aspd,m_angle;
+        float m_x,m_y,m_spd,m_aspd,m_angle;
         int m_cnt_begin;  //开始时的帧数
-        double m_fullHP;    //备份的当前符卡满HP
+        float m_fullHP;    //备份的当前符卡满HP
 
         int m_spellCardNum; //符卡总数
         struct SpellCard{
@@ -62,7 +62,7 @@ class Boss
         void OnNext();
         void OnConersationFinished();
         inline bool Live(){return m_live;};
-        inline void KillHP(double hp){m_spellCards.front().hp-=hp;}
+        inline void KillHP(float hp){m_spellCards.front().hp-=hp;}
         inline bool IsInvi(){return m_invi;}
         inline int GetSpellCardNum(){return m_spellCardNum;}    //取符卡剩余数
         inline void ResetCnt(){m_cnt = 0;}

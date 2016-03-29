@@ -2,30 +2,30 @@
 
 /* 直线方程 */
 struct XFLine{
-    double k,b;
+    float k,b;
 };
 
 /* 给出两个点求直线方程 */
-static inline void GetLineXF(XFLine& xf,double x1,double y1,double x2,double y2){
+static inline void GetLineXF(XFLine& xf,float x1,float y1,float x2,float y2){
     if(x2 == x1) xf.k = 100000;
     else xf.k = float(y2-y1)/(x2-x1);
     xf.b = y1 - xf.k*x1;
 }
 
 /* 带入直线方程 */
-static double GetY(const XFLine& xf,double x){
+static float GetY(const XFLine& xf,float x){
     return xf.k*x+xf.b;
 }
 
 /* 求证点在两条直线之间 */
-static bool inline PointIn2XFLines(const XFLine& xf1,const XFLine& xf2,double x,double y){
-    double y1 = GetY(xf1,x);
-    double y2 = GetY(xf2,x);
+static bool inline PointIn2XFLines(const XFLine& xf1,const XFLine& xf2,float x,float y){
+    float y1 = GetY(xf1,x);
+    float y2 = GetY(xf2,x);
     return (y>=y1 && y<=y2)||(y<=y1&&y>=y2);
 }
 
 /* 求证点在四条直线围成的四边形内 */
-static bool inline PointIn4XFLinesRect(const XFLine* xfs,double x,double y){
+static bool inline PointIn4XFLinesRect(const XFLine* xfs,float x,float y){
     return PointIn2XFLines(xfs[0],xfs[2],x,y) && PointIn2XFLines(xfs[1],xfs[3],x,y);
 }
 

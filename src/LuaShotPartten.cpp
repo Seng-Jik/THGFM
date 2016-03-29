@@ -11,7 +11,7 @@ LuaShotParttenMgr luaShotParttens;
 //µ×²ã½Ó¿Ú
 #define ShtEnd() s -> live = Shot::STOPLIVE
 
-static inline int ShtCreateBlt(Shot* s,double x,double y,double angle,double spd,int minLiveTime,int style)
+static inline int ShtCreateBlt(Shot* s,float x,float y,float angle,float spd,int minLiveTime,int style)
 {
     if(s->live == Shot::LIVE){
         int n = bulletMgr.Alloc(x,y,style);
@@ -177,7 +177,7 @@ void LuaShotParttenMgr::ProcShot(Shot* s,int enemy)
     nowBullet = -1;
     lua_pushnumber(m_luaVM,s->cnt);
 
-    double ex,ey;
+    float ex,ey;
     EneGetPos(enemy,ex,ey);
     lua_pushnumber(m_luaVM,ex);
     lua_pushnumber(m_luaVM,ey);

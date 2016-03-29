@@ -8,14 +8,14 @@ struct Bullet{
     bool collateEnabled;    //已启用碰撞检测
     int style;  //风格
     int cnt,minLiveTime;    //帧计数器，最短生存时间
-    double x,y,angle,spd;   //x,y,飞行角度,速度
-    double state[8];
+    float x,y,angle,spd;   //x,y,飞行角度,速度
+    float state[8];
     Uint8 alpha = 0;
     bool alpha_living = false;
 
-    double self_angle = 0;    //旋转角度
-    double self_w; //子弹自我缩放，只适用于四边形子弹
-    double self_h;
+    float self_angle = 0;    //旋转角度
+    float self_w; //子弹自我缩放，只适用于四边形子弹
+    float self_h;
     int self_roll_center_x,self_roll_center_y;
 
     Shot* link;
@@ -38,8 +38,8 @@ class BulletMgr
             //XRect2 -- 和子弹垂直的方向淡入
             union{
                 struct{
-                    double r;
-                    double coll_r;
+                    float r;
+                    float coll_r;
                 }circle;
                 struct{
                     int w,h;
@@ -51,7 +51,7 @@ class BulletMgr
         int m_searchTop = 0;
 
         void enableXRectBullet(int bltNum);
-        static void loadCircleBulletStyle(int i,const std::string&,double r=8,double coll_r=6);
+        static void loadCircleBulletStyle(int i,const std::string&,float r=8,float coll_r=6);
         static void loadXRectBulletStyle(int shape,int i,const std::string&,int w,int h);
     public:
         static void Init();
@@ -59,7 +59,7 @@ class BulletMgr
         void OnNext();
         void OnDraw();
         void Clear();
-        int Alloc(double x,double y,int style);
+        int Alloc(float x,float y,int style);
         void Kill(int n);
         void KillBulletAndInstallEffect(int n);
         Bullet& operator [] (int n){return m_blts[n];}

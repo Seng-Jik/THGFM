@@ -40,7 +40,7 @@ void WSTGame::OnShow(){
     bgm.Play();
     m_black_start_alpha = 250;
 }
-double angle = 0;
+float angle = 0;
 void WSTGame::OnDraw()
 {
     SDL_SetRenderTarget(Snow::pRnd,m_pGameGraphic);
@@ -149,7 +149,7 @@ void WSTGame::OnNext()
     collWorld.Update_Enemy_PlayerBullet();
     gameUI.OnNext();
 
-    if(m_dbg_doubleSpeed)
+    if(m_dbg_floatSpeed)
     for(int i = 0;i < 2;++i)
     {
         beater.OnNext();
@@ -196,8 +196,8 @@ void WSTGame::OnEvent(int p, Key k, bool b)
     if((k == T_ESC || k == T_PAUSE || k == T_ENTER)&&b){
         Pause();
     }
-    if(k == T_DBG_DOUBLE_SPEED){
-        m_dbg_doubleSpeed = b;
+    if(k == T_DBG_float_SPEED){
+        m_dbg_floatSpeed = b;
         if(b){
             player[0].Invincible(100000);
         }else{

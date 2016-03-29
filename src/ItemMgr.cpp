@@ -54,7 +54,7 @@ void ItemMgr::OnNext()
 
                 /* 收取开始 */
                 for(int p = 0;p < 2;++p){
-                    double x,y;
+                    float x,y;
                     player[m_items[i].gettingToPlayer].GetPos(x,y);
                     if(!player[m_items[i].gettingToPlayer].Living()) continue;
                     if(x+60 > m_items[i].x && x - 60 < m_items[i].x &&
@@ -64,10 +64,10 @@ void ItemMgr::OnNext()
             }else if(m_items[i].state == Item::GETTING){
                 /* 收取模式 */
                 if(!player[m_items[i].gettingToPlayer].Living()) m_items[i].state = Item::DOWNING;
-                double x,y;
+                float x,y;
                 player[m_items[i].gettingToPlayer].GetPos(x,y);
                 if(m_items[i].gettingSpd < 40) m_items[i].gettingSpd += 2;
-                double angle = atan2(m_items[i].y - y,m_items[i].x - x);
+                float angle = atan2(m_items[i].y - y,m_items[i].x - x);
                 m_items[i].y -= m_items[i].gettingSpd * sin(angle);
                 m_items[i].x -= m_items[i].gettingSpd * cos(angle);
 
@@ -97,7 +97,7 @@ void ItemMgr::OnNext()
     }
 }
 
-void ItemMgr::AddItem(ItemType i, double boom, int x, int y, int num)
+void ItemMgr::AddItem(ItemType i, float boom, int x, int y, int num)
 {
     for(int cnt = 0;cnt < num;++cnt){
         int n = m_freeList.top();

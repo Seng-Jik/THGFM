@@ -9,7 +9,7 @@ enum Key{
     T_ENTER,
     T_ESC,
     T_NONE,
-    T_DBG_DOUBLE_SPEED,
+    T_DBG_float_SPEED,
     T_DBG_INVIC,
     T_DBG_PNTCNT
 };
