@@ -49,6 +49,8 @@ class StageMgr
             SDL_Texture* tex[16];
             int texCount = 1;
             double r = 16;
+            int frameJg;    //帧间隔
+            bool autoFlip;  //自动转脸
         };
         static EnemyStyle m_eStyles [128];
 

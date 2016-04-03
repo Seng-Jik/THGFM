@@ -93,7 +93,7 @@ int main(int argc,char** argv){
     //BasicPackReader data;
     //data.OpenPkg("data.+pk");
     //Snow::ResFile::InstallReader(&data);
-    pRnd.Create("东方谷丰梦",FALSE,800,450);
+    pRnd.Create("东方谷丰梦",FALSE,1280,720);
 
     ACGCross::Logo* acgclogo = new ACGCross::Logo;
     InitGameLogic(acgclogo);

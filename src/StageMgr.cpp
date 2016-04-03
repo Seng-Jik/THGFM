@@ -35,6 +35,10 @@ void StageMgr::Init()
         PNT("TEST NUM:"<<num);
         csv.PopInt(m_eStyles[num].texCount);
         csv.PopFloat(m_eStyles[num].r);
+        csv.PopInt(m_eStyles[num].frameJg);
+        int boolTmp;
+        csv.PopInt(boolTmp);
+        m_eStyles[num].autoFlip = boolTmp;
         for(int i = 0;i < m_eStyles[num].texCount;++i){
             m_eStyles[num].tex[i] = LoadPic("Enemy/e"+std::to_string(num)+"/"+std::to_string(i+1)+".png");
         }
@@ -222,11 +226,11 @@ void StageMgr::OnNext()
             int xSpd = enemy.spd * cos(enemy.angle);
             enemy.y -= enemy.spd * sin(enemy.angle);
             enemy.x -= xSpd;
-            if(xSpd>=0) enemy.flipMode = SDL_FLIP_NONE;
+            if(xSpd>=0 || !m_eStyles[enemy.style].autoFlip) enemy.flipMode = SDL_FLIP_NONE;
             else enemy.flipMode = SDL_FLIP_HORIZONTAL;
 
             //动画处理
-            enemy.texNum = enemy.cnt /6 % m_eStyles[enemy.style].texCount;
+            enemy.texNum = enemy.cnt /m_eStyles[enemy.style].frameJg % m_eStyles[enemy.style].texCount;
 
             //如果超出屏幕则杀死
             if((enemy.x < -2*m_eStyles[enemy.style].r ||
