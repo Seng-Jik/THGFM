@@ -458,7 +458,7 @@ void StageMgr::KillEnemy(Enemy* e)
 Enemy* StageMgr::GetEnemy()
 {
     for(int i = m_enemySearchBottom;i < m_enemySearchTop;++i){
-        if(m_enemys[i].live == Enemy::LIVE) return m_enemys[i];
+        if(m_enemys[i]->live == Enemy::LIVE) return m_enemys[i];
     }
     return nullptr;
 }

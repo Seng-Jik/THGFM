@@ -31,12 +31,12 @@ inline int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int min
     return n;
 }
 
-float GetRandomEnemyAngle(){
+inline float GetRandomEnemyAngle(){
     auto pEne = stage.GetEnemy();
     if(pEne){
         return EneGetPlrAngle(0,pEne->num);
     }else if(stage.GetBoss()){
-        float x,y,x2,y2;
+        double x,y,x2,y2;
         PlrGetPos(0,x,y);
         stage.GetBoss()->GetPos(x2,y2);
         return StdGetAngle(x,y,x2,y2);

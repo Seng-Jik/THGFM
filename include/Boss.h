@@ -69,7 +69,7 @@ class Boss
         inline int GetSCnt(){return *m_mainCnt - m_cnt_begin;}
         inline bool HaveSpellCardBgp(){return m_spellCards.front().bgPartten != -1;}
         int birthTime;
-        inline void GetPos(float& x,float& y){x=m_x,y=m_y;}
+        inline void GetPos(double& x,double& y){x=m_x,y=m_y;}
 
     protected:
 };
