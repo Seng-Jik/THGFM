@@ -75,6 +75,7 @@ class StageMgr
         }
 
         inline Enemy* GetEnemy(int n){return m_enemys[n];}
+        Enemy* GetEnemy();  //获得一个敌人
         inline Boss* GetBoss(){
             if(m_bosses.empty()) return nullptr;
             else if(m_bosses.front()->Live() && m_bosses.front()->birthTime <= m_cnt) return m_bosses.front();

@@ -1,5 +1,6 @@
 #include "StageMgr.h"
 #include "BulletMgr.h"
+#include "StdParttenAPI.h"
 
 /* 仅对Boss符卡有效的API */
 typedef void(*SCPartten)(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data);
@@ -30,4 +31,14 @@ inline int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int min
     return n;
 }
 
-
+float GetRandomEnemyAngle(){
+    auto pEne = stage.GetEnemy();
+    if(pEne){
+        return EneGetPlrAngle(0,pEne->num);
+    }else if(stage.GetBoss()){
+        float x,y,x2,y2;
+        PlrGetPos(0,x,y);
+        stage.GetBoss()->GetPos(x2,y2);
+        return StdGetAngle(x,y,x2,y2);
+    }
+}

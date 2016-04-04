@@ -454,3 +454,11 @@ void StageMgr::KillEnemy(Enemy* e)
         collWorld.SetEnemy(e->num,false,0,0,0);
     }
 }
+
+Enemy* StageMgr::GetEnemy()
+{
+    for(int i = m_enemySearchBottom;i < m_enemySearchTop;++i){
+        if(m_enemys[i].live == Enemy::LIVE) return m_enemys[i];
+    }
+    return nullptr;
+}
