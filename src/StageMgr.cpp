@@ -30,7 +30,6 @@ void StageMgr::Init()
     Snow::CSVReader csv;
     csv.LoadCSV("Enemy/styles.csv");
     int num = 0;
-    csv.NextLine();
     do{
         PNT("TEST NUM:"<<num);
         csv.PopInt(m_eStyles[num].texCount);
