@@ -96,7 +96,7 @@ void CSVWRollBgp::OnNext()
             p->r1x = p->w+p->r2x;
         }
     }
-
+	if(!m_cmds.size() != 0)
     while(m_cmds.front().begTime == m_cnt && !m_cmds.empty()){
         //PNT("WRollBgp:"<<m_cmds.front().type<<m_cnt);
         switch(m_cmds.front().type){

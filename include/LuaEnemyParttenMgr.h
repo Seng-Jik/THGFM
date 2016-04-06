@@ -6,7 +6,7 @@ struct Enemy;
 class LuaEnemyParttenMgr
 {
     public:
-        void InitByStageMgr();   //ÓÉStageMgr¸ºÔğ³õÊ¼»¯
+        void InitByStageMgr();   //ç”±StageMgrè´Ÿè´£åˆå§‹åŒ–
         void ProcEnemy(Enemy*);
     protected:
     private:

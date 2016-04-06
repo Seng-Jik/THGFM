@@ -2,7 +2,7 @@
 #define EFFECTMGR_H
 #include <list>
 #include "Snow.h"
-class EffectMgr //ÓÃÀ´¹ÜÀíºÍÓÎÏ·ÄÚÈİÍêÈ«ÎŞ¹ØµÄĞ¡ÌØĞ§
+class EffectMgr //ç”¨æ¥ç®¡ç†å’Œæ¸¸æˆå†…å®¹å®Œå…¨æ— å…³çš„å°ç‰¹æ•ˆ
 {
     public:
         EffectMgr();

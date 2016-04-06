@@ -9,32 +9,32 @@
 #include "Snow.h"
 
 struct Shot{
-    bool deadDanmaku = false;   //ÊÇ·ñÎªDÖ¸ÁîÔì³öµÄÉä»÷¼¯
+    bool deadDanmaku = false;   //æ˜¯å¦ä¸ºDæŒ‡ä»¤é€ å‡ºçš„å°„å‡»é›†
     int cnt;
-    int birth; //³öÉúÊ±¼ä
+    int birth; //å‡ºç”Ÿæ—¶é—´
     enum{NOBIRTH,LIVE,STOPLIVE,STOPSHOOT,DEATH}live = NOBIRTH;
-    //Î´³öÉú,»î×Å,Í£Ö¹Éä»÷,ËÀÍö
-    int partten;    //Éä»÷Ä£Ê½
-    std::vector<int> bullets;   //×Óµ¯¼¯
+    //æœªå‡ºç”Ÿ,æ´»ç€,åœæ­¢å°„å‡»,æ­»äº¡
+    int partten;    //å°„å‡»æ¨¡å¼
+    std::vector<int> bullets;   //å­å¼¹é›†
     std::vector<double> parttenArgs;
 };
 struct Enemy{
     int cnt;
-    int birth; //³öÉúÊ±¼ä
+    int birth; //å‡ºç”Ÿæ—¶é—´
     int num;
-    int texNum; //µ±Ç°Ê¹ÓÃµÄÍ¼Ïñ±àºÅ
-    SDL_RendererFlip flipMode;  //·­Á³Ä£Ê½£¬×Ô¶¯ÅĞ¶ÏÊÇÏòÇ°»¹ÊÇÏòºóÒÆ¶¯²¢×Ô¶¯·­×ª
+    int texNum; //å½“å‰ä½¿ç”¨çš„å›¾åƒç¼–å·
+    SDL_RendererFlip flipMode;  //ç¿»è„¸æ¨¡å¼ï¼Œè‡ªåŠ¨åˆ¤æ–­æ˜¯å‘å‰è¿˜æ˜¯å‘åç§»åŠ¨å¹¶è‡ªåŠ¨ç¿»è½¬
     enum{NOBIRTH,LIVE,STOPLIVE,DEATH}live = NOBIRTH;
-    double angle;   //½Ç¶È
-    double x,y,spd; //x,y,ËÙ¶È,ÅĞ¶¨°ë¾¶
-    int partten; //µĞÈËÄ£Ê½
+    double angle;   //è§’åº¦
+    double x,y,spd; //x,y,é€Ÿåº¦,åˆ¤å®šåŠå¾„
+    int partten; //æ•Œäººæ¨¡å¼
     double hp;
-    std::vector<Shot*> shots;    //Éä»÷
-    Shot* whenKilled =nullptr;   //ËÀÍöºóÉä»÷
-    int style;  //µĞÈËÍ¼Ïñ±àºÅ
+    std::vector<Shot*> shots;    //å°„å‡»
+    Shot* whenKilled =nullptr;   //æ­»äº¡åå°„å‡»
+    int style;  //æ•Œäººå›¾åƒç¼–å·
     double parttenArgs[8];
 
-    int items[2];   //±¬³öµÄµÀ¾ß
+    int items[2];   //çˆ†å‡ºçš„é“å…·
 };
 
 class StageMgr
@@ -49,8 +49,8 @@ class StageMgr
             SDL_Texture* tex[16];
             int texCount = 1;
             double r = 16;
-            int frameJg;    //Ö¡¼ä¸ô
-            bool autoFlip;  //×Ô¶¯×ªÁ³
+            int frameJg;    //å¸§é—´éš”
+            bool autoFlip;  //è‡ªåŠ¨è½¬è„¸
         };
         static EnemyStyle m_eStyles [128];
 
@@ -75,7 +75,7 @@ class StageMgr
         }
 
         inline Enemy* GetEnemy(int n){return m_enemys[n];}
-        Enemy* GetEnemy();  //»ñµÃÒ»¸öµĞÈË
+        Enemy* GetEnemy();  //è·å¾—ä¸€ä¸ªæ•Œäºº
         inline Boss* GetBoss(){
             if(m_bosses.empty()) return nullptr;
             else if(m_bosses.front()->Live() && m_bosses.front()->birthTime <= m_cnt) return m_bosses.front();

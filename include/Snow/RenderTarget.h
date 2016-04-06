@@ -23,6 +23,7 @@ class RenderTarget  //你可以把本应绘制到屏幕缓存的数据绘制到�
         SDL_Rect m_drawArea,m_drawPos;
 };
 
+
 class SoftLinkTarget{ //你可以绑定其他的软件渲染器到本类对象，比如用SALVIA进行3D渲染或者用ffmpeg播放视频
     public:
         SoftLinkTarget(int w,int h,Uint32 sdlPixelFormat);  //传入长,宽以及SDL支持的像素格式

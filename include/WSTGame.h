@@ -26,7 +26,7 @@ class WSTGame : public KeyMapAct
 
         SDL_Texture* m_stageClearScreen;
         SDL_Rect m_stageClearScreenRect;
-        int m_stageClearEffCnt = 0;    //0Îª¹Ø±Õ¶¯»­,´óÓÚ0Îª¶¯»­ÖÐ
+        int m_stageClearEffCnt = 0;    //0ä¸ºå…³é—­åŠ¨ç”»,å¤§äºŽ0ä¸ºåŠ¨ç”»ä¸­
 
         SDL_Texture* m_pGameGraphic;
         SDL_Texture* m_pBossBgp;

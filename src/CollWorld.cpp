@@ -1,35 +1,35 @@
-/* XRect ¶Ôµã½øĞĞÅö×²¼ì²âËùĞèÒªµÄÊıÑ§ÎÊÌâ */
+/* XRect å¯¹ç‚¹è¿›è¡Œç¢°æ’æ£€æµ‹æ‰€éœ€è¦çš„æ•°å­¦é—®é¢˜ */
 
-/* Ö±Ïß·½³Ì */
+/* ç›´çº¿æ–¹ç¨‹ */
 struct XFLine{
     double k,b;
 };
 
-/* ¸ø³öÁ½¸öµãÇóÖ±Ïß·½³Ì */
+/* ç»™å‡ºä¸¤ä¸ªç‚¹æ±‚ç›´çº¿æ–¹ç¨‹ */
 static inline void GetLineXF(XFLine& xf,double x1,double y1,double x2,double y2){
     if(x2 == x1) xf.k = 100000;
     else xf.k = float(y2-y1)/(x2-x1);
     xf.b = y1 - xf.k*x1;
 }
 
-/* ´øÈëÖ±Ïß·½³Ì */
+/* å¸¦å…¥ç›´çº¿æ–¹ç¨‹ */
 static double GetY(const XFLine& xf,double x){
     return xf.k*x+xf.b;
 }
 
-/* ÇóÖ¤µãÔÚÁ½ÌõÖ±ÏßÖ®¼ä */
+/* æ±‚è¯ç‚¹åœ¨ä¸¤æ¡ç›´çº¿ä¹‹é—´ */
 static bool inline PointIn2XFLines(const XFLine& xf1,const XFLine& xf2,double x,double y){
     double y1 = GetY(xf1,x);
     double y2 = GetY(xf2,x);
     return (y>=y1 && y<=y2)||(y<=y1&&y>=y2);
 }
 
-/* ÇóÖ¤µãÔÚËÄÌõÖ±ÏßÎ§³ÉµÄËÄ±ßĞÎÄÚ */
+/* æ±‚è¯ç‚¹åœ¨å››æ¡ç›´çº¿å›´æˆçš„å››è¾¹å½¢å†… */
 static bool inline PointIn4XFLinesRect(const XFLine* xfs,double x,double y){
     return PointIn2XFLines(xfs[0],xfs[2],x,y) && PointIn2XFLines(xfs[1],xfs[3],x,y);
 }
 
-/* ÇóÖ¤µãÔÚËÄ¸öµãÎ§³ÉµÄËÄ±ßĞÎÄÚ */
+/* æ±‚è¯ç‚¹åœ¨å››ä¸ªç‚¹å›´æˆçš„å››è¾¹å½¢å†… */
 static bool inline PointIn4PointsRect(int* x,int* y,int x0,int y0){
     XFLine xfs[4];
     for(int i = 0;i < 3;++i){
@@ -42,7 +42,7 @@ static bool inline PointIn4PointsRect(int* x,int* y,int x0,int y0){
 
 #include "BulletMgr.h"
 #include "CollWorld.h"
-#include <mem.h>
+#include <stdlib.h>
 #include "Snow.h"
 #include "Player.h"
 #include "StageMgr.h"
@@ -251,7 +251,7 @@ void CollWorld::Debug_DrawEnemy_XRect()
             }
             SDL_RenderDrawLine(pRnd,m_enemyBulletsXRect[j].x[0],m_enemyBulletsXRect[j].y[0],m_enemyBulletsXRect[j].x[3],m_enemyBulletsXRect[j].y[3]);
 
-            /* Íâ¼Ó·½³ÌÏß */
+            /* å¤–åŠ æ–¹ç¨‹çº¿ */
             XFLine xfs[4];
             for(int i = 0;i < 3;++i){
                 GetLineXF(xfs[i],m_enemyBulletsXRect[j].x[i],m_enemyBulletsXRect[j].y[i],m_enemyBulletsXRect[j].x[i+1],m_enemyBulletsXRect[j].y[i+1]);
@@ -268,24 +268,24 @@ void CollWorld::Update_Boom()
     for(int boom = 0;boom < 4;++boom){
         if(!m_booms[boom].enable) continue;
 
-        //Õ¨µ¯Ïû³ıµĞÈË
+        //ç‚¸å¼¹æ¶ˆé™¤æ•Œäºº
         for(int i = m_enemySearchBotton;i < m_enemySearchTop;++i){
             if(m_booms[boom].enable && coll_r2c(m_booms[boom],m_enemys[i])){
                 stage.KillEnemy(i,5);
             }
         }
-        //Õ¨µ¯¹¥»÷Boss
+        //ç‚¸å¼¹æ”»å‡»Boss
         if(m_boss.enable && coll_r2c(m_booms[boom],m_boss)){
             m_bossObject -> KillHP(1);
         }
-        //Õ¨µ¯µÖÏû×Óµ¯
+        //ç‚¸å¼¹æŠµæ¶ˆå­å¼¹
         for(int i = 0;i < m_enemyBulletSearchTop;++i){
-            //Ô²ĞÎ
+            //åœ†å½¢
             if(m_enemyBullets[i].enable && coll_r2c(m_booms[boom],m_enemyBullets[i])){
                 m_enemyBullets[i].enable = false;
                 bulletMgr.KillBulletAndInstallEffect(i);
             }
-            //·½ĞÎ
+            //æ–¹å½¢
             if(m_enemyBulletsXRect[i].enable){
                 bool AllIn = true;
                 for(int j = 0;j < 4;++j){

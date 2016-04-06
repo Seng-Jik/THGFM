@@ -10,6 +10,7 @@
 * 2014.8.24
 ******************/
 
+
 #include "SDLbase.h"
 #include "Globals.h"
 namespace Snow

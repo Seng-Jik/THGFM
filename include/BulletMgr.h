@@ -4,27 +4,27 @@
 #include "Snow.h"
 #include "StageMgr.h"
 struct Bullet{
-    bool live;  //Éú´æ
-    bool collateEnabled;    //ÒÑÆôÓÃÅö×²¼ì²â
-    int style;  //·ç¸ñ
-    int cnt,minLiveTime;    //Ö¡¼ÆÊıÆ÷£¬×î¶ÌÉú´æÊ±¼ä
-    double x,y,angle,spd;   //x,y,·ÉĞĞ½Ç¶È,ËÙ¶È
+    bool live;  //ç”Ÿå­˜
+    bool collateEnabled;    //å·²å¯ç”¨ç¢°æ’æ£€æµ‹
+    int style;  //é£æ ¼
+    int cnt,minLiveTime;    //å¸§è®¡æ•°å™¨ï¼Œæœ€çŸ­ç”Ÿå­˜æ—¶é—´
+    double x,y,angle,spd;   //x,y,é£è¡Œè§’åº¦,é€Ÿåº¦
     double state[8];
     Uint8 alpha = 0;
     bool alpha_living = false;
 
-    double self_angle = 0;    //Ğı×ª½Ç¶È
-    double self_w; //×Óµ¯×ÔÎÒËõ·Å£¬Ö»ÊÊÓÃÓÚËÄ±ßĞÎ×Óµ¯
+    double self_angle = 0;    //æ—‹è½¬è§’åº¦
+    double self_w; //å­å¼¹è‡ªæˆ‘ç¼©æ”¾ï¼Œåªé€‚ç”¨äºå››è¾¹å½¢å­å¼¹
     double self_h;
     int self_roll_center_x,self_roll_center_y;
 
     Shot* link;
     int linkNum;
 
-    enum{SHOWING,HIDING,NONE}ani;   //¶¯»­ÀàĞÍ
+    enum{SHOWING,HIDING,NONE}ani;   //åŠ¨ç”»ç±»å‹
     float aniState[2];
-    //Ô²ĞÎµ¯Ä»ÖĞ
-    //  0ºÅÎª¶¯»­°Ù·Ö±È
+    //åœ†å½¢å¼¹å¹•ä¸­
+    //  0å·ä¸ºåŠ¨ç”»ç™¾åˆ†æ¯”
 };
 class BulletMgr
 {
@@ -33,9 +33,9 @@ class BulletMgr
         std::priority_queue<int> m_freeList;
         struct BulletStyle{
             SDL_Texture* tex;
-            enum{CIRCLE,XRECT1,XRECT2}shape = CIRCLE; //¸ÕÌåĞÎ×´
-            //XRect1  -- ´Ì´©Õû¸ö
-            //XRect2 -- ºÍ×Óµ¯´¹Ö±µÄ·½Ïòµ­Èë
+            enum{CIRCLE,XRECT1,XRECT2}shape = CIRCLE; //åˆšä½“å½¢çŠ¶
+            //XRect1  -- åˆºç©¿æ•´ä¸ª
+            //XRect2 -- å’Œå­å¼¹å‚ç›´çš„æ–¹å‘æ·¡å…¥
             union{
                 struct{
                     double r;

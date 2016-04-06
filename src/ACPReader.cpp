@@ -29,7 +29,7 @@ bool ACPReader::OpenPkg(const char* pkg){
      m_pkg.open(pkg,ios::binary|ios::in);
      printf("OpenPkg:Package Opened:%d\n",!m_pkg.fail());
      Uint32 fileNum = 1;
-     cout<<m_pkg.read((char*)&fileNum,sizeof(Uint32));
+     m_pkg.read((char*)&fileNum,sizeof(Uint32));
      printf("OpenPkg:Got File Nums:%d\n",fileNum);
      //m_pkg.seekg(0,ios::end);
      //m_pkg.seekg(-fileNum*sizeof(FileInfo),ios::cur);

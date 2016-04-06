@@ -6,6 +6,7 @@ namespace Snow{
 
 class TCPServer;
 
+
 class TCPConnection{ //套接字连接
 friend class TCPServer;
 public:

@@ -156,15 +156,15 @@ void StageMgr::OnNext()
         stageTitle.OnNext();
 
 
-    //äº§ç”Ÿå³å°†å‡ºç”Ÿçš„æ•Œäºº
+    //²úÉú¼´½«³öÉúµÄµĞÈË
     for(int i = m_enemySearchTop;i < (int)m_enemys.size();++i){
         if(m_cnt == m_enemys[i]->birth){
-            if(!GetBoss()){  //å¦‚æœæ­¤æ—¶æ²¡æœ‰Bossï¼Œåˆ™æ­£å¸¸ç”Ÿæˆæ•Œäºº
+            if(!GetBoss()){  //Èç¹û´ËÊ±Ã»ÓĞBoss£¬ÔòÕı³£Éú³ÉµĞÈË
                 m_enemySearchTop=i+1;
                 if(m_enemySearchTop > (int)m_enemys.size()) m_enemySearchTop = m_enemys.size();
                 m_enemys[i]->cnt = 0;
                 m_enemys[i]->live = Enemy::LIVE;
-            }else{  //å¦åˆ™ç¦æ­¢æ•Œäººå‡ºç°
+            }else{  //·ñÔò½ûÖ¹µĞÈË³öÏÖ
                 m_enemySearchTop=i+1;
                 if(m_enemySearchTop > (int)m_enemys.size()) m_enemySearchTop = m_enemys.size();
                 m_enemys[i]->live = Enemy::DEATH;
@@ -173,14 +173,14 @@ void StageMgr::OnNext()
     }
     //PNT(m_enemySearchBottom<<" "<<m_enemySearchTop);
 
-    //C æŒ‡ä»¤å¤„ç†
+    //C Ö¸Áî´¦Àí
     if(!m_clearScreenTime.empty())
         if(m_cnt == m_clearScreenTime.front()){
             m_clearScreenTime.pop();
             KillEnemy(nullptr);
         }
 
-    //Boss å¤„ç†
+    //Boss ´¦Àí
     if(!m_bosses.empty()){
         if(m_bosses.front() -> birthTime == m_cnt)
             m_bosses.front() -> OnBirth();
@@ -199,7 +199,7 @@ void StageMgr::OnNext()
         Enemy& enemy = *m_enemys[enemyNum];
         if(enemy.live == Enemy::LIVE){
 
-            //å¦‚æœç”Ÿå‘½å€¼ä¸º0åˆ™æ€æ­»
+            //Èç¹ûÉúÃüÖµÎª0ÔòÉ±ËÀ
             if(enemy.hp <= 0){
                 KillEnemy(&enemy);
                 if(enemy.whenKilled){
@@ -215,23 +215,23 @@ void StageMgr::OnNext()
                 se.Play(TAN00);
             }
 
-            //åº”ç”¨ Partten
+            //Ó¦ÓÃ Partten
             if(enemy.partten != -1)
                 //enemyPartten[enemy.partten](&enemy,enemyNum);
                 luaEnemyParttens.ProcEnemy(&enemy);
             ++enemy.cnt;
 
-            //åæ ‡è¿ç®—
+            //×ø±êÔËËã
             int xSpd = enemy.spd * cos(enemy.angle);
             enemy.y -= enemy.spd * sin(enemy.angle);
             enemy.x -= xSpd;
             if(xSpd>=0 || !m_eStyles[enemy.style].autoFlip) enemy.flipMode = SDL_FLIP_NONE;
             else enemy.flipMode = SDL_FLIP_HORIZONTAL;
 
-            //åŠ¨ç”»å¤„ç†
+            //¶¯»­´¦Àí
             enemy.texNum = enemy.cnt /m_eStyles[enemy.style].frameJg % m_eStyles[enemy.style].texCount;
 
-            //å¦‚æœè¶…å‡ºå±å¹•åˆ™æ€æ­»
+            //Èç¹û³¬³öÆÁÄ»ÔòÉ±ËÀ
             if((enemy.x < -2*m_eStyles[enemy.style].r ||
                 enemy.x > WIDTH + m_eStyles[enemy.style].r||
                 enemy.y > HEIGHT + m_eStyles[enemy.style].r||
@@ -240,7 +240,7 @@ void StageMgr::OnNext()
                     KillEnemy(&enemy);
                     //PNT(i<<"Killed By Screen.");
             }else{
-                //åŒæ­¥ç¢°æ’åˆšä½“
+                //Í¬²½Åö×²¸ÕÌå
                 collWorld.SetEnemy(enemy.num,enemy.live == Enemy::LIVE,enemy.x,enemy.y,m_eStyles[enemy.style].r);
                 if(enemy.x - m_eStyles[enemy.style].r - 16 < bestLeft) bestLeft = enemy.x - m_eStyles[enemy.style].r - 16;
                 if(enemy.x + m_eStyles[enemy.style].r + 16 > bestRight) bestRight = enemy.x + m_eStyles[enemy.style].r + 16;
@@ -249,20 +249,20 @@ void StageMgr::OnNext()
 
         }
 
-        //å°„å‡»å¤„ç†
+        //Éä»÷´¦Àí
         bool allShotDied = true;
         if(enemy.live == Enemy::LIVE || enemy.live == Enemy::STOPLIVE){
             for(auto p = enemy.shots.begin();p != enemy.shots.end();++p){
                 Shot& shot = **p;
 
-                //äº§ç”Ÿå³å°†å‡ºç”Ÿçš„å°„å‡»
+                //²úÉú¼´½«³öÉúµÄÉä»÷
                 if(shot.live == Shot::NOBIRTH && shot.birth == m_cnt && enemy.live == Enemy::LIVE) {
                     shot.live = Shot::LIVE;
                     shot.cnt = 0;
                 }
-                //é”€æ¯å·²ç»ç©ºäº†çš„å°„å‡»
+                //Ïú»ÙÒÑ¾­¿ÕÁËµÄÉä»÷
                 else if((shot.live == Shot::LIVE && shot.cnt >= 30) || shot.live == Shot::STOPLIVE || shot.live == Shot::STOPSHOOT || (shot.deadDanmaku&& shot.cnt >= 1)){
-                    //å­å¼¹æ§½æ˜¯å¦å·²ç»ç©ºæ‰
+                    //×Óµ¯²ÛÊÇ·ñÒÑ¾­¿Õµô
                     bool noBullet = true;
                     for(auto pBullet = shot.bullets.begin();pBullet != shot.bullets.end();++pBullet){
                         if(*pBullet != -1){
@@ -283,7 +283,7 @@ void StageMgr::OnNext()
                 if(shot.live == Shot::LIVE || shot.live == Shot::STOPLIVE || shot.live == Shot::STOPSHOOT) allShotDied = false;
 
                 if(shot.live == Shot::LIVE || shot.live == Shot::STOPSHOOT){
-                    //åº”ç”¨ Partten
+                    //Ó¦ÓÃ Partten
                     //(*shotPartten[shot.partten])(&shot,enemy.num);
                     luaShotParttens.ProcShot(&shot,enemy.num);
                 }
@@ -293,14 +293,14 @@ void StageMgr::OnNext()
 
         }
 
-        //å½“æ•Œäººå°„å‡»å…¨éƒ¨æ­»äº¡ä¸”æ•Œäººå·²ç»åœæ­¢æ´»åŠ¨æ—¶ï¼Œå½»åº•é”€æ¯æ•Œäºº
+        //µ±µĞÈËÉä»÷È«²¿ËÀÍöÇÒµĞÈËÒÑ¾­Í£Ö¹»î¶¯Ê±£¬³¹µ×Ïú»ÙµĞÈË
         if(allShotDied && enemy.live == Enemy::STOPLIVE){
             FOR_EACH(p,enemy.shots.begin(),enemy.shots.end())
                 delete *p;
             enemy.live = Enemy::DEATH;
             enemy.shots.clear();
             //PNT(enemy.num<<" Was Died");
-            //æ¢ç´¢æœç´¢ä¸‹é™ï¼ˆæ­»äº¡ä¸Šé™ï¼‰
+            //Ì½Ë÷ËÑË÷ÏÂÏŞ£¨ËÀÍöÉÏÏŞ£©
             while(m_enemys[m_enemySearchBottom]->live == Enemy::DEATH){
                 ++m_enemySearchBottom;
                 if(m_enemySearchBottom > m_enemySearchTop -1) {
@@ -343,7 +343,7 @@ void StageMgr::OnNext()
                 shot.cnt = 0;
             }
             if(shot.live == Shot::NOBIRTH) continue;
-            //TODO:å°„å‡»æ¨¡å¼å¤„ç†
+            //TODO:Éä»÷Ä£Ê½´¦Àí
             if((shot.live == Shot::LIVE || shot.live == Shot::STOPLIVE) && shot.partten != -1)
                 (*shotPartten[shot.partten])(&shot,i);
 
@@ -359,7 +359,7 @@ void StageMgr::OnNext()
                 continue;
             }
 
-            //TODO:æ•Œäººæ¨¡å¼
+            //TODO:µĞÈËÄ£Ê½
             if(m_enemys[i] -> partten != -1)
                 enemyPartten[m_enemys[i] -> partten](m_enemys[i],i);
 
@@ -416,7 +416,7 @@ void StageMgr::OnDraw()
         SDL_RenderCopyEx(pRnd,m_eStyles[m_enemys[i]->style].tex[m_enemys[i]->texNum],nullptr,&r,0,nullptr,m_enemys[i]->flipMode);
     }
 
-    //Boss å¤„ç†
+    //Boss ´¦Àí
     if(!m_bosses.empty()){
         if(m_cnt >= m_bosses.front() -> birthTime){
             m_bosses.front() -> OnDraw();
@@ -427,9 +427,7 @@ void StageMgr::OnDraw()
         stageTitle.OnDraw();
 
     SDL_SetRenderDrawColor(Snow::pRnd,255,0,0,255);
-    char frameStr [16];
-    itoa(m_cnt,frameStr,10);
-    SDLTest_DrawString(Snow::pRnd,WIDTH-200,HEIGHT-16,frameStr);
+    //SDLTest_DrawString(Snow::pRnd,WIDTH-200,HEIGHT-16,to_string(m_cnt).c_str());
 }
 
 void StageMgr::KillEnemy(Enemy* e)

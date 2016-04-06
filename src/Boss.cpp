@@ -13,6 +13,7 @@
 typedef void(*SCBg)(int cnt,Snow::Bundle<256>&);
 extern SCBg scbgs [];
 using namespace Snow;
+static char memory_Dontuse[128];    //æ­¤å¤„å‘ç”Ÿå†…å­˜æŸåï¼Œå·²ä¿®è¡¥
 
 void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,const std::string& playerChar)
 {
@@ -25,13 +26,13 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,cons
     ResVal r;
     r.Load(s);
 
-    //»ù±¾²ÎÊı
+    //åŸºæœ¬å‚æ•°
     m_midway = r.Int("MIDWAY_BOSS");
     m_conversation = r.Str("CONVERSATION_"+playerChar);
     m_conversation_whenKilled = r.Str("CONV_WHEN_KILLED_"+playerChar);
     m_basePath = basePath;
 
-    //Í¼Ïñ²ÎÊı
+    //å›¾åƒå‚æ•°
     for(int i = 0;i < 10;++i){
         std::string s("IMG_FILE_");
         s+=char('0'+i);
@@ -48,7 +49,7 @@ void Boss::LoadRV(const std::string& s,const std::string& basePath,int* cnt,cons
     m_x = WIDTH+80;
     m_firsShow = true;
 
-    //·û¿¨ÁĞ±íCSVÅäÖÃ
+    //ç¬¦å¡åˆ—è¡¨CSVé…ç½®
     CSVReader csv;
     SpellCard sc;
     csv.LoadCSV(basePath+r.Str("SC_CSV"));
@@ -105,7 +106,7 @@ void Boss::OnBirth()
 {
     m_cnt_begin = -1;
     collWorld.SetBossObj(this);
-    //Æô¶¯Ê±Æô¶¯¶Ô»°ÏµÍ³
+    //å¯åŠ¨æ—¶å¯åŠ¨å¯¹è¯ç³»ç»Ÿ
     if(m_bossConversation){
         Call(m_bossConversation);
     }else OnConersationFinished();
@@ -115,10 +116,13 @@ void Boss::OnBirth()
     if(m_fullHP > 0) gameUI.ShowHPLine();
 }
 
+#include <iostream>
+using namespace std;
 void Boss::OnDraw()
 {
     SDL_Rect r = {int(m_x),int(m_y),m_images_w,m_images_h};
     SDL_RenderCopy(pRnd,m_images[m_imageUsing],nullptr,&r);
+	cout << "Boss:" << m_spd << "," << m_x << endl;
 }
 
 void Boss::OnNext()
@@ -149,7 +153,7 @@ void Boss::OnNext()
     if(m_firsShow) return;
     scClock.SetTime(m_endTime - m_cnt);
 
-    //µ±·û¿¨ËÀÍöºó
+    //å½“ç¬¦å¡æ­»äº¡å
     if(((m_spellCards.front().hp<=0 && m_fullHP > 0) || m_cnt >= m_endTime) && m_collEnable){
         if(m_bouns && m_spellCards.front().isSpellCard){
             if(rand()%10 <= 1) itemMgr.AddItem(FULLPOWER,10,m_x,m_y,1);

@@ -1,6 +1,6 @@
 #include "MathFunc.h"
 #include <math.h>
-#include <mem.h>
+#include <stdlib.h>
 #include <string.h>
 
 using namespace ACGCross;

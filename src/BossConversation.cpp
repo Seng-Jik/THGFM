@@ -27,7 +27,7 @@ void BossConversation::OnShow()
     m_left.SetData(100,1);
     m_right.SetData(900,-1);
 
-    /* TODO:½ö1ÈËPlay */
+    /* TODO:ä»…1äººPlay */
     m_shotPressed[0] = player[0].GetShotPressed();
 
     m_window.Load("textWindow.png");
@@ -37,8 +37,8 @@ void BossConversation::OnShow()
     m_text->SetSpeed(50);
     m_text->SetColor(255,255,255);
 
-    /* Í£Ö¹Íæ¼Ò»î¶¯ */
-    /* DEBUG:Ö»¶ÔÓ¦µ¥Íæ¼Ò */
+    /* åœæ­¢ç©å®¶æ´»åŠ¨ */
+    /* DEBUG:åªå¯¹åº”å•ç©å®¶ */
     for(int i = 0;i < 1;++i){
         wstg -> OnEvent(i,T_SHOT,false);
     }
@@ -205,7 +205,7 @@ void BossConversation::OnEvent(int p, Key k, bool b)
 
 void BossConversation::OnHide()
 {
-    /* TODO:½ö1P */
+    /* TODO:ä»…1P */
     if(m_shotPressed[0]) player[0].OnEvent(T_SHOT,true);
     delete m_text;
     delete this;

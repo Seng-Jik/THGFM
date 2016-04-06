@@ -28,7 +28,7 @@ void PauseActivity::OnShow()
     m_state = PAUSEING;
     m_tmr.Reset();
 
-    //TODO:Ö»´¦ÀíÁË0ºÅÍæ¼Ò
+    //TODO:åªå¤„ç†äº†0å·ç©å®¶
     player[0].ClearKey();
 }
 

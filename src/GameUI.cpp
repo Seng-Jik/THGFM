@@ -45,7 +45,7 @@ void GameUI::OnDraw()
 
     if(m_bossOpened){
 
-        /* Boss  £”‡∑˚ø® ˝±Ì æ */
+        /* Boss Ââ©‰ΩôÁ¨¶Âç°Êï∞Ë°®Á§∫ */
         r.x = WIDTH-32;
         r.y = HEIGHT-32;
         r.w = r.h = 32;
@@ -59,7 +59,7 @@ void GameUI::OnDraw()
     if(m_scName_show)
         m_scName.OnDraw();
 
-    /* Boss —™Ãı */
+    /* Boss Ë°ÄÊù° */
     SDL_SetTextureAlphaMod(m_bossHPLine,192*m_bossHPLineAlpha);
     SDL_SetTextureAlphaMod(m_bossHPLineShell,128*m_bossHPLineAlpha);
     SDL_Rect rs = {600,32,639,32};

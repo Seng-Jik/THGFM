@@ -22,11 +22,11 @@ class KeyMapAct : public Snow::Activity
         static bool HaveGamePad();
         void OnEvent(const SDL_Event& e);
         virtual void OnEvent(int,Key,bool) = 0;
-        //Íæ¼ÒºÅ£¬°´¼üºÅ£¬°´¼ü×´Ì¬£¨trueÎª°´ÏÂ£¬·ñÔòÎªµ¯³ö£©
+        //ç©å®¶å·ï¼ŒæŒ‰é”®å·ï¼ŒæŒ‰é”®çŠ¶æ€ï¼ˆtrueä¸ºæŒ‰ä¸‹ï¼Œå¦åˆ™ä¸ºå¼¹å‡ºï¼‰
         static void LoadConfig();
     protected:
     private:
-        static Key kb2k(SDL_Keycode);  //¼üÅÌ°´¼ü×ªÓÎÏ·°´¼ü
+        static Key kb2k(SDL_Keycode);  //é”®ç›˜æŒ‰é”®è½¬æ¸¸æˆæŒ‰é”®
         static Key m_k [2] [32];
         static int m_axis[2] [2];
 };

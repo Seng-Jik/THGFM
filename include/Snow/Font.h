@@ -5,6 +5,7 @@
 #include "ResFile.h"
 
 /* 字体类，你只需要创建其对象加载字体即可 */
+
 namespace Snow
 {
     class Font

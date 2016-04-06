@@ -92,14 +92,14 @@ class TextBox
         int m_linePos;  //现在已经显示到的相对rect横行坐标
         int m_heiPos;  //现在已经显示到的相对rect竖行坐标
 
-        struct TextPicInfo{
+        /*struct TextPicInfo{
             int tex;
             int fpsCount;
             int nowFps;
             int fpsCounter;
             int fpsTime;
         };
-        std::list<TextPicInfo> m_tpiv;
+        std::list<TextPicInfo> m_tpiv;*/
 };
 
 } // namespace Galgame

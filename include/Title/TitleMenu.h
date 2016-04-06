@@ -19,7 +19,7 @@ class TitleMenu : public KeyMapAct
     private:
         SDL_Texture* m_bgp;
 
-        /* ×î»ù±¾µÄ°´Å¥¼Ü¹¹ */
+        /* æœ€åŸºæœ¬çš„æŒ‰é’®æ¶æ„ */
         enum ButtonWork{
             START,
             STARTEXTRA,
@@ -32,8 +32,8 @@ class TitleMenu : public KeyMapAct
         struct Button{
             SDL_Texture* tex;
             Uint8 alpha;
-            SDL_Rect dst_draw;  //»æÖÆÊ±µÄÎ»ÖÃ
-            SDL_Point dst;   //Êµ¼ÊÎ»ÖÃ
+            SDL_Rect dst_draw;  //ç»˜åˆ¶æ—¶çš„ä½ç½®
+            SDL_Point dst;   //å®é™…ä½ç½®
             ButtonWork btn;
         };
         enum{
@@ -55,7 +55,7 @@ class TitleMenu : public KeyMapAct
         void onNextButton();
         void onDrawButton();
 
-        /* ÉÏÏÂ¼üÑ¡Ôñ */
+        /* ä¸Šä¸‹é”®é€‰æ‹© */
         void selectUp();
         void selectDown();
         void selectEnter();

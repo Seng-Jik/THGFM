@@ -2,6 +2,7 @@
 #include "ResFile.h"
 #include <string>
 
+
 namespace Snow{
 class CSVReader
 {

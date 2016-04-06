@@ -11,6 +11,7 @@ namespace Snow{
     class Activity;
     void Init();    //初始化
     void Run(Activity* start);  //框架执行
+
     //初始化活动的代码块的最后一行调用此函数，传入第一个执行的活动即可
 
     void Goto(Activity*);   //跳转活动

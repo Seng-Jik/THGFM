@@ -10,6 +10,7 @@ namespace Snow
     void UpperCase(std::string&);
     std::string GetLine(ResFile& r,Uint32& pos);
 
+
     void Pos(int& opr_x,int& opr_y,float x,float y);    //使用百分比相对定位
     void Pos(int& opr_x,int& opr_y,const char base,int x,int y);    //使用基点相对定位
         /* 基点(Base)的用法 */

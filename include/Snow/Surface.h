@@ -3,6 +3,7 @@
 
 namespace Snow{
 
+
 class Surface{
 private:
 	SDL_Surface* m_sur = nullptr;

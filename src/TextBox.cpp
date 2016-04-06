@@ -45,8 +45,8 @@ void TextBox::Br()
 void TextBox::ForceClear()
 {
     m_biggestLineHeight = m_word_h;
-    m_tpiv.clear();
-    FOR_EACH(p,m_text.begin(),m_text.end()) delete *p;
+    //m_tpiv.clear();
+	for (Snow::Sprite* ptr : m_text) delete ptr;
     m_text.clear();
     m_lineWord.clear();
     m_lineWord.push_back(0);
@@ -73,22 +73,24 @@ Uint32 TextBox::ForceAddText(const std::wstring& s)
 
         /*渲染文字纹理*/
         m_text.push_back(new ::Snow::Sprite());
-        const auto pTex = m_text.size() - 1;
+		auto pTex = m_text.end();
+		--pTex;
 
         auto pSur = TTF_RenderGlyph_Blended(m_tfont,*p,m_color);
+		SDL_assert(pSur);
         ::Snow::DrawTextOutLine(pSur);
-        m_text[pTex]  -> Load(pSur);
+        (*pTex)  -> Load(pSur);
         SDL_FreeSurface(pSur);
 
 
         /*求文字需要的数据*/
         int w,h;
-        m_text[pTex] -> GetSize(w,h);
+		(*pTex)-> GetSize(w,h);
 
         //缩放
         {
             float per = float(m_word_h)/r.Int("GAL_WORDSIZE");
-            m_text[pTex] -> SetZoom(per);
+			(*pTex)-> SetZoom(per);
             w *= per;
         }
 
@@ -97,7 +99,7 @@ Uint32 TextBox::ForceAddText(const std::wstring& s)
             if(w + m_linePos > m_rect.w)
                 Br();
 
-            m_text[pTex] ->SetPos(m_rect.x + m_linePos,m_rect.y + m_heiPos);
+			(*pTex)->SetPos(m_rect.x + m_linePos,m_rect.y + m_heiPos);
             m_linePos += w;
         }
 
@@ -107,11 +109,11 @@ Uint32 TextBox::ForceAddText(const std::wstring& s)
 
 
 Uint32 TextBox::ForceAddPic(const std::string& file, const int fps, const int time)
-{
+{/*
     m_lineWord[m_lineWord.size()-1] ++;
 
-    /*渲染纹理*/
-    m_text.push_back(new ::Snow::Sprite());
+    //渲染纹理
+    m_text.push_back(::Snow::Sprite());
     auto pTex = m_text.size() - 1;
 
     m_text[pTex] -> Load(file);
@@ -139,6 +141,8 @@ Uint32 TextBox::ForceAddPic(const std::string& file, const int fps, const int ti
         m_linePos += w;
     }
     return pTex;
+	*/
+	return 233;
 }
 
 
@@ -154,16 +158,16 @@ void TextBox::AddText(const std::wstring& s)
 
 void TextBox::AddPic(const std::string& file,const int fps,const int time)
 {
-    auto pst = ForceAddPic(file,fps,time);
+    /*auto pst = ForceAddPic(file,fps,time);
     m_text[pst] -> SetAlpha(0);
     if(m_stat != TXT_SHOWING) m_showing_word = pst;
     m_stat = TXT_SHOWING;
-    m_fpsCounter = m_nowFps;
+    m_fpsCounter = m_nowFps;*/
 }
 
 void TextBox::OnNext()
 {
-    FOR_EACH(p,m_tpiv.begin(),m_tpiv.end()) //文字框中的表情图片动画
+    /*FOR_EACH(p,m_tpiv.begin(),m_tpiv.end()) //文字框中的表情图片动画
     {
         p -> fpsCounter++;
         if(p -> fpsTime <= p -> fpsCounter)
@@ -176,7 +180,7 @@ void TextBox::OnNext()
 
             m_text[p -> tex] -> SetSrc(w/p -> fpsCount* p -> nowFps,0,w/p -> fpsCount,h);
         }
-    }
+    }*/
 
     if(m_stat == TXT_SHOWING){  //正在显示文字
         m_nowFps++;

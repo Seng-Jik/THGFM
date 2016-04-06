@@ -2,12 +2,12 @@
 #include "BulletMgr.h"
 #include "StdParttenAPI.h"
 
-/* ½ö¶ÔBoss·û¿¨ÓĞĞ§µÄAPI */
+/* ä»…å¯¹Bossç¬¦å¡æœ‰æ•ˆçš„API */
 typedef void(*SCPartten)(Boss* b,int cnt,int scnt,int& image,double& boss_x,double& boss_y,double& boss_spd,double& boss_aspd,double& boss_angle,double hp,const std::vector<int>& bullets,Snow::Bundle<256>& data);
-//Boss Ö¸Õë£¬Boss×ÜÖ¡Êı£¬·û¿¨Éú´æÖ¡Êı£¬Ê¹ÓÃÖĞµÄBossÍ¼Ïñ£¬Boss×ø±êx£¬Boss×ø±êy£¬BossËÙ¶È£¬Boss¼ÓËÙ¶È£¬BossÒÆ¶¯½Ç¶È£¬·û¿¨ÉúÃüÊ£Óà£¬×Óµ¯±í
+//Boss æŒ‡é’ˆï¼ŒBossæ€»å¸§æ•°ï¼Œç¬¦å¡ç”Ÿå­˜å¸§æ•°ï¼Œä½¿ç”¨ä¸­çš„Bosså›¾åƒï¼ŒBossåæ ‡xï¼ŒBossåæ ‡yï¼ŒBossé€Ÿåº¦ï¼ŒBossåŠ é€Ÿåº¦ï¼ŒBossç§»åŠ¨è§’åº¦ï¼Œç¬¦å¡ç”Ÿå‘½å‰©ä½™ï¼Œå­å¼¹è¡¨
 extern SCPartten scPartten [];
 
-/* Í¨ÓÃAPI */
+/* é€šç”¨API */
 #define BltAngle(b) bulletMgr[b].angle
 #define BltSpd(b) bulletMgr[b].spd
 #define BltState(b,i) bulletMgr[b].state[i]

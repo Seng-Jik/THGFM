@@ -2,6 +2,7 @@
 //线程函数原型
 //void func(Thread*);
 
+
 #include "SDLbase.h"
 namespace Snow
 {

@@ -31,7 +31,7 @@ void LuaEnemyParttenMgr::InitByStageMgr()
 void LuaEnemyParttenMgr::ProcEnemy(Enemy* e)
 {
 
-    // Ö»¶Á×éÊı¾İ
+    // åªè¯»ç»„æ•°æ®
     lua_pushnumber(m_luaVM,e -> cnt);
     lua_pushnumber(m_luaVM,e -> num);
     lua_pushnumber(m_luaVM,stage.GetLv());
@@ -52,7 +52,7 @@ void LuaEnemyParttenMgr::ProcEnemy(Enemy* e)
     lua_setglobal(m_luaVM,"beatFrame");
 
 
-    // ¿ÉĞ´×éÊı¾İ
+    // å¯å†™ç»„æ•°æ®
     lua_pushnumber(m_luaVM,e -> angle);
     lua_pushnumber(m_luaVM,e -> spd);
     lua_setglobal(m_luaVM,"spd");
@@ -77,7 +77,7 @@ void LuaEnemyParttenMgr::ProcEnemy(Enemy* e)
         exit(-1);
     }
 
-    // ¿ÉĞ´×éÊı¾İ»ØĞ´
+    // å¯å†™ç»„æ•°æ®å›å†™
     lua_getglobal(m_luaVM,"m7");
     lua_getglobal(m_luaVM,"m6");
     lua_getglobal(m_luaVM,"m5");

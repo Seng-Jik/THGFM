@@ -6,6 +6,7 @@
 /* 声音类 ，一个声音类代表一个通道，可以同时播放。 */
 namespace Snow{
 
+
     class Sound
     {
     private:

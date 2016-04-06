@@ -1,5 +1,6 @@
 #include "str2wstr.h"
-#include <mem.h>
+#include <stdlib.h>
+#include <string.h>
 std::wstring  StringToWString(const std::string& s)
 {
     setlocale(LC_ALL, "chs");

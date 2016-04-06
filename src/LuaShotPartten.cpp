@@ -8,7 +8,7 @@
 
 LuaShotParttenMgr luaShotParttens;
 
-//µ×²ã½Ó¿Ú
+//åº•å±‚æ¥å£
 #define ShtEnd() s -> live = Shot::STOPLIVE
 
 static inline int ShtCreateBlt(Shot* s,double x,double y,double angle,double spd,int minLiveTime,int style)
@@ -27,10 +27,10 @@ static inline int ShtCreateBlt(Shot* s,double x,double y,double angle,double spd
     }else return -1;
 }
 
-//Lua½»»¥API
+//Luaäº¤äº’API
 static Shot* now;
-static int nowBullet = -1;   //È«¾ÖµÄ×Óµ¯±àºÅ
-static std::vector<int>::iterator nowBullet_inThisShot;    //Éä»÷¼¯ÖĞµÄµ±Ç°×Óµ¯
+static int nowBullet = -1;   //å…¨å±€çš„å­å¼¹ç¼–å·
+static std::vector<int>::iterator nowBullet_inThisShot;    //å°„å‡»é›†ä¸­çš„å½“å‰å­å¼¹
 
 static int luaApi_NextBullet(lua_State* s){
     luaShotParttens.saveBulletVars();
@@ -113,7 +113,7 @@ static int luaApi_Rand(lua_State* s){
     return 1;
 }
 
-//Shot DataÏµAPI
+//Shot Dataç³»API
 static int luaApi_GetDataSize(lua_State* s){
     lua_pushnumber(s,now->parttenArgs.size());
     return 1;

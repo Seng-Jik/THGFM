@@ -1,7 +1,7 @@
 #include "BgmMgr.h"
 #include "Snow/Debug.h"
 //#define DISABLE
-static char memory_Dontuse [64];    //此处发生内存损坏，已修补
+static char memory_Dontuse [64];    //姝ゅ鍙戠敓鍐呭瓨鎹熷潖锛屽凡淇ˉ
 BgmMgr bgm;
 
 Bgm::Bgm(const std::string& rv)

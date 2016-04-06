@@ -60,7 +60,7 @@ void EffectMgr::InstallFrameAnimation(int style, int x, int y)
 
 void EffectMgr::InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,bool alphaDown,const SDL_Point& poi,const double angle)
 {
-    //Ñ°ÕÒÒ»¸ö¿Õ×ÅµÄÌØĞ§Î»ÖÃ
+    //å¯»æ‰¾ä¸€ä¸ªç©ºç€çš„ç‰¹æ•ˆä½ç½®
     int num = 0;
     for(num = 0;num<m_zoomOutEffSearchTop;++num){
         if(!m_zoomOutEffs[num].tex){
@@ -70,7 +70,7 @@ void EffectMgr::InstallZoomOutAnimation(SDL_Texture* image,const SDL_Rect& r,boo
     if(m_zoomOutEffSearchTop>=1024) return;
     num = m_zoomOutEffSearchTop;
     ++m_zoomOutEffSearchTop;
-    //Ñ°ÕÒ½áÊø
+    //å¯»æ‰¾ç»“æŸ
     FINDED:
     m_zoomOutEffs[num].tex = image;
     m_zoomOutEffs[num].rect = r;

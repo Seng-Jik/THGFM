@@ -39,9 +39,9 @@ class GameUI
         bool m_scName_downAnimation;
 
         SDL_Texture* m_spellCardStar;
-        float m_scHP,m_showSCHP;   //Êµ¼ÊHPºÍÓÃÓÚÆ½»¬ÏÔÊ¾µÄHP
+        float m_scHP,m_showSCHP;   //å®é™…HPå’Œç”¨äºå¹³æ»‘æ˜¾ç¤ºçš„HP
 
-        void doScDownAnimation();   //Ö´ĞĞ·û¿¨ÃûÏÂ½µ¶¯»­
+        void doScDownAnimation();   //æ‰§è¡Œç¬¦å¡åä¸‹é™åŠ¨ç”»
     public:
         void Init();
         void OnDraw();
@@ -49,25 +49,25 @@ class GameUI
 
         //Player
         void SetLifeAndBomb(int life,int bomb){m_life = life;m_bombNum = bomb;}
-        void OnGetLife();  //Íæ¼ÒÈ¡µÃÉúÃüËéÆ¬Ê±
-        void OnPlayerBeKilled();    //Íæ¼Ò±»É±ËÀÊ±
-        void OnGetBomb();  //Íæ¼ÒÈ¡µÃÕ¨µ¯ËéÆ¬Ê±
-        void OnUseBomb();   //Íæ¼ÒÊ¹ÓÃÕ¨µ¯Ê±
-        inline bool CanUseBomb(){  //Íæ¼ÒÊÇ·ñ¿ÉÊ¹ÓÃÕ¨µ¯
+        void OnGetLife();  //ç©å®¶å–å¾—ç”Ÿå‘½ç¢ç‰‡æ—¶
+        void OnPlayerBeKilled();    //ç©å®¶è¢«æ€æ­»æ—¶
+        void OnGetBomb();  //ç©å®¶å–å¾—ç‚¸å¼¹ç¢ç‰‡æ—¶
+        void OnUseBomb();   //ç©å®¶ä½¿ç”¨ç‚¸å¼¹æ—¶
+        inline bool CanUseBomb(){  //ç©å®¶æ˜¯å¦å¯ä½¿ç”¨ç‚¸å¼¹
             return m_bombNum > 0;
         }
         inline int GetLife(){return m_life;}
 
         //Boss
-        void OpenBoss();    //³öÏÖBossÊ±
-        void CloseBoss();   //BossÕ½½áÊøÊ±
+        void OpenBoss();    //å‡ºç°Bossæ—¶
+        void CloseBoss();   //Bossæˆ˜ç»“æŸæ—¶
         inline void ShowHPLine(){m_bossHPLineShow = true;};
         inline void HideHPLine(){m_bossHPLineShow = false;};
-        void SetSpellCard(const std::string& scName);   //ÏÔÊ¾·û¿¨Ãû³ÆÊ±
+        void SetSpellCard(const std::string& scName);   //æ˜¾ç¤ºç¬¦å¡åç§°æ—¶
         inline void KillSpellCard(){
             m_scName_show = false;
         }
-        inline void UpdateSCHP(double hp){  //¸üĞÂ·û¿¨Ê£ÓàÉúÃüÖµ
+        inline void UpdateSCHP(double hp){  //æ›´æ–°ç¬¦å¡å‰©ä½™ç”Ÿå‘½å€¼
             m_scHP = hp;
         };
         inline void ResetHPLine(){m_showSCHP = 0;}

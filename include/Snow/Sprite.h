@@ -5,6 +5,7 @@
 #include "ResFile.h"
 #include "Surface.h"
 
+
 namespace Snow
 {
     class Font;

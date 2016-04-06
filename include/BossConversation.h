@@ -10,19 +10,19 @@
 class Boss;
 class BossConChar{
 private:
-    SDL_Texture* m_tex[2] = {nullptr};  //Á½¸öÍ¼²ã
-    int m_nowTex = 0;   //µ±Ç°ÔÚÉÏ±ßµÄÖ÷Í¼²ã
-    SDL_Rect m_dst; //µ±Ç°Î»ÖÃ
-    bool m_visible;   //¿É¼û£¿
-    bool m_act; //ÊÇ·ñ¼¤»î
+    SDL_Texture* m_tex[2] = {nullptr};  //ä¸¤ä¸ªå›¾å±‚
+    int m_nowTex = 0;   //å½“å‰åœ¨ä¸Šè¾¹çš„ä¸»å›¾å±‚
+    SDL_Rect m_dst; //å½“å‰ä½ç½®
+    bool m_visible;   //å¯è§ï¼Ÿ
+    bool m_act; //æ˜¯å¦æ¿€æ´»
 
-    inline int getFNowTex();    //»ñµÃµ±Ç°¸±Í¼²ã
+    inline int getFNowTex();    //è·å¾—å½“å‰å‰¯å›¾å±‚
 
     enum{
-        NONE,   //ÎŞ¶¯»­
-        GOIN,   //ÕıÔÚµ­Èë
-        GOOUT,  //ÕıÔÚµ­³ö
-        CHANGING    //ÕıÔÚÇĞ»»Í¼²ã
+        NONE,   //æ— åŠ¨ç”»
+        GOIN,   //æ­£åœ¨æ·¡å…¥
+        GOOUT,  //æ­£åœ¨æ·¡å‡º
+        CHANGING    //æ­£åœ¨åˆ‡æ¢å›¾å±‚
     }m_animation;
     enum{
         ACT_NONE,
@@ -32,29 +32,29 @@ private:
     Snow::FrameTimer m_tmr;
     Snow::FrameTimer m_act_tmr;
 
-    int m_basic_x,m_iden;   //»ù±¾x£¬»ù±¾ÒÆ¶¯µ¥Î»1
+    int m_basic_x,m_iden;   //åŸºæœ¬xï¼ŒåŸºæœ¬ç§»åŠ¨å•ä½1
 
 public:
     void OnDraw();
     void OnNext();
     void Clear();
-    void Load(const std::string&);  //¼ÓÔØ
-    void Act(); //¼¤»î
+    void Load(const std::string&);  //åŠ è½½
+    void Act(); //æ¿€æ´»
     void UnAct();
-    void Hide();    //Òş²Ø
+    void Hide();    //éšè—
     inline void SetData(int x,int identity){
         m_basic_x = x;m_iden = identity;
     };
-    //»ù±¾xÎ»ÖÃ,»ù±¾ÒÆ¶¯µ¥Î»£¨´«ÈëÕıÒ»»ò¸ºÒ»£©
-    inline bool Finished(){return m_animation == NONE;};    //¶¯»­ÊÇ·ñÒÑÍê³É
+    //åŸºæœ¬xä½ç½®,åŸºæœ¬ç§»åŠ¨å•ä½ï¼ˆä¼ å…¥æ­£ä¸€æˆ–è´Ÿä¸€ï¼‰
+    inline bool Finished(){return m_animation == NONE;};    //åŠ¨ç”»æ˜¯å¦å·²å®Œæˆ
 };
 
 
 class BossConversation : public KeyMapAct
 {
     private:
-        int* m_mainCnt; //Ö÷¼ÆÊ±Æ÷
-        int m_cnt;  //¶ÀÁ¢¼ÆÊ±Æ÷
+        int* m_mainCnt; //ä¸»è®¡æ—¶å™¨
+        int m_cnt;  //ç‹¬ç«‹è®¡æ—¶å™¨
         Boss* m_bossObj;
     public:
         void SetPtrs(int* cnt,Boss* b){m_mainCnt = cnt;m_bossObj = b;}

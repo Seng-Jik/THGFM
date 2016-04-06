@@ -1,7 +1,8 @@
 #pragma once
 #include "Globals.h"
 #include <fstream>
-#include "mem.h"
+#include <stdlib.h>
+
 
 /* 序列化数据包 */
 /* 警告！写入或读入超过数据包长度的数据程序会直接崩溃！*/

@@ -8,6 +8,7 @@
 #define DBGCLASS ,public dbg_class
 #define FDBGCLASS :public dbg_class
 
+
 class dbg_class
 {
 public:

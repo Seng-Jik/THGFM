@@ -11,7 +11,7 @@ BulletMgr bulletMgr;
 
 void BulletMgr::enableXRectBullet(int bltNum)
 {
-    //TODO£ºDebugÏîÄ¿£¬ËÄ±ßĞÎ×Óµ¯µÄĞı×ª½Ç¶ÔËÄ¸öµãµÄ×ª»»²¢ÉèÖÃµ½Åö×²ºĞ
+    //TODOï¼šDebugé¡¹ç›®ï¼Œå››è¾¹å½¢å­å¼¹çš„æ—‹è½¬è§’å¯¹å››ä¸ªç‚¹çš„è½¬æ¢å¹¶è®¾ç½®åˆ°ç¢°æ’ç›’
     int x[4],y[4],x2[4];
     double theta = m_blts[bltNum].self_angle;
     //theta = 2*M_PI - theta;
@@ -311,7 +311,7 @@ int BulletMgr::Alloc(double x,double y,int style)
         m_blts[n].y = y;
         m_blts[n].self_roll_center_x = m_blts[n].self_w/2;
         m_blts[n].self_roll_center_y = m_blts[n].self_h/2;
-        m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1ºÅÊÇ¶¯»­Æô¶¯Ê±µÄÖ¡ºÅ
+        m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1å·æ˜¯åŠ¨ç”»å¯åŠ¨æ—¶çš„å¸§å·
         m_blts[n].ani = Bullet::SHOWING;
         break;
     case BulletStyle::XRECT2:
@@ -319,7 +319,7 @@ int BulletMgr::Alloc(double x,double y,int style)
         m_blts[n].y = y;
         m_blts[n].self_roll_center_x = m_blts[n].self_w/2;
         m_blts[n].self_roll_center_y = m_blts[n].self_h/2;
-        m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1ºÅÊÇ¶¯»­Æô¶¯Ê±µÄÖ¡ºÅ
+        m_blts[n].aniState[0] = m_blts[n].aniState[1] = 0;  //1å·æ˜¯åŠ¨ç”»å¯åŠ¨æ—¶çš„å¸§å·
         m_blts[n].ani = Bullet::SHOWING;
         m_blts[n].self_w = 0;
         break;
@@ -346,9 +346,9 @@ int BulletMgr::Alloc(double x,double y,int style)
 
 void BulletMgr::Kill(int n)
 {
-    if(m_blts[n].link){ //Èç¹ûÓÉÆÕÍ¨Éä»÷¹ÜÀí
+    if(m_blts[n].link){ //å¦‚æœç”±æ™®é€šå°„å‡»ç®¡ç†
         if(m_blts[n].link -> live == Shot::LIVE) m_blts[n].link -> bullets[m_blts[n].linkNum] = -1;
-    }else{  //Èç¹ûÓÉBossÄ£Ê½¹ÜÀí
+    }else{  //å¦‚æœç”±Bossæ¨¡å¼ç®¡ç†
         stage.GetBoss() ->m_bullets[m_blts[n].linkNum] = -1;
     }
     m_blts[n].live = false;

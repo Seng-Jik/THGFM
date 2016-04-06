@@ -17,6 +17,7 @@ public:
     virtual char* GetFile(const std::string&,Uint32& size);
 };
 
+
 class ResFile
 {
 public:

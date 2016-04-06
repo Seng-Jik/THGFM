@@ -13,14 +13,14 @@ class Boss
     friend int SCCreateBlt(Boss* s,double x,double y,double angle,double spd,int minLiveTime,int style);
     friend class BulletMgr;
     private:
-        int* m_mainCnt;  //È«¾ÖÖ¡¼ÆÊıÆ÷
-        int m_cnt;  //¶ÀÁ¢Ö¡¼ÆÊıÆ÷
-        bool m_bouns;   //ÊÇ·ñÓ¦µ±½±Àø
-        bool m_invi;    //BossÊÇ·ñÎŞµĞ
-        BossConversation* m_bossConversation;   //Boss¶Ô»°»î¶¯
-        BossConversation* m_bossConversation_whenKilled;   //BossËÀÍöºóµÄ¶Ô»°»î¶¯
+        int* m_mainCnt;  //å…¨å±€å¸§è®¡æ•°å™¨
+        int m_cnt;  //ç‹¬ç«‹å¸§è®¡æ•°å™¨
+        bool m_bouns;   //æ˜¯å¦åº”å½“å¥–åŠ±
+        bool m_invi;    //Bossæ˜¯å¦æ— æ•Œ
+        BossConversation* m_bossConversation;   //Bosså¯¹è¯æ´»åŠ¨
+        BossConversation* m_bossConversation_whenKilled;   //Bossæ­»äº¡åçš„å¯¹è¯æ´»åŠ¨
 
-        bool m_live = true;    //´æ»î±êÖ¾
+        bool m_live = true;    //å­˜æ´»æ ‡å¿—
         bool m_collEnable;
         bool m_midway;
         std::string m_conversation;
@@ -33,25 +33,25 @@ class Boss
         int m_imageUsing;
         bool m_firsShow;
         double m_x,m_y,m_spd,m_aspd,m_angle;
-        int m_cnt_begin;  //¿ªÊ¼Ê±µÄÖ¡Êı
-        double m_fullHP;    //±¸·İµÄµ±Ç°·û¿¨ÂúHP
+        int m_cnt_begin;  //å¼€å§‹æ—¶çš„å¸§æ•°
+        double m_fullHP;    //å¤‡ä»½çš„å½“å‰ç¬¦å¡æ»¡HP
 
-        int m_spellCardNum; //·û¿¨×ÜÊı
+        int m_spellCardNum; //ç¬¦å¡æ€»æ•°
         struct SpellCard{
-            int timeLimit;    //·û¿¨Ê±³¤ÏŞÖÆ
-            bool isSpellCard;   //ÊÇ·ñÎª·û¿¨
-            double hp;    //·û¿¨ÉúÃüÖµ
-            int scPartten;  //·û¿¨¹¤×÷Ä£Ê½
-            int bgPartten;  //±³¾°Í¼
-            std::string title;  //·û¿¨Ãû³Æ
-            Snow::Bundle<256>* scBgData; //·û¿¨±³¾°Êı¾İ
+            int timeLimit;    //ç¬¦å¡æ—¶é•¿é™åˆ¶
+            bool isSpellCard;   //æ˜¯å¦ä¸ºç¬¦å¡
+            double hp;    //ç¬¦å¡ç”Ÿå‘½å€¼
+            int scPartten;  //ç¬¦å¡å·¥ä½œæ¨¡å¼
+            int bgPartten;  //èƒŒæ™¯å›¾
+            std::string title;  //ç¬¦å¡åç§°
+            Snow::Bundle<256>* scBgData; //ç¬¦å¡èƒŒæ™¯æ•°æ®
         };
         std::queue<SpellCard> m_spellCards;
         std::vector<int> m_bullets;
         Snow::Bundle<256> m_scParttenData;
 
-        //½áÊøÊ±¼ä
-        int m_endTime;  //Ó¦µ±µ½´ïµÄÊ±¼ä
+        //ç»“æŸæ—¶é—´
+        int m_endTime;  //åº”å½“åˆ°è¾¾çš„æ—¶é—´
     public:
         ~Boss();
         inline int GetCnt(){return m_cnt;}
@@ -64,7 +64,7 @@ class Boss
         inline bool Live(){return m_live;};
         inline void KillHP(double hp){m_spellCards.front().hp-=hp;}
         inline bool IsInvi(){return m_invi;}
-        inline int GetSpellCardNum(){return m_spellCardNum;}    //È¡·û¿¨Ê£ÓàÊı
+        inline int GetSpellCardNum(){return m_spellCardNum;}    //å–ç¬¦å¡å‰©ä½™æ•°
         inline void ResetCnt(){m_cnt = 0;}
         inline int GetSCnt(){return *m_mainCnt - m_cnt_begin;}
         inline bool HaveSpellCardBgp(){return m_spellCards.front().bgPartten != -1;}

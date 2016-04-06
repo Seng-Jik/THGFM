@@ -6,11 +6,11 @@ struct Shot;
 class LuaShotParttenMgr
 {
     public:
-        void InitByStageMgr();   //ÓÉStageMgr¸ºÔğ³õÊ¼»¯
+        void InitByStageMgr();   //ç”±StageMgrè´Ÿè´£åˆå§‹åŒ–
         void ProcShot(Shot*,int enemy);
 
-        void saveBulletVars();   //´æ´¢×Óµ¯µÄ¸ü¸Ä,²»ÒªÔÚÍâ½çµ÷ÓÃ
-        void loadBulletVars(); //»ñÈ¡LuaµÄÉèÖÃ,²»ÒªÔÚÍâ½çµ÷ÓÃ
+        void saveBulletVars();   //å­˜å‚¨å­å¼¹çš„æ›´æ”¹,ä¸è¦åœ¨å¤–ç•Œè°ƒç”¨
+        void loadBulletVars(); //è·å–Luaçš„è®¾ç½®,ä¸è¦åœ¨å¤–ç•Œè°ƒç”¨
     protected:
     private:
 

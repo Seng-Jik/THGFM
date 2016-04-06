@@ -22,6 +22,7 @@
 #include "ShaoNvQiDaoZhong.h"
 using namespace std;
 using namespace Snow;
+using namespace ACGCross;
 Snow::Mutex initMutex;
 
 void InitParttens(){
@@ -55,7 +56,7 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
     pause = new PauseActivity;
     //bossConversation = new BossConversation;
     wstg = new WSTGame;
-    acgclogo -> SetGoto(*new TouHouGameLogo);
+    //acgclogo -> SetGoto(*new TouHouGameLogo);
     StageMgr::Init();
     marisa.Init();
     reimu.Init();
@@ -66,7 +67,6 @@ static void InitGameLogic(ACGCross::Logo* acgclogo){
 int main(int argc,char** argv){
     Init();
     extern Uint8 BetaStart();
-    //BetaStart();
 
     extern void SoundFinished(int channel);
     Mix_ChannelFinished(&SoundFinished);
@@ -93,20 +93,25 @@ int main(int argc,char** argv){
     //BasicPackReader data;
     //data.OpenPkg("data.+pk");
     //Snow::ResFile::InstallReader(&data);
-    pRnd.Create("东方谷丰梦",FALSE,1280,720);
+    //pRnd.Create("东方谷丰梦",FALSE,1280,720);
 
-    ACGCross::Logo* acgclogo = new ACGCross::Logo;
+	pRnd.Create("THGFM", false, 1280, 720);
+
+
+	Logo* acgclogo=nullptr;
+	//acgclogo = new Logo;
     InitGameLogic(acgclogo);
+	BetaStart();
 
-    #ifndef _DEBUG
+    /*#ifndef _DEBUG
     SDL_ShowCursor(0);
     acgclogo ->SetInitThread(&initThread);
     Run(acgclogo);
-    #else
+    #else*/
     //_initThread(nullptr);
     Run(new ShaoNvQiDaoZhong(new std::thread(&_initThread,nullptr),wstg));
     //Run(&titleMenu);
-    #endif
+    //#endif
     exit(0);
     return 0;
 }
