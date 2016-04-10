@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{28a1a8d8-0835-4e38-93d8-46a9c1fe35fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\include">
+      <UniqueIdentifier>{eea87987-6667-4bed-b8ab-02d6e920ecc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\src">
+      <UniqueIdentifier>{c9bca8ef-1caf-4bb8-b826-9cfcf1fdff66}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\liblua\lstring.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lstrlib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ltable.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ltablib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ltm.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lundump.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lvm.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lzio.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lapi.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lauxlib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lbaselib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lbitlib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lcode.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lcorolib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lctype.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ldblib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ldebug.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ldo.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\ldump.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lfunc.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lgc.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\linit.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\liolib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\llex.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lmathlib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lmem.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\loadlib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lobject.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lopcodes.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\loslib.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lparser.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\liblua\lstate.c">
+      <Filter>source\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\liblua\lparser.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lstate.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lstring.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\ltable.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\ltm.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lua.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\luaconf.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lualib.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lundump.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lvm.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lzio.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lapi.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lauxlib.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lcode.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lctype.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\ldebug.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\ldo.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lfunc.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lgc.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\llex.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\llimits.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lmem.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lobject.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\liblua\lopcodes.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

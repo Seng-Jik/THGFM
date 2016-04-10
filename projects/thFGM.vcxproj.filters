@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{f4a23d04-0e7a-4994-af83-8370bdfbae32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\include">
+      <UniqueIdentifier>{8bf179e7-aec8-4f91-8d34-cb847d06d7a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\src">
+      <UniqueIdentifier>{22419ba7-5f99-45d7-949b-254491e5f051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\include\title">
+      <UniqueIdentifier>{92b95957-2cf5-47bb-bf99-9956fc1ccf87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\src\SCBackground">
+      <UniqueIdentifier>{96c96aea-38f9-4f02-b27b-4d0b4f868010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\src\SCPartten">
+      <UniqueIdentifier>{d0b17413-a988-4ff1-9f90-70a545ea3c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\src\Title">
+      <UniqueIdentifier>{711a6997-ba21-493d-9afb-e30708995fa7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\game\thGFM\include\Title\TitleMenu.h">
+      <Filter>source\include\title</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\ACPReader.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\Background.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\Beater.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\BgmMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\Boss.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\BossConversation.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\BulletMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\CharData.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\CollWorld.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\CSVWRollBgp.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\EffectMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\GameDataMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\GameUI.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\ItemMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\KeyMapAct.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\LuaEnemyParttenMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\LuaShotPartten.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\MathFunc.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\PauseActivity.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\Player.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\PlayerBullet.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\PointInXRect.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\SCClock.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\SeMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\ShaoNvQiDaoZhong.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\ShotParttenAPI.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\StageMgr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\StageTitle.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\StdParttenAPI.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\str2wstr.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\TextBox.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\Tools.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\TouHouGameLogo.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\WSTGame.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\ACGCross_Logo.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\game\thGFM\include\liblua.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\game\thGFM\src\Title\TitleMenu.cpp">
+      <Filter>source\src\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\SCPartten\Stage1L.cpp">
+      <Filter>source\src\SCPartten</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\SCBackground\ScBgp.cpp">
+      <Filter>source\src\SCBackground</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\Beater.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\BetaClient.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\BgmMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\Boss.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\BossConversation.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\BossConversationChar.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\BulletMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\CharData.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\CollWorld.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\CSVWRollBgp.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\EffectMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\GameDataMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\GameUI.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\ItemMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\KeyMapAct.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\LuaEnemyParttenMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\LuaShotPartten.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\Main.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\Marisa.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\MathFunc.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\PauseActivity.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\Player.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\PlayerBullet.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\PointInXRect.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\SCClock.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\SeMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\ShaoNvQiDaoZhong.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\StageMgr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\StageTitle.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\str2wstr.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\TextBox.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\Tools.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\TouHouGameLogo.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\WSTGame.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\ACGCross_Logo.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\game\thGFM\src\ACPReader.cpp">
+      <Filter>source\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0902B5CA-4AC7-48D5-A116-824562C391B3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Snow</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)</TargetName>
+    <OutDir>..\build.tmp\$(Configuration)\</OutDir>
+    <IntDir>..\build.obj\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\build.tmp\$(Configuration)\</OutDir>
+    <IntDir>..\build.obj\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SNOW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\lib\libsnow\include;..\libthird\sdl2\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_net.lib;SDL2_ttf.lib;SDL2.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <CreateHotPatchableImage>Enabled</CreateHotPatchableImage>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <ImportLibrary>$(OutDir)$(TargetName)_Dbg.lib</ImportLibrary>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>..\libthird\sdl2\lib\x86</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SNOW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\lib\libsnow\include;..\libthird\sdl2\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_net.lib;SDL2_ttf.lib;SDL2.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>..\libthird\sdl2\lib\x86</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\libsnow\include\Snow.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Activity.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Bundle.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Control.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\CSVReader.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Debug.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Font.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Globals.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Misc.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\OS.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\RenderTarget.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\ResFile.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\ResVal.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\RndPtr.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\SDLbase.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Sound.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Sprite.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Surface.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\TCPNet.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Thread.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\Timer.h" />
+    <ClInclude Include="..\lib\libsnow\include\Snow\UDPNet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\libsnow\src\Bundle.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Core.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\CSVReader.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Font.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Misc.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\RenderTarget.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\ResFile.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\ResVal.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\RndPtr.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Sound.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Sprite.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Surface.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\TCPNet.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\Thread.cpp" />
+    <ClCompile Include="..\lib\libsnow\src\UDPNet.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

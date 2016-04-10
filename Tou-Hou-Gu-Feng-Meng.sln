@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{1C96D3A4-7580-4022-88B2-F228F370909D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "game", "game", "{DCADB635-02EE-4C91-9F13-E9A043089CAD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsnow", "projects\libsnow.vcxproj", "{0902B5CA-4AC7-48D5-A116-824562C391B3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblua", "projects\liblua.vcxproj", "{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thFGM", "projects\thFGM.vcxproj", "{74736231-EE39-4532-8827-401516CEF937}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0902B5CA-4AC7-48D5-A116-824562C391B3} = {0902B5CA-4AC7-48D5-A116-824562C391B3}
+		{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7} = {CFE75CFB-335B-445B-AD73-D0BB1B1B52A7}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0902B5CA-4AC7-48D5-A116-824562C391B3}.Debug|x86.ActiveCfg = Debug|Win32
+		{0902B5CA-4AC7-48D5-A116-824562C391B3}.Debug|x86.Build.0 = Debug|Win32
+		{0902B5CA-4AC7-48D5-A116-824562C391B3}.Release|x86.ActiveCfg = Release|Win32
+		{0902B5CA-4AC7-48D5-A116-824562C391B3}.Release|x86.Build.0 = Release|Win32
+		{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7}.Debug|x86.ActiveCfg = Debug|Win32
+		{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7}.Debug|x86.Build.0 = Debug|Win32
+		{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7}.Release|x86.ActiveCfg = Release|Win32
+		{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7}.Release|x86.Build.0 = Release|Win32
+		{74736231-EE39-4532-8827-401516CEF937}.Debug|x86.ActiveCfg = Debug|Win32
+		{74736231-EE39-4532-8827-401516CEF937}.Debug|x86.Build.0 = Debug|Win32
+		{74736231-EE39-4532-8827-401516CEF937}.Release|x86.ActiveCfg = Release|Win32
+		{74736231-EE39-4532-8827-401516CEF937}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0902B5CA-4AC7-48D5-A116-824562C391B3} = {1C96D3A4-7580-4022-88B2-F228F370909D}
+		{CFE75CFB-335B-445B-AD73-D0BB1B1B52A7} = {1C96D3A4-7580-4022-88B2-F228F370909D}
+		{74736231-EE39-4532-8827-401516CEF937} = {DCADB635-02EE-4C91-9F13-E9A043089CAD}
+	EndGlobalSection
+EndGlobal

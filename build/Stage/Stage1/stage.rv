@@ -1,0 +1,21 @@
+﻿#关卡配置
+
+#关卡数据
+STR LSTG  = "Lunatic.csv"
+STR HSTG = "Lunatic.csv"
+STR NSTG = "Lunatic.csv"
+STR ESTG =  = "Lunatic.csv"
+STR EXSTG = "Lunatic.csv"
+
+#背景图数据
+STR BGCSV = "bgp/bg.csv"
+
+#Stage Title
+
+STR TITLE_IMG = "title.png"
+INT TITLE_BEG = 80
+INT TITLE_END = 440
+
+#BGM
+FLOAT BGM_BPM = 120
+STR BGM_FILE = "IceDance.rv"

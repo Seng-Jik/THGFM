@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{74736231-EE39-4532-8827-401516CEF937}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>thFGM</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\build.tmp\$(Configuration)\</OutDir>
+    <IntDir>..\build.obj\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\build.tmp\$(Configuration)\</OutDir>
+    <IntDir>..\build.obj\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\game\thGFM\include;..\lib\liblua;..\lib\libsnow\include;..\libthird\sdl2\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4819;4996;4305</DisableSpecificWarnings>
+      <FloatingPointModel>Strict</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\build.tmp\$(Configuration)\;..\libthird\sdl2\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libsnow.lib;liblua.lib;SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_net.lib;SDL2_ttf.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) ..\build</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\game\thGFM\include;..\lib\liblua;..\lib\libsnow\include;..\libthird\sdl2\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4819;4996;4305</DisableSpecificWarnings>
+      <FloatingPointModel>Strict</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\build.tmp\$(Configuration)\;..\libthird\sdl2\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libsnow.lib;liblua.lib;SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_net.lib;SDL2_ttf.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) ..\build</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\game\thGFM\include\ACGCross_Logo.h" />
+    <ClInclude Include="..\game\thGFM\include\ACPReader.h" />
+    <ClInclude Include="..\game\thGFM\include\Background.h" />
+    <ClInclude Include="..\game\thGFM\include\Beater.h" />
+    <ClInclude Include="..\game\thGFM\include\BgmMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\Boss.h" />
+    <ClInclude Include="..\game\thGFM\include\BossConversation.h" />
+    <ClInclude Include="..\game\thGFM\include\BulletMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\CharData.h" />
+    <ClInclude Include="..\game\thGFM\include\CollWorld.h" />
+    <ClInclude Include="..\game\thGFM\include\CSVWRollBgp.h" />
+    <ClInclude Include="..\game\thGFM\include\EffectMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\GameDataMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\GameUI.h" />
+    <ClInclude Include="..\game\thGFM\include\ItemMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\KeyMapAct.h" />
+    <ClInclude Include="..\game\thGFM\include\liblua.h" />
+    <ClInclude Include="..\game\thGFM\include\LuaEnemyParttenMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\LuaShotPartten.h" />
+    <ClInclude Include="..\game\thGFM\include\MathFunc.h" />
+    <ClInclude Include="..\game\thGFM\include\PauseActivity.h" />
+    <ClInclude Include="..\game\thGFM\include\Player.h" />
+    <ClInclude Include="..\game\thGFM\include\PlayerBullet.h" />
+    <ClInclude Include="..\game\thGFM\include\PointInXRect.h" />
+    <ClInclude Include="..\game\thGFM\include\SCClock.h" />
+    <ClInclude Include="..\game\thGFM\include\SeMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\ShaoNvQiDaoZhong.h" />
+    <ClInclude Include="..\game\thGFM\include\ShotParttenAPI.h" />
+    <ClInclude Include="..\game\thGFM\include\StageMgr.h" />
+    <ClInclude Include="..\game\thGFM\include\StageTitle.h" />
+    <ClInclude Include="..\game\thGFM\include\StdParttenAPI.h" />
+    <ClInclude Include="..\game\thGFM\include\str2wstr.h" />
+    <ClInclude Include="..\game\thGFM\include\TextBox.h" />
+    <ClInclude Include="..\game\thGFM\include\Title\TitleMenu.h" />
+    <ClInclude Include="..\game\thGFM\include\Tools.h" />
+    <ClInclude Include="..\game\thGFM\include\TouHouGameLogo.h" />
+    <ClInclude Include="..\game\thGFM\include\WSTGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\game\thGFM\src\ACGCross_Logo.cpp" />
+    <ClCompile Include="..\game\thGFM\src\ACPReader.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Beater.cpp" />
+    <ClCompile Include="..\game\thGFM\src\BetaClient.cpp" />
+    <ClCompile Include="..\game\thGFM\src\BgmMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Boss.cpp" />
+    <ClCompile Include="..\game\thGFM\src\BossConversation.cpp" />
+    <ClCompile Include="..\game\thGFM\src\BossConversationChar.cpp" />
+    <ClCompile Include="..\game\thGFM\src\BulletMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\CharData.cpp" />
+    <ClCompile Include="..\game\thGFM\src\CollWorld.cpp" />
+    <ClCompile Include="..\game\thGFM\src\CSVWRollBgp.cpp" />
+    <ClCompile Include="..\game\thGFM\src\EffectMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\GameDataMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\GameUI.cpp" />
+    <ClCompile Include="..\game\thGFM\src\ItemMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\KeyMapAct.cpp" />
+    <ClCompile Include="..\game\thGFM\src\LuaEnemyParttenMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\LuaShotPartten.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Main.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Marisa.cpp" />
+    <ClCompile Include="..\game\thGFM\src\MathFunc.cpp" />
+    <ClCompile Include="..\game\thGFM\src\PauseActivity.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Player.cpp" />
+    <ClCompile Include="..\game\thGFM\src\PlayerBullet.cpp" />
+    <ClCompile Include="..\game\thGFM\src\PointInXRect.cpp" />
+    <ClCompile Include="..\game\thGFM\src\SCBackground\ScBgp.cpp" />
+    <ClCompile Include="..\game\thGFM\src\SCClock.cpp" />
+    <ClCompile Include="..\game\thGFM\src\SCPartten\Stage1L.cpp" />
+    <ClCompile Include="..\game\thGFM\src\SeMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\ShaoNvQiDaoZhong.cpp" />
+    <ClCompile Include="..\game\thGFM\src\StageMgr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\StageTitle.cpp" />
+    <ClCompile Include="..\game\thGFM\src\str2wstr.cpp" />
+    <ClCompile Include="..\game\thGFM\src\TextBox.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Title\TitleMenu.cpp" />
+    <ClCompile Include="..\game\thGFM\src\Tools.cpp" />
+    <ClCompile Include="..\game\thGFM\src\TouHouGameLogo.cpp" />
+    <ClCompile Include="..\game\thGFM\src\WSTGame.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

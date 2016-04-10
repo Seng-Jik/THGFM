@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\libsnow\include\Snow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Activity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Bundle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Control.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\CSVReader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Font.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Globals.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Misc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\OS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\RenderTarget.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\ResFile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\ResVal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\RndPtr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\SDLbase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Sound.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Sprite.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Surface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\TCPNet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\Timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\libsnow\include\Snow\UDPNet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\libsnow\src\Bundle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Core.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\CSVReader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Font.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Misc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\RenderTarget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\ResFile.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\ResVal.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\RndPtr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Sound.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Sprite.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Surface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\TCPNet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\Thread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\libsnow\src\UDPNet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
